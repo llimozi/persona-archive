@@ -76,6 +76,11 @@ pnpm test:e2e                  # 14 passed / 0 failed / 0 skipped
 
 ## 2. 单元测试 31 项
 
+> **下表项数均为 `pnpm test` 的运行时展开数**，不是源码字面量数。
+> 用 `grep -c "it("` 数 `match.test.ts` 会得到 11，而实跑是 17——差的 6 条来自 `it.each`：源码 1 行，运行时展开成 7 条。
+> **两个数都是真的，回答的不是同一个问题。** 核对项数一律跑 `pnpm test`，不要静态数源码。
+> 另：`match.test.ts` 内有 11 处条件 `ctx.skip()`（引擎未导出 / 数据为空时显式转 NOT RUN），**本次运行触发 0 处**；若哪天变成 `30 passed / 1 skipped`，`passed` 那行仍是绿的，需另看 skipped 列。
+
 | 文件 | 项数 | 覆盖 |
 |---|---|---|
 | `tests/data/contract.test.ts` | 11 | 数据契约：字段齐全、六维 0–100 有限数、id 唯一、素材红线、选项 effects 合法性、量纲守卫（禁混填小数）、整卡 0–1 制识别 |
