@@ -727,9 +727,16 @@ export function match(input: MatchInput): MatchResult {
     //   因数据不完整就把人物删掉，是用一种错误掩盖另一种错误 —— 结果里少一个人，
     //   而没人知道少了、为什么少。正确做法是放它进池、同时告警要求补齐字段。
     //
-    // ⚠️ 读取位置修正：旧实现读顶层 `meta.restrictedReason`，但真实数据的
-    //   restrictedReason 写在 `compliance` 内（12/12），两者永远对不上，
-    //   于是这条"安全网"实际从未生效。现改读 `compliance.restrictedReason`。
+    // ── 为什么两处都读 ──────────────────────────────────────────────
+    // 契约（shared/types.ts）只定义 `compliance.restrictedReason` 一处，那才是"该写在哪"。
+    // 但"读"必须宽容：历史数据或外部写入方把该字段放在顶层时，只读 compliance 会让这张卡
+    // 静默漏掉提示——**该报的没报，且没人知道**。所以两处都读：契约管"应写在哪"，引擎管"写歪了也别静默失效"。
+    //   · 放在 compliance 内 → 命中（契约写法，12/12 真实数据如此）
+    //   · 放在顶层         → 也命中（宽容写法，不符合契约但能生效）
+    //   · 两处都没有       → 无法判断是否漏写 matchPool，不告警（否则会对每个没写该字段的正常卡刷告警）
+    // 后端开发 2026-11-05 指出：本段原先写的是"旧实现读顶层、数据写在 compliance 内、两者永远对不上、
+    // 安全网从未生效"——那是把一段**推断**写成了历史事实，且结论过头（顶层为空的卡之所以不告警，
+    // 本就是这个设计，与"对不上"无关）。注释只该说明"为什么这样写"，不该讲故事。
     if (meta.compliance?.matchPool === undefined && (meta.compliance?.restrictedReason || meta.restrictedReason)) {
       warnings.push({
         code: 'persona_match_pool_missing',
