@@ -39,7 +39,12 @@ const restrictedCount = personas.filter((p) => (p as { compliance?: { restricted
 const matchPoolFalse = personas.filter((p) => (p as { compliance?: { matchPool?: boolean } }).compliance?.matchPool === false).length;
 
 const outOfPoolWarnings = result.warnings.filter((w) => w.code === 'persona_out_of_match_pool');
-const legacyWarnings = result.warnings.filter((w) => w.code === 'persona_out_of_pool_legacy');
+// 缺 matchPool 但带 restrictedReason 的卡，当前引擎推的是 persona_match_pool_missing（只告警不拦截）。
+// ⚠️ 这里曾过滤 `persona_out_of_pool_legacy`——那是主控 2026-11-05 裁决前的旧码名，引擎已不再推。
+//    残留的后果是：过滤结果恒为 0，打印出来「0 条（应为 0）」看着很正常，
+//    实际是"码根本不会出现"而非"确实没漏字段"，等于一条永远不会红的断言。
+//    现改为过滤真实码名，判据换成"真实数据里不该有缺字段的卡"。
+const missingWarnings = result.warnings.filter((w) => w.code === 'persona_match_pool_missing');
 const restrictedNoted = result.warnings.filter((w) => w.code === 'persona_restricted_noted');
 /** restricted=true 的人物 id（数据侧声明） */
 const restrictedIds = personas
@@ -54,7 +59,7 @@ console.log('  compliance.matchPool=false :', matchPoolFalse, '人  ← 这才�
 console.log('');
 console.log('引擎结果: 入池', inPool, '人 / 出池', dropped, '人');
 console.log('  出池告警 persona_out_of_match_pool:', outOfPoolWarnings.length, '条');
-console.log('  兜底排除 persona_out_of_pool_legacy:', legacyWarnings.length, '条（缺 matchPool 字段被旧口径排除，应为 0）');
+console.log('  缺字段告知 persona_match_pool_missing:', missingWarnings.length, '条（只告警，不拦截）');
 console.log('  受限告知 persona_restricted_noted  :', restrictedNoted.length, '条（只告知，不拦）');
 console.log('');
 
@@ -62,7 +67,7 @@ const checks: Array<[string, boolean, string]> = [
   ['池大小 === 数据总数（无误剔）', inPool === total, `期望 ${total}，实际 ${inPool}`],
   ['出池 === 0', dropped === 0, `期望 0，实际 ${dropped}`],
   ['matchPool=false 为 0 时不应有出池告警', matchPoolFalse === 0 ? outOfPoolWarnings.length === 0 : true, `实际 ${outOfPoolWarnings.length} 条`],
-  ['无「漏写 matchPool 被兜底排除」的人（应 0）', legacyWarnings.length === 0, `实际 ${legacyWarnings.length} 条`],
+  ['真实数据无「缺 matchPool」的卡（应 0，且该码确实会被推——见 fixture）', missingWarnings.length === 0, `实际 ${missingWarnings.length} 条`],
   // ── 为什么这条要从"查告警"改成"查在场"（历史记录，不是当前结果）─────────────
   // 【旧行为】本条原先判断的是「有没有推 persona_restricted_noted 告警」，
   //          而名字写的是「仍在池中」。两者在正常路径下恰好同向，所以看不出问题。
@@ -79,9 +84,10 @@ const checks: Array<[string, boolean, string]> = [
   ['主匹配存在', result.main !== null, '主匹配为空'],
 ];
 
-// ── fixture 用例：真实数据里 0 例，所以必须构造才能验证「旧口径兜底排除」这条分支 ──
-// 没有这段，persona_out_of_pool_legacy 那条断言永远是 0、也永远不会红 = 等于没有断言。
-// （已实测：把 legacy 码合并回显式码，真实数据的 check-pool 仍然全 PASS，抓不到。）
+// ── fixture 用例：真实数据里 0 例，所以必须构造才能验证「缺 matchPool 只告警不拦截」这条分支 ──
+// 没有这段，上面那条 missingWarnings === 0 永远是 0、也永远不会红 = 等于没有断言。
+// 这段就是那条断言的"反向证据"：证明 persona_match_pool_missing 这个码真的会被推出来。
+// （历史：该断言原过滤 persona_out_of_pool_legacy，引擎改码名后它恒为 0，已修正。）
 const legacyPersona = {
   id: 'fixture-legacy-001',
   name: '缺 matchPool 的测试人物',
