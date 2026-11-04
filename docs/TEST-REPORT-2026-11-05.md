@@ -6,17 +6,20 @@
 
 ## 0. 结论总表
 
-**读数绑定**（主控口径：数字必须挂到 commit 上，且写「跑的那一刻的 HEAD」）
+**读数绑定**（六件套：命令名 + 分文件明细 + 原行 + 运行时刻 + HEAD sha 写全 + 与当次 `git rev-parse` 的对应关系）
 
-| 项 | 值 |
+> 下表每一行的数字都只对它自己那一格的 commit 负责，**不表示「当前状态」**。想知道现在是多少，去跑 §1 的命令。
+
+| 项 | 值（含所属 commit） |
 |---|---|
-| 基线 commit | `2fe82be`（三条新断言入库） |
-| 最终复验 commit | `931dc13`，`git status --porcelain` 无输出 |
-| 最终复验时刻 | 2026-11-05T01:55:48Z（E2E 跑批）/ 01:57:15（复查时 HEAD） |
-| 复验结果 | 单测 `Test Files 4 passed (4)` / `Tests 31 passed (31)`；E2E 14 passed / 0 skipped / 0 failed |
+| 起点 commit | `2fe82be` —— 三条关键断言（量纲守卫 / σ 取用 / 逐维绝对值）首次入库，此提交上为 **29 passed** |
+| K7 追加 | `da1c08a` —— `tests/engine/theme-usage.test.ts` 新增 2 条，此提交上为 **31 passed** |
+| 最终复验 commit | `931dc13` —— 31 passed（`Test Files 4 passed (4)`，`Tests 31 passed (31)`），`git status --porcelain` 无输出 |
+| 最终复验时刻 | 2026-11-05T01:55:48Z（E2E 跑批）；01:57:15（复查时 HEAD = `931dc13`，由当次 `git rev-parse --short HEAD` 取得） |
+| 复验结果（绑 `931dc13`） | 单测 `Test Files 4 passed (4)` / `Tests 31 passed (31)`；E2E 14 passed / 0 skipped / 0 failed |
 | 被测实例 | `http://127.0.0.1:8790`（复用还是自起见 §1.0 的定性说明） |
 | 实例标识 | 跑批时 `/api/health` 的 `loadedAt` / `uptimeSec`（见 §1.0） |
-| 说明 | HEAD 会移动，故本表写**跑的那一刻的 HEAD**，不写「报告时的 HEAD」。29→31 为 K7 在 `da1c08a` 追加 `theme-usage.test.ts` 2 条。 |
+| 说明 | HEAD 会移动，本表写**跑的那一刻的 HEAD**，不写「报告时的 HEAD」。29→31 的唯一来源是 `da1c08a` 那 2 条，其余提交均不影响测试数。 |
 
 | 项 | 结论 | 证据 | 等级 |
 |---|---|---|---|
