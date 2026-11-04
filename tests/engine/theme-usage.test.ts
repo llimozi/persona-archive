@@ -33,9 +33,19 @@ const WEIGHTS_API: EngineTheme = {
 };
 
 /** 分叉值（只在测试内构造，不写 data/） */
+/**
+ * 分叉权重：**为什么是这组值，不是随便挑的**。
+ *
+ * `mainPercent` 经 formatPercent() 取整为整数，**分叉幅度太小会被取整抹平**：
+ *   EE .30 / ST .10（小幅）  → 74 → 74   断言失败（看起来像"权重没生效"，其实是幅度不够）
+ *   EE .40 / 其余 .12（本组）→ 74 → 77   取整后仍差 3，可稳定区分
+ *
+ * 改这组值之前先确认：新值下 mainPercent 取整后仍与 WEIGHTS_API 不同。
+ * 否则断言会从"验证"退化成"永远红"或"永远绿"，而两种退化看上去都像正常结果。
+ */
 const WEIGHTS_DIVERGED: EngineTheme = {
   themeId: 'th-general',
-  name: '分叉值',
+  name: '分叉值（EE .40 / 其余 .12，取整后 74→77，见上方注释）',
   weights: { EE: 0.40, ST: 0.12, AC: 0.12, HX: 0.12, RB: 0.12, SR: 0.12 },
 };
 
