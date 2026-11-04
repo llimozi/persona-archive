@@ -1,20 +1,26 @@
 /**
  * 分享链接（?r=）验收脚本 —— 可重跑，不依赖 /tmp。
  *
- * 校验链路：作答 → 编码 ?r= → 新会话打开 → 页面结果 **与引擎直算结果逐项比对**。
- * 判据（与主流程一致，三条都要）：
- *   ① 六维绝对值逐维相等（±1 取整）
- *   ② 主匹配人物名相同
+ * 校验链路：作答 → 编码 ?r= → 新会话打开 → 页面结果 与 **独立引擎基准** 逐项比对。
+ * 判据（与主流程一致，四条都要）：
+ *   ① 六维绝对值 = 引擎独立直算的 x*100（±1 取整）
+ *   ② 主匹配人物 = 引擎独立直算的 main
  *   ③ 极差 ≥ 10（防压缩）
+ *   ④ 分享链接打开的结果 = 页面直连结果（重放一致性）
+ *
+ * 为什么要「独立基准」而不只比对两个页面：
+ *   只比页面 A vs 页面 B，两端都用同一套错误算法时也会 PASS（这正是 P0 的形态）。
+ *   所以本脚本直接从 data/*.json 读真实数据、自己调引擎算出 expected，再与页面比。
  *
  * 用法（dev 服务需已在 5173 运行，勿重复启动）：
  *   node src/web/verify-share.mjs
  * 退出码：0 全过 / 1 有失败
  */
 import { spawn } from 'node:child_process';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { match } from '../engine/index.ts';
 
 const EDGE = process.env.EDGE_PATH ?? 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
 const BASE = process.env.AUDIT_URL ?? 'http://127.0.0.1:5173/';
@@ -141,16 +147,41 @@ try {
   const shared = await ev(READ_RESULT);
   console.log('[分享打开] 主人物 =', shared.name, '| 六维 =', JSON.stringify(shared.values), '| 极差 =', shared.spread);
 
-  // —— 4. 三条判据 ——
+  // —— 4. 独立引擎基准（直接从 data/ 读，不经页面）——
+  const personasJson = JSON.parse(readFileSync('data/personas.json', 'utf8')).personas;
+  const qraw = JSON.parse(readFileSync('data/questions.json', 'utf8'));
+  const engineResult = match({
+    questions: qraw.questions,
+    personas: personasJson,
+    answers: qraw.questions.map((q) => ({ questionId: q.id, optionId: 'A' })),
+    theme: {
+      themeId: qraw.theme?.themeId ?? 'th-general',
+      name: '通用题库',
+      weights: qraw.theme?.weights,
+    },
+  });
+  const expected = {
+    name: engineResult.main?.persona?.name ?? null,
+    values: Object.values(engineResult.user.x).map((v) => Math.round(v * 100)),
+  };
+  console.log('[引擎独立基准]', expected.name, JSON.stringify(expected.values));
+
+  // —— 5. 四条判据 ——
   console.log('');
   const dimsMatch =
-    shared.values.length === direct.values.length &&
-    shared.values.every((v, i) => Math.abs(v - direct.values[i]) <= 1);
-  check('六维绝对值与直连一致（±1）', dimsMatch, `${JSON.stringify(shared.values)} vs ${JSON.stringify(direct.values)}`);
-  check('主匹配人物一致', shared.name === direct.name, `${shared.name} vs ${direct.name}`);
-  check('极差 ≥ 10（防压缩）', (shared.spread ?? 0) >= 10, `极差 = ${shared.spread}`);
+    direct.values.length === expected.values.length &&
+    direct.values.every((v, i) => Math.abs(v - expected.values[i]) <= 1);
+  check('① 页面六维 = 引擎独立基准（±1）', dimsMatch, `${JSON.stringify(direct.values)} vs ${JSON.stringify(expected.values)}`);
+  check('② 主匹配 = 引擎独立基准', direct.name === expected.name, `${direct.name} vs ${expected.name}`);
 
-  // —— 5. 坏 token 降级 ——
+  const sharedMatch =
+    shared.values.length === direct.values.length &&
+    shared.values.every((v, i) => Math.abs(v - direct.values[i]) <= 1) &&
+    shared.name === direct.name;
+  check('③ 分享打开 = 页面直连（重放一致）', sharedMatch, `${shared.name}/${JSON.stringify(shared.values)}`);
+  check('④ 极差 ≥ 10（防压缩）', (shared.spread ?? 0) >= 10, `极差 = ${shared.spread}`);
+
+  // —— 6. 坏 token 降级 ——
   await ev(`sessionStorage.clear()`);
   await send('Page.navigate', { url: `${BASE}?r=!!!bad-token###` });
   await sleep(1800);

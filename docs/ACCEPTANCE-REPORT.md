@@ -34,7 +34,18 @@
 | 5 | `pnpm exec tsx data/validate-data.mjs` | **PASS**（errors=0, warnings=3；3 条为低幅权重提示） |
 | 6 | `GET /api/health` | **200**，`personas 12 / questions 10`，六维 `EE ST AC HX RB SR` |
 
-> 注意：`node data/validate-data.mjs`（裸 node）会 **FAIL**（`ERR_MODULE_NOT_FOUND`），因为校验脚本运行时导入 `.ts` 引擎源码，需要 tsx loader。这是**预期行为且被刻意保留**——脚本在「无法执行一致性检查」时报 error 而不是降级为警告（详见 §4 遗留问题 3）。
+### ⚠ 校验脚本必须用 tsx 运行，不要误判
+
+**不要用 `node data/validate-data.mjs` 判断数据是否合格。**
+
+- ✅ 正确：`pnpm validate`（= `tsx data/validate-data.mjs`）→ **PASS（errors=0, warnings=3）**
+- ❌ 错误：`node data/validate-data.mjs` → **FAIL（errors=1）**
+
+后者的 FAIL **不是数据坏了**，而是脚本检测到裸 Node 无法 `import` `.ts` 引擎源码（`ERR_MODULE_NOT_FOUND`），主动报 error 并提示改用 tsx。
+
+**这是刻意设计，不是缺陷。** 脚本在「无法执行跨源一致性检查」时**必须**失败——如果像早期版本那样降级为 warn 然后跳过，它会在什么都没查的情况下报 PASS，比没有检查更危险。这个设计在第三阶段实际抓到过一次：裸 node 环境下检查根本没跑，却一直显示通过。
+
+**给 CI / 后来者的要求**：流水线只认 `pnpm validate`；若更换 runner，必须保证其支持 TypeScript loader。
 
 ---
 

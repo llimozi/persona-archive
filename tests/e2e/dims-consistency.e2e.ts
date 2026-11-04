@@ -103,4 +103,13 @@ test('结果页六维数值必须等于引擎 user.x*100', async ({ page }) => {
       `维度 ${d} 页面显示 ${actual[d]} 与引擎 ${expectedDims[d]} 不一致（允许 ±1）`,
     ).toBeLessThanOrEqual(1);
   }
+
+  // 断言 3：主匹配名称（主控要求：主匹配必须是引擎选出的那个人，不是列表第一条）
+  // 注：结果页当前只渲染主人物姓名与六维数值，不渲染百分比（ResultPage 只取 percent 字段但未见展示位）。
+  //     故此处只断言姓名；百分比断言待前端确实渲染后再启用，不虚构需求。
+  const mainName = expected.main?.persona.name;
+  if (mainName) {
+    expect(bodyText, `结果页未显示引擎主匹配「${mainName}」`).toContain(mainName);
+  }
+  expect(expected.mainPercent?.value, '引擎应给出主匹配百分比（用于后续启用百分比断言）').toBe(74);
 });

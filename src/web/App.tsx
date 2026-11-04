@@ -16,6 +16,13 @@ import type { ScoredPersona } from '../engine/index';
 import type { ResultPersona } from './pages/ResultPage';
 import './styles/app.css';
 
+/**
+ * 回填白名单：从原始档案补齐时**只允许**这些展示字段。
+ * 新增回填字段必须先加进这里——把"只补展示"从注释承诺变成编译期约束，
+ * 防止以后有人往这里加排序相关字段而悄悄影响结果。
+ */
+type DisplayOnlyFill = Pick<ResultPersona, 'desc' | 'placeholder'>;
+
 type Screen = 'home' | 'quiz' | 'result';
 type LoadState<T> =
   | { status: 'loading' }
@@ -210,18 +217,23 @@ export function App() {
   // 唯一计算路径：结果全部来自引擎 match()
   const result = runMatch(qs, ps, answers, theme);
   const dims = result ? toDisplayDims(result.user.x) : EMPTY_DIMS;
-  // 引擎 ScoredPersona 是扁平结构、不含档案正文；desc/placeholder 按 id 回填，只用于展示
+  // 引擎 ScoredPersona 是扁平结构、不含档案正文；desc/placeholder 按 id 回填。
+  // 约束：回填只允许补展示字段，必须在 DisplayOnlyFill 里显式声明；
+  //       id/name/category/tags/percent 一律取自引擎，不取自 raw，排序不受回填影响。
   const toCard = (p: ScoredPersona | null | undefined): ResultPersona | null => {
     if (!p) return null;
     const raw = ps.find((r) => r.id === p.id);
+    const fill: DisplayOnlyFill = {
+      desc: raw?.desc,
+      placeholder: raw?.placeholder,
+    };
     return {
       id: p.id,
       name: p.name,
       category: p.category,
       tags: p.tags,
       percent: p.percent,
-      desc: raw?.desc,
-      placeholder: raw?.placeholder,
+      ...fill,
     };
   };
   const top = toCard(result?.main?.persona);
@@ -239,7 +251,7 @@ export function App() {
       shareHint={
         !result
           ? '结果未能计算，请检查数据是否加载完整。'
-          : '分享为纯文字链接；可整屏截图做海报。'
+          : '分享为纯文字链接；可整屏截图做海报。链接是用当前档案库重放这份作答，档案更新后结果可能变化。'
       }
     />
   );

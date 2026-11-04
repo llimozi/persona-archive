@@ -251,7 +251,9 @@ async function checkThemeConsistency(questionsDoc) {
       fail(
         'theme.weights',
         `${k} 数据=${dataWeights[k]} 与引擎 DEFAULT_THEME_WEIGHTS=${engineWeights[k]} 不一致` +
-          '（两边都会静默取到不同权重 → 分享链接重算结果漂移，且不会有任何报错）',
+          '（两边都会静默取到不同权重 → 分享链接重算结果漂移，且不会有任何报错）。' +
+          '改法：data 是权威源、引擎常量只是缺省值，应改引擎 DEFAULT_THEME_WEIGHTS 或两边同时改；' +
+          '不要只改数据去迁就引擎，也不要只改引擎让数据失配。',
       );
     }
   }
