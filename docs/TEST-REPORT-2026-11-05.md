@@ -6,9 +6,19 @@
 
 ## 0. 结论总表
 
+**读数绑定**（主控口径：数字必须挂到 commit 上，且写「跑的那一刻的 HEAD」）
+
+| 项 | 值 |
+|---|---|
+| 基线 commit | `2fe82be`（三条新断言入库） |
+| 最终复验 commit | `d10f1d3`，`git status --porcelain` 无输出 |
+| 最终复验时刻 | 2026-11-05T01:03:25 |
+| 复验结果 | `Test Files 3 passed (3)` / `Tests 29 passed (29)` / TEST_EXIT=0 |
+| 说明 | HEAD 会移动，故本表写**跑的那一刻的 HEAD**，不写「报告时的 HEAD」。两个 commit 上均跑出 29。 |
+
 | 项 | 结论 | 证据 | 等级 |
 |---|---|---|---|
-| 单元测试（Vitest） | **PASS** | `Test Files 3 passed (3)` / `Tests 26 passed (26)` / EXIT=0 | VERIFIED |
+| 单元测试（Vitest） | **PASS** | `Test Files 3 passed (3)` / `Tests 29 passed (29)` / EXIT=0 | VERIFIED |
 | 类型检查（tsc） | **PASS** | `pnpm typecheck` EXIT=0 | VERIFIED |
 | 构建（含 typecheck） | **PASS** | `pnpm build` EXIT=0 | VERIFIED |
 | E2E 三屏 + 分享（Playwright，双视口） | **PASS** | 14 passed / 0 failed / 0 skipped，落盘 `test-results/e2e.json`（24611 B，00:29:09） | VERIFIED |
@@ -30,7 +40,7 @@
 cd persona-archive
 
 # ① 单元测试
-pnpm test                      # Test Files 3 passed / Tests 26 passed
+pnpm test                      # Test Files 3 passed / Tests 29 passed
 
 # ② 类型检查、③ 构建
 pnpm typecheck                 # EXIT=0
@@ -43,7 +53,7 @@ pnpm test:e2e                  # 14 passed / 0 failed / 0 skipped
 **E2E 环境前提（硬性）**：`baseURL` 默认 `http://127.0.0.1:8790`，且 `webServer` 启动的是
 `node dist/api/src/api/server.js`（生产产物、**不带 watch**）。配置内已写入警告注释：**严禁改回 `pnpm dev`**。
 
-## 2. 单元测试 26 项
+## 2. 单元测试 29 项
 
 | 文件 | 项数 | 覆盖 |
 |---|---|---|
