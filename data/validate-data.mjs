@@ -308,9 +308,23 @@ const EXPECTED = {
   questions: 10,
 };
 // 低幅权重警告数固定为 3（主控裁定保留的中间档选项），用于抓"重复警告/漏告警"
-const EXPECTED_LOW_DELTA_WARNINGS = 3;
+// 低幅权重：**按位置（题目/选项/维度）做集合比对，不比数量**（2026-11-05，算法开发建议）
+// 只比数量的缺陷：把 A 处从 0.2 抬到 0.5（少 1 条）同时把 B 处降到 0.15（多 1 条），
+// 总数仍为 3、照样 PASS —— 和"逐项错位但和不变"是同一形状。
+const EXPECTED_LOW_DELTA_SITES = [
+  'q-gen-006/B AC',
+  'q-gen-010/C AC',
+  'q-gen-010/C EE',
+];
 
-const lowDeltaWarnings = warnings.filter((w) => w.includes('低于 07 建议下限')).length;
+const lowDeltaSites = warnings
+  .filter((w) => w.includes('低于 07 建议下限'))
+  .map((w) => {
+    // 警告格式：`questions[5] q-gen-006/B: effects.AC=0.2 低于 07 建议下限 ±0.3`
+    const m = w.match(/(q-[a-z0-9-]+\/[A-Z]+):\s*effects\.(EE|ST|AC|HX|RB|SR)/);
+    return m ? `${m[1]} ${m[2]}` : w;
+  })
+  .sort();
 
 if (pCount !== EXPECTED.personas) {
   fail('personas.json', `人物数 = ${pCount}，定稿基线为 ${EXPECTED.personas}（若为有意变更，请同步更新 EXPECTED）`);
@@ -318,11 +332,15 @@ if (pCount !== EXPECTED.personas) {
 if (qCount !== EXPECTED.questions) {
   fail('questions.json', `题目数 = ${qCount}，定稿基线为 ${EXPECTED.questions}（若为有意变更，请同步更新 EXPECTED）`);
 }
-if (lowDeltaWarnings !== EXPECTED_LOW_DELTA_WARNINGS) {
+if (JSON.stringify(lowDeltaSites) !== JSON.stringify([...EXPECTED_LOW_DELTA_SITES].sort())) {
+  const expected = [...EXPECTED_LOW_DELTA_SITES].sort();
+  const missing = expected.filter((s) => !lowDeltaSites.includes(s));
+  const extra = lowDeltaSites.filter((s) => !expected.includes(s));
   fail(
     'questions.json',
-    `低幅权重警告数 = ${lowDeltaWarnings}，定稿基线为 ${EXPECTED_LOW_DELTA_WARNINGS}` +
-      '（多出可能是同一警告被重复推送，少了可能是该选项被改动）',
+    `低幅权重位置与定稿基线不符` +
+      (missing.length ? `；少了 [${missing.join('、')}]（该处 effects 被抬高或警告被漏推）` : '') +
+      (extra.length ? `；多了 [${extra.join('、')}]（新增了低幅值或同一警告被重复推送）` : ''),
   );
 }
 
@@ -330,7 +348,7 @@ const result = {
   ok: errors.length === 0,
   personas: pCount,
   questions: qCount,
-  lowDeltaWarnings,
+  lowDeltaSites,
   errors,
   warnings,
 };
