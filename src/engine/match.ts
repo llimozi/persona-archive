@@ -720,10 +720,21 @@ export function match(input: MatchInput): MatchResult {
       warnings.push({ code: 'persona_out_of_match_pool', message: `人物 ${p.id} 的 compliance.matchPool=false，按 06 §4.3.1 不进匹配池` });
       return false;
     }
-    if (meta.compliance?.matchPool === undefined && meta.restrictedReason) {
-      // 无 matchPool 字段但有受限原因：按旧口径保守拦截
-      warnings.push({ code: 'persona_out_of_match_pool', message: `人物 ${p.id} 带 restrictedReason 且未声明 matchPool，按 06 §4.3.1 保守不进池` });
-      return false;
+    // 缺 matchPool 字段：**只告警，不拦截**（主控 2026-11-05 裁决）。
+    //
+    // ⚠️ 为什么是"告警"而不是"保守拦截"：
+    //   matchPool 缺失**不代表这张卡不该进池**，只代表**数据不完整**。
+    //   因数据不完整就把人物删掉，是用一种错误掩盖另一种错误 —— 结果里少一个人，
+    //   而没人知道少了、为什么少。正确做法是放它进池、同时告警要求补齐字段。
+    //
+    // ⚠️ 读取位置修正：旧实现读顶层 `meta.restrictedReason`，但真实数据的
+    //   restrictedReason 写在 `compliance` 内（12/12），两者永远对不上，
+    //   于是这条"安全网"实际从未生效。现改读 `compliance.restrictedReason`。
+    if (meta.compliance?.matchPool === undefined && (meta.compliance?.restrictedReason || meta.restrictedReason)) {
+      warnings.push({
+        code: 'persona_match_pool_missing',
+        message: `人物 ${p.id} 未声明 compliance.matchPool（疑似加卡时漏字段），已按可进池处理，请补齐该字段`,
+      });
     }
     if (meta.compliance?.restricted === true) {
       // 仅告警，不拦——它是合规注意项标记，不是出池条件

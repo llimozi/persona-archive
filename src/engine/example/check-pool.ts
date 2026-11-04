@@ -39,7 +39,14 @@ const restrictedCount = personas.filter((p) => (p as { compliance?: { restricted
 const matchPoolFalse = personas.filter((p) => (p as { compliance?: { matchPool?: boolean } }).compliance?.matchPool === false).length;
 
 const outOfPoolWarnings = result.warnings.filter((w) => w.code === 'persona_out_of_match_pool');
+const legacyWarnings = result.warnings.filter((w) => w.code === 'persona_out_of_pool_legacy');
 const restrictedNoted = result.warnings.filter((w) => w.code === 'persona_restricted_noted');
+/** restricted=true 的人物 id（数据侧声明） */
+const restrictedIds = personas
+  .filter((p) => (p as { compliance?: { restricted?: boolean } }).compliance?.restricted === true)
+  .map((p) => p.id);
+/** 实际进了池的人物 id（引擎输出） */
+const inPoolIds = new Set(result.ranking.map((p) => p.id));
 
 console.log('真实数据:', `${total} 人`);
 console.log('  compliance.restricted=true :', restrictedCount, '人');
@@ -47,6 +54,7 @@ console.log('  compliance.matchPool=false :', matchPoolFalse, '人  ← 这才�
 console.log('');
 console.log('引擎结果: 入池', inPool, '人 / 出池', dropped, '人');
 console.log('  出池告警 persona_out_of_match_pool:', outOfPoolWarnings.length, '条');
+console.log('  兜底排除 persona_out_of_pool_legacy:', legacyWarnings.length, '条（缺 matchPool 字段被旧口径排除，应为 0）');
 console.log('  受限告知 persona_restricted_noted  :', restrictedNoted.length, '条（只告知，不拦）');
 console.log('');
 
@@ -54,9 +62,52 @@ const checks: Array<[string, boolean, string]> = [
   ['池大小 === 数据总数（无误剔）', inPool === total, `期望 ${total}，实际 ${inPool}`],
   ['出池 === 0', dropped === 0, `期望 0，实际 ${dropped}`],
   ['matchPool=false 为 0 时不应有出池告警', matchPoolFalse === 0 ? outOfPoolWarnings.length === 0 : true, `实际 ${outOfPoolWarnings.length} 条`],
-  ['restricted=true 的人仍在池中（只告知不拦）', restrictedCount > 0 ? restrictedNoted.length === restrictedCount : true, `restricted ${restrictedCount} 人，告知 ${restrictedNoted.length} 条`],
+  ['无「漏写 matchPool 被兜底排除」的人（应 0）', legacyWarnings.length === 0, `实际 ${legacyWarnings.length} 条`],
+  // ── 为什么这条要从"查告警"改成"查在场"（历史记录，不是当前结果）─────────────
+  // 【旧行为】本条原先判断的是「有没有推 persona_restricted_noted 告警」，
+  //          而名字写的是「仍在池中」。两者在正常路径下恰好同向，所以看不出问题。
+  // 【暴露方式】有人往 restricted 分支里插了一句 `return false` 做变异：人从池里消失，
+  //          但 warnings.push 在 return 之前已执行，告警照推 —— 旧断言因此没有反应。
+  // 【现在】直接判断 restrictedIds 是否全部在 inPoolIds 里，与告警解耦。
+  //         变异时会在失败信息里逐个列出缺失的人 id。
+  // ⚠️ 本段是历史说明；若要确认现状，跑本文件看输出，不要读注释。
+  [
+    'restricted=true 的人仍在池中（查在场，不查告警）',
+    restrictedIds.every((id) => inPoolIds.has(id)),
+    `不在池中的 restricted 人物：${restrictedIds.filter((id) => !inPoolIds.has(id)).join(',') || '无'}`,
+  ],
   ['主匹配存在', result.main !== null, '主匹配为空'],
 ];
+
+// ── fixture 用例：真实数据里 0 例，所以必须构造才能验证「旧口径兜底排除」这条分支 ──
+// 没有这段，persona_out_of_pool_legacy 那条断言永远是 0、也永远不会红 = 等于没有断言。
+// （已实测：把 legacy 码合并回显式码，真实数据的 check-pool 仍然全 PASS，抓不到。）
+const legacyPersona = {
+  id: 'fixture-legacy-001',
+  name: '缺 matchPool 的测试人物',
+  category: 'demo',
+  dims: { EE: 50, ST: 50, AC: 50, HX: 50, RB: 50, SR: 50 },
+  // 真实数据的 restrictedReason 写在 compliance 内（12/12），所以 fixture 也放这里。
+  compliance: { restrictedReason: ['thirdPartyIP'] },
+} as unknown as (typeof personas)[number];
+
+const legacyRun = match({
+  questions,
+  answers: questions.map((q) => ({ questionId: q.id, optionId: q.options[0]!.id })),
+  personas: [...personas, legacyPersona],
+  theme,
+});
+const missingHit = legacyRun.warnings.filter((w) => w.code === 'persona_match_pool_missing');
+const explicitHit = legacyRun.warnings.filter((w) => w.code === 'persona_out_of_match_pool');
+checks.push(
+  [
+    'fixture：缺 matchPool 的人物**仍进池**（不因数据不全而删人）',
+    legacyRun.pool.size === personas.length + 1,
+    `期望 ${personas.length + 1}、实际 ${legacyRun.pool.size}`,
+  ],
+  ['fixture：推 persona_match_pool_missing 提示级告警', missingHit.length === 1, `实际 ${missingHit.length} 条`],
+  ['fixture：不得推 persona_out_of_match_pool（那不是"排除"）', explicitHit.length === 0, `实际 ${explicitHit.length} 条`],
+);
 
 let failed = 0;
 for (const [name, ok, detail] of checks) {
