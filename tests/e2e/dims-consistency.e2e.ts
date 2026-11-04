@@ -9,8 +9,8 @@ import type { EngineAnswer, EnginePersona, EngineQuestion } from '../../src/engi
  * 结果页数值与引擎一致性断言（主控 00:20 P0 要求的验收判据）。
  *
  * 判据（主控两条并用，缺一不可）：
- *   ① 极差 ≥ 10（防压缩型错误：normalizeDims 会把极差压到 50 以下）
- *   ② 六维绝对值 = 引擎 `user.x*100` ±1（防平移 / 错序 / 单位换算型错误）
+ *   ① 极差 ≥ max(50, 期望极差-10)（防压缩/缩放型；实测 ×0.5 得 39.7 会被 ≥50 挡下）
+ *   ② 六维绝对值：|page - engine.x*100| < 0.5（防平移 / 错序 / 单位换算型错误）
  * 只断言「有数字渲染出来」是不够的——52 看起来也像个合理分数，但它是错的。
  *
  * 期望值**现算引擎**，不硬编码：内容数据改一条题目的 effects 时，
@@ -29,6 +29,15 @@ const questions = readArr<EngineQuestion>('data/questions.json', 'questions');
 const personas = readArr<EnginePersona>('data/personas.json', 'personas');
 
 test('结果页六维数值必须等于引擎 user.x*100', async ({ page }) => {
+  // 断言 ④（主控要求）：/api/questions 必须透出 theme 字段。
+  // 兜底路径会让测试通过，但通过的原因错了——"结果对"不等于"路径对"。
+  // 命中率/容差：页面显示取整值，故用 < 0.5（页面必须等于引擎值四舍五入的结果）。
+  const themeProbe = await page.request.get('/api/questions');
+  expect(themeProbe.status(), '/api/questions 状态码').toBe(200);
+  const themeJson = (await themeProbe.json()) as { theme?: { weights?: Record<string, number> } };
+  expect(themeJson.theme, '/api/questions 未透出 theme 字段 → 前端将静默兜底，测的是错路径').toBeTruthy();
+  expect(themeJson.theme?.weights, 'theme.weights 缺失').toBeTruthy();
+
   await page.goto('/');
   await page.waitForLoadState('networkidle');
 
@@ -86,22 +95,26 @@ test('结果页六维数值必须等于引擎 user.x*100', async ({ page }) => {
   const missing = Object.keys(expectedDims).filter((d) => actual[d] === undefined);
   expect(missing, `结果页未渲染出这些维度：${missing.join(',')}`).toEqual([]);
 
-  // 断言 1：极差（快速失败前置）——normalizeDims 会把极差压到 50 以下，引擎真实极差 = 79
+  // 断言 1：极差门限。主控口径 ≥50；实测内容数据 FALSE·×0.5 得 39.7、+20 截断得 59.4，
+  // 故纯 ≥10 几乎挡不住任何一类（连 ×0.5 都能过），这里取 max(50, 期望极差-10)。
+  // 注意：极差只能挡"压缩/缩放"型；平移、错序、互换必须靠断言 2 的逐维绝对值。
   const actualVals = Object.values(actual);
   const actualRange = Math.max(...actualVals) - Math.min(...actualVals);
   const expectedVals = Object.values(expectedDims);
   const expectedRange = Math.max(...expectedVals) - Math.min(...expectedVals);
   expect(
     actualRange,
-    `结果页六维极差 ${actualRange}（引擎期望极差 ${expectedRange}）。极差 < 30 说明前端又套了一层归一化`,
-  ).toBeGreaterThanOrEqual(Math.max(30, expectedRange - 10));
+    `结果页六维极差 ${actualRange}（引擎期望极差 ${expectedRange}）。极差过小说明前端又套了一层归一化或整体缩放`,
+  ).toBeGreaterThanOrEqual(Math.max(50, expectedRange - 10));
 
-  // 断言 2：六个绝对值逐个比对（主控要求：极差能过但整体平移的情况必须被抓到）
+  // 断言 2：六个绝对值逐个比对。容差 < 0.5（主控 + 算法开发 00:0x 共同确认）：
+  // 页面显示值必须是引擎值四舍五入的结果；72.7 取整必得 73，给 ±1 会放过"72.7 显示成 72"这类错误。
   for (const d of Object.keys(expectedDims)) {
+    const engineRaw = expected.user.x[d as keyof typeof expected.user.x] * 100;
     expect(
-      Math.abs(actual[d]! - expectedDims[d]!),
-      `维度 ${d} 页面显示 ${actual[d]} 与引擎 ${expectedDims[d]} 不一致（允许 ±1）`,
-    ).toBeLessThanOrEqual(1);
+      Math.abs(actual[d]! - engineRaw),
+      `维度 ${d} 页面 ${actual[d]} 必须等于引擎 ${engineRaw.toFixed(4)} 的四舍五入结果`,
+    ).toBeLessThan(0.5);
   }
 
   // 断言 3：主匹配名称（主控要求：主匹配必须是引擎选出的那个人，不是列表第一条）
