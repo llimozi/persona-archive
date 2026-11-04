@@ -139,6 +139,22 @@ function checkPersonas(doc) {
       if (c.restricted === true && (!Array.isArray(c.restrictedReason) || c.restrictedReason.length === 0)) {
         warn(where, 'compliance.restricted=true 但 restrictedReason 为空');
       }
+      // 防"同一字段两种写法"（2026-11-05）：
+      // 引擎现已两处都读（compliance?.restrictedReason || 顶层），顶层写法**能生效**。
+      // 但契约（PersonaCompliance）只定义 compliance 一处，顶层不属契约写法。
+      // 两层分工：引擎"读取时宽容"（老写法不至于静默失效），本脚本"入库时严格"（错写法不进仓库）。
+      // 注意：这里拦的是**不符合契约**，不是**失效**——两者定性不同，修的地方也不同。
+      if (p.restrictedReason !== undefined) {
+        fail(
+          where,
+          'restrictedReason 写在顶层；它虽能被引擎读取，但不符合契约约定' +
+            '（PersonaCompliance 只定义在 compliance 内）。请移到 compliance 内，避免依赖兼容路径',
+        );
+      }
+      // matchPool 必须显式声明：缺失时引擎无法区分"有意不放"与"漏填字段"
+      if (c.matchPool === undefined) {
+        warn(where, 'compliance.matchPool 未显式声明（推荐显式写，避免引擎走保守分支）');
+      }
     } else {
       fail(where, '缺少 compliance（受限语义必须显式声明）');
     }
@@ -252,8 +268,9 @@ async function checkThemeConsistency(questionsDoc) {
         'theme.weights',
         `${k} 数据=${dataWeights[k]} 与引擎 DEFAULT_THEME_WEIGHTS=${engineWeights[k]} 不一致` +
           '（两边都会静默取到不同权重 → 分享链接重算结果漂移，且不会有任何报错）。' +
-          '改法：data 是权威源、引擎常量只是缺省值，应改引擎 DEFAULT_THEME_WEIGHTS 或两边同时改；' +
-          '不要只改数据去迁就引擎，也不要只改引擎让数据失配。',
+          '改法：两边都是从 06 §9.1 转写的副本，06 §9.1 才是权威；' +
+          '不一致说明至少有一边抄错了——回去核对 06 原文，再同步两边。' +
+          '不要单独改某一边去迁就另一边（会让分享链接重算漂回错的那套）。',
       );
     }
   }
@@ -278,10 +295,40 @@ if (personasDoc && questionsDoc) {
   }
 }
 
+// ── 精确计数断言（2026-11-05，算法开发建议）────────────────────────
+// 背景：只"打印"警告条数，无法发现"同一条警告被推了两次"这类语义重复——
+//   语法检查放行、输出看着正常（3 条），实际是 4 条。
+// 做法：把当前定稿态的关键计数固定下来，**与实测不符即 error**。
+//   这同时是一条"数据或规则被人改过"的显式信号，而不是静默通过。
+// 维护：任何一组计数被有意改变时，必须同步改这里，并在改动记录里写明原因。
+const EXPECTED = {
+  personas: 12,
+  questions: 10,
+};
+// 低幅权重警告数固定为 3（主控裁定保留的中间档选项），用于抓"重复警告/漏告警"
+const EXPECTED_LOW_DELTA_WARNINGS = 3;
+
+const lowDeltaWarnings = warnings.filter((w) => w.includes('低于 07 建议下限')).length;
+
+if (pCount !== EXPECTED.personas) {
+  fail('personas.json', `人物数 = ${pCount}，定稿基线为 ${EXPECTED.personas}（若为有意变更，请同步更新 EXPECTED）`);
+}
+if (qCount !== EXPECTED.questions) {
+  fail('questions.json', `题目数 = ${qCount}，定稿基线为 ${EXPECTED.questions}（若为有意变更，请同步更新 EXPECTED）`);
+}
+if (lowDeltaWarnings !== EXPECTED_LOW_DELTA_WARNINGS) {
+  fail(
+    'questions.json',
+    `低幅权重警告数 = ${lowDeltaWarnings}，定稿基线为 ${EXPECTED_LOW_DELTA_WARNINGS}` +
+      '（多出可能是同一警告被重复推送，少了可能是该选项被改动）',
+  );
+}
+
 const result = {
   ok: errors.length === 0,
   personas: pCount,
   questions: qCount,
+  lowDeltaWarnings,
   errors,
   warnings,
 };
