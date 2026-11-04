@@ -5,10 +5,9 @@
 - 测试基线：**`2fe82be`**（三条断言最早入库处，此提交上为 29 条）
 - K7 追加：**`da1c08a`**（`theme-usage.test.ts` 2 条，29→31 的唯一来源）
 - 跑批 commit：**`931dc13`**（31 条与 E2E 产物的实际所在；此后 `tests/` 零改动）
-- 定稿 commit：**`fce0c8b`**（`fce0c8bb7cd38740b5e312fafab317131d9c4d45`，代码与测试与 `931dc13` 等价，仅 `docs/` 不同）
-- `data/` 在 `2fe82be..fce0c8b` 之间**仅 1 行变化**（`personas.json` 的 `note` 整体替换，`dims/effects/rarity/compliance/theme` 零改动）
-- 工作区 `git status --porcelain` 无输出（DIRTY=0）
-- 工作区 `git status --porcelain` 无输出（DIRTY=0）
+- 定稿 commit：**见本文件所在 commit**（代码与测试等价于 `931dc13`，仅 `docs/` 不同；不写具体号，避免半小时后过期）
+- `data/` 在 `2fe82be..` 后续所有提交之间**仅 1 行变化**（`personas.json` 的 `note` 整体替换，`dims/effects/rarity/compliance/theme` 零改动）
+- `git status --porcelain` 无输出
 - 授权依据：用户已撤销 NO-GO，第三阶段按正式 GO 启动
 
 > **本次验收只对 `2fe82be` 这个 commit 负责。** 之后任何提交都不在本书范围内，需重新验收。
