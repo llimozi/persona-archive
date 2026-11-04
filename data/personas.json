@@ -1,0 +1,447 @@
+{
+  "version": 1,
+  "generatedAt": "2026-11-04",
+  "note": "首版 12 人。事实只取自 docs/product-discovery/04-热梗与人物资料卡.md 的既有资料卡，未新增研究；dims 为六维设计打分（0-100），依据各卡「内容特征（可用测试维度）」字段，非实测值。全部为纯文字卡 / 占位图卡，不引用任何第三方图片素材。 rarity 依据 04 各卡「当前热度 / 生命周期」字段标注（见每人 rarityBasis），未新增研究。sigma 不逐人填写，由引擎按 rarity 取缺省值：common 0.22 / rare 0.18 / hidden 0.15 为 06 §11 U-06-6 的建议默认值（原文表只有这三档）；limited 走 0.18，是本实现的取值、并非 06 原文，与 rare 同档。以上 sigma 与 dims 均为设计值，非实测校准值。 【低幅权重 · 主控裁定保留】questions.json 中 q-gen-006/B 的 AC=0.2、q-gen-010/C 的 AC=0.1 与 EE=-0.2 三处低于 07 建议下限 ±0.3，属中间档选项刻意保留的小差异，经主控裁定保留不改（07 的 ±0.3 是建议下限、非硬约束），后续不得以「修正口径」为由擅改。data/validate-data.mjs 会持续把这 3 处列为警告级输出。 【07 口径补充 · 主控裁定】选项 effects 的取值域 ±0.3~±0.8 为推荐区间，允许出现 ≤0.3 的中间档选项（用于测“微弱的倾向”），引擎不做下限断言；下限仅在 data/validate-data.mjs 中作警告级提示，不阻断入库。",
+  "personas": [
+    {
+      "id": "mem-nailong-001",
+      "name": "奶龙",
+      "alias": "含「大笑奶龙」变体",
+      "category": "mem",
+      "tags": [
+        "表情包",
+        "抽象",
+        "逆反",
+        "被过度曝光",
+        "常驻梗"
+      ],
+      "dims": {
+        "EE": 78,
+        "ST": 62,
+        "AC": 66,
+        "HX": 90,
+        "RB": 34,
+        "SR": 44
+      },
+      "desc": "国产同名子供向 3D 动画主角，设定为来自异星的小恐龙。被无孔不入的宣发和 AI 批量二创推到人人可见，又因过度曝光引发成人圈层的集体逆反，官方越禁止越被玩。适合做「你是被什么激怒的」这条轴。",
+      "cardType": "text",
+      "placeholder": true,
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-nailong-001",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "商业 IP 与注册商标：不得使用官方形象或可识别复刻造型，只取「被过度曝光的儿童动画形象」这一概念；文案不得做嘲笑低龄粉丝的导向。",
+      "rarity": "common",
+      "rarityBasis": "04 标注「本体 H3 长期经典，生命周期常驻」"
+    },
+    {
+      "id": "mem-coke-003",
+      "name": "coke老师",
+      "alias": "抖音《火影忍者》手游主播",
+      "category": "mem",
+      "tags": [
+        "嘴硬翻车",
+        "自信浓度",
+        "中二仪式感",
+        "反差",
+        "常驻梗"
+      ],
+      "dims": {
+        "EE": 92,
+        "ST": 84,
+        "AC": 74,
+        "HX": 82,
+        "RB": 42,
+        "SR": 30
+      },
+      "desc": "抖音《火影忍者》手游主播，「阿玛忒拉斯」等口头禅的制造者。最出圈的是一整套「嘴硬—被打脸」的反差：放完狠话立刻秒怂，观众看的正是这个翻车速度。",
+      "cardType": "text",
+      "placeholder": true,
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-coke-003",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "realPersonControversy"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损；产品内一律写「火影手游主播 coke老师」，不裸写「Coke老师」。",
+      "rarity": "common",
+      "rarityBasis": "04 标注「H3 长期经典 + 持续活跃，口头禅已进大众语汇」"
+    },
+    {
+      "id": "ani-opossum-004",
+      "name": "背手负鼠",
+      "alias": "情绪符号，不指向特定个人",
+      "category": "ani",
+      "tags": [
+        "精神状态",
+        "体面窝囊",
+        "表面从容",
+        "抽离旁观",
+        "主动放弃"
+      ],
+      "dims": {
+        "EE": 28,
+        "ST": 30,
+        "AC": 24,
+        "HX": 66,
+        "RB": 36,
+        "SR": 74
+      },
+      "desc": "一张海外网友抓拍的负鼠照片：被困窗边、无路可退时双爪背在身后、双脚直立、呆望远方。人类长者式的派头配上弱小本体，成了「表面从容、内里崩溃」最精准的符号。",
+      "cardType": "text",
+      "placeholder": true,
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#ani-opossum-004",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "原图为拍摄者作品，不得直接使用，需原创重绘且构图明显改动；不得把「摆烂」写成对用户的价值判断；不得引用严肃心理学数据为匹配度背书。",
+      "rarity": "common",
+      "rarityBasis": "04 标注「跨全平台，C 类主观观察已由 ≥4 独立信源证实」"
+    },
+    {
+      "id": "ani-cryinghorse-005",
+      "name": "哭哭马",
+      "alias": "缝反嘴角的马形玩偶",
+      "category": "ani",
+      "tags": [
+        "被缺陷共情",
+        "情绪徽章",
+        "硬撑",
+        "同类识别",
+        "不完美"
+      ],
+      "dims": {
+        "EE": 52,
+        "ST": 44,
+        "AC": 40,
+        "HX": 48,
+        "RB": 68,
+        "SR": 50
+      },
+      "desc": "一只本该微笑的马形毛绒玩偶，生产线上嘴角被缝反，成了写满委屈的哭脸。网友集体给它贴标签——周一马、加班马、甲方马——把一件商品变成了「我们是一类人」的暗号。",
+      "cardType": "text",
+      "placeholder": true,
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#ani-cryinghorse-005",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "该哭脸形象已申请外观专利，绝不可复刻玩偶造型，只取「缝反的笑脸 / 被缺陷共情」这一概念做原创设计。",
+      "rarity": "limited",
+      "rarityBasis": "04 标注「生命周期：周期（生肖）+ 限时（梗）」，以「限时」为主标 limited"
+    },
+    {
+      "id": "mem-sorrowlady-006",
+      "name": "忧郁姐",
+      "alias": "AI 漫剧《我在恐游装忧郁》女主",
+      "category": "mem",
+      "tags": [
+        "表情管理",
+        "体面",
+        "人设一致",
+        "纯爱内核",
+        "外冷内热"
+      ],
+      "dims": {
+        "EE": 22,
+        "ST": 38,
+        "AC": 46,
+        "HX": 72,
+        "RB": 62,
+        "SR": 56
+      },
+      "desc": "AI 漫剧女主，自陈「我是个装货」，为维持忧郁少女人设全程维持冷淡模样。被鬼追时也要靠路灯摆出忧郁姿势，把体面看得比生存还重，最后却接上了纯爱/救赎的内核。",
+      "cardType": "text",
+      "placeholder": true,
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-sorrowlady-006",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "AI 生成角色，版权链尚不成熟，商用需授权或做概念层原创改写；女性向角色，文案避免「装」「矫情」等贬义导向。",
+      "rarity": "limited",
+      "rarityBasis": "04 标注「生命周期：限时（约 2026-03 前后）」"
+    },
+    {
+      "id": "mem-bushaoxin-007",
+      "name": "不烧心良心老板",
+      "alias": "AI 漫剧模板角色，非单一人物",
+      "category": "mem",
+      "tags": [
+        "立规矩",
+        "良心",
+        "可靠度",
+        "底线",
+        "厚道"
+      ],
+      "dims": {
+        "EE": 40,
+        "ST": 56,
+        "AC": 58,
+        "HX": 30,
+        "RB": 72,
+        "SR": 60
+      },
+      "desc": "餐饮题材 AI 漫剧里反复出现的「良心小老板」原型：包子铺、盒饭摊、猪脚饭的摊主，死守「规矩不能坏、不偷工减料」。台词短到可以被无限复用，反而成了一个时代的通用句式。",
+      "cardType": "text",
+      "placeholder": true,
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-bushaoxin-007",
+      "evidence": "VERIFIED",
+      "compliance": {
+        "restricted": false,
+        "restrictedReason": [],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "不指向任何真实个人，无肖像权问题；具体台词与 BGM 属具体作品不可原样复制，但「不烧心」为通用词组可用；不得暗示真实餐饮品牌偷工减料。",
+      "rarity": "rare",
+      "rarityBasis": "04 标注「H1→H2 当周仍在流通、限时」，但模板机制具常驻潜力"
+    },
+    {
+      "id": "mem-musicai-009",
+      "name": "世界巡演 AI 二创宇宙",
+      "alias": "夹克勋 / 范德彪 / 赵本山等二创载体",
+      "category": "mem",
+      "tags": [
+        "集体记忆接龙",
+        "身份反差",
+        "荒诞舞台",
+        "造梗",
+        "AI 二创"
+      ],
+      "dims": {
+        "EE": 80,
+        "ST": 70,
+        "AC": 52,
+        "HX": 88,
+        "RB": 30,
+        "SR": 32
+      },
+      "desc": "2026 年 10 月刷屏的 AI 演唱会二创模板，统一标题范式「世界巡演」：把台上的人换成谁都能成立，靠的是「把权威从原舞台拉走、塞进更荒诞的舞台」和一个共同接梗的集体记忆。",
+      "cardType": "text",
+      "placeholder": true,
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-musicai-009",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "04 中版权/肖像风险最高的一张：绝对不可使用任何 AI 真人视频或图像，只能取「把人物放上演唱会舞台」这一概念并用原创虚拟形象；「消耗中国一半算力」是夸张比喻，不得写成事实。",
+      "rarity": "limited",
+      "rarityBasis": "04 标注「生命周期：限时（该模板）；但「AI 二创真人」这一机制属常驻」"
+    },
+    {
+      "id": "mem-gulumao-021",
+      "name": "咕噜耄",
+      "alias": "地球 online 新手教程",
+      "category": "mem",
+      "tags": [
+        "反向压力",
+        "常识",
+        "生活自理",
+        "正向",
+        "不装懂"
+      ],
+      "dims": {
+        "EE": 34,
+        "ST": 58,
+        "AC": 76,
+        "HX": 26,
+        "RB": 64,
+        "SR": 22
+      },
+      "desc": "B 站生活常识科普 UP 主，把「怎么租房」「怎么办电话卡」这类基础生存问题当正题讲，恰好卡在应届生最需要的节点上。回归基础、不装懂的坦白，是这个账号最核心的吸引力。",
+      "cardType": "text",
+      "placeholder": true,
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-gulumao-021",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": false,
+        "restrictedReason": [],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "真实个人：不可复刻其形象与标题句式，不得借用《青年大学习》栏目名；涉租房合同、社保等准法律信息，产品只可问「哪件最晚学会」，不得给任何办事指引。",
+      "rarity": "hidden",
+      "rarityBasis": "04 标注「生命周期：限时（账号热度）+ 周期（毕业季回潮）」，按「周期回潮」标 hidden"
+    },
+    {
+      "id": "an-belial-001",
+      "name": "贝利亚奥特曼",
+      "alias": "贝老黑",
+      "category": "an",
+      "tags": [
+        "压迫感",
+        "二当家",
+        "被解构",
+        "反派出场",
+        "常驻梗"
+      ],
+      "dims": {
+        "EE": 70,
+        "ST": 64,
+        "AC": 62,
+        "HX": 62,
+        "RB": 26,
+        "SR": 78
+      },
+      "desc": "《奥特曼》系列反派，光之国历史上首位堕入黑暗的奥特战士。设定上是压迫感十足的黑暗帝王，到了抽象文化里却永远是二当家、是垫子——被解构之后反而比原来更强。",
+      "cardType": "text",
+      "placeholder": true,
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-belial-001",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "圆谷/新创华 IP：不得使用官方形象、剧照、Logo；「开盒」「人肉」类二创涉违法绝不可写进文案；不得关联涉真实逝者的「牢大」梗。",
+      "rarity": "common",
+      "rarityBasis": "04 标注「H3 长期经典、生命周期常驻」"
+    },
+    {
+      "id": "an-diga-002",
+      "name": "迪迦奥特曼",
+      "alias": "平成三杰之首",
+      "category": "an",
+      "tags": [
+        "理想主义",
+        "怀旧",
+        "集体记忆",
+        "信念",
+        "常驻梗"
+      ],
+      "dims": {
+        "EE": 56,
+        "ST": 46,
+        "AC": 40,
+        "HX": 24,
+        "RB": 80,
+        "SR": 34
+      },
+      "desc": "《迪迦奥特曼》主角，平成三杰之首。在泛路人眼里「奥特曼就等于迪迦」，一句「那一年，我也变成了光」撑起了一整代人的童年信念。",
+      "cardType": "text",
+      "placeholder": true,
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-diga-002",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "版权同前；🚫 严禁把「迪迦最火」写成事实——与「赛罗在中国最火」的口径直接冲突，文案只能写「有争议」或回避排名；粉圈骂战内容不得引用。",
+      "rarity": "common",
+      "rarityBasis": "04 标注「H3 长期经典、生命周期常驻」"
+    },
+    {
+      "id": "an-sairo-003",
+      "name": "赛罗奥特曼",
+      "alias": "赛少",
+      "category": "an",
+      "tags": [
+        "被力捧",
+        "门面位",
+        "少年感",
+        "官方主推",
+        "常驻梗"
+      ],
+      "dims": {
+        "EE": 68,
+        "ST": 72,
+        "AC": 66,
+        "HX": 44,
+        "RB": 34,
+        "SR": 52
+      },
+      "desc": "新生代「门面型」奥特曼，设定是赛文之子、定位狂傲少年，因总在结局击败贝利亚而被称「赛少」。人气有官方持续力捧的成分，也因此背上了「门面位」的负担。",
+      "cardType": "text",
+      "placeholder": true,
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-sairo-003",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "版权同前；🚫 严禁把「赛罗在中国最火」或「迪迦断层第一」任一方写成事实；对具体粉丝群体的负面刻画不得复述进文案。",
+      "rarity": "common",
+      "rarityBasis": "04 标注「H3 长期经典、生命周期常驻」"
+    },
+    {
+      "id": "sd-jiangbanya-012",
+      "name": "酱板鸭",
+      "alias": "AI 短剧《雪山救狐狸》",
+      "category": "sd",
+      "tags": [
+        "强行认领",
+        "预期落空",
+        "反转",
+        "用严肃讲荒诞",
+        "被辜负"
+      ],
+      "dims": {
+        "EE": 84,
+        "ST": 40,
+        "AC": 88,
+        "HX": 86,
+        "RB": 58,
+        "SR": 66
+      },
+      "desc": "AI 系列短片里的角色：侠客在大雪中给白狐留下一只酱板鸭，上门的却不是报恩的白狐，而是化成人形、满腔怒火前来索命的酱板鸭。用最严肃的复古视听，讲最荒诞的「我把恩情要回来」。",
+      "cardType": "text",
+      "placeholder": true,
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#sd-jiangbanya-012",
+      "evidence": "VERIFIED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "涉真实商家与主创：不得点名、不得用其店铺产品或官方视频画面；「食物成精上门寻仇」这一概念不受保护，可做原创设计但不得复刻鸭形象；「50 亿」为媒体自述不得引用为事实。",
+      "rarity": "rare",
+      "rarityBasis": "04 标注「H2（2026-02 起）+ 具常驻潜力、限时」"
+    }
+  ]
+}

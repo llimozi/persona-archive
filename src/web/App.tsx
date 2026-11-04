@@ -1,0 +1,246 @@
+import { useCallback, useEffect, useState } from 'react';
+import { HomePage } from './pages/HomePage';
+import { QuizPage } from './pages/QuizPage';
+import { ResultPage } from './pages/ResultPage';
+import { Page } from './components/Page';
+import {
+  fetchPersonas,
+  fetchQuestions,
+  runMatch,
+  toDisplayDims,
+  type Answers,
+} from './lib/api';
+import { buildShareUrl, clearTokenInUrl, decodeAnswers, readTokenFromUrl } from './lib/share';
+import type { Dims, Persona, Question, ThemeConfig } from '../shared/types';
+import type { ScoredPersona } from '../engine/index';
+import type { ResultPersona } from './pages/ResultPage';
+import './styles/app.css';
+
+type Screen = 'home' | 'quiz' | 'result';
+type LoadState<T> =
+  | { status: 'loading' }
+  | { status: 'ready'; data: T }
+  | { status: 'error'; message: string };
+
+const EMPTY_DIMS: Dims = { EE: 50, ST: 50, AC: 50, HX: 50, RB: 50, SR: 50 };
+
+/** 答题进度落 sessionStorage：微信里切后台 / 误刷新不丢答案 */
+const PROGRESS_KEY = 'pa.quiz.v1';
+
+interface Progress {
+  index: number;
+  answers: Answers;
+  /** 有未完成的答题进度时，刷新/切后台回来应落回答题页而不是首页 */
+  screen: Screen;
+}
+
+function loadProgress(): Progress {
+  try {
+    const raw = sessionStorage.getItem(PROGRESS_KEY);
+    if (!raw) return { index: 0, answers: {}, screen: 'home' };
+    const p = JSON.parse(raw) as Partial<Progress>;
+    const screen: Screen = p.screen === 'quiz' || p.screen === 'result' ? p.screen : 'home';
+    return {
+      index: typeof p.index === 'number' && p.index >= 0 ? p.index : 0,
+      answers: p.answers && typeof p.answers === 'object' ? (p.answers as Answers) : {},
+      screen,
+    };
+  } catch {
+    return { index: 0, answers: {}, screen: 'home' };
+  }
+}
+
+function saveProgress(p: Progress | null): void {
+  try {
+    if (p) sessionStorage.setItem(PROGRESS_KEY, JSON.stringify(p));
+    else sessionStorage.removeItem(PROGRESS_KEY);
+  } catch {
+    /* 隐私模式禁用存储时降级为纯内存 */
+  }
+}
+
+export function App() {
+  // 惰性初始化：首帧就读到存档，避免「空初始值先覆盖存档」的竞态
+  const [initial] = useState<Progress>(() => {
+    // 优先读 ?r=（他人分享的结果链接），其次读本地存档
+    const token = readTokenFromUrl();
+    const fromShare = token ? decodeAnswers(token) : null;
+    if (fromShare) {
+      const qs = Object.keys(fromShare);
+      return { index: 0, answers: fromShare, screen: qs.length ? 'result' : 'home' };
+    }
+    return loadProgress();
+  });
+  const [screen, setScreen] = useState<Screen>(() => {
+    const hasAnswers = Object.keys(initial.answers).length > 0;
+    if (initial.screen === 'result' && hasAnswers) return 'result';
+    if (initial.screen === 'quiz' && hasAnswers) return 'quiz';
+    return 'home';
+  });
+  const [questions, setQuestions] = useState<LoadState<Question[]>>({ status: 'loading' });
+  const [theme, setTheme] = useState<ThemeConfig | undefined>(undefined);
+  const [personas, setPersonas] = useState<LoadState<Persona[]>>({ status: 'loading' });
+  const [index, setIndex] = useState<number>(() => initial.index);
+  const [answers, setAnswers] = useState<Answers>(() => initial.answers);
+
+  useEffect(() => {
+    saveProgress({ index, answers, screen });
+  }, [index, answers, screen]);
+
+  // 题库到达后把恢复出的题号夹回合法范围（题库可能变短）
+  useEffect(() => {
+    if (questions.status !== 'ready') return;
+    const max = Math.max(questions.data.length - 1, 0);
+    setIndex((i) => Math.min(Math.max(i, 0), max));
+  }, [questions.status, questions.status === 'ready' ? questions.data.length : 0]);
+
+  useEffect(() => {
+    let alive = true;
+    fetchQuestions()
+      .then((r) => {
+        if (!alive) return;
+        setQuestions({ status: 'ready', data: r.items });
+        // 权重权威源是 data/questions.json 的 theme，经 /api/questions 下发
+        if (r.theme) setTheme(r.theme);
+      })
+      .catch((e: Error) => alive && setQuestions({ status: 'error', message: e.message }));
+    fetchPersonas()
+      .then((r) => alive && setPersonas({ status: 'ready', data: r.items }))
+      .catch((e: Error) => alive && setPersonas({ status: 'error', message: e.message }));
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  const qs = questions.status === 'ready' ? questions.data : [];
+  const ps = personas.status === 'ready' ? personas.data : [];
+
+  const pick = useCallback((questionId: string, optionId: string) => {
+    setAnswers((prev) => ({ ...prev, [questionId]: optionId }));
+  }, []);
+
+  const restart = useCallback(() => {
+    setAnswers({});
+    setIndex(0);
+    setScreen('home');
+    try {
+      sessionStorage.removeItem(PROGRESS_KEY);
+    } catch {
+      /* 忽略 */
+    }
+    // 清掉地址栏里的旧结果 token，避免重测后又分享出上一份结果
+    clearTokenInUrl();
+    window.scrollTo(0, 0);
+  }, []);
+
+  const share = useCallback(async () => {
+    const text = '我测出了自己的互联网人物档案，你也来试试。';
+    // 带上 ?r=，他人打开看到同一份结果；没有作答记录时退化为分享首页
+    const url = Object.keys(answers).length ? buildShareUrl(answers) : location.href;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: '互联网人物档案馆', text, url });
+      } else {
+        await navigator.clipboard.writeText(`${text} ${url}`);
+        alert('结果链接已复制，粘到微信里发出去，打开的人能看到同一份档案。');
+      }
+    } catch {
+      /* 用户取消分享，不提示 */
+    }
+  }, [answers]);
+
+  /* —— 数据未就绪时的兜底 —— */
+  if (questions.status === 'error') {
+    return (
+      <Page>
+        <h1 className="title-lg">接口没连上</h1>
+        <p className="body">后端似乎没起来，检查一下 /api 代理。</p>
+        <p className="notice notice--danger" style={{ marginTop: 16 }}>
+          {questions.status === 'error' ? questions.message : ''}
+        </p>
+      </Page>
+    );
+  }
+
+  if (questions.status === 'loading') {
+    return (
+      <Page>
+        <div className="skeleton" aria-label="加载中" aria-busy="true">
+          <span className="skeleton__line" />
+          <span className="skeleton__line" />
+        </div>
+      </Page>
+    );
+  }
+
+  if (screen === 'home') {
+    return (
+      <HomePage
+        personaCount={personas.status === 'ready' ? personas.data.length : null}
+        questionCount={qs.length}
+        disabled={qs.length === 0}
+        onStart={() => {
+          setIndex(0);
+          setScreen('quiz');
+        }}
+      />
+    );
+  }
+
+  if (screen === 'quiz') {
+    return (
+      <QuizPage
+        questions={qs}
+        index={index}
+        answers={answers}
+        onPick={pick}
+        onPrev={() => setIndex((i) => Math.max(0, i - 1))}
+        onNext={() => {
+          setIndex((i) => Math.min(qs.length - 1, i + 1));
+          window.scrollTo(0, 0);
+        }}
+        onFinish={() => {
+          setScreen('result');
+          window.scrollTo(0, 0);
+        }}
+      />
+    );
+  }
+
+  // 唯一计算路径：结果全部来自引擎 match()
+  const result = runMatch(qs, ps, answers, theme);
+  const dims = result ? toDisplayDims(result.user.x) : EMPTY_DIMS;
+  // 引擎 ScoredPersona 是扁平结构、不含档案正文；desc/placeholder 按 id 回填，只用于展示
+  const toCard = (p: ScoredPersona | null | undefined): ResultPersona | null => {
+    if (!p) return null;
+    const raw = ps.find((r) => r.id === p.id);
+    return {
+      id: p.id,
+      name: p.name,
+      category: p.category,
+      tags: p.tags,
+      percent: p.percent,
+      desc: raw?.desc,
+      placeholder: raw?.placeholder,
+    };
+  };
+  const top = toCard(result?.main?.persona);
+  const others = [result?.secondary, result?.hidden, result?.surprise]
+    .map((p) => toCard(p?.persona))
+    .filter((p): p is ResultPersona => p !== null);
+
+  return (
+    <ResultPage
+      top={top}
+      others={others}
+      dims={dims}
+      onRestart={restart}
+      onShare={share}
+      shareHint={
+        !result
+          ? '结果未能计算，请检查数据是否加载完整。'
+          : '分享为纯文字链接；可整屏截图做海报。'
+      }
+    />
+  );
+}
