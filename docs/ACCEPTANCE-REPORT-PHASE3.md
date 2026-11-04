@@ -40,6 +40,8 @@ TYPECHECK_EXIT=0
 BUILD_EXIT=0
 ```
 
+> ⚠️ **本节读数属于 `2fe82be`，是 29 条、3 个文件。** 之后 K7 在 `da1c08a` 追加 `theme-usage.test.ts`（2 条），测试数变为 **31 条、4 个文件**。收尾时点的数字以下文 §二·补二 为准（`d576ac9`）和 §二·补三（`fce0c8b`）。**两处 29 都是真实的，只是属于不同 commit；验收结论以最终读数为准。**
+
 **判断条件**（本轮确立的可执行口径）：两行必须**行尾锚定**匹配 `Test Files\s+\d+ passed \(\d+\)$` 与 `Tests\s+\d+ passed \(\d+\)$`，排除「同一行里同时含 passed 和 failed」；退出码单独取，**永不看管道值**。
 
 ---
@@ -55,6 +57,8 @@ BUILD_EXIT=0
 HEAD      bccc018（git status --porcelain 输出为空）
 EXIT      TEST_EXIT=0
 ```
+
+> ⚠️ **本节的 29 条 / 3 文件同样属于 `bccc018`（K7 尚未入库）。** 当前仓库自 `da1c08a` 起已有 `theme-usage.test.ts` 2 条，实际为 **31 条 / 4 文件**。**验收结论以 §二·补二 及 §二·补三 的 31 条为准。**
 
 数据校验同 HEAD：
 
