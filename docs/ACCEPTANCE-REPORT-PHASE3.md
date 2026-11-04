@@ -2,7 +2,8 @@
 
 - 验收人：主控（Chief，项目经理）
 - 验收时刻：2026-11-05 00:59（Asia/Shanghai）
-- 验收基线：**HEAD `2fe82be`**，工作区 `git status --porcelain` 无输出（DIRTY=0）
+- 验收基线：**HEAD `2fe82be`**（原始验收），**最终读数 `d576ac9`**（见 §二·补二）
+- 工作区 `git status --porcelain` 无输出（DIRTY=0）
 - 授权依据：用户已撤销 NO-GO，第三阶段按正式 GO 启动
 
 > **本次验收只对 `2fe82be` 这个 commit 负责。** 之后任何提交都不在本书范围内，需重新验收。
@@ -65,6 +66,32 @@ HEAD      bccc018      EXIT=0
 - **校验能力**：`data/validate-data.mjs` 在 `2fe82be..bccc018` 区间**零改动**（`git diff --stat` 为空），三条精确基线断言与跨源比对均已在基线之前入库。**因此 checkout 到 `2fe82be` 得到的校验能力与 HEAD 相同。**
 
 **29 这个数字在 4 个 commit 上独立复现**（`2fe82be`、`451bdc4`、`d10f1d3`、`bccc018`），其中三次为验收人本机执行、一次为测试审查独立执行、一次为后端开发独立执行。**多次不同主体、不同 commit 指向同一数字，才算稳定。**
+
+## 二·补二：最终读数（`d576ac9`）
+
+**在 `2fe82be` 验收之后，仓库又前进了以下提交，逐项说明是否改变结论：**
+
+| commit | 内容 | 对结论的影响 |
+|---|---|---|
+| `da1c08a` | K7 新增 `theme-usage.test.ts`（2 条） | **测试数 29 → 31** |
+| `931dc13` | 报告补「终端绿 ≠ 有产物」教训 | 无 |
+| `d576ac9` | 报告修正附表项数漂移、补 §9 裁决 | 无 |
+
+**最终读数（验收人本机执行，2026-11-05T01:59:35）：**
+
+```
+命令名    cd persona-archive && pnpm test
+分文件    single-path 1 ｜ contract 11 ｜ theme-usage 2 ｜ match 17
+原行      Test Files  4 passed (4)
+           Tests  31 passed (31)
+时刻      2026-11-05T01:59:35+0800
+HEAD      d576ac9（git status --porcelain 输出为空）
+EXIT      TEST_EXIT=0 ｜ TYPECHECK_EXIT=0 ｜ BUILD_EXIT=0
+```
+
+**E2E 产物**：`tests/e2e/test-results/e2e.json`，`startTime 2026-11-04T17:55:48.849Z`，`expected 14 / skipped 0 / unexpected 0 / flaky 0`。
+
+**结论不变（PASS），范围为可验证部分。** 测试数由 29 增至 31 是**封口后经批准的唯一解封项**（K7），来源可查。
 
 ---
 
@@ -136,5 +163,5 @@ HEAD      bccc018      EXIT=0
 ## 九、签字
 
 - 验收人：主控（Chief）
-- 基线：`2fe82be`
-- 结论：**PASS**（范围限 `2fe82be`，不含 NOT RUN 项）
+- 基线：`2fe82be`（原始）／`d576ac9`（最终）
+- 结论：**PASS**（范围为可验证部分，不含 NOT RUN 项）
