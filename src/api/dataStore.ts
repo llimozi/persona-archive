@@ -118,6 +118,11 @@ export function collectDimsIssues(items: Persona[]): DimsIssue[] {
  * 校验 theme 配置（06 §4.2）：六维齐全、均为数字、且**和近似 1.0**。
  * 引擎不静默归一，权重和不是 1 会直接让匹配结果整体失真，所以这里必须报出来。
  * 返回 null 表示合规；不合规时返回说明（不阻断，降级为空并由路由透出）。
+ *
+ * ⚠️ 本函数**只校验六维之和**，不校验每一项是否等于 06 §9.1 的原文值。
+ * 已知边界：`EE:0.1800001 + SR:0.1199999` 这类「逐项错位但和仍为 1.0」的情况，
+ * 这里必然放行——它由 `data/validate-data.mjs` 的逐项字面量比对负责。
+ * 两层不可互相替代：本层守「整体比例」，数据侧守「每一项抄没抄对」。
  */
 export function checkTheme(t: unknown): string | null {
   if (t === undefined || t === null) return null; // 未配置 = 合法（用引擎兜底）
@@ -134,7 +139,13 @@ export function checkTheme(t: unknown): string | null {
     if (v < 0 || v > 1) return `theme.weights.${k}=${v} 超出 [0,1]`;
     sum += v;
   }
-  if (Math.abs(sum - 1) > 1e-6) return `theme.weights 六维之和 = ${sum}，设计要求 1.0（引擎不静默归一）`;
+  if (Math.abs(sum - 1) > 1e-6) {
+    return (
+      `theme.weights 六维之和 = ${sum}，设计要求 1.0（引擎不静默归一）。` +
+      `注意：本检查只校验「和」，不校验逐项数值是否与 06 §9.1 一致——` +
+      `逐项由 data/validate-data.mjs 的跨源比对覆盖。`
+    );
+  }
   return null;
 }
 
