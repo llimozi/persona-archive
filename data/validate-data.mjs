@@ -151,10 +151,11 @@ function checkPersonas(doc) {
             '（PersonaCompliance 只定义在 compliance 内）。请移到 compliance 内，避免依赖兼容路径',
         );
       }
-      // matchPool 必须显式声明：缺失时引擎无法区分"有意不放"与"漏填字段"
-      if (c.matchPool === undefined) {
-        warn(where, 'compliance.matchPool 未显式声明（推荐显式写，避免引擎走保守分支）');
-      }
+      // matchPool 必须显式声明：这里用布尔类型校验即已覆盖"未声明"的情况
+      //（undefined 不是 boolean → 上面的 fail 先命中）。
+      // 2026-11-05 后端开发指出：原有一句 `if (c.matchPool === undefined) warn(...)`
+      // 永远执行不到（被上一行的类型检查先拦），属死代码，故删除。
+      // 注意：这里拦的是"入库格式"，与引擎"缺字段仍进池 + 告警"的运行时容错不冲突。
     } else {
       fail(where, '缺少 compliance（受限语义必须显式声明）');
     }
@@ -268,6 +269,7 @@ async function checkThemeConsistency(questionsDoc) {
         'theme.weights',
         `${k} 数据=${dataWeights[k]} 与引擎 DEFAULT_THEME_WEIGHTS=${engineWeights[k]} 不一致` +
           '（两边都会静默取到不同权重 → 分享链接重算结果漂移，且不会有任何报错）。' +
+          '注意：权重和仍可能正好等于 1.0（逐项错位、总量不变），所以「和=1.0 通过」不能代表本项通过。' +
           '改法：两边都是从 06 §9.1 转写的副本，06 §9.1 才是权威；' +
           '不一致说明至少有一边抄错了——回去核对 06 原文，再同步两边。' +
           '不要单独改某一边去迁就另一边（会让分享链接重算漂回错的那套）。',
