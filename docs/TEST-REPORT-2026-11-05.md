@@ -11,19 +11,19 @@
 | 项 | 值 |
 |---|---|
 | 基线 commit | `2fe82be`（三条新断言入库） |
-| 最终复验 commit | `d10f1d3`，`git status --porcelain` 无输出 |
-| 最终复验时刻 | 2026-11-05T01:03:25 |
-| 复验结果 | `Test Files 3 passed (3)` / `Tests 29 passed (29)` / TEST_EXIT=0 |
-| 被测实例 | `http://127.0.0.1:8790`，PID 22100 |
+| 最终复验 commit | `931dc13`，`git status --porcelain` 无输出 |
+| 最终复验时刻 | 2026-11-05T01:55:48Z（E2E 跑批）/ 01:57:15（复查时 HEAD） |
+| 复验结果 | 单测 `Test Files 4 passed (4)` / `Tests 31 passed (31)`；E2E 14 passed / 0 skipped / 0 failed |
+| 被测实例 | `http://127.0.0.1:8790`（复用还是自起见 §1.0 的定性说明） |
 | 实例标识 | 跑批时 `/api/health` 的 `loadedAt` / `uptimeSec`（见 §1.0） |
-| 说明 | HEAD 会移动，故本表写**跑的那一刻的 HEAD**，不写「报告时的 HEAD」。两个 commit 上均跑出 29。 |
+| 说明 | HEAD 会移动，故本表写**跑的那一刻的 HEAD**，不写「报告时的 HEAD」。29→31 为 K7 在 `da1c08a` 追加 `theme-usage.test.ts` 2 条。 |
 
 | 项 | 结论 | 证据 | 等级 |
 |---|---|---|---|
-| 单元测试（Vitest） | **PASS** | `Test Files 3 passed (3)` / `Tests 29 passed (29)` / EXIT=0 | VERIFIED |
+| 单元测试（Vitest） | **PASS** | `Test Files 4 passed (4)` / `Tests 31 passed (31)` / EXIT=0 | VERIFIED |
 | 类型检查（tsc） | **PASS** | `pnpm typecheck` EXIT=0 | VERIFIED |
 | 构建（含 typecheck） | **PASS** | `pnpm build` EXIT=0 | VERIFIED |
-| E2E 三屏 + 分享（Playwright，双视口） | **PASS** | 14 passed / 0 failed / 0 skipped，落盘 `test-results/e2e.json`（24611 B，00:29:09） | VERIFIED |
+| E2E 三屏 + 分享（Playwright，双视口） | **PASS** | 14 passed / 0 failed / 0 skipped，落盘 `test-results/e2e.json`（24619 B，01:56:30，startTime 17:55:48.849Z） | VERIFIED |
 | E2E 稳定性（连跑） | **PASS** | 连续 4 次均 14 passed / EXIT=0 | VERIFIED |
 | 结果页六维 == 引擎 `user.x*100` | **PASS** | 六维 `100/81/100/100/73/21`，逐维差 < 0.5 | VERIFIED |
 | 分享链接 `?r=` 他人打开一致 | **PASS** | 全新 context 打开，主匹配与六维与直连一致 | VERIFIED |
@@ -57,7 +57,7 @@ E2E 的 `webServer` 已改为生产产物（`node dist/api/src/api/server.js`）
 cd persona-archive
 
 # ① 单元测试
-pnpm test                      # Test Files 3 passed / Tests 29 passed
+pnpm test                      # Test Files 4 passed / Tests 31 passed
 
 # ② 类型检查、③ 构建
 pnpm typecheck                 # EXIT=0
@@ -74,17 +74,18 @@ pnpm test:e2e                  # 14 passed / 0 failed / 0 skipped
 
 | 文件 | 项数 | 覆盖 |
 |---|---|---|
-| `tests/data/contract.test.ts` | 9 | 数据契约：字段齐全、六维 0–100 有限数、id 唯一、素材红线、选项 effects 合法性 |
-| `tests/engine/match.test.ts` | 16 | 表达式求值 4 项；匹配主函数 9 项（确定性、四段结构、纯函数、值域、极值鲁棒）；进池防回归 1 项；逐档 σ 2 项 |
+| `tests/data/contract.test.ts` | 11 | 数据契约：字段齐全、六维 0–100 有限数、id 唯一、素材红线、选项 effects 合法性、量纲守卫（禁混填小数）、整卡 0–1 制识别 |
+| `tests/engine/match.test.ts` | 17 | 表达式求值 5 项；匹配主函数 8 项（含 `match` 已导出）；进池防回归 1 项；逐档 σ 2 项；σ 取用逻辑 1 项 |
+| `tests/engine/theme-usage.test.ts` | 2 | K7：不同 theme 权重下 `mainPercent` 必须变；六维对权重不敏感（记录为既有行为，防误当缺陷） |
 | `tests/engine/single-path.test.ts` | 1 | 静态断言：`src/web` 不得出现 `normalizeDims` / `scoreAnswers`（注释行除外） |
 
 ### 2.1 三条关键断言均做过变异验证（未变异的断言 = 没有断言）
 
 | 断言 | 注入的破坏 | 结果 |
 |---|---|---|
-| 进池 12 / 出池 0 | 判据 `matchPool === false` → `restricted === true` | **FAIL**，报出 10 人出池；还原后 26 passed |
-| 逐档 σ（common/rare/limited/hidden） | 分别改 `hidden 0.15→0.22`、`limited 0.18→0.25`、`rare 0.18→0.20` | **三次全部 FAIL**；还原后 26 passed |
-| `src/web` 无第二套算法 | 向 `src/web/lib/api.ts` 追加 `const scoreAnswers = ...` | **FAIL**，定位到具体文件行；还原后 26 passed |
+| 进池 12 / 出池 0 | 判据 `matchPool === false` → `restricted === true` | **FAIL**，报出 10 人出池；还原后 31 passed |
+| 逐档 σ（common/rare/limited/hidden） | 分别改 `hidden 0.15→0.22`、`limited 0.18→0.25`、`rare 0.18→0.20` | **三次全部 FAIL**；还原后 31 passed |
+| `src/web` 无第二套算法 | 向 `src/web/lib/api.ts` 追加 `const scoreAnswers = ...` | **FAIL**，定位到具体文件行；还原后 31 passed |
 
 ## 3. E2E 14 项（双视口 × 5 组用例 + 六维一致性）
 
@@ -243,6 +244,26 @@ pnpm test:e2e                  # 14 passed / 0 failed / 0 skipped
 - 失败项、跳过项、未覆盖项均如实保留，未删除、未改写。
 - 未声称「微信传播已合规」。
 
+## 9. 主控最终裁决与本阶段的对外边界
+
+**裁决（2026-11-05，基线 `931dc13`）：PASS，范围为可验证部分。**
+
+> 单测 31、E2E 14/0/0（产物 17:55:48Z）、数据校验 PASS、typecheck 0 / build 0。
+> **九项 NOT RUN 是已知空白，不是缺陷。**
+
+**对外可用的表述只有这一句**（超出这一句的任何说法都不成立）：
+
+> 「互联网人物档案馆」H5 第三阶段开发完成，**在 Chromium 双视口下全流程可走通、数值与引擎一致；真机与微信内置浏览器未验证。**
+
+**不可用的说法**：「可用」「支持微信」「已验证移动端」。
+
+**下一阶段开工的两个前提**（主控追加，与真机并列）：
+
+1. **真机**：九项 NOT RUN 全部卡在这，无设备则继续如实标 NOT RUN。
+2. **娱乐性声明落地**：所有百分比是**娱乐匹配度，不是心理测量值**。结果页渲染百分比的那一屏**必须同时**承载该口径，**不得先上数字后补声明**（先上数字、后补免责是产品里最典型的不负责任顺序）。
+
+**测试侧对此的态度**：结果页目前没有百分比渲染位（`ResultPage.tsx` 声明了 `percent` 但无展示位），故本报告未写「页面显示 74%」类断言——写了会常红，且红的原因与产品无关。**待百分比与声明一并落地后，再补该断言。**
+
 ## 附：本轮产出文件
 
 | 文件 | 内容 |
@@ -250,8 +271,8 @@ pnpm test:e2e                  # 14 passed / 0 failed / 0 skipped
 | `docs/TEST-PLAN.md` | 测试入口约定、分层判据、诚实性约束 |
 | `docs/TEST-REPORT-2026-11-04.md` | 首版报告（基线搭建期） |
 | `docs/TEST-REPORT-2026-11-05.md` | 本报告（验收终版） |
-| `tests/data/contract.test.ts` | 数据契约 9 项 |
-| `tests/engine/match.test.ts` | 引擎 16 项（含进池防回归、逐档 σ） |
+| `tests/data/contract.test.ts` | 数据契约 11 项 |
+| `tests/engine/match.test.ts` | 引擎 17 项（含进池防回归、逐档 σ） |
 | `tests/engine/single-path.test.ts` | 唯一计算路径静态断言 1 项 |
 | `tests/e2e/playwright.config.ts` | E2E 配置（双视口、8790、绝对路径输出） |
 | `tests/e2e/screens.e2e.ts` | 三屏 + 分享链路 |
