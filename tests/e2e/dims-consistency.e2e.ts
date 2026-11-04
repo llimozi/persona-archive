@@ -18,7 +18,6 @@ import type { EngineAnswer, EnginePersona, EngineQuestion } from '../../src/engi
  */
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
-const THEME_WEIGHTS = { EE: 0.18, ST: 0.18, AC: 0.18, HX: 0.22, RB: 0.12, SR: 0.12 };
 
 function readArr<T>(rel: string, key: string): T[] {
   const raw = JSON.parse(readFileSync(resolve(root, rel), 'utf8'));
@@ -63,7 +62,9 @@ test('结果页六维数值必须等于引擎 user.x*100', async ({ page }) => {
   }
 
   // 引擎期望值（唯一权威来源）
-  const theme = { themeId: 'th-general', name: 'th-general', weights: THEME_WEIGHTS };
+  // ⚠️ 权重必须来自接口（themeJson），不能用测试写死的常量。
+  // 否则接口给什么、期望都不跟随，前端走兜底也发现不了（K7）。
+  const theme = { themeId: themeJson.theme!.themeId ?? 'th-general', name: 'th-general', weights: themeJson.theme!.weights! };
   const expected = match({ questions, answers: picked, personas, theme });
   const expectedDims = Object.fromEntries(
     (['EE', 'ST', 'AC', 'HX', 'RB', 'SR'] as const).map((d) => [d, Math.round(expected.user.x[d] * 100)]),
