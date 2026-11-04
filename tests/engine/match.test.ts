@@ -272,3 +272,53 @@ describe('引擎 · 逐档 σ 取值', () => {
     expect(() => fn({ questions, answers: fixedAnswers(questions), personas: raw, theme })).not.toThrow();
   });
 });
+
+// ───────── E. σ 取用逻辑（端到端）：表对 ≠ 每个人取到的对 ─────────
+
+/**
+ * 为什么单独一条：上面的四档断言守的是 **常量表**。
+ * 表对了，`sigmaFor()` 里仍可能取错（读错字段 / 拼错档位名 / 传错参数），
+ * 这时表断言全绿。这里从 `match()` 的公开输出 `ranking[].contributions[].sigma`
+ * 反推每个人物实际用的 σ，验的是取用逻辑本身。
+ */
+describe('引擎 · σ 取用逻辑（逐人端到端）', () => {
+  it('每个人物在结果里实际取到的 σ 等于其 rarity 对应的档位值', async (ctx) => {
+    const mod = (await import('../../src/engine/index')) as Record<string, unknown>;
+    const fn = await loadMatchFn();
+    const table = mod.DEFAULT_SIGMA_BY_RARITY as Record<string, number> | undefined;
+    if (!fn || !table) {
+      ctx.skip(notReady);
+      return;
+    }
+    const questions = readArr<EngineQuestion>('data/questions.json', 'questions');
+    const personas = readArr<EnginePersona & { rarity?: string }>('data/personas.json', 'personas');
+    if (!questions.length || !personas.length) {
+      ctx.skip('数据为空 → 未跑（不是 PASS）');
+      return;
+    }
+    const rarityOf = new Map(personas.map((p) => [p.id, p.rarity ?? 'common']));
+    const theme = {
+      themeId: 't-mvp',
+      name: 'MVP 默认主题',
+      weights: { EE: 1 / 6, ST: 1 / 6, AC: 1 / 6, HX: 1 / 6, RB: 1 / 6, SR: 1 / 6 },
+    };
+    const out = fn({ questions, answers: fixedAnswers(questions), personas, theme });
+
+    let checked = 0;
+    const mismatches: string[] = [];
+    for (const r of out.ranking) {
+      const rarity = rarityOf.get(r.id) ?? 'common';
+      const expected = table[rarity];
+      for (const c of r.contributions) {
+        checked++;
+        // 精确比较：σ 是档位常量，不该出现浮点漂移
+        if (Math.abs(c.sigma - expected) > 1e-9) {
+          mismatches.push(`${r.id}(${rarity}) ${c.dim}: 实际 ${c.sigma} ≠ 期望 ${expected}`);
+        }
+      }
+    }
+
+    expect(checked, '未检查到任何贡献项，断言失去意义').toBeGreaterThan(0);
+    expect(mismatches, `σ 取用逻辑错误：\n${mismatches.slice(0, 8).join('\n')}`).toEqual([]);
+  });
+});

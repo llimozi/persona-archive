@@ -78,6 +78,34 @@ describe('data/personas.json 契约', () => {
     }
   });
 
+  /**
+   * 量纲守卫（对齐内容数据 validate-data.mjs 与后端 checkDims 的 6 类注入用例）。
+   * 为什么单独一条：混填小数 `{EE:0.78, ST:62, ...}` 每个值都在 [0,100] 内、也不是"六维全 ≤1"，
+   * 上面的范围断言**全部放行**——它能抓"越界"，抓不到"量纲用错"。
+   */
+  it('dims 必须是 0–100 的整数（抓混填小数，非仅越界）', () => {
+    for (const p of personas) {
+      for (const k of DIM_KEYS) {
+        const v = p.dims?.[k];
+        if (v === undefined) continue;
+        expect(
+          Number.isInteger(v),
+          `${p.id}.dims.${k}=${v} 不是整数（疑似 0–1 制混填或量纲错位）`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  it('不得整卡按 0–1 制填写（六维全部 ≤1 即判错档）', () => {
+    for (const p of personas) {
+      const vals = DIM_KEYS.map((k) => p.dims?.[k]).filter((v): v is number => typeof v === 'number');
+      if (vals.length !== DIM_KEYS.length) continue;
+      const allLeOne = vals.every((v) => v <= 1);
+      // 单个维度小是合法值（1 分），整卡全 ≤1 才是量纲错档
+      expect(allLeOne, `${p.id} 六维全部 ≤1（${vals.join('/')}），疑似按 0–1 制填写`).toBe(false);
+    }
+  });
+
   it('id 唯一', () => {
     const ids = personas.map((p) => p.id);
     expect(ids.length - new Set(ids).size, `重复 id: ${ids.filter((x, i) => ids.indexOf(x) !== i)}`).toBe(0);
