@@ -562,3 +562,87 @@
     padding-right: var(--sp-6);
   }
 }
+
+/* ============ 分享海报面板 ============ */
+.sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.sheet__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+}
+
+.sheet__panel {
+  position: relative;
+  width: 100%;
+  max-width: var(--max-w);
+  max-height: 92dvh;
+  overflow-y: auto;
+  background: var(--bg-elev);
+  border-top: 1px solid var(--line-strong);
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  padding: var(--sp-4) var(--page-x) calc(var(--safe-b) + var(--sp-5));
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.sheet__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.sheet__title {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.poster__img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  /* 长按保存：禁用 iOS 对图片的额外拖拽行为，保留系统长按菜单 */
+  -webkit-touch-callout: default;
+  touch-action: manipulation;
+}
+
+.poster__hint {
+  font-size: 12px;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+.poster__skeleton {
+  width: 100%;
+  border-radius: var(--r-md);
+  background: var(--surface);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.poster__fallback {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.poster__url {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  word-break: break-all;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: var(--sp-2);
+  user-select: all;
+}

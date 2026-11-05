@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { Page } from '../components/Page';
+import { PosterSheet } from '../components/PosterSheet';
 import { DIM_LABEL } from '../lib/dims';
 import { DIM_KEYS } from '../../shared/types';
 import type { Dims } from '../../shared/types';
@@ -26,9 +28,12 @@ interface Props {
   onRestart: () => void;
   onShare: () => void;
   shareHint: string;
+  /** 生成分享海报用的结果链接（失败降级展示） */
+  shareUrl: string;
 }
 
-export function ResultPage({ top, others, dims, onRestart, onShare, shareHint }: Props) {
+export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, shareUrl }: Props) {
+  const [posterOpen, setPosterOpen] = useState(false);
   return (
     <Page
       action={
@@ -108,7 +113,19 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint }:
         </section>
       )}
 
+      {top && (
+        <PosterSheet
+          open={posterOpen}
+          onClose={() => setPosterOpen(false)}
+          shareUrl={shareUrl}
+          data={{ personaId: top.id, personaName: top.name, category: top.category, tags: top.tags, percent: top.percent, dims, desc: top.desc }}
+        />
+      )}
+
       <div className="quiz__foot">
+        <button type="button" className="btn btn--ghost" onClick={() => top && setPosterOpen(true)} disabled={!top}>
+          生成海报
+        </button>
         <button type="button" className="btn btn--primary" onClick={onShare}>
           分享给朋友
         </button>

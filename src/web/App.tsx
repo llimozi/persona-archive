@@ -248,6 +248,7 @@ export function App() {
       dims={dims}
       onRestart={restart}
       onShare={share}
+      shareUrl={Object.keys(answers).length ? buildShareUrl(answers) : location.href}
       shareHint={
         !result
           ? '结果未能计算，请检查数据是否加载完整。'
