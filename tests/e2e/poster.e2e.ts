@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { scoreNine } from '../../src/shared/nine-score';
+import { runMatch } from '../../src/web/lib/api';
 import type { Page } from '@playwright/test';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { match } from '../../src/engine/index';
 import type { EngineAnswer, EnginePersona, EngineQuestion } from '../../src/engine/types';
 
 /**
@@ -141,18 +141,16 @@ test.describe('海报 PNG 导出', () => {
     }
     await expect(page.locator('.record__name')).toBeVisible({ timeout: 10_000 });
 
-    const expected = match({
-      questions,
-      answers: picked,
-      personas,
-      theme: {
-        themeId: themeJson.theme?.themeId ?? 'th-general',
-        name: 'th-general',
-        weights: themeJson.theme!.weights!,
-      },
-    });
+    // 期望值必须走**页面正在用的那一条**计算路径。
+    // 2026-11-05 引擎换成 match-v2 后，测试不能再直接用旧引擎 match() 算期望，
+    // 否则断言的是一条生产环境已不执行的路径。这里改调 runMatch（页面唯一入口）。
+    const answerMapForMatch: Record<string, string> = Object.fromEntries(
+      picked.map((a) => [a.questionId, a.optionId]),
+    );
+    const expected = runMatch(questions, personas, answerMapForMatch, themeJson.theme ?? undefined);
+    if (!expected) throw new Error('runMatch 返回 null，海报用例前提不成立');
     const engineName = expected.main!.persona.name;
-    const enginePercent = expected.mainPercent!.value;
+    const enginePercent = expected.main!.persona.percent;
     // 九维：权威源是九维评分器（与结果页读同一份），不是旧的 user.x
     const answerMap: Record<string, string> = Object.fromEntries(
       picked.map((a) => [a.questionId, a.optionId]),

@@ -29,54 +29,54 @@ import type { Persona, Question, ThemeConfig } from '../../src/shared/types';
 const THEME: ThemeConfig = {
   themeId: 'th-general',
   name: '通用鉴定',
-  // 06 §9.1 设计值，非实测
+  // 旧六维权重（九维引擎不使用，这里保留仅为满足类型形状）
   weights: { EE: 0.18, ST: 0.18, AC: 0.18, HX: 0.22, RB: 0.12, SR: 0.12 },
 };
 
-function q(id: string, opts: Array<[string, Record<string, number>]>): Question {
-  return { id, title: `第 ${id} 题`, options: opts.map(([oid, effects]) => ({ id: oid, label: oid, effects })) };
+/**
+ * 构造一道九维题：一题一维，optionScore 为选项 id → 1..5 分值。
+ *
+ * 2026-11-05 引擎换成 match-v2 后，题目归属从「选项带多维 effects」
+ * 变成「每题只归一个维度」。本文件验证的是分享链接重放的性质
+ * （计算结果必须逐字段可复现），与维度个数无关，因此把夹具同步到新格式即可。
+ */
+function q(id: string, dim: string, opts: Array<[string, number]>, reverse = false): Question {
+  return {
+    id,
+    title: `第 ${id} 题`,
+    dimensionId: dim,
+    reverse,
+    questionWeight: 1,
+    optionScore: Object.fromEntries(opts),
+    options: opts.map(([oid]) => ({ id: oid, label: oid })),
+  } as unknown as Question;
 }
 
 const QUESTIONS: Question[] = [
-  q('q01', [
-    ['a', { EE: 1, HX: 1 }],
-    ['b', { EE: -1, HX: -1 }],
-  ]),
-  q('q02', [
-    ['a', { ST: 1, RB: 1 }],
-    ['b', { ST: -1, RB: -1 }],
-  ]),
-  q('q03', [
-    ['a', { AC: 1, SR: 1 }],
-    ['b', { AC: -1, SR: -1 }],
-  ]),
-  q('q04', [
-    ['a', { EE: 0.5, ST: 0.5, AC: 0.5 }],
-    ['b', { HX: -0.5, RB: -0.5, SR: -0.5 }],
-  ]),
-  q('q05', [
-    ['a', { HX: 1 }],
-    ['b', { SR: 1 }],
-  ]),
+  q('q01', 'MS', [['a', 5], ['b', 1]]),
+  q('q02', 'FC', [['a', 1], ['b', 5]]),
+  q('q03', 'WS', [['a', 5], ['b', 1]]),
+  q('q04', 'SB', [['a', 1], ['b', 5]]),
+  q('q05', 'KD', [['a', 5], ['b', 1]]),
 ];
 
-function p(id: string, dims: Record<string, number>): Persona {
+function p(id: string, nineDims: Record<string, number>): Persona {
   return {
     id,
     name: `角色-${id}`,
     category: 'test',
     tags: ['t1'],
-    dims: dims as Persona['dims'],
+    nineDims,
     desc: '',
     placeholder: true,
-  };
+  } as unknown as Persona;
 }
 
 const PERSONAS: Persona[] = [
-  p('t-all-high', { EE: 92, ST: 88, AC: 90, HX: 95, RB: 80, SR: 85 }),
-  p('t-all-low', { EE: 10, ST: 15, AC: 12, HX: 8, RB: 20, SR: 18 }),
-  p('t-mixed-1', { EE: 85, ST: 20, AC: 75, HX: 90, RB: 30, SR: 60 }),
-  p('t-mixed-2', { EE: 30, ST: 80, AC: 40, HX: 25, RB: 85, SR: 70 }),
+  p('t-all-high', { MS: 92, FC: 88, WS: 90, SB: 95, CX: 80, JH: 85, ZQ: 70, AB: 75, KD: 88 }),
+  p('t-all-low', { MS: 10, FC: 15, WS: 12, SB: 8, CX: 20, JH: 18, ZQ: 25, AB: 12, KD: 15 }),
+  p('t-mixed-1', { MS: 85, FC: 20, WS: 75, SB: 90, CX: 30, JH: 60, ZQ: 40, AB: 80, KD: 35 }),
+  p('t-mixed-2', { MS: 30, FC: 80, WS: 40, SB: 25, CX: 85, JH: 70, ZQ: 90, AB: 45, KD: 65 }),
 ];
 
 const ORIGINAL: Answers = { q01: 'a', q02: 'b', q03: 'a', q04: 'b', q05: 'a' };
@@ -86,17 +86,14 @@ function snapshot(inp: Answers) {
   const r = runMatch(QUESTIONS, PERSONAS, inp, THEME);
   if (!r) throw new Error('runMatch 返回 null，测试前提不成立');
   return {
-    x: r.user.x,
-    raw: r.user.raw,
-    undetermined: r.user.undetermined,
-    coverage: r.user.coverage,
-    ranking: r.ranking.map((s) => ({ id: s.id, score: s.score, adjusted: s.adjusted, percent: s.percent })),
+    // match-v2 的用户向量：未作答维度为 null
+    x: r.userX,
+    coverage: r.coverage,
+    ranking: r.ranking.map((s) => ({ id: s.id, percent: s.percent, adjusted: s.adjusted })),
     main: r.main?.persona.id ?? null,
     secondary: r.secondary?.persona.id ?? null,
-    hidden: r.hidden?.persona.id ?? null,
     surprise: r.surprise?.persona.id ?? null,
-    mainPercent: r.mainPercent,
-    engineVersion: r.engineVersion,
+    margin: r.margin,
   };
 }
 
@@ -118,11 +115,12 @@ describe('结果 URL 重放 · 编解码往返', () => {
 });
 
 describe('结果 URL 重放 · 逐维一致', () => {
-  it('原始计算 vs 重放计算：六维 x 逐维完全相等（===，非近似）', () => {
+  it('原始计算 vs 重放计算：九维用户向量逐维完全相等（===，非近似）', () => {
     const original = runMatch(QUESTIONS, PERSONAS, ORIGINAL, THEME)!;
     const replayed = runMatch(QUESTIONS, PERSONAS, decodeAnswers(encodeAnswers(ORIGINAL))!, THEME)!;
-    for (const k of ['EE', 'ST', 'AC', 'HX', 'RB', 'SR'] as const) {
-      expect(replayed.user.x[k]).toBe(original.user.x[k]);
+    expect(replayed.userX).toHaveLength(9);
+    for (let i = 0; i < replayed.userX.length; i += 1) {
+      expect(replayed.userX[i]).toBe(original.userX[i]);
     }
   });
 
@@ -151,8 +149,8 @@ describe('结果 URL 重放 · 逐维一致', () => {
         const ans: Answers = { [question.id]: option.id };
         const original = runMatch(QUESTIONS, PERSONAS, ans, THEME)!;
         const replayed = runMatch(QUESTIONS, PERSONAS, decodeAnswers(encodeAnswers(ans))!, THEME)!;
-        for (const k of ['EE', 'ST', 'AC', 'HX', 'RB', 'SR'] as const) {
-          expect(replayed.user.x[k]).toBe(original.user.x[k]);
+        for (let i = 0; i < replayed.userX.length; i += 1) {
+          expect(replayed.userX[i]).toBe(original.userX[i]);
         }
         expect(replayed.main?.persona.id ?? null).toBe(original.main?.persona.id ?? null);
       }
@@ -185,9 +183,10 @@ describe('结果 URL 重放 · 异常 token 降级', () => {
 
   it('重放后用户视角上限：链接篡改为不存在选项 → 引擎忽略该题而非崩溃，且不产生伪结果', () => {
     const tampered: Answers = { q01: 'nonexistent-option' };
-    const r = runMatch(QUESTIONS, PERSONAS, decodeAnswers(encodeAnswers(tampered))!, THEME)!;
-    expect(r.user.undetermined).toHaveLength(6); // 有效题目为 0 → 六维全未覆盖
-    expect(r.main).toBeNull(); // 没有维度可比 → 不产出主匹配
-    expect(r.warnings.some((w) => w.code === 'answer_unknown_option')).toBe(true);
+    // 链接篡改为不存在的选项 → 该题视为未作答，引擎不会崩。
+    // match-v2 对「零个已作答维度」主动抛错，runMatch 捕获后返回 null（降级），
+    // 调用方据此回到首页而不是展示一个伪结果——这正是本用例要验证的"上限"。
+    const r = runMatch(QUESTIONS, PERSONAS, decodeAnswers(encodeAnswers(tampered))!, THEME);
+    expect(r).toBeNull();
   });
 });

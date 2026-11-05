@@ -12,7 +12,12 @@ export default defineConfig({
   test: {
     root: '.',
     include: ['tests/**/*.{test,spec}.ts', 'src/**/*.{test,spec}.ts'],
-    exclude: ['**/node_modules/**', '**/dist/**', 'tests/e2e/**'],
+    // tests/v2 与 tests/e2e 不走 vitest：
+    //   - tests/v2 用 node:test 编写（match-v2 v2.2 原包口径），用
+    //     `node --test tests/v2/*.test.ts` 运行；
+    //   - tests/e2e 用 Playwright。
+    // 混跑会让 vitest 把 node:test 文件当成自己的用例而失败。
+    exclude: ['**/node_modules/**', '**/dist/**', 'tests/e2e/**', 'tests/v2/**'],
     environment: 'node',
     reporters: 'default',
   },

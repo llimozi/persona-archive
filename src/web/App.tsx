@@ -4,18 +4,17 @@ import { QuizPage } from './pages/QuizPage';
 import { ResultPage } from './pages/ResultPage';
 import { Page } from './components/Page';
 import { computeNine } from './lib/nine';
+import type { RankedPersona } from './lib/api';
 import { checkUnlock } from '../shared/unlock';
 import { RitualOverlay } from './components/RitualOverlay';
 import {
   fetchPersonas,
   fetchQuestions,
   runMatch,
-  toDisplayDims,
   type Answers,
 } from './lib/api';
 import { buildShareUrl, clearTokenInUrl, decodeAnswers, readTokenFromUrl } from './lib/share';
 import type { Dims, Persona, Question, ThemeConfig } from '../shared/types';
-import type { ScoredPersona } from '../engine/index';
 import type { ResultPersona } from './pages/ResultPage';
 import { prefersReducedMotion, shouldSkipRitual } from './lib/motion';
 
@@ -204,7 +203,7 @@ export function App() {
 
   // 唯一计算路径：结果全部来自引擎 match()（提到分支前，供仪式与结果页共用）
   const result = runMatch(qs, ps, answers, theme);
-  const dims = result ? toDisplayDims(result.user.x) : EMPTY_DIMS;
+  const dims = EMPTY_DIMS; // 六维展示已由九维区块取代，这里仅保留类型占位
   // 九维坐标：独立于角色匹配的评分体系，用户自己的九个 0–100 分
   const nine = computeNine(qs, answers);
 
@@ -282,7 +281,7 @@ export function App() {
   // 引擎 ScoredPersona 是扁平结构、不含档案正文；desc/placeholder 按 id 回填。
   // 约束：回填只允许补展示字段，必须在 DisplayOnlyFill 里显式声明；
   //       id/name/category/tags/percent 一律取自引擎，不取自 raw，排序不受回填影响。
-  const toCard = (p: ScoredPersona | null | undefined): ResultPersona | null => {
+  const toCard = (p: RankedPersona | null | undefined): ResultPersona | null => {
     if (!p) return null;
     const raw = ps.find((r) => r.id === p.id);
     const fill: DisplayOnlyFill = {
@@ -300,7 +299,7 @@ export function App() {
     };
   };
   const top = toCard(result?.main?.persona);
-  const others = [result?.secondary, result?.hidden, result?.surprise]
+  const others = [result?.secondary, result?.surprise]
     .map((p) => toCard(p?.persona))
     .filter((p): p is ResultPersona => p !== null);
 
