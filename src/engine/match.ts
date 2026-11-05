@@ -505,6 +505,19 @@ function pickSecondary(
   return { persona: rest[0]!, note: '同池内没有满足抽取条件（不同分类 / 分差 ≤0.12）的次匹配，按规则取 L[1] 并标「同类近亲」' };
 }
 
+/**
+ * 意外组合抽取（06 §6.5 `06:365`，**两条分支，顺序固定**）：
+ *
+ *   A. 主规则：L 中「与 main 分类不同 **且** 无 peer 关系 **且** M' ≥ 0.55」的第一个人；
+ *   B. 兜底（06:365 原文「若不存在，取 L 中第一个 rarity='limited' 或 rarity='hidden' 的人物」）：
+ *      A 无命中时，在全表里按排序取第一个 limited/hidden 卡；
+ *   C. 仍不存在 → 不输出该层。
+ *
+ * ⚠️ 「差距 ≥2 位」是**约束列**，只作用于 A 分支（原文位置就在主规则那条上）。
+ *    2026-11-05 修正：早期实现把它当成了 A/B 共同前提，且**缺 B 兜底分支**——
+ *    B 从未被执行过，等于把 06 的一条规则静默丢了。兜底分支必须扫全表，
+ *    若也套 ≥2 位，窄池（如 3 人）里 limited/hidden 排在 L[1] 就永远兜不到。
+ */
 function pickSurprise(
   ranking: ScoredPersona[],
   main: ScoredPersona,
@@ -512,14 +525,23 @@ function pickSurprise(
   cfg: Required<MatchConfig>,
 ): MatchPick | null {
   const mainIndex = ranking.findIndex((p) => p.id === main.id);
-  const minIndex = mainIndex + 2; // 至少相差 ≥2 位（06 §6.5）
-  const tail = ranking.slice(Math.max(0, minIndex));
-  const candidate = tail.find(
-    (p) => p.category !== main.category && !rel.has(main.id, p.id, 'peer') && p.adjusted >= cfg.surpriseMinScore,
-  );
-  if (candidate) {
-    return { persona: candidate, note: '意外组合：与主匹配不同分类、无 peer 关系、超过设计下限 0.55（06 §6.5）' };
+  const minIndex = mainIndex + 2; // A 分支约束：至少相差 ≥2 位（06 §6.5）
+
+  const primary = ranking
+    .slice(Math.max(0, minIndex))
+    .find((p) => p.category !== main.category && !rel.has(main.id, p.id, 'peer') && p.adjusted >= cfg.surpriseMinScore);
+  if (primary) {
+    return { persona: primary, note: '意外组合：与主匹配不同分类、无 peer 关系、超过设计下限 0.55（06 §6.5）' };
   }
+
+  const fallback = ranking.find((p) => p.rarity === 'limited' || p.rarity === 'hidden');
+  if (fallback) {
+    return {
+      persona: fallback,
+      note: `意外组合（兜底）：主规则无命中，按 06 §6.5 取 L 中第一个 rarity='${fallback.rarity}' 的人物`,
+    };
+  }
+
   return null;
 }
 
