@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Page } from '../components/Page';
 import { PosterSheet } from '../components/PosterSheet';
-import { DIM_LABEL, dimMeaning } from '../lib/dims';
-import { DIM_KEYS } from '../../shared/types';
 import type { Dims } from '../../shared/types';
+import type { NineResult } from '../../shared/nine-score';
+import { NineRadar } from '../components/NineRadar';
 import { archiveNo, categoryLabel, categoryTone, splitName, tidySubtitle } from '../lib/display';
 import { attachTilt, countUp, prefersReducedMotion, pulse } from '../lib/motion';
 import { celebrate } from '../lib/fx';
@@ -27,6 +27,8 @@ interface Props {
   top: ResultPersona | null;
   others: ResultPersona[];
   dims: Dims;
+  /** 九维坐标结果（页面与雷达图共用这一份，保证分数一致） */
+  nine: NineResult;
   onRestart: () => void;
   onShare: () => void;
   shareHint: string;
@@ -85,7 +87,7 @@ function ArchivePortrait({
   );
 }
 
-export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, shareUrl }: Props) {
+export function ResultPage({ top, others, dims, nine, onRestart, onShare, shareHint, shareUrl }: Props) {
   const [posterOpen, setPosterOpen] = useState(false);
   const name = top ? splitName(top.name) : { main: '', sub: '' };
 
@@ -225,33 +227,57 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
             </span>
           </section>
 
-          {/* ── 六维：次要层级，紧凑条形 + 一句话含义 ── */}
-          <section className="section section--dims">
+          {/* ── 九维坐标：雷达图 + 每维分数条 / 档位 / 骚话文案 ── */}
+          <section className="section section--dims section--nine" data-testid="nine-block">
             <div className="section__head">
-              <h2 className="section__title">六维坐标</h2>
-              <span className="section__hint mono">0 — 100</span>
+              <h2 className="section__title">九维坐标</h2>
+              <span className="section__hint mono">
+                {nine.complete ? '0 — 100' : `已测 ${nine.dims.filter((d) => d.measured).length} / 9`}
+              </span>
             </div>
-            <div className="dims">
-              {DIM_KEYS.map((k) => {
-                const v = dims[k];
-                const high = v >= 60;
-                return (
-                  <div className={`dim${high ? ' is-high' : ' is-low'}`} key={k} data-testid={`dim-${k}`}>
-                    <div className="dim__row">
-                      <span className="dim__name">{DIM_LABEL[k] ?? k}</span>
-                      <span className="dim__track" role="img" aria-label={`${DIM_LABEL[k] ?? k} ${v}`}>
-                        <span
-                          className="dim__fill"
-                          style={{ ['--fill' as string]: String(Math.max(2, v) / 100) }}
-                        />
-                        <span className="dim__tick dim__tick--50" aria-hidden="true" />
-                      </span>
-                      <span className="dim__value mono">{v}</span>
-                    </div>
-                    <p className="dim__meaning">{dimMeaning(k, v)}</p>
+
+            <NineRadar dims={nine.dims} />
+
+            <div className="dims dims--nine">
+              {nine.dims.map((d) => (
+                <div
+                  className={`dim dim--nine${d.measured ? '' : ' is-insufficient'}${d.level >= 2 ? ' is-high' : ' is-low'}`}
+                  key={d.dimensionId}
+                  data-testid={`nine-${d.dimensionId}`}
+                  data-score={d.score}
+                  data-level={d.level}
+                >
+                  <div className="dim__row">
+                    <span className="dim__no mono">{String(d.order).padStart(2, '0')}</span>
+                    <span className="dim__name">{d.dimensionName}</span>
+                    <span className="dim__track" role="img" aria-label={`${d.dimensionName} ${d.measured ? d.score : '数据不足'}`}>
+                      <span
+                        className="dim__fill"
+                        style={{ ['--fill' as string]: String(Math.max(2, d.measured ? d.score : 0) / 100) }}
+                      />
+                      <span className="dim__tick dim__tick--25" aria-hidden="true" />
+                      <span className="dim__tick dim__tick--50" aria-hidden="true" />
+                      <span className="dim__tick dim__tick--75" aria-hidden="true" />
+                    </span>
+                    <span className="dim__value mono" data-testid={`nine-score-${d.dimensionId}`}>
+                      {d.measured ? d.score : '—'}
+                    </span>
                   </div>
-                );
-              })}
+                  {d.measured ? (
+                    <p className="dim__meaning">
+                      <span className="dim__level">{d.levelName}</span>
+                      <span className="dim__state">{d.stateText}</span>
+                    </p>
+                  ) : (
+                    <p className="dim__meaning is-insufficient">
+                      <span className="dim__level">数据不足</span>
+                      <span className="dim__state">
+                        本维仅作答 {d.answered} 题，不足 2 题无法给出有效分数
+                      </span>
+                    </p>
+                  )}
+                </div>
+              ))}
             </div>
           </section>
 
@@ -307,6 +333,7 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
             tags: top.tags,
             percent: top.percent,
             dims,
+            nineScores: nine.dims.map((d) => (d.measured ? d.score : 0)),
             desc: top.desc,
             imageUrl: top.imageUrl,
           }}

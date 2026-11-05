@@ -17,7 +17,7 @@
  *    任何对外表述都必须写成"设计取值"，百分比一律是**娱乐匹配度**，不是心理测量值。
  */
 
-import { DIM_KEYS, DIM_LABELS } from './types.js';
+import { DIM_LABELS, getDimKeys } from './types.js';
 import type {
   DimContribution,
   DimKey,
@@ -154,7 +154,8 @@ export function scoreAnswers(
 
     const wq = typeof q.weight === 'number' && Number.isFinite(q.weight) ? q.weight : 1;
     const dims: Array<{ dim: DimKey; contribution: number }> = [];
-    for (const dim of DIM_KEYS) {
+    const dynamicDims = getDimKeys();
+    for (const dim of dynamicDims) {
       const rawDelta = opt.effects?.[dim];
       if (typeof rawDelta !== 'number' || !Number.isFinite(rawDelta) || rawDelta === 0) continue;
       if (Math.abs(rawDelta) > 1) {
@@ -179,7 +180,7 @@ export function scoreAnswers(
   const raw = zeroDims();
   const x = zeroDims();
   const undetermined: DimKey[] = [];
-  for (const dim of DIM_KEYS) {
+  for (const dim of getDimKeys()) {
     const den = denominator[dim];
     if (den === 0) {
       raw[dim] = 0;
@@ -192,12 +193,12 @@ export function scoreAnswers(
     x[dim] = (s + 1) / 2;
   }
 
-  const coveredCount = DIM_KEYS.length - undetermined.length;
+  const coveredCount = getDimKeys().length - undetermined.length;
   const user: UserVector = {
     x,
     raw,
     undetermined,
-    coverage: coveredCount / DIM_KEYS.length,
+    coverage: coveredCount / getDimKeys().length,
     answerCoverage: questions.length > 0 ? perQuestion.length / questions.length : 0,
     tags: [],
     perQuestion,
@@ -228,8 +229,8 @@ function normalizeMu(
   personaId: string,
   warnings: MatchWarning[],
 ): Partial<Record<DimKey, number>> {
-  const vals = DIM_KEYS.map((d) => dims[d]).filter((v): v is number => typeof v === 'number' && Number.isFinite(v));
-  const allPresent = vals.length === DIM_KEYS.length;
+  const vals = getDimKeys().map((d) => dims[d]).filter((v): v is number => typeof v === 'number' && Number.isFinite(v));
+  const allPresent = vals.length === getDimKeys().length;
   const inPercentRange = allPresent && vals.every((v) => v >= 0 && v <= 100);
   const hasAboveOne = vals.some((v) => v > 1);
   const allPercent = inPercentRange && hasAboveOne;
@@ -250,7 +251,7 @@ function normalizeMu(
   }
 
   const out: Partial<Record<DimKey, number>> = {};
-  for (const d of DIM_KEYS) {
+  for (const d of getDimKeys()) {
     const v = dims[d];
     if (typeof v !== 'number' || !Number.isFinite(v)) continue;
     out[d] = allPercent ? v / 100 : v;
@@ -285,7 +286,7 @@ function preparePersona(p: EnginePersona, index: number, cfg: Required<MatchConf
   const mu = normalizeMu(p.dims, p.id, warnings);
   const unset = new Set(p.dimsUnset ?? []);
   const dims: DimKey[] = [];
-  for (const d of DIM_KEYS) {
+  for (const d of getDimKeys()) {
     const v = mu[d];
     if (typeof v !== 'number' || unset.has(d)) continue;
     if (v < 0 || v > 1) {
@@ -403,7 +404,7 @@ function scorePersona(
 
   const score = weighted / omegaTotal;
   for (const c of contributions) c.share = (c.omega * c.g) / (weighted || 1);
-  contributions.sort((a, b) => (b.share !== a.share ? b.share - a.share : DIM_KEYS.indexOf(a.dim) - DIM_KEYS.indexOf(b.dim)));
+  contributions.sort((a, b) => (b.share !== a.share ? b.share - a.share : getDimKeys().indexOf(a.dim) - getDimKeys().indexOf(b.dim)));
 
   // 标签微调（06 §6.4）
   const sharedTags = userTags.filter((t) => p.tags.includes(t));
@@ -703,7 +704,7 @@ export function match(input: MatchInput): MatchResult {
   const warnings: MatchWarning[] = [];
 
   // 主题权重校验（06 §4.2 要求和为 1.0；不静默归一，只告警，值按原样用）
-  const wsum = DIM_KEYS.reduce((s, d) => s + (input.theme.weights[d] ?? 0), 0);
+  const wsum = getDimKeys().reduce((s, d) => s + (input.theme.weights[d] ?? 0), 0);
   if (Math.abs(wsum - 1) > 1e-6) {
     warnings.push({
       code: 'theme_weights_not_normalized',

@@ -11,17 +11,58 @@
 
 import type { Rarity } from '../shared/types.js';
 
-/** 六维代号（与 src/shared/types.ts 的 DimKey 保持一致） */
-export type DimKey = 'EE' | 'ST' | 'AC' | 'HX' | 'RB' | 'SR';
+/**
+ * 维度代号。
+ *
+ * 历史包袱：类型名沿用 `DimKey`（保持 `src/engine/index.ts` 的导出不变），
+ * 但**取值范围在九维升级后不再是固定的六个**：
+ *  - 旧六维：EE / ST / AC / HX / RB / SR
+ *  - 九维：MS / FC / WS / SB / CX / JH / ZQ / AB / KD
+ *
+ * 维度键集合是**运行时配置**（见 setDimKeys / getDimKeys），
+ * 引擎内所有遍历都必须走 getDimKeys()，不要直接引用固定数组。
+ * 默认值仍是六维，保证既有测试与历史调用行为不变。
+ */
+export type DimKey = string;
 
 /** 稀有度：**直接复用 shared 的定义，不在此处重复声明**，避免两份联合类型分叉 */
 export type { Rarity };
 
-/** 六维顺序固定：EE → ST → AC → HX → RB → SR。所有遍历按此顺序，保证浮点累加顺序确定。 */
+/** 旧六维顺序（历史默认值，保证浮点累加顺序确定） */
 export const DIM_KEYS: readonly DimKey[] = ['EE', 'ST', 'AC', 'HX', 'RB', 'SR'] as const;
 
-/** 维度中文名（仅用于可读解释，不参与计算） */
-export const DIM_LABELS: Readonly<Record<DimKey, string>> = {
+/** 九维顺序（与 src/shared/nine-dims.ts 的 NINE_KEYS 一致，01–09） */
+export const NINE_DIM_KEYS: readonly DimKey[] = ['MS', 'FC', 'WS', 'SB', 'CX', 'JH', 'ZQ', 'AB', 'KD'] as const;
+
+/**
+ * 当前生效的维度键集合。
+ *
+ * 为什么用模块级可变状态：引擎的遍历顺序决定浮点累加顺序，
+ * 逐函数传参会改动十几处签名并波及全部调用方；
+ * 而本项目的运行形态是**单进程、单次计算**，
+ * 入口在计算前一次性设定、计算期间不变，因此是安全的。
+ * 真要并发请改成显式传参。
+ */
+let activeDimKeys: readonly DimKey[] = DIM_KEYS;
+
+/** 设定当前生效的维度键（顺序即遍历顺序） */
+export function setDimKeys(keys: readonly DimKey[]): void {
+  if (!keys.length) throw new Error('setDimKeys: 维度键不能为空');
+  activeDimKeys = [...keys];
+}
+
+/** 读取当前生效的维度键 */
+export function getDimKeys(): readonly DimKey[] {
+  return activeDimKeys;
+}
+
+/** 恢复默认六维（测试隔离用） */
+export function resetDimKeys(): void {
+  activeDimKeys = DIM_KEYS;
+}
+
+/** 维度中文名（仅用于可读解释，不参与计算）。九维标签走 shared 的 NINE_DIMS，不在此重复。 */
+export const DIM_LABELS: Readonly<Record<string, string>> = {
   EE: '情绪外显',
   ST: '社交取向',
   AC: '行动节奏',

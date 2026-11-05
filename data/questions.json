@@ -1,8 +1,8 @@
 {
-  "version": 1,
+  "version": 2,
   "themeId": "th-general",
   "generatedAt": "2026-11-04",
-  "note": "首版 10 题（th-general 通用鉴定）。题型口径取自 docs/product-discovery/07-题库与文案引擎设计.md：stem ≤40 字、选项 delta 取 ±0.3~±0.8。选项 effects 为对六维的加减权，引擎按题内归一化使用。所有题干选项均为原创文案，不复述人物原话、不使用第三方 IP 素材。",
+  "note": "v2：九维坐标体系（nine-dims-v1）。坐标名与四档文案见 src/shared/nine-dims.ts。每题新增 dimensionId / reverse / optionScore / questionWeight，作为九维计分依据；保留原有 title / options.label / effects / dims，四选一交互不变。现有 25 题重新归属九维后，猥琐浓度为 0 题，故补 q-gen-026~028；畜生没母只有 1 题，补 q-gen-029。这些是唯一为凑维度而新增的题。",
   "questions": [
     {
       "id": "q-gen-001",
@@ -52,7 +52,16 @@
             "SR": 0.5
           }
         }
-      ]
+      ],
+      "dimensionId": "AB",
+      "reverse": false,
+      "optionScore": {
+        "A": 4,
+        "B": 5,
+        "C": 2,
+        "D": 1.5
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-002",
@@ -98,7 +107,16 @@
             "EE": -0.3
           }
         }
-      ]
+      ],
+      "dimensionId": "FC",
+      "reverse": false,
+      "optionScore": {
+        "A": 4,
+        "B": 1.5,
+        "C": 4.5,
+        "D": 3
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-003",
@@ -146,7 +164,16 @@
             "EE": 0.5
           }
         }
-      ]
+      ],
+      "dimensionId": "SB",
+      "reverse": false,
+      "optionScore": {
+        "A": 5,
+        "B": 2,
+        "C": 1.5,
+        "D": 4.5
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-004",
@@ -176,7 +203,14 @@
             "ST": 0.5
           }
         }
-      ]
+      ],
+      "dimensionId": "KD",
+      "reverse": false,
+      "optionScore": {
+        "A": 4.5,
+        "B": 2
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-005",
@@ -225,7 +259,16 @@
             "HX": 0.4
           }
         }
-      ]
+      ],
+      "dimensionId": "MS",
+      "reverse": false,
+      "optionScore": {
+        "A": 2,
+        "B": 3,
+        "C": 4,
+        "D": 3.5
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-006",
@@ -268,7 +311,16 @@
             "SR": 0.3
           }
         }
-      ]
+      ],
+      "dimensionId": "KD",
+      "reverse": true,
+      "optionScore": {
+        "A": 3,
+        "B": 4.5,
+        "C": 4,
+        "D": 1
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-007",
@@ -316,7 +368,16 @@
             "AC": -0.5
           }
         }
-      ]
+      ],
+      "dimensionId": "FC",
+      "reverse": false,
+      "optionScore": {
+        "A": 4,
+        "B": 3,
+        "C": 1,
+        "D": 2.5
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-008",
@@ -364,7 +425,16 @@
             "SR": 0.6
           }
         }
-      ]
+      ],
+      "dimensionId": "AB",
+      "reverse": false,
+      "optionScore": {
+        "A": 3,
+        "B": 5,
+        "C": 2,
+        "D": 1
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-009",
@@ -394,7 +464,14 @@
             "RB": -0.5
           }
         }
-      ]
+      ],
+      "dimensionId": "KD",
+      "reverse": false,
+      "optionScore": {
+        "A": 3.5,
+        "B": 4.5
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-010",
@@ -442,7 +519,16 @@
             "SR": 0.5
           }
         }
-      ]
+      ],
+      "dimensionId": "KD",
+      "reverse": false,
+      "optionScore": {
+        "A": 4.5,
+        "B": 4,
+        "C": 3,
+        "D": 1
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-011",
@@ -490,7 +576,16 @@
             "AC": -0.5
           }
         }
-      ]
+      ],
+      "dimensionId": "ZQ",
+      "reverse": false,
+      "optionScore": {
+        "A": 4,
+        "B": 2,
+        "C": 3,
+        "D": 1
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-012",
@@ -538,7 +633,16 @@
             "ST": -0.5
           }
         }
-      ]
+      ],
+      "dimensionId": "FC",
+      "reverse": false,
+      "optionScore": {
+        "A": 2,
+        "B": 3.5,
+        "C": 4,
+        "D": 1
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-013",
@@ -586,7 +690,16 @@
             "RB": -0.3
           }
         }
-      ]
+      ],
+      "dimensionId": "ZQ",
+      "reverse": false,
+      "optionScore": {
+        "A": 4.5,
+        "B": 1.5,
+        "C": 2.5,
+        "D": 3.5
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-014",
@@ -616,7 +729,14 @@
             "RB": -0.5
           }
         }
-      ]
+      ],
+      "dimensionId": "MS",
+      "reverse": true,
+      "optionScore": {
+        "A": 1,
+        "B": 4.5
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-015",
@@ -664,7 +784,16 @@
             "HX": 0.3
           }
         }
-      ]
+      ],
+      "dimensionId": "SB",
+      "reverse": false,
+      "optionScore": {
+        "A": 4.5,
+        "B": 2.5,
+        "C": 1,
+        "D": 3
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-016",
@@ -712,7 +841,16 @@
             "HX": 0.3
           }
         }
-      ]
+      ],
+      "dimensionId": "JH",
+      "reverse": false,
+      "optionScore": {
+        "A": 5,
+        "B": 1.5,
+        "C": 1,
+        "D": 2.5
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-017",
@@ -760,7 +898,16 @@
             "EE": -0.3
           }
         }
-      ]
+      ],
+      "dimensionId": "KD",
+      "reverse": false,
+      "optionScore": {
+        "A": 4.5,
+        "B": 4.5,
+        "C": 3,
+        "D": 1.5
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-018",
@@ -808,7 +955,16 @@
             "EE": -0.3
           }
         }
-      ]
+      ],
+      "dimensionId": "MS",
+      "reverse": false,
+      "optionScore": {
+        "A": 3.5,
+        "B": 1.5,
+        "C": 2.5,
+        "D": 2
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-019",
@@ -856,7 +1012,16 @@
             "ST": 0.3
           }
         }
-      ]
+      ],
+      "dimensionId": "ZQ",
+      "reverse": false,
+      "optionScore": {
+        "A": 5,
+        "B": 2,
+        "C": 1,
+        "D": 3
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-020",
@@ -904,7 +1069,16 @@
             "HX": 0.3
           }
         }
-      ]
+      ],
+      "dimensionId": "CX",
+      "reverse": false,
+      "optionScore": {
+        "A": 4,
+        "B": 3,
+        "C": 2,
+        "D": 3.5
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-021",
@@ -952,7 +1126,16 @@
             "EE": 0.4
           }
         }
-      ]
+      ],
+      "dimensionId": "JH",
+      "reverse": false,
+      "optionScore": {
+        "A": 2.5,
+        "B": 1.5,
+        "C": 3,
+        "D": 4.5
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-022",
@@ -1000,7 +1183,16 @@
             "EE": -0.4
           }
         }
-      ]
+      ],
+      "dimensionId": "ZQ",
+      "reverse": false,
+      "optionScore": {
+        "A": 5,
+        "B": 2.5,
+        "C": 3.5,
+        "D": 2
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-023",
@@ -1030,7 +1222,14 @@
             "ST": -0.4
           }
         }
-      ]
+      ],
+      "dimensionId": "MS",
+      "reverse": false,
+      "optionScore": {
+        "A": 1.5,
+        "B": 4.5
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-024",
@@ -1079,7 +1278,16 @@
             "SR": -0.3
           }
         }
-      ]
+      ],
+      "dimensionId": "ZQ",
+      "reverse": false,
+      "optionScore": {
+        "A": 3.5,
+        "B": 4,
+        "C": 1,
+        "D": 4.5
+      },
+      "questionWeight": 1
     },
     {
       "id": "q-gen-025",
@@ -1127,6 +1335,227 @@
             "HX": -0.3
           }
         }
+      ],
+      "dimensionId": "AB",
+      "reverse": false,
+      "optionScore": {
+        "A": 3.5,
+        "B": 2,
+        "C": 1.5,
+        "D": 4.5
+      },
+      "questionWeight": 1
+    },
+    {
+      "id": "q-gen-026",
+      "type": "meme",
+      "title": "朋友发来一张模棱两可的图，你第一眼盯住的是：",
+      "dimensionId": "WS",
+      "reverse": false,
+      "optionScore": {
+        "A": 4.5,
+        "B": 3,
+        "C": 1,
+        "D": 2
+      },
+      "questionWeight": 1,
+      "dims": {
+        "EE": 0.4,
+        "AC": 0.6,
+        "RB": 0.4
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "先找图里最容易想歪的那个细节",
+          "effects": {
+            "EE": 0.5,
+            "AC": 0.6
+          }
+        },
+        {
+          "id": "B",
+          "label": "看两秒，顺手补一句带颜色的解读",
+          "effects": {
+            "EE": 0.6,
+            "AC": 0.4
+          }
+        },
+        {
+          "id": "C",
+          "label": "认真看看是不是 P 的",
+          "effects": {
+            "AC": -0.4,
+            "HX": 0.5
+          }
+        },
+        {
+          "id": "D",
+          "label": "根本没往那方面想",
+          "effects": {
+            "EE": -0.5,
+            "AC": -0.5
+          }
+        }
+      ]
+    },
+    {
+      "id": "q-gen-027",
+      "type": "scenario",
+      "title": "一群人吃饭，有人开了个擦边的玩笑。你：",
+      "dimensionId": "WS",
+      "reverse": false,
+      "optionScore": {
+        "A": 5,
+        "B": 3.5,
+        "C": 1.5,
+        "D": 2.5
+      },
+      "questionWeight": 1,
+      "dims": {
+        "EE": 0.6,
+        "ST": 0.5,
+        "SR": 0.5
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "顺着往下接，还能再往上抬一档",
+          "effects": {
+            "EE": 0.7,
+            "ST": 0.5
+          }
+        },
+        {
+          "id": "B",
+          "label": "跟着笑，但不接话",
+          "effects": {
+            "EE": 0.3,
+            "SR": 0.4
+          }
+        },
+        {
+          "id": "C",
+          "label": "有点尴尬，低头夹菜",
+          "effects": {
+            "EE": -0.6,
+            "SR": -0.3
+          }
+        },
+        {
+          "id": "D",
+          "label": "听得懂，但更想看别人怎么接",
+          "effects": {
+            "EE": -0.35,
+            "HX": 0.5
+          }
+        }
+      ]
+    },
+    {
+      "id": "q-gen-028",
+      "type": "single",
+      "title": "你脑子里那些不太正经的念头，通常：",
+      "dimensionId": "WS",
+      "reverse": false,
+      "optionScore": {
+        "A": 4.5,
+        "B": 3,
+        "C": 2,
+        "D": 1
+      },
+      "questionWeight": 1,
+      "dims": {
+        "EE": 0.5,
+        "ST": 0.4,
+        "RB": 0.4
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "三天之内一定会说出去",
+          "effects": {
+            "EE": 0.7,
+            "RB": 0.4
+          }
+        },
+        {
+          "id": "B",
+          "label": "分人，看对面扛不扛得住",
+          "effects": {
+            "EE": 0.3,
+            "SR": 0.3
+          }
+        },
+        {
+          "id": "C",
+          "label": "基本停在脑子里，不太往外说",
+          "effects": {
+            "EE": -0.6,
+            "ST": -0.3
+          }
+        },
+        {
+          "id": "D",
+          "label": "很少有，我脑回路挺干净",
+          "effects": {
+            "EE": -0.4,
+            "RB": -0.5
+          }
+        }
+      ]
+    },
+    {
+      "id": "q-gen-029",
+      "type": "scenario",
+      "title": "同事的椅子被人悄悄挪歪了，大家都看见了。你：",
+      "dimensionId": "CX",
+      "reverse": false,
+      "optionScore": {
+        "A": 5,
+        "B": 3.5,
+        "C": 1.5,
+        "D": 2.5
+      },
+      "questionWeight": 1,
+      "dims": {
+        "EE": 0.5,
+        "AC": 0.5,
+        "RB": 0.5
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "顺手再推远一点，等他坐空",
+          "effects": {
+            "AC": 0.6,
+            "RB": 0.6
+          }
+        },
+        {
+          "id": "B",
+          "label": "不动手，但已经想好怎么起哄",
+          "effects": {
+            "EE": 0.5,
+            "RB": 0.4
+          }
+        },
+        {
+          "id": "C",
+          "label": "帮他挪回来，别摔着",
+          "effects": {
+            "AC": -0.3,
+            "SR": 0.3
+          }
+        },
+        {
+          "id": "D",
+          "label": "看一眼，不掺和",
+          "effects": {
+            "EE": -0.4,
+            "AC": -0.4
+          }
+        }
       ]
     }
   ],
@@ -1142,5 +1571,6 @@
     },
     "source": "06 §9.1",
     "isDesignValue": true
-  }
+  },
+  "scheme": "nine-dims-v1"
 }

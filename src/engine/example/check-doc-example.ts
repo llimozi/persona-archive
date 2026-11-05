@@ -34,7 +34,7 @@ import type { EngineAnswer, EnginePersona, EngineQuestion, EngineTheme } from '.
 import { DIM_KEYS } from '../types.js';
 
 /** 06 §9.1 的用户六维分（原文值，不是我们编的） */
-const DOC_X = { EE: 0.72, ST: 0.35, AC: 0.55, HX: 0.81, RB: 0.4, SR: 0.3 } as const;
+const DOC_X: Record<string, number> = { EE: 0.72, ST: 0.35, AC: 0.55, HX: 0.81, RB: 0.4, SR: 0.3 };
 
 /** 06 §9.1 的示例人物画像（μ/σ 逐维，取自原文表格） */
 const DOC_PERSONAS: EnginePersona[] = [

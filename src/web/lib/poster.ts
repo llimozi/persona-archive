@@ -13,6 +13,7 @@
  * 纯 canvas 绘制、零依赖；导出 ≥2x 由 pickScale 保证。
  */
 import type { Dims } from '../../shared/types';
+import { NINE_DIMS } from '../../shared/nine-dims';
 import { categoryLabel, archiveNo as displayArchiveNo, splitName, tidySubtitle } from './display';
 
 /** 海报版式：9:16 竖版（CSS px，导出时整体乘 scale） */
@@ -58,7 +59,10 @@ export interface PosterData {
   category: string;
   tags: string[];
   percent: number | null;
+  /** 旧六维（保留字段以兼容既有调用方，海报不再用它画雷达） */
   dims: Dims;
+  /** 九维分数，按 01–09 顺序；缺省时海报画空心雷达 */
+  nineScores?: readonly number[];
   desc?: string;
   imageUrl?: string;
   image?: CanvasImageSource | null;
@@ -182,17 +186,19 @@ function isTaintedError(e: unknown): boolean {
 
 /* ─────────────── 辅助 ─────────────── */
 
-const DIM_LIST: Array<[keyof Dims, string]> = [
-  ['EE', '情绪'],
-  ['ST', '表达'],
-  ['AC', '行动'],
-  ['HX', '复杂'],
-  ['RB', '反叛'],
-  ['SR', '社交'],
-];
+/**
+ * 海报纸达图的九个轴。名称取九维坐标的中文名（01–09 顺序），
+ * 不在这里另起简称——简化名会和页面上的叫法对不上。
+ */
+const DIM_LIST: Array<[string, string]> = NINE_DIMS.map((d) => [d.key, d.name]);
 
-/** 紧凑雷达图：六边形网格 + 朱红填充多边形 */
-function drawRadar(ctx: CanvasRenderingContext2D, cx: number, cy: number, radius: number, dims: Dims): void {
+/**
+ * 紧凑雷达图：九边形网格 + 朱红填充多边形。
+ *
+ * 入参是 number[]（按 01–09 顺序的真实分数），与结果页读同一份 nine.dims，
+ * 所以海报上的形状与页面上的分数条来自同一个结果。
+ */
+function drawRadar(ctx: CanvasRenderingContext2D, cx: number, cy: number, radius: number, values: readonly number[]): void {
   const n = DIM_LIST.length;
   const angleOf = (i: number) => (Math.PI * 2 * i) / n - Math.PI / 2;
 
@@ -221,7 +227,7 @@ function drawRadar(ctx: CanvasRenderingContext2D, cx: number, cy: number, radius
 
   ctx.beginPath();
   for (let i = 0; i < n; i += 1) {
-    const v = Math.max(0, Math.min(100, dims[DIM_LIST[i][0]])) / 100;
+    const v = Math.max(0, Math.min(100, values[i] ?? 0)) / 100;
     const a = angleOf(i);
     const x = cx + Math.cos(a) * radius * v;
     const y = cy + Math.sin(a) * radius * v;
@@ -237,7 +243,7 @@ function drawRadar(ctx: CanvasRenderingContext2D, cx: number, cy: number, radius
 
   ctx.fillStyle = C.seal;
   for (let i = 0; i < n; i += 1) {
-    const v = Math.max(0, Math.min(100, dims[DIM_LIST[i][0]])) / 100;
+    const v = Math.max(0, Math.min(100, values[i] ?? 0)) / 100;
     const a = angleOf(i);
     ctx.beginPath();
     ctx.arc(cx + Math.cos(a) * radius * v, cy + Math.sin(a) * radius * v, 2.6, 0, Math.PI * 2);
@@ -453,7 +459,7 @@ export function paintPoster(ctx: CanvasRenderingContext2D, data: PosterData): vo
   const radarR = 44;
   const radarCx = pad + radarR + 18;
   const radarCy = y + radarR + 2;
-  drawRadar(ctx, radarCx, radarCy, radarR, data.dims);
+  drawRadar(ctx, radarCx, radarCy, radarR, data.nineScores ?? []);
 
   const textX = radarCx + radarR + 24;
   const textW = W - pad - textX;

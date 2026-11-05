@@ -18,10 +18,10 @@ import { DIM_KEYS } from '../types.js';
 const ALPHA = 0.6;
 
 /** 用户六维分（4 位小数，可由 100 等分题目精确表达：x=k/100） */
-const USER_X = { EE: 1.0, ST: 0.8, AC: 0.6, HX: 0.4, RB: 0.2, SR: 0.0 } as const;
+const USER_X = { EE: 1.0, ST: 0.8, AC: 0.6, HX: 0.4, RB: 0.2, SR: 0.0 } as Record<string, number>;
 
 /** 主题权重（06 §9.1 th-general，和 = 1.0） */
-const WEIGHTS = { EE: 0.18, ST: 0.18, AC: 0.18, HX: 0.22, RB: 0.12, SR: 0.12 } as const;
+const WEIGHTS = { EE: 0.18, ST: 0.18, AC: 0.18, HX: 0.22, RB: 0.12, SR: 0.12 } as Record<string, number>;
 
 /**
  * 单个人物，六维全设，σ 全 0.10（易手算）。

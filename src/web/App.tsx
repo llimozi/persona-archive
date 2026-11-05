@@ -3,6 +3,7 @@ import { HomePage } from './pages/HomePage';
 import { QuizPage } from './pages/QuizPage';
 import { ResultPage } from './pages/ResultPage';
 import { Page } from './components/Page';
+import { computeNine } from './lib/nine';
 import { RitualOverlay } from './components/RitualOverlay';
 import {
   fetchPersonas,
@@ -203,6 +204,8 @@ export function App() {
   // 唯一计算路径：结果全部来自引擎 match()（提到分支前，供仪式与结果页共用）
   const result = runMatch(qs, ps, answers, theme);
   const dims = result ? toDisplayDims(result.user.x) : EMPTY_DIMS;
+  // 九维坐标：独立于角色匹配的评分体系，用户自己的九个 0–100 分
+  const nine = computeNine(qs, answers);
   const mainId = result?.main?.persona.id;
   const mainName = result?.main?.persona.name ?? '未匹配';
 
@@ -296,6 +299,7 @@ export function App() {
       top={top}
       others={others}
       dims={dims}
+      nine={nine}
       onRestart={restart}
       onShare={share}
       shareUrl={Object.keys(answers).length ? buildShareUrl(answers) : location.href}

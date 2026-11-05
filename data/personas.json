@@ -40,7 +40,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-nailong-001.png",
-      "imageKind": "official"
+      "imageKind": "official",
+      "nineDims": {
+        "MS": 99,
+        "FC": 99,
+        "WS": 7,
+        "SB": 84,
+        "CX": 68,
+        "JH": 83,
+        "ZQ": 79,
+        "AB": 84,
+        "KD": 99
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-coke-003",
@@ -79,7 +91,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-coke-003.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 100,
+        "FC": 100,
+        "WS": 27,
+        "SB": 99,
+        "CX": 99,
+        "JH": 98,
+        "ZQ": 93,
+        "AB": 99,
+        "KD": 100
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-bushaoxin-007",
@@ -118,7 +142,19 @@
       "rarity": "rare",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-bushaoxin-007.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 26,
+        "FC": 26,
+        "WS": 10,
+        "SB": 40,
+        "CX": 33,
+        "JH": 38,
+        "ZQ": 40,
+        "AB": 40,
+        "KD": 26
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-jiupaige-014",
@@ -157,7 +193,19 @@
       "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损。",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "鸡排哥、景德镇鸡排主理人"
+      "alias": "鸡排哥、景德镇鸡排主理人",
+      "nineDims": {
+        "MS": 27,
+        "FC": 27,
+        "WS": 87,
+        "SB": 80,
+        "CX": 79,
+        "JH": 79,
+        "ZQ": 77,
+        "AB": 80,
+        "KD": 27
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-zhuzhiwen-015",
@@ -196,7 +244,19 @@
       "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损。",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "大衣哥"
+      "alias": "大衣哥",
+      "nineDims": {
+        "MS": 4,
+        "FC": 4,
+        "WS": 3,
+        "SB": 11,
+        "CX": 4,
+        "JH": 11,
+        "ZQ": 11,
+        "AB": 11,
+        "KD": 4
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-lanlao-020",
@@ -235,7 +295,19 @@
       "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损。",
       "rarity": "limited",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "揽佬 SKAI ISYOURGOD"
+      "alias": "揽佬 SKAI ISYOURGOD",
+      "nineDims": {
+        "MS": 76,
+        "FC": 76,
+        "WS": 98,
+        "SB": 69,
+        "CX": 67,
+        "JH": 68,
+        "ZQ": 67,
+        "AB": 69,
+        "KD": 76
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-pangmao-002",
@@ -274,7 +346,19 @@
       "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损。",
       "rarity": "rare",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "胖猫"
+      "alias": "胖猫",
+      "nineDims": {
+        "MS": 7,
+        "FC": 7,
+        "WS": 32,
+        "SB": 2,
+        "CX": 0,
+        "JH": 3,
+        "ZQ": 3,
+        "AB": 2,
+        "KD": 7
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-damaige-010",
@@ -312,7 +396,19 @@
       "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损。",
       "rarity": "hidden",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "大麦哥、Michael"
+      "alias": "大麦哥、Michael",
+      "nineDims": {
+        "MS": 86,
+        "FC": 86,
+        "WS": 33,
+        "SB": 48,
+        "CX": 39,
+        "JH": 46,
+        "ZQ": 48,
+        "AB": 48,
+        "KD": 86
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-sunxiaochuan-011",
@@ -350,7 +446,19 @@
       "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损。",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "带带大师兄、大师兄、孙狗、网恋教父"
+      "alias": "带带大师兄、大师兄、孙狗、网恋教父",
+      "nineDims": {
+        "MS": 40,
+        "FC": 40,
+        "WS": 94,
+        "SB": 61,
+        "CX": 89,
+        "JH": 58,
+        "ZQ": 97,
+        "AB": 61,
+        "KD": 40
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-jixinghang-013",
@@ -388,7 +496,19 @@
       "usageNote": "—",
       "rarity": "hidden",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "八级哥、大笑奶龙素材组"
+      "alias": "八级哥、大笑奶龙素材组",
+      "nineDims": {
+        "MS": 83,
+        "FC": 83,
+        "WS": 73,
+        "SB": 94,
+        "CX": 57,
+        "JH": 92,
+        "ZQ": 89,
+        "AB": 94,
+        "KD": 83
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-kapibala-024",
@@ -424,7 +544,19 @@
       "usageNote": "—",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "水豚、卡皮吧啦"
+      "alias": "水豚、卡皮吧啦",
+      "nineDims": {
+        "MS": 0,
+        "FC": 0,
+        "WS": 1,
+        "SB": 0,
+        "CX": 1,
+        "JH": 0,
+        "ZQ": 0,
+        "AB": 0,
+        "KD": 0
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-malou-025",
@@ -460,7 +592,19 @@
       "usageNote": "—",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "打工吗喽"
+      "alias": "打工吗喽",
+      "nineDims": {
+        "MS": 2,
+        "FC": 2,
+        "WS": 53,
+        "SB": 9,
+        "CX": 13,
+        "JH": 9,
+        "ZQ": 9,
+        "AB": 9,
+        "KD": 2
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-shushu-026",
@@ -496,7 +640,19 @@
       "usageNote": "—",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "鼠鼠我啊、鼠鼠人"
+      "alias": "鼠鼠我啊、鼠鼠人",
+      "nineDims": {
+        "MS": 1,
+        "FC": 1,
+        "WS": 39,
+        "SB": 1,
+        "CX": 2,
+        "JH": 2,
+        "ZQ": 1,
+        "AB": 1,
+        "KD": 1
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-bushi-027",
@@ -532,7 +688,19 @@
       "usageNote": "—",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "不是哥们儿"
+      "alias": "不是哥们儿",
+      "nineDims": {
+        "MS": 20,
+        "FC": 20,
+        "WS": 54,
+        "SB": 58,
+        "CX": 44,
+        "JH": 54,
+        "ZQ": 58,
+        "AB": 58,
+        "KD": 20
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "an-belial-001",
@@ -571,7 +739,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/an-belial-001.png",
-      "imageKind": "official"
+      "imageKind": "official",
+      "nineDims": {
+        "MS": 50,
+        "FC": 50,
+        "WS": 99,
+        "SB": 89,
+        "CX": 100,
+        "JH": 100,
+        "ZQ": 83,
+        "AB": 89,
+        "KD": 50
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "an-diga-002",
@@ -610,7 +790,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/an-diga-002.png",
-      "imageKind": "official"
+      "imageKind": "official",
+      "nineDims": {
+        "MS": 28,
+        "FC": 28,
+        "WS": 21,
+        "SB": 41,
+        "CX": 63,
+        "JH": 39,
+        "ZQ": 41,
+        "AB": 41,
+        "KD": 28
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "an-sairo-003",
@@ -649,7 +841,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/an-sairo-003.png",
-      "imageKind": "official"
+      "imageKind": "official",
+      "nineDims": {
+        "MS": 61,
+        "FC": 61,
+        "WS": 69,
+        "SB": 77,
+        "CX": 88,
+        "JH": 94,
+        "ZQ": 74,
+        "AB": 77,
+        "KD": 61
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "an-xiongda-004",
@@ -688,7 +892,19 @@
       "usageNote": "—",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "熊大回眸"
+      "alias": "熊大回眸",
+      "nineDims": {
+        "MS": 9,
+        "FC": 9,
+        "WS": 6,
+        "SB": 32,
+        "CX": 56,
+        "JH": 30,
+        "ZQ": 32,
+        "AB": 32,
+        "KD": 9
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "sd-jiangbanya-012",
@@ -725,7 +941,19 @@
       "rarity": "rare",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/sd-jiangbanya-012.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 14,
+        "FC": 14,
+        "WS": 96,
+        "SB": 64,
+        "CX": 90,
+        "JH": 61,
+        "ZQ": 63,
+        "AB": 64,
+        "KD": 14
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "es-donk-001",
@@ -764,7 +992,19 @@
       "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损。",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "天才少年"
+      "alias": "天才少年",
+      "nineDims": {
+        "MS": 51,
+        "FC": 51,
+        "WS": 62,
+        "SB": 62,
+        "CX": 97,
+        "JH": 59,
+        "ZQ": 61,
+        "AB": 62,
+        "KD": 51
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-doubao-040",
@@ -800,7 +1040,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-doubao-040.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 91,
+        "FC": 91,
+        "WS": 4,
+        "SB": 6,
+        "CX": 7,
+        "JH": 6,
+        "ZQ": 7,
+        "AB": 6,
+        "KD": 91
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-kuangmo-041",
@@ -836,7 +1088,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-kuangmo-041.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 21,
+        "FC": 21,
+        "WS": 60,
+        "SB": 90,
+        "CX": 92,
+        "JH": 88,
+        "ZQ": 84,
+        "AB": 90,
+        "KD": 21
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "es-faker-004",
@@ -875,7 +1139,19 @@
       "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损。",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "大魔王、李哥、神"
+      "alias": "大魔王、李哥、神",
+      "nineDims": {
+        "MS": 84,
+        "FC": 84,
+        "WS": 11,
+        "SB": 3,
+        "CX": 51,
+        "JH": 4,
+        "ZQ": 4,
+        "AB": 3,
+        "KD": 84
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "intp-trump-001",
@@ -913,7 +1189,19 @@
       "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损。",
       "rarity": "limited",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "特朗普、川普、懂王"
+      "alias": "特朗普、川普、懂王",
+      "nineDims": {
+        "MS": 29,
+        "FC": 29,
+        "WS": 92,
+        "SB": 97,
+        "CX": 62,
+        "JH": 96,
+        "ZQ": 100,
+        "AB": 97,
+        "KD": 29
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "intp-musk-002",
@@ -951,7 +1239,19 @@
       "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损。",
       "rarity": "limited",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "马斯克、马一龙"
+      "alias": "马斯克、马一龙",
+      "nineDims": {
+        "MS": 97,
+        "FC": 97,
+        "WS": 97,
+        "SB": 81,
+        "CX": 49,
+        "JH": 80,
+        "ZQ": 96,
+        "AB": 81,
+        "KD": 97
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "intp-jensen-003",
@@ -989,7 +1289,19 @@
       "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损。",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "老黄、夹克勋、皮衣刀客"
+      "alias": "老黄、夹克勋、皮衣刀客",
+      "nineDims": {
+        "MS": 93,
+        "FC": 93,
+        "WS": 24,
+        "SB": 26,
+        "CX": 9,
+        "JH": 29,
+        "ZQ": 27,
+        "AB": 26,
+        "KD": 93
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "ani-cryinghorse-005",
@@ -1026,7 +1338,19 @@
       "rarity": "limited",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/ani-cryinghorse-005.png",
-      "imageKind": "official"
+      "imageKind": "official",
+      "nineDims": {
+        "MS": 6,
+        "FC": 6,
+        "WS": 9,
+        "SB": 29,
+        "CX": 6,
+        "JH": 23,
+        "ZQ": 30,
+        "AB": 29,
+        "KD": 6
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "oth-burntpeanut-004",
@@ -1064,7 +1388,19 @@
       "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损。",
       "rarity": "hidden",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "TBP、The Burnt Peanut"
+      "alias": "TBP、The Burnt Peanut",
+      "nineDims": {
+        "MS": 62,
+        "FC": 62,
+        "WS": 79,
+        "SB": 86,
+        "CX": 69,
+        "JH": 84,
+        "ZQ": 80,
+        "AB": 86,
+        "KD": 62
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-jiaukang-042",
@@ -1100,7 +1436,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-jiaukang-042.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 89,
+        "FC": 89,
+        "WS": 93,
+        "SB": 100,
+        "CX": 81,
+        "JH": 99,
+        "ZQ": 94,
+        "AB": 100,
+        "KD": 89
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-xiaomingjianmo-043",
@@ -1134,7 +1482,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-xiaomingjianmo-043.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 12,
+        "FC": 12,
+        "WS": 89,
+        "SB": 72,
+        "CX": 94,
+        "JH": 72,
+        "ZQ": 70,
+        "AB": 72,
+        "KD": 12
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-gazi-044",
@@ -1170,7 +1530,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-gazi-044.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 16,
+        "FC": 16,
+        "WS": 47,
+        "SB": 53,
+        "CX": 64,
+        "JH": 51,
+        "ZQ": 53,
+        "AB": 53,
+        "KD": 16
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-shenteng-045",
@@ -1206,7 +1578,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-shenteng-045.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 41,
+        "FC": 41,
+        "WS": 16,
+        "SB": 30,
+        "CX": 12,
+        "JH": 24,
+        "ZQ": 14,
+        "AB": 30,
+        "KD": 41
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "ani-doro-046",
@@ -1242,7 +1626,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/ani-doro-046.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 42,
+        "FC": 42,
+        "WS": 18,
+        "SB": 20,
+        "CX": 18,
+        "JH": 18,
+        "ZQ": 21,
+        "AB": 20,
+        "KD": 42
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "ani-gugu-047",
@@ -1276,7 +1672,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/ani-gugu-047.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 52,
+        "FC": 52,
+        "WS": 22,
+        "SB": 54,
+        "CX": 17,
+        "JH": 52,
+        "ZQ": 54,
+        "AB": 54,
+        "KD": 52
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-tafei-048",
@@ -1312,7 +1720,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-tafei-048.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 72,
+        "FC": 72,
+        "WS": 63,
+        "SB": 78,
+        "CX": 46,
+        "JH": 77,
+        "ZQ": 76,
+        "AB": 78,
+        "KD": 72
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-mifan-049",
@@ -1346,7 +1766,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-mifan-049.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 10,
+        "FC": 10,
+        "WS": 40,
+        "SB": 42,
+        "CX": 14,
+        "JH": 40,
+        "ZQ": 42,
+        "AB": 42,
+        "KD": 10
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "ani-naiwa-050",
@@ -1380,7 +1812,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/ani-naiwa-050.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 22,
+        "FC": 22,
+        "WS": 28,
+        "SB": 70,
+        "CX": 27,
+        "JH": 69,
+        "ZQ": 68,
+        "AB": 70,
+        "KD": 22
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "ani-meituan-051",
@@ -1416,7 +1860,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/ani-meituan-051.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 17,
+        "FC": 17,
+        "WS": 43,
+        "SB": 49,
+        "CX": 34,
+        "JH": 47,
+        "ZQ": 49,
+        "AB": 49,
+        "KD": 17
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "ani-spongebob-052",
@@ -1452,7 +1908,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/ani-spongebob-052.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 94,
+        "FC": 94,
+        "WS": 26,
+        "SB": 93,
+        "CX": 19,
+        "JH": 90,
+        "ZQ": 87,
+        "AB": 93,
+        "KD": 94
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "ani-niulai-053",
@@ -1486,7 +1954,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/ani-niulai-053.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 13,
+        "FC": 13,
+        "WS": 29,
+        "SB": 46,
+        "CX": 31,
+        "JH": 43,
+        "ZQ": 46,
+        "AB": 46,
+        "KD": 13
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-dongyong-054",
@@ -1522,7 +2002,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-dongyong-054.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 53,
+        "FC": 53,
+        "WS": 83,
+        "SB": 96,
+        "CX": 30,
+        "JH": 93,
+        "ZQ": 90,
+        "AB": 96,
+        "KD": 53
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-tralalero-055",
@@ -1556,7 +2048,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-tralalero-055.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 30,
+        "FC": 30,
+        "WS": 74,
+        "SB": 63,
+        "CX": 58,
+        "JH": 60,
+        "ZQ": 62,
+        "AB": 63,
+        "KD": 30
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-tungtung-056",
@@ -1590,7 +2094,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-tungtung-056.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 11,
+        "FC": 11,
+        "WS": 64,
+        "SB": 28,
+        "CX": 53,
+        "JH": 22,
+        "ZQ": 29,
+        "AB": 28,
+        "KD": 11
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-bombardiro-057",
@@ -1624,7 +2140,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-bombardiro-057.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 18,
+        "FC": 18,
+        "WS": 80,
+        "SB": 33,
+        "CX": 84,
+        "JH": 31,
+        "ZQ": 33,
+        "AB": 33,
+        "KD": 18
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "es-ig-006",
@@ -1662,7 +2190,19 @@
       "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损。",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "晒哥、羞男、姜爷"
+      "alias": "晒哥、羞男、姜爷",
+      "nineDims": {
+        "MS": 54,
+        "FC": 54,
+        "WS": 76,
+        "SB": 14,
+        "CX": 93,
+        "JH": 14,
+        "ZQ": 16,
+        "AB": 14,
+        "KD": 54
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "es-uzi-058",
@@ -1698,7 +2238,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/es-uzi-058.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 43,
+        "FC": 43,
+        "WS": 56,
+        "SB": 43,
+        "CX": 86,
+        "JH": 41,
+        "ZQ": 43,
+        "AB": 43,
+        "KD": 43
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "es-kangkang-059",
@@ -1734,7 +2286,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/es-kangkang-059.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 31,
+        "FC": 31,
+        "WS": 70,
+        "SB": 71,
+        "CX": 96,
+        "JH": 70,
+        "ZQ": 69,
+        "AB": 71,
+        "KD": 31
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "an-guangtouqiang-060",
@@ -1770,7 +2334,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/an-guangtouqiang-060.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 23,
+        "FC": 23,
+        "WS": 20,
+        "SB": 50,
+        "CX": 59,
+        "JH": 48,
+        "ZQ": 50,
+        "AB": 50,
+        "KD": 23
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "an-huitailang-061",
@@ -1806,7 +2382,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/an-huitailang-061.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 69,
+        "FC": 69,
+        "WS": 13,
+        "SB": 56,
+        "CX": 70,
+        "JH": 53,
+        "ZQ": 56,
+        "AB": 56,
+        "KD": 69
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "an-lanyangyang-062",
@@ -1842,7 +2430,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/an-lanyangyang-062.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 3,
+        "FC": 3,
+        "WS": 0,
+        "SB": 4,
+        "CX": 3,
+        "JH": 1,
+        "ZQ": 6,
+        "AB": 4,
+        "KD": 3
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "an-paida-063",
@@ -1878,7 +2478,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/an-paida-063.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 63,
+        "FC": 63,
+        "WS": 2,
+        "SB": 66,
+        "CX": 10,
+        "JH": 62,
+        "ZQ": 64,
+        "AB": 66,
+        "KD": 63
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "an-zhangyuge-064",
@@ -1914,7 +2526,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/an-zhangyuge-064.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 44,
+        "FC": 44,
+        "WS": 14,
+        "SB": 7,
+        "CX": 42,
+        "JH": 7,
+        "ZQ": 8,
+        "AB": 7,
+        "KD": 44
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "an-stitch-065",
@@ -1950,7 +2574,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/an-stitch-065.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 98,
+        "FC": 98,
+        "WS": 72,
+        "SB": 91,
+        "CX": 98,
+        "JH": 67,
+        "ZQ": 86,
+        "AB": 91,
+        "KD": 98
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "es-ronaldo-066",
@@ -1986,7 +2622,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/es-ronaldo-066.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 59,
+        "FC": 59,
+        "WS": 44,
+        "SB": 59,
+        "CX": 74,
+        "JH": 91,
+        "ZQ": 59,
+        "AB": 59,
+        "KD": 59
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "es-messi-067",
@@ -2022,7 +2670,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/es-messi-067.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 79,
+        "FC": 79,
+        "WS": 8,
+        "SB": 8,
+        "CX": 28,
+        "JH": 8,
+        "ZQ": 2,
+        "AB": 8,
+        "KD": 79
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "es-lebron-068",
@@ -2058,7 +2718,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/es-lebron-068.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 70,
+        "FC": 70,
+        "WS": 48,
+        "SB": 34,
+        "CX": 71,
+        "JH": 57,
+        "ZQ": 34,
+        "AB": 34,
+        "KD": 70
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "es-jordan-069",
@@ -2094,7 +2766,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/es-jordan-069.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 64,
+        "FC": 64,
+        "WS": 57,
+        "SB": 31,
+        "CX": 87,
+        "JH": 27,
+        "ZQ": 31,
+        "AB": 31,
+        "KD": 64
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "es-kobe-070",
@@ -2130,7 +2814,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/es-kobe-070.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 87,
+        "FC": 87,
+        "WS": 34,
+        "SB": 21,
+        "CX": 77,
+        "JH": 37,
+        "ZQ": 22,
+        "AB": 21,
+        "KD": 87
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-xiaoyangge-071",
@@ -2166,7 +2862,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-xiaoyangge-071.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 71,
+        "FC": 71,
+        "WS": 77,
+        "SB": 98,
+        "CX": 60,
+        "JH": 97,
+        "ZQ": 92,
+        "AB": 98,
+        "KD": 71
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-chenze-072",
@@ -2202,7 +2910,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-chenze-072.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 32,
+        "FC": 32,
+        "WS": 81,
+        "SB": 79,
+        "CX": 80,
+        "JH": 78,
+        "ZQ": 91,
+        "AB": 79,
+        "KD": 32
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-xinba-073",
@@ -2238,7 +2958,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-xinba-073.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 46,
+        "FC": 46,
+        "WS": 84,
+        "SB": 73,
+        "CX": 82,
+        "JH": 73,
+        "ZQ": 71,
+        "AB": 73,
+        "KD": 46
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-lijiaqi-074",
@@ -2274,7 +3006,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-lijiaqi-074.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 73,
+        "FC": 73,
+        "WS": 49,
+        "SB": 87,
+        "CX": 47,
+        "JH": 86,
+        "ZQ": 81,
+        "AB": 87,
+        "KD": 73
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-jianailiang-075",
@@ -2310,7 +3054,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-jianailiang-075.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 47,
+        "FC": 47,
+        "WS": 30,
+        "SB": 74,
+        "CX": 36,
+        "JH": 74,
+        "ZQ": 72,
+        "AB": 74,
+        "KD": 47
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-caixukun-076",
@@ -2346,7 +3102,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-caixukun-076.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 56,
+        "FC": 56,
+        "WS": 66,
+        "SB": 36,
+        "CX": 40,
+        "JH": 66,
+        "ZQ": 36,
+        "AB": 36,
+        "KD": 56
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-lanzhanfei-077",
@@ -2382,7 +3150,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-lanzhanfei-077.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 80,
+        "FC": 80,
+        "WS": 90,
+        "SB": 16,
+        "CX": 20,
+        "JH": 16,
+        "ZQ": 17,
+        "AB": 16,
+        "KD": 80
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-hetongxue-078",
@@ -2418,7 +3198,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-hetongxue-078.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 96,
+        "FC": 96,
+        "WS": 23,
+        "SB": 13,
+        "CX": 21,
+        "JH": 13,
+        "ZQ": 13,
+        "AB": 13,
+        "KD": 96
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-tim-079",
@@ -2454,7 +3246,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-tim-079.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 92,
+        "FC": 92,
+        "WS": 31,
+        "SB": 22,
+        "CX": 29,
+        "JH": 19,
+        "ZQ": 23,
+        "AB": 22,
+        "KD": 92
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-leijun-080",
@@ -2490,7 +3294,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-leijun-080.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 81,
+        "FC": 81,
+        "WS": 36,
+        "SB": 57,
+        "CX": 43,
+        "JH": 71,
+        "ZQ": 57,
+        "AB": 57,
+        "KD": 81
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "intp-yuchengdong-081",
@@ -2526,7 +3342,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/intp-yuchengdong-081.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 77,
+        "FC": 77,
+        "WS": 58,
+        "SB": 67,
+        "CX": 50,
+        "JH": 63,
+        "ZQ": 88,
+        "AB": 67,
+        "KD": 77
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-zhoujielun-082",
@@ -2562,7 +3390,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-zhoujielun-082.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 82,
+        "FC": 82,
+        "WS": 78,
+        "SB": 18,
+        "CX": 32,
+        "JH": 26,
+        "ZQ": 19,
+        "AB": 18,
+        "KD": 82
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-tingquan-083",
@@ -2598,7 +3438,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-tingquan-083.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 88,
+        "FC": 88,
+        "WS": 51,
+        "SB": 82,
+        "CX": 41,
+        "JH": 81,
+        "ZQ": 78,
+        "AB": 82,
+        "KD": 88
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-panhong-084",
@@ -2634,7 +3486,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-panhong-084.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 60,
+        "FC": 60,
+        "WS": 67,
+        "SB": 60,
+        "CX": 61,
+        "JH": 56,
+        "ZQ": 60,
+        "AB": 60,
+        "KD": 60
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-liangzi-085",
@@ -2670,7 +3534,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-liangzi-085.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 24,
+        "FC": 24,
+        "WS": 37,
+        "SB": 47,
+        "CX": 16,
+        "JH": 44,
+        "ZQ": 47,
+        "AB": 47,
+        "KD": 24
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-giao-086",
@@ -2706,7 +3582,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-giao-086.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 33,
+        "FC": 33,
+        "WS": 100,
+        "SB": 92,
+        "CX": 52,
+        "JH": 89,
+        "ZQ": 98,
+        "AB": 92,
+        "KD": 33
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-fanxiaoqin-087",
@@ -2742,7 +3630,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-fanxiaoqin-087.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 8,
+        "FC": 8,
+        "WS": 12,
+        "SB": 12,
+        "CX": 11,
+        "JH": 12,
+        "ZQ": 12,
+        "AB": 12,
+        "KD": 8
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-shaoyu-088",
@@ -2778,7 +3678,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-shaoyu-088.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 19,
+        "FC": 19,
+        "WS": 71,
+        "SB": 68,
+        "CX": 78,
+        "JH": 64,
+        "ZQ": 66,
+        "AB": 68,
+        "KD": 19
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-yujie-089",
@@ -2814,7 +3726,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-yujie-089.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 34,
+        "FC": 34,
+        "WS": 59,
+        "SB": 76,
+        "CX": 66,
+        "JH": 76,
+        "ZQ": 73,
+        "AB": 76,
+        "KD": 34
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-zhangxuefeng-090",
@@ -2850,7 +3774,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-zhangxuefeng-090.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 78,
+        "FC": 78,
+        "WS": 52,
+        "SB": 83,
+        "CX": 72,
+        "JH": 82,
+        "ZQ": 99,
+        "AB": 83,
+        "KD": 78
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-taozhe-091",
@@ -2886,7 +3822,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-taozhe-091.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 74,
+        "FC": 74,
+        "WS": 46,
+        "SB": 17,
+        "CX": 23,
+        "JH": 17,
+        "ZQ": 18,
+        "AB": 17,
+        "KD": 74
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "es-mbappe-092",
@@ -2922,7 +3870,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/es-mbappe-092.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 48,
+        "FC": 48,
+        "WS": 50,
+        "SB": 51,
+        "CX": 76,
+        "JH": 49,
+        "ZQ": 51,
+        "AB": 51,
+        "KD": 48
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "es-wangchuqin-093",
@@ -2958,7 +3918,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/es-wangchuqin-093.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 36,
+        "FC": 36,
+        "WS": 41,
+        "SB": 44,
+        "CX": 83,
+        "JH": 42,
+        "ZQ": 44,
+        "AB": 44,
+        "KD": 36
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "gm-wululu-094",
@@ -2994,7 +3966,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/gm-wululu-094.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 66,
+        "FC": 66,
+        "WS": 19,
+        "SB": 10,
+        "CX": 73,
+        "JH": 10,
+        "ZQ": 10,
+        "AB": 10,
+        "KD": 66
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "es-niko-095",
@@ -3030,7 +4014,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/es-niko-095.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 37,
+        "FC": 37,
+        "WS": 61,
+        "SB": 37,
+        "CX": 91,
+        "JH": 32,
+        "ZQ": 37,
+        "AB": 37,
+        "KD": 37
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-deepseek-096",
@@ -3066,7 +4062,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-deepseek-096.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 90,
+        "FC": 90,
+        "WS": 17,
+        "SB": 23,
+        "CX": 8,
+        "JH": 20,
+        "ZQ": 24,
+        "AB": 23,
+        "KD": 90
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-tianzaitian-097",
@@ -3102,7 +4110,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-tianzaitian-097.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 49,
+        "FC": 49,
+        "WS": 68,
+        "SB": 88,
+        "CX": 48,
+        "JH": 87,
+        "ZQ": 82,
+        "AB": 88,
+        "KD": 49
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-liuzhimin-098",
@@ -3138,7 +4158,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-liuzhimin-098.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 57,
+        "FC": 57,
+        "WS": 42,
+        "SB": 27,
+        "CX": 37,
+        "JH": 36,
+        "ZQ": 28,
+        "AB": 27,
+        "KD": 57
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-piaocaiying-099",
@@ -3174,7 +4206,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-piaocaiying-099.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 67,
+        "FC": 67,
+        "WS": 38,
+        "SB": 19,
+        "CX": 24,
+        "JH": 28,
+        "ZQ": 20,
+        "AB": 19,
+        "KD": 67
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "intp-takaichi-100",
@@ -3210,7 +4254,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/intp-takaichi-100.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 58,
+        "FC": 58,
+        "WS": 88,
+        "SB": 39,
+        "CX": 54,
+        "JH": 34,
+        "ZQ": 39,
+        "AB": 39,
+        "KD": 58
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-feihongxiaomao-101",
@@ -3246,7 +4302,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-feihongxiaomao-101.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 68,
+        "FC": 68,
+        "WS": 86,
+        "SB": 52,
+        "CX": 38,
+        "JH": 50,
+        "ZQ": 52,
+        "AB": 52,
+        "KD": 68
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-wanoujiejie-102",
@@ -3282,7 +4350,19 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-wanoujiejie-102.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 38,
+        "FC": 38,
+        "WS": 91,
+        "SB": 24,
+        "CX": 22,
+        "JH": 21,
+        "ZQ": 26,
+        "AB": 24,
+        "KD": 38
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     },
     {
       "id": "mem-naimi-103",
@@ -3318,7 +4398,21 @@
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-naimi-103.png",
-      "imageKind": "placeholder"
+      "imageKind": "placeholder",
+      "nineDims": {
+        "MS": 39,
+        "FC": 39,
+        "WS": 82,
+        "SB": 38,
+        "CX": 26,
+        "JH": 33,
+        "ZQ": 38,
+        "AB": 38,
+        "KD": 39
+      },
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
     }
-  ]
+  ],
+  "nineScheme": "nine-dims-v1",
+  "nineGeneratedAt": "2026-11-05"
 }

@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { scoreNine } from '../../src/shared/nine-score';
 import type { Page } from '@playwright/test';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
@@ -11,7 +12,7 @@ import type { EngineAnswer, EnginePersona, EngineQuestion } from '../../src/engi
  *
  * 覆盖：
  *   A. 正常路径：生成 → `<img>` 展示 → PNG 落盘 artifacts/poster/ → 像素非空白
- *   B. 内容一致性：海报上的人物名 / 六维数 / 匹配度 = 结果页 = 引擎直算值
+ *   B. 内容一致性：海报上的人物名 / 九维数 / 匹配度 = 结果页 = 九维评分器
  *   C. 异常路径（API 桩注入，不改源码）：
  *      C1 字体就绪失败         → 可读提示 + 分享链接兜底，页面不崩
  *      C2 toBlob 返回 null     → 回退 toDataURL 仍然出图
@@ -152,10 +153,14 @@ test.describe('海报 PNG 导出', () => {
     });
     const engineName = expected.main!.persona.name;
     const enginePercent = expected.mainPercent!.value;
-    const engineDims: Record<string, number> = {};
-    for (const k of ['EE', 'ST', 'AC', 'HX', 'RB', 'SR'] as const) {
-      engineDims[k] = Math.round(expected.user.x[k] * 100);
-    }
+    // 九维：权威源是九维评分器（与结果页读同一份），不是旧的 user.x
+    const answerMap: Record<string, string> = Object.fromEntries(
+      picked.map((a) => [a.questionId, a.optionId]),
+    );
+    const nine = scoreNine(questions as never, answerMap);
+    const engineDims: Record<string, number> = Object.fromEntries(
+      nine.dims.map((d) => [d.dimensionName, d.score]),
+    );
 
     await page.getByRole('button', { name: '生成档案海报' }).click();
     const img = page.getByTestId('poster-img');
@@ -219,27 +224,27 @@ test.describe('海报 PNG 导出', () => {
     expect(ink.paperPx, '应有米白卡片底').toBeGreaterThan(1000);
     expect(ink.darkPx, '卡片上必须有深色文字墨迹（人物名/数字）').toBeGreaterThan(300);
     expect(ink.accentPx, '应有朱红强调色（匹配度/印章）').toBeGreaterThan(200);
-    expect(ink.barPx, '六维条必须有实心填充（不是空轨道）').toBeGreaterThan(2000);
+    expect(ink.barPx, '九维条必须有实心填充（不是空轨道）').toBeGreaterThan(2000);
 
     // ③ 结果页 DOM 与引擎一致（海报数据源就是结果页 DOM）
     const pageName = (await page.locator('.record__name').innerText()).trim();
     expect(pageName, '结果页主人物 = 引擎主匹配').toBe(engineName);
     const rows = await page.locator('.dim').all();
-    const cn: Record<string, string> = { EE: '情绪浓度', ST: '表达风格', AC: '行动力', HX: '复杂性', RB: '反叛度', SR: '社交半径' };
     const pageDims: Record<string, number> = {};
     for (const r of rows) {
       pageDims[(await r.locator('.dim__name').innerText()).trim()] = Number(
         (await r.locator('.dim__value').innerText()).trim(),
       );
     }
-    for (const k of Object.keys(engineDims)) {
-      expect(pageDims[cn[k]!], `维度 ${k} 结果页值`).toBe(engineDims[k]);
+    expect(Object.keys(pageDims), '结果页应渲染九个维度').toHaveLength(9);
+    for (const name of Object.keys(engineDims)) {
+      expect(pageDims[name], `维度「${name}」结果页值必须等于九维评分器`).toBe(engineDims[name]);
     }
     // 海报 percent 取自同一 percent 字段 → 打印供人工核对
     // eslint-disable-next-line no-console
     console.log(
       `
-[海报核对] 人物=${engineName} 匹配度=${enginePercent}% 六维=${JSON.stringify(engineDims)}
+[海报核对] 人物=${engineName} 匹配度=${enginePercent}% 九维=${JSON.stringify(engineDims)}
 ` +
         `PNG=${pngPath} ${ink.w}x${ink.h} paper=${ink.paperPx} dark=${ink.darkPx} blue=${ink.accentPx} gold=${ink.goldPx}`,
     );
@@ -322,8 +327,8 @@ test.describe('海报 PNG 导出', () => {
     });
     await answerAll(page);
     await expect(page.locator('.record__name')).toBeVisible();
-    // 文字结果不依赖图片：六维仍渲染
-    expect(await page.locator('.dim').count()).toBe(6);
+    // 文字结果不依赖图片：九维仍渲染
+    expect(await page.locator('.dim').count()).toBe(9);
   });
 
   test('C5 画布污染（导出 SecurityError）→ 走降级', async ({ page }) => {

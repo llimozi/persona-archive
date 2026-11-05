@@ -952,6 +952,201 @@
   text-align: right;
 }
 
+/* ───────────── 九维坐标 ───────────── */
+
+/* 九维一行信息更多：编号 + 名称 + 条 + 分数。
+ * 注意：.dim 本身是 display:block（motion.css），真正排布的是里面的 .dim__row，
+ * 且 motion.css 在本文件之后加载——所以这里**必须写到 .dim__row 上**，
+ * 并加 .dims--nine 前缀提高优先级，否则会被 motion.css 的 60px/1fr/32px 盖掉。 */
+.dims--nine .dim--nine .dim__row {
+  grid-template-columns: 18px 76px 1fr 30px;
+  gap: 7px;
+}
+
+.dims--nine .dim--nine {
+  row-gap: 2px;
+  padding-bottom: 2px;
+}
+
+.dim__no {
+  font-size: 10px;
+  color: var(--ink-3);
+  letter-spacing: 0.04em;
+}
+
+/* 维度名：最长「社牛装逼指数」6 字，在 360 宽下需要缩到 10px 才不换行 */
+.dims--nine .dim__name {
+  font-size: 10.5px;
+  line-height: 1.25;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+/* 档位名 + 骚话文案 */
+.dim__level {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 0 4px;
+  font-size: 9.5px;
+  color: var(--paper);
+  background: var(--ink-3);
+  border-radius: 1px;
+  letter-spacing: 0.04em;
+}
+
+.dim--nine.is-high .dim__level {
+  background: var(--seal);
+}
+
+.dim__state {
+  font-size: 10.5px;
+  color: var(--seal);
+  letter-spacing: 0.04em;
+}
+
+.dim--nine.is-low .dim__state {
+  color: var(--ink-2);
+}
+
+/* 数据不足：整条压灰，不伪造分数 */
+.dim--nine.is-insufficient .dim__fill {
+  background: var(--line-strong);
+}
+
+.dim--nine.is-insufficient .dim__value,
+.dim--nine.is-insufficient .dim__state {
+  color: var(--ink-3);
+}
+
+.dims--nine .dim__meaning {
+  margin: 1px 0 3px;
+  padding-left: 25px;
+}
+
+/* 25 / 50 / 75 三条参考刻度，让 0–100 的条更好读 */
+.dim__tick--25,
+.dim__tick--75 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(28, 26, 23, 0.12);
+}
+
+.dim__tick--25 {
+  left: 25%;
+}
+
+.dim__tick--75 {
+  left: 75%;
+}
+
+/* 九维雷达图 */
+.nine-radar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.nine-radar__svg {
+  width: 128px;
+  height: 128px;
+  flex: none;
+  overflow: visible;
+}
+
+.nine-radar__ring {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 0.8;
+}
+
+.nine-radar__axis {
+  stroke: var(--line);
+  stroke-width: 0.6;
+}
+
+.nine-radar__area {
+  fill: rgba(178, 58, 46, 0.18);
+  stroke: var(--seal);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+
+.nine-radar__dot {
+  fill: var(--seal);
+}
+
+.nine-radar__no {
+  font-family: var(--mono);
+  font-size: 9px;
+  fill: var(--ink-3);
+}
+
+/* 图例：右侧两列，保证九个名字都能放下且不压到图上 */
+.nine-radar__legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.nine-radar__legend li {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  font-size: 9.5px;
+  color: var(--ink-2);
+  min-width: 0;
+}
+
+.nine-radar__legend-no {
+  font-size: 8px;
+  color: var(--ink-3);
+  flex: none;
+}
+
+.nine-radar__legend-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nine-radar__legend-score {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--seal);
+  flex: none;
+}
+
+.nine-radar__legend li.is-insufficient .nine-radar__legend-score {
+  color: var(--ink-3);
+}
+
+/* 360 宽：雷达图与外挂图例竖排，避免九个名字被压成省略号 */
+@media (max-width: 379px) {
+  .nine-radar {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .dims--nine .dim--nine .dim__row {
+    grid-template-columns: 16px 68px 1fr 26px;
+    gap: 5px;
+  }
+
+  .dims--nine .dim__name {
+    font-size: 10px;
+  }
+}
+
 /* ───────────── 还有几分像：小档案条 ───────────── */
 
 .slips {

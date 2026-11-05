@@ -24,15 +24,25 @@ async function noHorizontalOverflow(page: Page) {
   expect(scrollW, `横向溢出：scrollWidth=${scrollW} > clientWidth=${clientW}`).toBeLessThanOrEqual(clientW + 1);
 }
 
-/** 从结果页文本里读六维数值。页面结构是「标签一行、数值一行」（实测）。 */
-const DIM_LABELS: Record<string, string> = {
-  EE: '情绪浓度',
-  ST: '表达风格',
-  AC: '行动力',
-  HX: '复杂性',
-  RB: '反叛度',
-  SR: '社交半径',
-};
+/**
+ * 从结果页文本里读九维数值。
+ *
+ * 九维区块的 DOM 是「编号 名称 分数」同一行（见 ResultPage 的 dim--nine），
+ * 所以按「维度名 + 其后的数字」逐行扫描。九维名称本身不含数字，不会误伤。
+ */
+const DIM_LABELS: Record<string, string> = Object.fromEntries(
+  [
+    ['MS', '闷骚指数'],
+    ['FC', '反差浓度'],
+    ['WS', '猥琐浓度'],
+    ['SB', '社牛装逼指数'],
+    ['CX', '畜生没母指数'],
+    ['JH', '嘉豪浓度'],
+    ['ZQ', '嘴欠指数'],
+    ['AB', '抽象浓度'],
+    ['KD', '口嗨兑现率'],
+  ] as const,
+);
 
 function readDims(text: string): Record<string, number> {
   const out: Record<string, number> = {};
@@ -148,7 +158,7 @@ test('分享结果链接 ?r=<token>：他人打开直达结果页且数值一致
 
   const directText = await page.locator('body').innerText();
   const directDims = readDims(directText);
-  expect(Object.keys(directDims).length, '直连结果页未渲染出六维').toBe(6);
+  expect(Object.keys(directDims).length, '直连结果页未渲染出九维').toBe(9);
 
   // 从结果页取 ?r= 分享链接（若页面未生成，则视为分享链路的真实缺陷）
   const shareUrl = await page.evaluate(() => {
@@ -174,7 +184,7 @@ test('分享结果链接 ?r=<token>：他人打开直达结果页且数值一致
 
   const guestText = await guestPage.locator('body').innerText();
   const guestDims = readDims(guestText);
-  expect(Object.keys(guestDims).length, `访客打开分享链接未直达结果页（当前页面文本：${guestText.slice(0, 80)}）`).toBe(6);
+  expect(Object.keys(guestDims).length, `访客打开分享链接未直达结果页（当前页面文本：${guestText.slice(0, 80)}）`).toBe(9);
 
   for (const d of Object.keys(directDims)) {
     expect(
