@@ -30,7 +30,7 @@ const root = resolve(__dirname, '../..');
  * 与 `data/validate-data.mjs` 的 EXPECTED.personas 保持一致；两处都是有意的固定值，
  * 不是"读到几算几"——数量变化必须同时改这两处，才能起到"数据被改过"的显式信号作用。
  */
-const EXPECTED_PERSONAS = 78;
+const EXPECTED_PERSONAS = 91;
 
 // ───────────────────────────── A. 表达式求值 ─────────────────────────────
 

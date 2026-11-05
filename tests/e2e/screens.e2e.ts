@@ -14,7 +14,7 @@ import { test, expect, type Page } from '@playwright/test';
  * 真实数据的人物总数，2026-11-05 由 12 变更为 30（按 04 §2.2 可匹配池准数补齐）。
  * 与 `data/validate-data.mjs` 的 EXPECTED.personas、`tests/engine/match.test.ts` 的同名常量三处同步。
  */
-const EXPECTED_PERSONAS = 78;
+const EXPECTED_PERSONAS = 91;
 
 async function noHorizontalOverflow(page: Page) {
   const { scrollW, clientW } = await page.evaluate(() => ({

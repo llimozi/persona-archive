@@ -15,14 +15,17 @@ import type { EnginePersona, EngineQuestion, EngineTheme, MatchInput, MatchResul
 const root = resolve(__dirname, '../..');
 const N = Number(process.env.SAMPLE ?? 3000);
 
+// 监控对象：v2 名单里最容易被挤到长尾的几类人（纯梗、抽象迷因、无强人格的参考条目）。
+// 旧名单里的 gulumao / papijiang / juejuezi / kpl / fen 等已随名单 v2 下线，
+// 这里换成新名单中对应的「抽象迷因 / 冷门梗」代表，保持这条诊断的用途不变。
 const WATCH = [
-  'mem-gulumao-021',
-  'mem-papijiang-019',
-  'mem-lanlao-020',
-  'mem-zhengtai-018',
-  'es-kpl-008',
-  'mem-juejuezi-030',
-  'es-fen-011',
+  'ani-naiwa-050',
+  'ani-niulai-053',
+  'mem-tungtung-056',
+  'mem-bombardiro-057',
+  'ani-meituan-051',
+  'mem-xiaomingjianmo-043',
+  'oth-shaonian-005',
 ];
 
 describe('长尾诊断', () => {
