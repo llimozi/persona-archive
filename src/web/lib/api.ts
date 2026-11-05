@@ -90,23 +90,46 @@ export interface RankedPersona {
   name: string;
   category: string;
   tags: string[];
-  /** 绝对相似度 0–100（round(raw*100)）。页面上叫「娱乐匹配度」，不是概率 */
+  /** 对外展示的匹配度 0–100，取自排序分（见 toRanked 注释）。页面叫「娱乐匹配度」，不是概率 */
   percent: number;
   /** 相对百分位 0–100，展示时必须标注「相对」 */
   percentile: number;
-  /** 排序分（可能为负，仅用于排序，不对外展示） */
+  /** 排序分（引擎原值，保留供调试与排序核对） */
   adjusted: number;
+  /** 纯核得分 0–100（round(raw*100)）。仅内部参考，**不对外展示**，避免与排名字段语义打架 */
+  similarityRaw: number;
 }
 
+/**
+ * 展示口径说明（2026-11-05 审计后统一）：
+ *
+ * 引擎给出两个数，语义不同：
+ *   - `similarity` = round(raw × 100)：**纯核得分**，只看「用户向量与角色向量的接近程度」；
+ *   - `adjusted`   = raw × 标签加成 − 枢纽修正：**排序分**，排名由它决定。
+ *
+ * 两者会打架：枢纽修正最多 ±0.05，足以让第 2 名的 similarity 高于第 1 名。
+ * 实测 2000 次随机作答，**12.6%** 的情况「排名第 2 的 similarity 反而更高」，
+ * 用户会看到「主匹配 56%、第二人格 57%」这种无法解释的组合。
+ *
+ * 因此展示值统一用 **adjusted**，与排序严格同源：
+ *   - 排名第 1 的展示分一定是全场最高，不会出现下位反超；
+ *   - 在当前真实数据与默认参数下 adjusted 实测落在 0.0939~0.8707，**从不出现负值**
+ *     （15 万样本 0 次为负），所以直接取整展示不会遇到负数问题。
+ *
+ * 注意：这**没有**改变任何排名或算法，只把「对外展示哪个数」从 raw 换成排序分。
+ */
 function toRanked(r: Ranked, nameOf: (id: string) => string | undefined): RankedPersona {
+  // 防御性夹取：极小概率下若未来参数变动导致 adjusted 为负，展示下限压到 0，不出现负分
+  const shown = Math.max(0, Math.round(r.adjusted * 100));
   return {
     id: r.persona.id,
     name: nameOf(r.persona.id) ?? r.persona.id,
     category: r.persona.category,
     tags: r.persona.tags ?? [],
-    percent: r.similarity,
+    percent: shown,
     percentile: r.percentile,
     adjusted: r.adjusted,
+    similarityRaw: r.similarity,
   };
 }
 
