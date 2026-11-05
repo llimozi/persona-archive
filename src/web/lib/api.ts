@@ -32,31 +32,94 @@ export interface ListResponse<T> {
   theme?: ThemeConfig;
 }
 
-/** /api 列表接口统一解包：兼容裸数组与 { items } 两种形状 */
-async function fetchList<T>(path: string): Promise<ListResponse<T>> {
-  const res = await fetch(path);
-  if (!res.ok) throw new Error(`${path} → HTTP ${res.status}`);
-  const raw: unknown = await res.json();
+/**
+ * 把任意响应体统一解包成 ListResponse。
+ *
+ * 支持三种外层（静态 JSON 与 API 返回都要能处理，语义必须一致）：
+ *   1. 裸数组 `[...]`
+ *   2. `{ items: [...] }`         —— Fastify /api/* 的形状
+ *   3. `{ questions: [...] }` / `{ personas: [...] }` —— data/*.json 的原始形状
+ *
+ * 第 3 种是静态回退的关键：源文件里没有 `items` 字段，
+ * 只认 `items` 会让页面一直停在「正在调阅档案…」。
+ */
+function toListResponse<T>(raw: unknown, key?: string): ListResponse<T> {
   if (Array.isArray(raw)) {
     return { items: raw as T[], source: 'file', total: raw.length };
   }
-  const obj = raw as Partial<ListResponse<T>>;
-  const items = Array.isArray(obj?.items) ? obj.items : [];
+  const obj = (raw ?? {}) as Partial<ListResponse<T>> & Record<string, unknown>;
+  const keyed = key ? obj[key] : undefined;
+  const items = Array.isArray(obj.items)
+    ? obj.items
+    : Array.isArray(keyed)
+      ? (keyed as T[])
+      : [];
   return {
     items,
     source: obj.source ?? (items.length ? 'file' : 'empty'),
     total: items.length,
     ...(obj.warning ? { warning: obj.warning } : {}),
-    ...(obj.theme ? { theme: obj.theme } : {}),
+    // theme 在 data/questions.json 里是**顶层字段**（不在 items 内），
+    // 它是匹配权重的权威源，漏掉会让引擎退回默认权重。
+    ...(obj.theme ? { theme: obj.theme as ThemeConfig } : {}),
   };
 }
 
+/**
+ * 数据获取：**API 优先，静态资源回退**。
+ *
+ * 背景：项目原先是 Fastify 后端读 data/*.json 再经 /api/* 转发。
+ * 纯静态部署（Cloudflare Pages）没有后端进程，/api/* 会 404，
+ * 此时回退到由构建插件输出的 /data/*.json（与源文件字节一致）。
+ *
+ * 回退边界（刻意收窄，避免掩盖真实故障）：
+ *   - 只在这两种**预期内**的情况下回退：
+ *       a) HTTP 404 / 405 —— 说明根本没有这个 API 路由（静态部署）
+ *       b) 响应体不是合法 JSON —— 说明返回的是静态站点兜底页（如 index.html）
+ *   - 其他情况（500/502、超时、网络错误）**不静默回退**，直接抛出，
+ *     把服务端真实故障暴露出来。回退不是用来掩盖后端坏了的。
+ */
+async function fetchList<T>(apiPath: string, staticPath: string, key?: string): Promise<ListResponse<T>> {
+  let apiFailure: string | null = null;
+
+  try {
+    const res = await fetch(apiPath);
+    if (res.ok) {
+      const raw: unknown = await res.json().catch(() => null);
+      if (raw !== null) return toListResponse<T>(raw, key);
+      // 200 但响应体不是 JSON：典型的静态站点兜底页，落到静态回退
+      apiFailure = `${apiPath} 返回非 JSON（疑似静态站点兜底页）`;
+    } else if (res.status === 404 || res.status === 405) {
+      apiFailure = `${apiPath} → HTTP ${res.status}（无此 API 路由）`;
+    } else {
+      // 500/502 等真实服务端故障：直接抛，不做静态回退
+      throw new Error(`${apiPath} → HTTP ${res.status}`);
+    }
+  } catch (err) {
+    // 网络层错误（后端未启动）同样属于「拿不到 API」，允许回退并在控制台说明
+    if (err instanceof Error && /HTTP 5\d\d/.test(err.message)) throw err;
+    apiFailure = err instanceof Error ? err.message : String(err);
+  }
+
+  const res = await fetch(staticPath);
+  if (!res.ok) {
+    throw new Error(
+      `${staticPath} → HTTP ${res.status}（静态回退也失败；API 侧：${apiFailure ?? '未知'}）`,
+    );
+  }
+  const raw: unknown = await res.json();
+  // 回退成功是正常路径（静态部署），但保留一条 info 便于排查
+  // eslint-disable-next-line no-console
+  console.info(`[data] 使用静态数据源 ${staticPath}（API 侧：${apiFailure ?? '不可用'}）`);
+  return toListResponse<T>(raw, key);
+}
+
 export function fetchQuestions(): Promise<ListResponse<Question>> {
-  return fetchList<Question>('/api/questions');
+  return fetchList<Question>('/api/questions', '/data/questions.json', 'questions');
 }
 
 export function fetchPersonas(): Promise<ListResponse<Persona>> {
-  return fetchList<Persona>('/api/personas');
+  return fetchList<Persona>('/api/personas', '/data/personas.json', 'personas');
 }
 
 /** 答案映射：questionId → optionId */

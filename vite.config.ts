@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { staticDataPlugin } from './plugins/static-data';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import type { ServerResponse } from 'node:http';
@@ -68,6 +69,9 @@ export default defineConfig({
         guardWatcherErrors(server);
       },
     },
+    // 把 data/*.json 以只读静态资源提供（/data/questions.json、/data/personas.json）。
+    // 纯静态部署时前端不再依赖 Fastify 后端；开发与生产同源同字节。
+    staticDataPlugin(path.join(ROOT, 'data')),
   ],
   root: path.join(ROOT, 'src/web'),
   publicDir: path.join(ROOT, 'public'),

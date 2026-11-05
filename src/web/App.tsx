@@ -202,7 +202,12 @@ export function App() {
   }
 
   // 唯一计算路径：结果全部来自引擎 match()（提到分支前，供仪式与结果页共用）
-  const result = runMatch(qs, ps, answers, theme);
+  //
+  // 未作答时不调用引擎：match-v2 对「零个已作答维度」会主动抛错（这是它的正确行为），
+  // 而本组件在首页也会渲染，若无条件调用会在控制台刷「匹配失败」。
+  // 这里前置判断，**不吞任何真实错误**——有作答时的异常仍然照常抛出。
+  const hasAnswers = Object.keys(answers).length > 0;
+  const result = hasAnswers ? runMatch(qs, ps, answers, theme) : null;
   const dims = EMPTY_DIMS; // 六维展示已由九维区块取代，这里仅保留类型占位
   // 九维坐标：独立于角色匹配的评分体系，用户自己的九个 0–100 分
   const nine = computeNine(qs, answers);
