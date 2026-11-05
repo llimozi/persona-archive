@@ -13,12 +13,17 @@ interface Props {
  * 三屏共用骨架。
  *
  * 视觉语言：顶部是一条**深墨色馆藏条**（反白字 + 等宽编号），
- * 页身是档案纸，底部按需挂一行极小的免责声明。
+ * 页身是档案纸 —— 底下叠了纸噪点与暗角两层固定背景，卡片因此"浮"在纸上。
+ * 底部按需挂一行极小的免责声明。
  */
 export function Page({ children, action, className, disclaimer = false }: Props) {
   return (
     <div className={`page ${className ?? ''}`}>
-      <div className="page__inner">
+      {/* 纸的两层：噪点 + 暗角，固定定位不参与滚动重排 */}
+      <div className="paper-noise" aria-hidden="true" />
+      <div className="paper-vignette" aria-hidden="true" />
+
+      <div className="page__inner page-enter">
         <header className="brandbar">
           <span className="brandbar__mark">
             <span className="brandbar__seal" aria-hidden="true">

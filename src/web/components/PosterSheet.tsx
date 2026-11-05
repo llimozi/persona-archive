@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { renderPoster, POSTER_LAYOUT, loadPosterImage } from '../lib/poster';
+import { prefersReducedMotion } from '../lib/motion';
 import type { PosterData, PosterResult } from '../lib/poster';
 
 type State =
@@ -29,6 +30,7 @@ interface Props {
  */
 export function PosterSheet({ data, shareUrl, open, onClose, onReady }: Props) {
   const [state, setState] = useState<State>({ status: 'idle' });
+  const [saved, setSaved] = useState(false);
   const urlRef = useRef<string | null>(null);
 
   const revoke = useCallback(() => {
@@ -90,6 +92,10 @@ export function PosterSheet({ data, shareUrl, open, onClose, onReady }: Props) {
 
   const download = () => {
     if (state.status !== 'ready') return;
+    if (!prefersReducedMotion()) {
+      setSaved(true);
+      window.setTimeout(() => setSaved(false), 1600);
+    }
     try {
       const a = document.createElement('a');
       a.href = state.result.url;
@@ -130,7 +136,7 @@ export function PosterSheet({ data, shareUrl, open, onClose, onReady }: Props) {
         {state.status === 'ready' && (
           <>
             <img
-              className="poster__img"
+              className="poster__img is-developing"
               src={state.result.url}
               alt="我的互联网人物档案分享海报，长按可保存"
               data-testid="poster-img"
@@ -138,12 +144,12 @@ export function PosterSheet({ data, shareUrl, open, onClose, onReady }: Props) {
             <p className="poster__hint">长按图片保存到相册</p>
             <button
               type="button"
-              className="btn btn--primary"
+              className={`btn btn--primary${saved ? ' save-ok' : ''}`}
               onClick={download}
               disabled={!state.result.downloadable}
               data-testid="poster-download"
             >
-              保存图片
+              {saved ? '已保存到相册' : '保存图片'}
             </button>
           </>
         )}

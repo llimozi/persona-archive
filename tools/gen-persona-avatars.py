@@ -60,7 +60,8 @@ def archive_no(pid):
 
 def draw_pattern(d, style, color, size):
     """轻量纹样：够有辨识度，又不抢大字。"""
-    c = tuple(color)
+    # 降低纹样对比度：小尺寸下才不会糊成一片
+    c = tuple(int(v + (255 - v) * 0.55) for v in color)
     faint = (c[0], c[1], c[2])
     if style == "dot":
         for y in range(24, size - 24, 34):

@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import { Page } from '../components/Page';
+import { attachTilt, prefersReducedMotion } from '../lib/motion';
 
 interface Props {
   personaCount: number | null;
@@ -12,11 +14,21 @@ const DIMS = ['情绪浓度', '表达风格', '行动力', '复杂性', '反叛�
 
 export function HomePage({ personaCount, questionCount, onStart, disabled }: Props) {
   const pad = (n: number | null) => (n === null ? '—' : String(n).padStart(2, '0'));
+  const [cabinetEl, setCabinetEl] = useState<HTMLElement | null>(null);
+  const reduced = prefersReducedMotion();
+
+  // 档案柜随设备倾斜轻微视差（不支持陀螺仪的设备静默跳过）
+  useEffect(() => {
+    if (!cabinetEl) return;
+    return attachTilt(cabinetEl, 7);
+  }, [cabinetEl]);
+
+  const stagger = (i: number) => (reduced ? undefined : ({ ['--i' as string]: String(i) }));
 
   return (
     <Page disclaimer>
       {/* ── 视觉主角：档案柜抽屉 ── */}
-      <section className="cabinet" aria-hidden="true">
+      <section className="cabinet stagger" style={stagger(0)} ref={setCabinetEl} aria-hidden="true">
         <div className="cabinet__head">
           <span className="mono">馆藏 · 第 01 柜</span>
           <span className="mono">1987—2026</span>
@@ -36,7 +48,7 @@ export function HomePage({ personaCount, questionCount, onStart, disabled }: Pro
         </div>
       </section>
 
-      <section className="hero">
+      <section className="hero stagger" style={stagger(1)}>
         <p className="kicker">
           <span className="kicker__rule" aria-hidden="true" />
           六 维 人 格 档 案
@@ -54,7 +66,7 @@ export function HomePage({ personaCount, questionCount, onStart, disabled }: Pro
       </section>
 
       {/* ── 馆藏数据：像卡片目录一样排 ── */}
-      <section className="ledger" aria-label="馆藏数据">
+      <section className="ledger stagger" aria-label="馆藏数据" style={stagger(2)}>
         <div className="ledger__item">
           <span className="ledger__label">馆藏档案</span>
           <span className="ledger__value mono">{pad(personaCount)}</span>
@@ -83,8 +95,13 @@ export function HomePage({ personaCount, questionCount, onStart, disabled }: Pro
         <span className="mono">约 02 分钟</span> ｜ 无需登记，作答只留在本机
       </p>
 
-      <div className="cta">
-        <button type="button" className="btn btn--primary btn--block" onClick={onStart} disabled={disabled}>
+      <div className="cta stagger" style={stagger(3)}>
+        <button
+          type="button"
+          className={`btn btn--primary btn--block${disabled || reduced ? '' : ' is-breathing'}`}
+          onClick={onStart}
+          disabled={disabled}
+        >
           {disabled ? '正在调阅档案…' : '开始鉴定'}
           <span className="btn__arrow" aria-hidden="true">
             →

@@ -33,6 +33,7 @@ const C = {
   sealSoft: 'rgba(178,58,46,0.10)',
   inkPanel: '#232019',
   inkPanelInk: '#ede4d2',
+  gold: '#9a7b3f',
 } as const;
 
 const FONT_SANS =
@@ -211,7 +212,7 @@ export function paintPoster(ctx: CanvasRenderingContext2D, data: PosterData): vo
   ctx.textBaseline = 'alphabetic';
   ctx.textAlign = 'left';
 
-  // ── 底：档案纸 + 极轻纸纹 ──
+  // ── 底：档案纸 + 纸纹（横向纤维 + 纵向细线，模拟真实纸张） ──
   ctx.fillStyle = C.paper;
   ctx.fillRect(0, 0, W, H);
   ctx.save();
@@ -224,7 +225,21 @@ export function paintPoster(ctx: CanvasRenderingContext2D, data: PosterData): vo
     ctx.lineTo(W, y);
     ctx.stroke();
   }
+  ctx.globalAlpha = 0.03;
+  for (let x = 0; x < W; x += 4) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, H);
+    ctx.stroke();
+  }
   ctx.restore();
+
+  // 边缘暗角：让中心浮起来
+  const vig = ctx.createRadialGradient(W / 2, H * 0.42, W * 0.3, W / 2, H * 0.42, W * 0.95);
+  vig.addColorStop(0, 'rgba(0,0,0,0)');
+  vig.addColorStop(1, 'rgba(90,72,44,0.10)');
+  ctx.fillStyle = vig;
+  ctx.fillRect(0, 0, W, H);
 
   let y = 0;
 
@@ -247,6 +262,10 @@ export function paintPoster(ctx: CanvasRenderingContext2D, data: PosterData): vo
   ctx.font = `11px ${FONT_MONO}`;
   ctx.fillText(archiveNo(data.personaId), W - pad, 24);
   ctx.textAlign = 'left';
+
+  // 墨条下沿的暗金细线（与页面一致）
+  ctx.fillStyle = C.gold;
+  ctx.fillRect(0, HEAD_H, W, 1.5);
 
   y = HEAD_H + 18;
 

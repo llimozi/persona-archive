@@ -36,9 +36,19 @@ const DIM_LABELS: Record<string, string> = {
 
 function readDims(text: string): Record<string, number> {
   const out: Record<string, number> = {};
+  // 逐行扫描：命中标签行后，取其后**最近**的一个纯数字行。
+  // 旧实现用单条跨行正则，遇到"标签 + 数字"紧邻时会漏掉最后一项（SR）。
+  const lines = text.split('\n').map((l) => l.trim());
   for (const [dim, label] of Object.entries(DIM_LABELS)) {
-    const m = text.match(new RegExp(`${label}\\s*[:：]?\\s*\\n?\\s*(\\d{1,3})`));
-    if (m) out[dim] = Number(m[1]);
+    const idx = lines.findIndex((l) => l === label || l.startsWith(label));
+    if (idx < 0) continue;
+    for (let k = idx; k < lines.length && k <= idx + 2; k += 1) {
+      const m = /^(\d{1,3})$/.exec(lines[k]);
+      if (m) {
+        out[dim] = Number(m[1]);
+        break;
+      }
+    }
   }
   return out;
 }
@@ -100,6 +110,10 @@ test('全流程：首页 → 答题 → 结果', async ({ page }) => {
     await next.click();
     advanced++;
     await page.waitForTimeout(250);
+
+    // 已经到结果页就停：最后一题点完即可，不必再空转
+    const nowText = await page.locator('body').innerText();
+    if (nowText.includes('娱乐匹配度')) break;
   }
   expect(advanced, '一题都没能推进（答题页未正常渲染）').toBeGreaterThan(0);
 

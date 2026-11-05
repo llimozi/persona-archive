@@ -75,6 +75,16 @@ export default defineConfig({
     /** trace 改为 off：保留截图取证即可，避免 Windows 并发写 trace 的 ENOENT 假失败 */
     trace: 'off',
     screenshot: 'only-on-failure',
+    /**
+     * E2E 一律关闭动效：动画会把状态切换拉长到几百毫秒，
+     * 让"元素已出现但还在动画中"变成不稳定来源。
+     *
+     * 走的是产品自身的 `anim=off` 开关（prefersReducedMotion 的同一入口），
+     * 不修改任何业务逻辑；线上用户不带这个参数，行为不受影响。
+     */
+    // Playwright 官方支持：让页面内 matchMedia('(prefers-reduced-motion: reduce)') 返回 true。
+    // 产品据此走自身的降级路径（跳过大动画、跳过比对仪式），不改任何业务逻辑。
+    reducedMotion: 'reduce',
   },
   projects: [
     { name: 'viewport-390x844', use: { ...devices['Desktop Chrome'], viewport: { width: 390, height: 844 }, isMobile: false } },

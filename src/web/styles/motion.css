@@ -1,0 +1,874 @@
+/* ============================================================
+ * 第三轮视觉升级：质感层 + 动效层
+ * 只用 transform / opacity 做动画；所有时长走 token，便于统一降级。
+ * ============================================================ */
+
+:root {
+  /* —— 动效时长 —— */
+  --t-fast: 140ms;
+  --t-base: 220ms;
+  --t-slow: 420ms;
+  --t-ritual: 2400ms;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-stamp: cubic-bezier(0.16, 1.3, 0.3, 1);
+
+  /* —— 辅色：暗金（只用于高光与重点数字） —— */
+  --gold: #9a7b3f;
+  --gold-soft: rgba(154, 123, 63, 0.16);
+  --gold-line: rgba(154, 123, 63, 0.4);
+}
+
+/* ───────────── 纸：底噪 + 暗角 ───────────── */
+
+.page {
+  position: relative;
+}
+
+/* 微噪点：SVG feTurbulence 生成，无外部请求 */
+.paper-noise {
+  position: fixed;
+  inset: 0;
+  /* 放到内容之下：负值 + body 已建立层叠上下文 */
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.34;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* 边缘暗角：让中心浮起来 */
+.paper-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 90% at 50% 40%,
+    transparent 55%,
+    rgba(90, 72, 44, 0.1) 100%
+  );
+}
+
+/* ───────────── 卡片：厚度与投影 ───────────── */
+
+/* 纸有几层：底层阴影 + 中层描边 + 顶层高光，造出叠放的厚度感 */
+.paper-stack {
+  position: relative;
+}
+
+.paper-stack::before,
+.paper-stack::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.paper-stack::before {
+  transform: translate(2px, 3px) rotate(0.25deg);
+  opacity: 0.85;
+  box-shadow: 0 1px 0 rgba(120, 100, 70, 0.14);
+}
+
+.paper-stack::after {
+  transform: translate(4px, 6px) rotate(-0.35deg);
+  opacity: 0.55;
+}
+
+/* 装订孔：档案卡左侧一排圆孔（真实孔，不是描边） */
+.binding {
+  position: absolute;
+  left: 8px;
+  top: 20px;
+  bottom: 20px;
+  width: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.binding i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--paper-3);
+  box-shadow:
+    inset 0 1px 1.5px rgba(90, 72, 44, 0.5),
+    0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* 折痕：一条极淡的斜向反光 */
+.crease {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.crease::before {
+  content: '';
+  position: absolute;
+  left: -20%;
+  top: 38%;
+  width: 140%;
+  height: 30%;
+  transform: rotate(-8deg);
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.34) 46%,
+    rgba(120, 100, 70, 0.07) 52%,
+    transparent 100%
+  );
+  opacity: 0.9;
+}
+
+/* ───────────── 印章：油墨质感 ───────────── */
+
+.stamp {
+  --stamp-rot: -9deg;
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 62px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(var(--stamp-rot));
+  pointer-events: none;
+  /* 油墨边缘不规则：用不规则 border-radius + 双层描边模拟压痕 */
+  border-radius: 46% 54% 48% 52% / 52% 46% 54% 48%;
+  border: 2.5px solid var(--seal);
+  opacity: 0.5;
+  filter: url(#ink-rough);
+  mix-blend-mode: multiply;
+}
+
+.stamp__inner {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+  letter-spacing: 0.06em;
+  color: var(--seal);
+}
+
+/* 油墨不匀：叠一层不规则斑驳 */
+.stamp::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background-image: radial-gradient(circle at 30% 24%, rgba(242, 234, 216, 0.85) 0 18%, transparent 19%),
+    radial-gradient(circle at 74% 68%, rgba(242, 234, 216, 0.7) 0 14%, transparent 15%),
+    radial-gradient(circle at 58% 12%, rgba(242, 234, 216, 0.6) 0 9%, transparent 10%);
+  pointer-events: none;
+}
+
+/* 盖章动画：落下 → 压印 → 轻微回弹 */
+@keyframes stamp-in {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--stamp-rot)) scale(2.1) translateY(-14px);
+  }
+  45% {
+    opacity: 0.86;
+    transform: rotate(var(--stamp-rot)) scale(0.92) translateY(0);
+  }
+  62% {
+    transform: rotate(var(--stamp-rot)) scale(1.04);
+  }
+  100% {
+    opacity: 0.5;
+    transform: rotate(var(--stamp-rot)) scale(1);
+  }
+}
+
+.stamp.is-stamping {
+  animation: stamp-in 620ms var(--ease-stamp) forwards;
+}
+
+/* 金色印章：匹配度 > 95% 时触发 */
+.stamp--gold {
+  border-color: var(--gold);
+  opacity: 0.62;
+}
+
+.stamp--gold .stamp__inner {
+  color: var(--gold);
+}
+
+/* ───────────── 通用入场 ───────────── */
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 分层入场：靠 --i 依次延迟 */
+.stagger {
+  opacity: 0;
+  animation: rise-in 520ms var(--ease-out) forwards;
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+
+/* ───────────── 首页：档案柜与视差 ───────────── */
+
+.cabinet {
+  transform-style: preserve-3d;
+  transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 220ms var(--ease-out);
+  will-change: transform;
+}
+
+/* 抽屉轻微浮动，各自错开节奏 */
+@keyframes drawer-float {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+}
+
+.drawer:nth-child(1) {
+  animation: drawer-float 5.4s ease-in-out infinite;
+}
+.drawer:nth-child(2) {
+  animation: drawer-float 6.1s ease-in-out infinite 0.6s;
+}
+.drawer:nth-child(3) {
+  animation: drawer-float 5.8s ease-in-out infinite 1.2s;
+}
+
+/* 主按钮呼吸 */
+@keyframes breathe {
+  0%,
+  100% {
+    box-shadow: 0 2px 0 #8a2b22, 0 6px 14px rgba(140, 44, 34, 0.28);
+  }
+  50% {
+    box-shadow: 0 2px 0 #8a2b22, 0 10px 26px rgba(140, 44, 34, 0.42);
+  }
+}
+
+.btn--primary:not(:disabled).is-breathing {
+  animation: breathe 3.2s ease-in-out infinite;
+}
+
+/* ───────────── 按钮：按压 / 涟漪 ───────────── */
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--rx, 50%) var(--ry, 50%), rgba(255, 255, 255, 0.45), transparent 60%);
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 420ms var(--ease-out), transform 420ms var(--ease-out);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.btn.is-rippling::after {
+  opacity: 1;
+  transform: scale(1.6);
+}
+
+/* ───────────── 答题：选项盖章 + 翻页 ───────────── */
+
+@keyframes option-press {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(0.978);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.option.is-pressing {
+  animation: option-press 200ms var(--ease-out);
+}
+
+/* 选中瞬间：朱红印「啪」地压上去 */
+@keyframes option-seal {
+  0% {
+    transform: scale(1);
+    box-shadow: inset 4px 0 0 var(--seal);
+  }
+  38% {
+    transform: scale(1.008);
+    box-shadow: inset 10px 0 0 var(--seal);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: inset 4px 0 0 var(--seal);
+  }
+}
+
+.option.is-sealing {
+  animation: option-seal 300ms var(--ease-back);
+}
+
+/* 切题：像抽走一张卡片，再从下方推上新的 */
+@keyframes card-out {
+  to {
+    opacity: 0;
+    transform: translateY(-16px) rotate(-0.6deg);
+  }
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px) rotate(0.5deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.question.is-leaving {
+  animation: card-out 180ms var(--ease-out) forwards;
+}
+
+.question.is-entering {
+  animation: card-in 300ms var(--ease-out);
+}
+
+/* 进度卡槽：逐格盖章 */
+.progress__slot {
+  transform-origin: center;
+}
+
+@keyframes slot-stamp {
+  0% {
+    transform: scaleY(1) scaleX(1);
+    opacity: 0.55;
+  }
+  30% {
+    transform: scaleY(2.4) scaleX(1.16);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1.6) scaleX(1);
+    opacity: 1;
+  }
+}
+
+.progress__slot.is-now {
+  animation: slot-stamp 380ms var(--ease-back);
+}
+
+.progress__slot.is-done {
+  opacity: 0.62;
+}
+
+/* 最后一题：边框轻微呼吸提示 */
+@keyframes last-hint {
+  0%,
+  100% {
+    box-shadow: inset 0 0 0 1px rgba(178, 58, 46, 0.18);
+  }
+  50% {
+    box-shadow: inset 0 0 0 2px rgba(178, 58, 46, 0.45);
+  }
+}
+
+.quiz.is-last .progress {
+  animation: last-hint 2.2s ease-in-out infinite;
+  border-radius: var(--r-sm);
+}
+
+/* ───────────── 结果揭晓仪式 ───────────── */
+
+.ritual {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background: var(--paper);
+  padding: 24px;
+  animation: fade-in 220ms var(--ease-out);
+}
+
+.ritual__cabinet {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: min(220px, 70vw);
+}
+
+/* 抽屉依次抽出 */
+@keyframes drawer-pull {
+  0% {
+    transform: translateX(0);
+  }
+  45% {
+    transform: translateX(16px);
+  }
+  100% {
+    transform: translateX(4px);
+  }
+}
+
+.ritual__drawer {
+  height: 26px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #34302a, #26231d);
+  border: 1px solid rgba(237, 228, 210, 0.16);
+  animation: drawer-pull 520ms var(--ease-out) both;
+  animation-delay: calc(var(--i) * 150ms);
+}
+
+.ritual__drawer::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 4px;
+  margin: 11px auto 0;
+  border-radius: 2px;
+  background: rgba(237, 228, 210, 0.35);
+}
+
+.ritual__label {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--seal);
+  font-weight: 700;
+}
+
+/* 候选档案飞快翻过 */
+.ritual__flip {
+  height: 34px;
+  max-width: min(330px, 88vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+  /* 候选名可能很长：单行省略，避免翻动时版式跳动 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 最终定格的名字允许两行 */
+.ritual__final {
+  white-space: normal;
+  line-height: 1.25;
+  max-height: 2.6em;
+  overflow: hidden;
+}
+
+/* 六维数值滚动 */
+.ritual__dims {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  width: min(320px, 86vw);
+}
+
+.ritual__dim {
+  text-align: center;
+}
+
+.ritual__dim-value {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--seal);
+  font-variant-numeric: tabular-nums;
+}
+
+.ritual__dim-bar {
+  height: 3px;
+  background: var(--paper-3);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.ritual__dim-fill {
+  display: block;
+  height: 100%;
+  background: var(--seal);
+  transform-origin: left;
+  transform: scaleX(0);
+  animation: grow-x 900ms var(--ease-out) forwards;
+}
+
+@keyframes grow-x {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.ritual__dim-name {
+  display: block;
+  font-size: 9px;
+  color: var(--ink-3);
+  margin-top: 3px;
+  letter-spacing: 0.04em;
+}
+
+/* 揭晓：候选定格 */
+.ritual__final {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--ink);
+  text-align: center;
+  animation: rise-in 420ms var(--ease-back);
+}
+
+/* ───────────── 结果页：入场节奏 ───────────── */
+
+/* 匹配度数字滚动后的落定 */
+@keyframes number-land {
+  0% {
+    transform: scale(1.18);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.record__score-num.is-landing {
+  animation: number-land 320ms var(--ease-back);
+}
+
+/* 六维条依次生长：用 scaleX，不动 width */
+.dim__fill {
+  transform-origin: left center;
+  transform: scaleX(var(--fill, 0));
+  transition: transform 700ms var(--ease-out);
+  will-change: transform;
+}
+
+/* 「还有几分像」逐条滑入 */
+@keyframes slip-in {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.slip {
+  opacity: 0;
+  animation: slip-in 420ms var(--ease-out) forwards;
+  animation-delay: calc(var(--i, 0) * 110ms + 120ms);
+}
+
+/* 标签依次弹出 */
+@keyframes tag-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  70% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.record__tags .tag {
+  opacity: 0;
+  animation: tag-pop 320ms var(--ease-back) forwards;
+  animation-delay: calc(var(--i, 0) * 70ms + 200ms);
+}
+
+/* 相框视差 */
+.portrait {
+  transform: perspective(700px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 200ms var(--ease-out);
+  will-change: transform;
+}
+
+/* ───────────── 海报弹窗 ───────────── */
+
+@keyframes sheet-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.sheet__panel {
+  animation: sheet-up 320ms var(--ease-back);
+}
+
+/* 「冲洗照片」：先暗、再从上到下显影 */
+@keyframes develop {
+  0% {
+    opacity: 0;
+    transform: scale(1.03);
+    filter: brightness(0.6) saturate(0.2);
+  }
+  55% {
+    opacity: 0.8;
+    filter: brightness(0.95) saturate(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: none;
+  }
+}
+
+.sheet__img.is-developing {
+  animation: develop 780ms var(--ease-out);
+}
+
+/* 保存成功反馈 */
+@keyframes save-ok {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.save-ok {
+  animation: save-ok 420ms var(--ease-back);
+}
+
+/* ───────────── 页面切换 ───────────── */
+
+.page-enter {
+  animation: fade-in 260ms var(--ease-out);
+}
+
+/* ───────────── 彩蛋：连续点印章 ───────────── */
+
+@keyframes stamp-spin {
+  from {
+    transform: rotate(var(--stamp-rot)) scale(1);
+  }
+  50% {
+    transform: rotate(calc(var(--stamp-rot) + 360deg)) scale(1.12);
+  }
+  to {
+    transform: rotate(calc(var(--stamp-rot) + 720deg)) scale(1);
+  }
+}
+
+.stamp.is-easter-egg {
+  animation: stamp-spin 900ms var(--ease-out);
+  pointer-events: auto;
+}
+
+/* ───────────── 降级：减弱动效 ───────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger,
+  .slip,
+  .record__tags .tag,
+  .ritual__drawer,
+  .ritual__final {
+    opacity: 1 !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .drawer:nth-child(1),
+  .drawer:nth-child(2),
+  .drawer:nth-child(3),
+  .btn--primary:not(:disabled).is-breathing,
+  .quiz.is-last .progress,
+  .progress__slot.is-now {
+    animation: none !important;
+  }
+
+  .cabinet,
+  .portrait,
+  .dim__fill {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .dim__fill {
+    transform: scaleX(var(--fill, 0)) !important;
+  }
+}
+
+/* 由 JS 判定的关闭态（?anim=off / 测试开关）覆盖同一套 */
+.anim-off .stagger,
+.anim-off .slip,
+.anim-off .record__tags .tag,
+.anim-off .ritual__drawer,
+.anim-off .ritual__final {
+  opacity: 1 !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+.anim-off .drawer:nth-child(1),
+.anim-off .drawer:nth-child(2),
+.anim-off .drawer:nth-child(3),
+.anim-off .btn--primary,
+.anim-off .quiz.is-last .progress,
+.anim-off .progress__slot.is-now,
+.anim-off .question,
+.anim-off .option {
+  animation: none !important;
+}
+
+.anim-off .cabinet,
+.anim-off .portrait {
+  transform: none !important;
+  transition: none !important;
+}
+
+.anim-off .dim__fill {
+  transition: none !important;
+}
+
+/* ───────────── 金色高亮（匹配度 > 95%） ───────────── */
+
+.record__score-num.is-gold,
+.record__score-num.is-gold + .record__score-unit {
+  color: var(--gold);
+}
+
+.record__score-num.is-gold {
+  text-shadow: 0 0 0.6px rgba(154, 123, 63, 0.5);
+}
+
+/* 暗金细线：结果卡顶部分隔 */
+.record__top {
+  border-bottom-color: var(--gold-line);
+}
+
+/* 编号烫金 */
+.record__no {
+  color: var(--gold);
+}
+
+/* 版心骑缝线 */
+.page__body::before {
+  content: '';
+  display: block;
+  height: 1px;
+  margin-bottom: var(--sp-4);
+  background: repeating-linear-gradient(
+    90deg,
+    var(--line-strong) 0 6px,
+    transparent 6px 12px
+  );
+  opacity: 0.5;
+}
+
+/* ───────────── 海报：实际类名对齐（.poster__img / .poster__hint） ───────────── */
+
+.poster__img {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  box-shadow: 0 10px 24px rgba(60, 48, 30, 0.22);
+}
+
+.poster__hint {
+  font-size: 11px;
+  color: var(--ink-3);
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.poster__skeleton {
+  width: 100%;
+  border-radius: 2px;
+  background: linear-gradient(100deg, var(--paper-2) 30%, var(--paper-3) 50%, var(--paper-2) 70%);
+  background-size: 220% 100%;
+  animation: skeleton-sweep 1.3s linear infinite;
+}
+
+@keyframes skeleton-sweep {
+  from {
+    background-position: 130% 0;
+  }
+  to {
+    background-position: -30% 0;
+  }
+}
+
+/* 结果卡：叠纸厚度投影 */
+.record::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 18px 36px -18px rgba(70, 55, 32, 0.45);
+  pointer-events: none;
+}
+
+/* 首页档案柜的厚度感 */
+.cabinet {
+  box-shadow: 0 2px 0 #15130f, 0 12px 28px rgba(30, 26, 20, 0.3);
+}

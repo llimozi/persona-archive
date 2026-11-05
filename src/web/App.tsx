@@ -3,6 +3,7 @@ import { HomePage } from './pages/HomePage';
 import { QuizPage } from './pages/QuizPage';
 import { ResultPage } from './pages/ResultPage';
 import { Page } from './components/Page';
+import { RitualOverlay } from './components/RitualOverlay';
 import {
   fetchPersonas,
   fetchQuestions,
@@ -14,7 +15,18 @@ import { buildShareUrl, clearTokenInUrl, decodeAnswers, readTokenFromUrl } from 
 import type { Dims, Persona, Question, ThemeConfig } from '../shared/types';
 import type { ScoredPersona } from '../engine/index';
 import type { ResultPersona } from './pages/ResultPage';
+import { prefersReducedMotion, shouldSkipRitual } from './lib/motion';
+
+/** 仪式期间背后保留一张静态底纸，避免露出空白 */
+function QuizPlaceholder() {
+  return (
+    <Page>
+      <div style={{ minHeight: '60vh' }} aria-hidden="true" />
+    </Page>
+  );
+}
 import './styles/app.css';
+import './styles/motion.css';
 
 /**
  * 回填白名单：从原始档案补齐时**只允许**这些展示字段。
@@ -89,6 +101,14 @@ export function App() {
   const [personas, setPersonas] = useState<LoadState<Persona[]>>({ status: 'loading' });
   const [index, setIndex] = useState<number>(() => initial.index);
   const [answers, setAnswers] = useState<Answers>(() => initial.answers);
+  // 「比对中」仪式：finish 后先播仪式再进结果页；?r= 直达或减弱动效时跳过
+  const [ritual, setRitual] = useState(false);
+  const reducedMotion = prefersReducedMotion();
+
+  // 动效关闭时给根节点打标，CSS 侧同步降级
+  useEffect(() => {
+    if (prefersReducedMotion()) document.documentElement.classList.add('anim-off');
+  }, []);
 
   useEffect(() => {
     saveProgress({ index, answers, screen });
@@ -180,6 +200,33 @@ export function App() {
     );
   }
 
+  // 唯一计算路径：结果全部来自引擎 match()（提到分支前，供仪式与结果页共用）
+  const result = runMatch(qs, ps, answers, theme);
+  const dims = result ? toDisplayDims(result.user.x) : EMPTY_DIMS;
+  const mainId = result?.main?.persona.id;
+  const mainName = result?.main?.persona.name ?? '未匹配';
+
+  // 比对仪式：必须在 screen 分支之前判断，否则会先命中 quiz 分支
+  if (ritual) {
+    const cands = ps.filter((p) => p.id !== mainId).slice(0, 24).map((p) => p.name);
+    return (
+      <>
+        <QuizPlaceholder />
+        <RitualOverlay
+          candidates={cands}
+          finalName={mainName}
+          dims={dims}
+          reduced={reducedMotion}
+          onDone={() => {
+            setRitual(false);
+            setScreen('result');
+            window.scrollTo(0, 0);
+          }}
+        />
+      </>
+    );
+  }
+
   if (screen === 'home') {
     return (
       <HomePage
@@ -207,16 +254,18 @@ export function App() {
           window.scrollTo(0, 0);
         }}
         onFinish={() => {
-          setScreen('result');
-          window.scrollTo(0, 0);
+          const direct = Boolean(readTokenFromUrl());
+          if (shouldSkipRitual(direct)) {
+            setScreen('result');
+            window.scrollTo(0, 0);
+          } else {
+            setRitual(true);
+          }
         }}
       />
     );
   }
 
-  // 唯一计算路径：结果全部来自引擎 match()
-  const result = runMatch(qs, ps, answers, theme);
-  const dims = result ? toDisplayDims(result.user.x) : EMPTY_DIMS;
   // 引擎 ScoredPersona 是扁平结构、不含档案正文；desc/placeholder 按 id 回填。
   // 约束：回填只允许补展示字段，必须在 DisplayOnlyFill 里显式声明；
   //       id/name/category/tags/percent 一律取自引擎，不取自 raw，排序不受回填影响。

@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Page } from '../components/Page';
 import { PosterSheet } from '../components/PosterSheet';
 import { DIM_LABEL } from '../lib/dims';
 import { DIM_KEYS } from '../../shared/types';
 import type { Dims } from '../../shared/types';
 import { archiveNo, categoryLabel, categoryTone, splitName, tidySubtitle } from '../lib/display';
+import { attachTilt, countUp, prefersReducedMotion, pulse } from '../lib/motion';
 
 /** 结果页展示所需的最小人物字段 */
 export interface ResultPersona {
@@ -34,7 +35,15 @@ interface Props {
  * 人物「档案照片」框：统一相框 + 分类底色 + 大字 + 编号。
  * 真图与占位图走同一个框，换图后观感一致；加载失败退回首字，不留空白。
  */
-function ArchivePortrait({ persona, size = 'lg' }: { persona: ResultPersona; size?: 'lg' | 'sm' }) {
+function ArchivePortrait({
+  persona,
+  size = 'lg',
+  rootRef,
+}: {
+  persona: ResultPersona;
+  size?: 'lg' | 'sm';
+  rootRef?: (el: HTMLDivElement | null) => void;
+}) {
   const [failed, setFailed] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const { main } = splitName(persona.name);
@@ -42,7 +51,7 @@ function ArchivePortrait({ persona, size = 'lg' }: { persona: ResultPersona; siz
   const tone = categoryTone(persona.category);
 
   return (
-    <div className={`portrait portrait--${size} portrait--${tone}`}>
+    <div className={`portrait portrait--${size} portrait--${tone}`} ref={rootRef}>
       <div className="portrait__frame">
         {/* 首字底衬常驻：图片未就绪或失败时都不会出现空白格 */}
         <div
@@ -78,6 +87,53 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
   const [posterOpen, setPosterOpen] = useState(false);
   const name = top ? splitName(top.name) : { main: '', sub: '' };
 
+  const reduced = prefersReducedMotion();
+  const [shownPercent, setShownPercent] = useState(reduced ? (top?.percent ?? 0) : 0);
+  const [stamping, setStamping] = useState(false);
+  const [eggTaps, setEggTaps] = useState(0);
+  const [stampEl, setStampEl] = useState<HTMLSpanElement | null>(null);
+  const [portraitEl, setPortraitEl] = useState<HTMLDivElement | null>(null);
+
+  // 匹配度滚动计数
+  useEffect(() => {
+    if (top == null) return;
+    if (reduced) {
+      setShownPercent(top.percent);
+      return;
+    }
+    const cancel = countUp(0, top.percent, 900, setShownPercent);
+    return cancel;
+  }, [top, reduced]);
+
+  // 印章落下
+  useEffect(() => {
+    if (!top || reduced) {
+      setStamping(false);
+      return;
+    }
+    const t = window.setTimeout(() => setStamping(true), 420);
+    return () => window.clearTimeout(t);
+  }, [top, reduced]);
+
+  // 头像相框倾斜视差
+  useEffect(() => {
+    if (!portraitEl) return;
+    return attachTilt(portraitEl, 5);
+  }, [portraitEl]);
+
+  const isGold = (top?.percent ?? 0) > 95;
+
+  // 连续点击印章的彩蛋
+  const tapStamp = () => {
+    if (reduced) return;
+    const next = eggTaps + 1;
+    setEggTaps(next);
+    if (next >= 5) {
+      pulse(stampEl, 'is-easter-egg', 920);
+      setEggTaps(0);
+    }
+  };
+
   return (
     <Page
       action={
@@ -97,15 +153,18 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
             </div>
 
             <div className="record__main">
-              <ArchivePortrait persona={top} size="lg" />
+              <ArchivePortrait persona={top} size="lg" rootRef={setPortraitEl} />
 
               <div className="record__id">
                 <h1 className="record__name">{name.main}</h1>
                 {name.sub && <p className="record__sub">{tidySubtitle(name.sub)}</p>}
 
                 <div className="record__score">
-                  <span className="record__score-num mono" data-testid="result-percent">
-                    {top.percent}
+                  <span
+                    className={`record__score-num mono${isGold ? ' is-gold' : ''}`}
+                    data-testid="result-percent"
+                  >
+                    {shownPercent}
                   </span>
                   <span className="record__score-unit">%</span>
                   <span className="record__score-cap">
@@ -120,8 +179,8 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
 
             {top.tags?.length > 0 && (
               <div className="record__tags">
-                {top.tags.map((t) => (
-                  <span className="tag" key={t}>
+                {top.tags.map((t, i) => (
+                  <span className="tag" key={t} style={{ ['--i' as string]: String(i) }}>
                     {t}
                   </span>
                 ))}
@@ -130,8 +189,14 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
 
             <p className="record__desc">{top.desc}</p>
 
-            {/* 印章放在卡片右下角留白处，不压正文 */}
-            <span className="stamp" aria-hidden="true">
+            {/* 印章：落在卡片右下角留白处；点击可触发彩蛋 */}
+            <span
+              className={`stamp${isGold ? ' stamp--gold' : ''}${stamping ? ' is-stamping' : ''}`}
+              ref={setStampEl}
+              role="img"
+              aria-label="已鉴定印章"
+              onClick={tapStamp}
+            >
               <span className="stamp__inner">
                 已
                 <br />
@@ -153,7 +218,7 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
                   <div className="dim" key={k} data-testid={`dim-${k}`}>
                     <span className="dim__name">{DIM_LABEL[k] ?? k}</span>
                     <span className="dim__track" role="img" aria-label={`${DIM_LABEL[k] ?? k} ${v}`}>
-                      <span className="dim__fill" style={{ width: `${Math.max(2, v)}%` }} />
+                      <span className="dim__fill" style={{ ['--fill' as string]: String(Math.max(2, v) / 100) }} />
                       <span className="dim__tick dim__tick--50" aria-hidden="true" />
                     </span>
                     <span className="dim__value mono">{v}</span>
@@ -174,7 +239,7 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
                 {others.map((p) => {
                   const n = splitName(p.name);
                   return (
-                    <div className="slip" key={p.id} data-testid="similar-persona">
+                    <div className="slip" key={p.id} data-testid="similar-persona" style={{ ['--i' as string]: String(others.indexOf(p)) }}>
                       <ArchivePortrait persona={p} size="sm" />
                       <div className="slip__body">
                         <p className="slip__name">{n.main}</p>

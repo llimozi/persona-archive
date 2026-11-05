@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import { Page } from '../components/Page';
+import { prefersReducedMotion, pulse } from '../lib/motion';
 import type { Answers } from '../lib/api';
 import type { Question } from '../../shared/types';
 
@@ -22,6 +24,26 @@ export function QuizPage({ questions, index, answers, onPick, onPrev, onNext, on
   const isLast = index === questions.length - 1;
   const num = String(index + 1).padStart(2, '0');
   const total = String(questions.length).padStart(2, '0');
+  const reduced = prefersReducedMotion();
+  // 切题时给旧题一个离场帧，新题再入场（只用 transform/opacity）
+  const [leaving, setLeaving] = useState(false);
+
+  useEffect(() => {
+    setLeaving(false);
+  }, [index]);
+
+  const go = (fn: () => void) => {
+    if (reduced) {
+      fn();
+      return;
+    }
+    setLeaving(true);
+    window.setTimeout(() => {
+      fn();
+      // 无论 index 是否变化，都必须复位：否则最后一题/边缘情况下会卡在离场态
+      setLeaving(false);
+    }, 170);
+  };
 
   return (
     <Page
@@ -31,7 +53,7 @@ export function QuizPage({ questions, index, answers, onPick, onPrev, onNext, on
         </span>
       }
     >
-      <div className="quiz">
+      <div className={`quiz${isLast ? ' is-last' : ''}`}>
         {/* 进度：一排存档卡槽，走过的槽盖上朱红印 */}
         <div className="progress" aria-hidden="true">
           <div className="progress__slots">
@@ -55,7 +77,7 @@ export function QuizPage({ questions, index, answers, onPick, onPrev, onNext, on
         </div>
 
         {/* key 变化触发轻量淡入，不打断点击 */}
-        <section className="question" key={q.id}>
+        <section className={`question${leaving ? ' is-leaving' : ' is-entering'}`} key={q.id}>
           <p className="kicker">
             第 {num} 题 · 鉴定
           </p>
@@ -70,7 +92,10 @@ export function QuizPage({ questions, index, answers, onPick, onPrev, onNext, on
                   type="button"
                   className={`option${active ? ' is-picked' : ''}`}
                   aria-pressed={active}
-                  onClick={() => onPick(q.id, opt.id)}
+                  onClick={(e) => {
+                    onPick(q.id, opt.id);
+                    if (!reduced) pulse(e.currentTarget, 'is-sealing', 320);
+                  }}
                 >
                   <span className="option__key" aria-hidden="true">
                     {KEYS[i] ?? i + 1}
@@ -87,7 +112,7 @@ export function QuizPage({ questions, index, answers, onPick, onPrev, onNext, on
 
         <div className="quiz__foot">
           {index > 0 ? (
-            <button type="button" className="btn btn--ghost" onClick={onPrev}>
+            <button type="button" className="btn btn--ghost" onClick={() => go(onPrev)}>
               上一题
             </button>
           ) : (
@@ -96,7 +121,11 @@ export function QuizPage({ questions, index, answers, onPick, onPrev, onNext, on
           <button
             type="button"
             className="btn btn--primary"
-            onClick={isLast ? onFinish : onNext}
+            onClick={() => {
+              // 最后一题直接交卷：不走离场延迟，避免出现「题目已淡出但仪式未挂上」的空档
+              if (isLast) onFinish();
+              else go(onNext);
+            }}
             disabled={!picked}
             data-state={picked ? 'ready' : 'idle'}
           >

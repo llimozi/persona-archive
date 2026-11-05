@@ -727,7 +727,8 @@
 
 .record__desc {
   padding-left: 14px;
-  padding-right: 62px;
+  padding-right: 72px;
+  padding-bottom: 6px;
   margin-top: 12px;
   font-size: 13px;
   line-height: 1.85;
@@ -1153,6 +1154,37 @@
 @media (max-width: 380px) {
   :root {
     --page-x: 14px;
+  }
+
+  /* 窄屏优先保证"名字 + 匹配度"同屏可读：相框收紧、名字降一档 */
+  .record__main {
+    gap: 10px;
+  }
+
+  .portrait--lg {
+    width: 84px;
+  }
+
+  .record__name {
+    font-size: 20px;
+    line-height: 1.28;
+  }
+
+  .record__score-num {
+    font-size: 30px;
+  }
+
+  .record__desc {
+    padding-right: 58px;
+    font-size: 12.5px;
+    line-height: 1.8;
+  }
+
+  .stamp {
+    width: 48px;
+    height: 48px;
+    right: 10px;
+    bottom: 10px;
   }
 
   .title-xl {

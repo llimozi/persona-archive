@@ -39,6 +39,9 @@ function fakeCtx(): CanvasRenderingContext2D {
     drawImage: noop,
     strokeRect: noop,
     globalAlpha: 1,
+    // 海报底纹用到径向渐变（暗角）
+    createRadialGradient: () => ({ addColorStop: noop }),
+    createLinearGradient: () => ({ addColorStop: noop }),
     fillRect: noop,
     beginPath: noop,
     moveTo: noop,
