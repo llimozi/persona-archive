@@ -1,8 +1,8 @@
 {
-  "version": 2,
+  "version": 3,
   "themeId": "th-general",
   "generatedAt": "2026-11-04",
-  "note": "v2：九维坐标体系（nine-dims-v1）。坐标名与四档文案见 src/shared/nine-dims.ts。每题新增 dimensionId / reverse / optionScore / questionWeight，作为九维计分依据；保留原有 title / options.label / effects / dims，四选一交互不变。现有 25 题重新归属九维后，猥琐浓度为 0 题，故补 q-gen-026~028；畜生没母只有 1 题，补 q-gen-029。这些是唯一为凑维度而新增的题。",
+  "note": "v3：36 题，九维各 4 题。替换 q-gen-020（原测责任心而非畜生）、q-gen-021（原测不服气而非嘉豪）；修正 q-gen-002/007/012/017/022 的选项分值；重新归类 q-gen-006→反差、q-gen-024→抽象、q-gen-009→嘉豪；新增 q-gen-030~034、q-gen-037；q-gen-036 改为反向计分；删除与 q-gen-009 重复的 q-gen-035。",
   "questions": [
     {
       "id": "q-gen-001",
@@ -111,10 +111,10 @@
       "dimensionId": "FC",
       "reverse": false,
       "optionScore": {
-        "A": 4.33,
-        "B": 1.0,
+        "A": 4.5,
+        "B": 1,
         "C": 5,
-        "D": 3.0
+        "D": 3
       },
       "questionWeight": 1
     },
@@ -312,13 +312,13 @@
           }
         }
       ],
-      "dimensionId": "KD",
-      "reverse": true,
+      "dimensionId": "FC",
+      "reverse": false,
       "optionScore": {
-        "A": 3.29,
-        "B": 5,
-        "C": 4.43,
-        "D": 1.0
+        "A": 5,
+        "B": 2,
+        "C": 3,
+        "D": 4
       },
       "questionWeight": 1
     },
@@ -372,10 +372,10 @@
       "dimensionId": "FC",
       "reverse": false,
       "optionScore": {
-        "A": 5,
-        "B": 3.67,
-        "C": 1.0,
-        "D": 3.0
+        "A": 3.5,
+        "B": 2.5,
+        "C": 5,
+        "D": 2
       },
       "questionWeight": 1
     },
@@ -465,10 +465,10 @@
           }
         }
       ],
-      "dimensionId": "KD",
+      "dimensionId": "JH",
       "reverse": false,
       "optionScore": {
-        "A": 1.0,
+        "A": 2,
         "B": 5
       },
       "questionWeight": 1
@@ -637,10 +637,10 @@
       "dimensionId": "FC",
       "reverse": false,
       "optionScore": {
-        "A": 2.33,
-        "B": 4.33,
+        "A": 2,
+        "B": 4,
         "C": 5,
-        "D": 1.0
+        "D": 2.2
       },
       "questionWeight": 1
     },
@@ -902,10 +902,10 @@
       "dimensionId": "KD",
       "reverse": false,
       "optionScore": {
-        "A": 5,
+        "A": 4,
         "B": 5,
-        "C": 3.0,
-        "D": 1.0
+        "C": 3,
+        "D": 1
       },
       "questionWeight": 1
     },
@@ -1026,47 +1026,44 @@
     {
       "id": "q-gen-020",
       "type": "scenario",
-      "title": "团队里没人愿意干的那件麻烦事，最后落到你头上。你：",
+      "title": "群里有人发了张同事睡着流口水的抓拍。你：",
       "dims": {
-        "AC": 1.0,
-        "HX": 0.5,
-        "RB": 0.4
+        "EE": 0.6,
+        "AC": 0.5,
+        "RB": 0.3
       },
       "options": [
         {
           "id": "A",
-          "label": "接了，干就干，还干得挺认真",
+          "label": "存下来，做成表情包发到全员大群",
           "effects": {
-            "AC": 0.8,
-            "HX": 0.3,
-            "RB": -0.3
+            "EE": 0.7,
+            "AC": 0.6,
+            "RB": 0.4
           }
         },
         {
           "id": "B",
-          "label": "接了，但先把边界和分工讲清楚",
+          "label": "先发个「他睡得好安详」，看别人跟不跟",
           "effects": {
-            "AC": 0.5,
-            "HX": 0.7,
-            "ST": 0.4
+            "EE": 0.5,
+            "RB": 0.3
           }
         },
         {
           "id": "C",
-          "label": "问一句：为什么又是我们组？",
+          "label": "提醒发图的人：这个别往外传",
           "effects": {
-            "RB": 0.7,
-            "ST": 0.6,
-            "AC": 0.3
+            "EE": -0.4,
+            "AC": -0.3
           }
         },
         {
           "id": "D",
-          "label": "接了但不声张，做完再说",
+          "label": "私聊笑两句，大群就算了",
           "effects": {
-            "ST": -0.5,
-            "AC": 0.4,
-            "HX": 0.3
+            "EE": 0.3,
+            "AC": -0.3
           }
         }
       ],
@@ -1074,66 +1071,62 @@
       "reverse": false,
       "optionScore": {
         "A": 5,
-        "B": 3.0,
-        "C": 1.0,
-        "D": 4.0
+        "B": 3.5,
+        "C": 1,
+        "D": 2
       },
       "questionWeight": 1
     },
     {
       "id": "q-gen-021",
-      "type": "single",
-      "title": "你发现自己一直相信的一件小事，其实是错的。你：",
+      "type": "scenario",
+      "title": "聚会合照出来了，你发现自己那张拍得有点糊。你：",
       "dims": {
-        "HX": 1.0,
-        "RB": 0.5,
-        "ST": 0.4
+        "EE": 0.6,
+        "ST": 0.5,
+        "SR": 0.4
       },
       "options": [
         {
           "id": "A",
-          "label": "马上改口，顺便把这事讲给别人听",
+          "label": "重拍，而且要我站中间、光打在脸上",
           "effects": {
-            "ST": 0.6,
-            "HX": 0.6,
-            "RB": 0.3
+            "ST": 0.7,
+            "EE": 0.6
           }
         },
         {
           "id": "B",
-          "label": "心里改了，嘴上不太想承认",
+          "label": "自己换头像用另一张更帅的",
           "effects": {
-            "HX": 0.4,
-            "ST": -0.5,
-            "RB": -0.4
+            "ST": 0.5,
+            "SR": 0.3
           }
         },
         {
           "id": "C",
-          "label": "顺着往回查，看看还错在哪了",
+          "label": "挺好的，合照又不是写真",
           "effects": {
-            "HX": 0.8,
-            "AC": 0.5,
-            "ST": -0.3
+            "ST": -0.5,
+            "EE": -0.3
           }
         },
         {
           "id": "D",
-          "label": "有点不服，先找证据反驳一下",
+          "label": "笑一下就算了，反正大家都知道我帅",
           "effects": {
-            "RB": 0.6,
-            "HX": 0.3,
-            "EE": 0.4
+            "ST": 0.4,
+            "EE": 0.3
           }
         }
       ],
       "dimensionId": "JH",
       "reverse": false,
       "optionScore": {
-        "A": 2.33,
-        "B": 1.0,
-        "C": 3.0,
-        "D": 5
+        "A": 5,
+        "B": 3.5,
+        "C": 1,
+        "D": 2.5
       },
       "questionWeight": 1
     },
@@ -1188,9 +1181,9 @@
       "reverse": false,
       "optionScore": {
         "A": 5,
-        "B": 2.5,
+        "B": 2,
         "C": 3.5,
-        "D": 2
+        "D": 1.5
       },
       "questionWeight": 1
     },
@@ -1279,13 +1272,13 @@
           }
         }
       ],
-      "dimensionId": "ZQ",
+      "dimensionId": "AB",
       "reverse": false,
       "optionScore": {
-        "A": 3.86,
-        "B": 4.43,
-        "C": 1.0,
-        "D": 5
+        "A": 4,
+        "B": 5,
+        "C": 1,
+        "D": 3.5
       },
       "questionWeight": 1
     },
@@ -1554,6 +1547,378 @@
           "effects": {
             "EE": -0.4,
             "AC": -0.4
+          }
+        }
+      ]
+    },
+    {
+      "id": "q-gen-030",
+      "type": "scenario",
+      "title": "电梯里遇到一个只见过两面的人，还要一起待 18 层。你：",
+      "dimensionId": "SB",
+      "reverse": false,
+      "optionScore": {
+        "A": 5,
+        "B": 3.5,
+        "C": 1.5,
+        "D": 2.5
+      },
+      "questionWeight": 1,
+      "dims": {
+        "EE": 0.6,
+        "SR": 0.6,
+        "ST": 0.3
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "主动开口，18 层能聊完他的前半生",
+          "effects": {
+            "EE": 0.7,
+            "SR": 0.7
+          }
+        },
+        {
+          "id": "B",
+          "label": "点个头，他要是开口我就接得住",
+          "effects": {
+            "EE": 0.3,
+            "SR": 0.3
+          }
+        },
+        {
+          "id": "C",
+          "label": "低头看手机，从 1 楼看到 18 楼",
+          "effects": {
+            "EE": -0.6,
+            "SR": -0.5
+          }
+        },
+        {
+          "id": "D",
+          "label": "假装接到电话，一路讲到出电梯",
+          "effects": {
+            "EE": 0.3,
+            "SR": -0.3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q-gen-031",
+      "type": "meme",
+      "title": "年会抽奖抽到你上台表演，台下三百人。你：",
+      "dimensionId": "SB",
+      "reverse": false,
+      "optionScore": {
+        "A": 5,
+        "B": 3.5,
+        "C": 1,
+        "D": 2.5
+      },
+      "questionWeight": 1,
+      "dims": {
+        "EE": 0.7,
+        "ST": 0.5,
+        "SR": 0.5
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "上来先热个场，把节目单都改了",
+          "effects": {
+            "EE": 0.8,
+            "ST": 0.6
+          }
+        },
+        {
+          "id": "B",
+          "label": "唱首安全的歌，唱完赶紧下台",
+          "effects": {
+            "EE": 0.3,
+            "ST": 0.3
+          }
+        },
+        {
+          "id": "C",
+          "label": "找个理由把奖让给别人",
+          "effects": {
+            "EE": -0.7,
+            "ST": -0.4
+          }
+        },
+        {
+          "id": "D",
+          "label": "站在台上，让气氛自己尴尬下去",
+          "effects": {
+            "EE": 0.4,
+            "ST": -0.3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q-gen-032",
+      "type": "scenario",
+      "title": "室友说好今晚回来，你正好在家无聊。你会：",
+      "dimensionId": "CX",
+      "reverse": false,
+      "optionScore": {
+        "A": 5,
+        "B": 3.5,
+        "C": 1,
+        "D": 2.5
+      },
+      "questionWeight": 1,
+      "dims": {
+        "EE": 0.6,
+        "AC": 0.5,
+        "RB": 0.4
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "把灯全关了装没人，等他开门那一声",
+          "effects": {
+            "EE": 0.6,
+            "AC": 0.6,
+            "RB": 0.5
+          }
+        },
+        {
+          "id": "B",
+          "label": "在门口贴张纸条，写点不着调的",
+          "effects": {
+            "EE": 0.4,
+            "RB": 0.4
+          }
+        },
+        {
+          "id": "C",
+          "label": "给他留盏灯，顺手热个宵夜",
+          "effects": {
+            "EE": -0.5,
+            "AC": -0.4
+          }
+        },
+        {
+          "id": "D",
+          "label": "照常过，他回来该干嘛干嘛",
+          "effects": {
+            "EE": -0.3,
+            "AC": -0.3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q-gen-033",
+      "type": "single",
+      "title": "朋友新剪了头发，问你好不好看。其实很像锅盖。你：",
+      "dimensionId": "CX",
+      "reverse": false,
+      "optionScore": {
+        "A": 5,
+        "B": 3.5,
+        "C": 1.5,
+        "D": 2.5
+      },
+      "questionWeight": 1,
+      "dims": {
+        "EE": 0.5,
+        "RB": 0.5,
+        "AC": 0.4
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "直接喊他「锅盖」，还给他配了个盖饭图",
+          "effects": {
+            "EE": 0.6,
+            "RB": 0.6
+          }
+        },
+        {
+          "id": "B",
+          "label": "憋笑说「挺有辨识度的」",
+          "effects": {
+            "EE": 0.3,
+            "RB": 0.3
+          }
+        },
+        {
+          "id": "C",
+          "label": "认真说好看，然后私下跟别人笑",
+          "effects": {
+            "EE": -0.4,
+            "RB": -0.3
+          }
+        },
+        {
+          "id": "D",
+          "label": "夸完补一句：过两周就顺了",
+          "effects": {
+            "EE": -0.3,
+            "AC": -0.3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q-gen-034",
+      "type": "scenario",
+      "title": "你刚在朋友圈发了一张精修三小时的自拍，第一条评论是「这修过吧」。你：",
+      "dimensionId": "JH",
+      "reverse": false,
+      "optionScore": {
+        "A": 5,
+        "B": 3.5,
+        "C": 1,
+        "D": 2.5
+      },
+      "questionWeight": 1,
+      "dims": {
+        "EE": 0.5,
+        "ST": 0.6,
+        "SR": 0.3
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "回他：那也得底子好才修得出来",
+          "effects": {
+            "EE": 0.6,
+            "ST": 0.7
+          }
+        },
+        {
+          "id": "B",
+          "label": "礼貌回个表情，心里不太舒服",
+          "effects": {
+            "EE": 0.3,
+            "ST": 0.3
+          }
+        },
+        {
+          "id": "C",
+          "label": "删了，下次不发了",
+          "effects": {
+            "EE": -0.6,
+            "ST": -0.5
+          }
+        },
+        {
+          "id": "D",
+          "label": "自嘲一句「我谢谢你的诚实」",
+          "effects": {
+            "EE": -0.3,
+            "ST": 0.3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q-gen-036",
+      "type": "scenario",
+      "title": "年初立的「今年一定瘦十斤」，现在 12 月了。你：",
+      "dimensionId": "KD",
+      "reverse": true,
+      "optionScore": {
+        "A": 3,
+        "B": 2,
+        "C": 5,
+        "D": 1
+      },
+      "questionWeight": 1,
+      "dims": {
+        "ST": 0.5,
+        "AC": 0.5,
+        "EE": 0.3
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "瘦了点，虽然没到十斤，认",
+          "effects": {
+            "ST": 0.3,
+            "AC": 0.3
+          }
+        },
+        {
+          "id": "B",
+          "label": "断断续续练过，好歹动过",
+          "effects": {
+            "ST": 0.3,
+            "AC": 0.3
+          }
+        },
+        {
+          "id": "C",
+          "label": "换个说法：其实我目标是健康",
+          "effects": {
+            "ST": -0.4,
+            "AC": -0.3
+          }
+        },
+        {
+          "id": "D",
+          "label": "真的瘦了十斤，过程不光彩但做到了",
+          "effects": {
+            "ST": 0.6,
+            "AC": 0.6
+          }
+        }
+      ]
+    },
+    {
+      "id": "q-gen-037",
+      "type": "single",
+      "title": "别人跟你说某句话，你第一反应是「这话听着有点不对劲」的频率：",
+      "dimensionId": "WS",
+      "reverse": false,
+      "optionScore": {
+        "A": 5,
+        "B": 3.5,
+        "C": 1.5,
+        "D": 2.5
+      },
+      "questionWeight": 1,
+      "dims": {
+        "EE": 0.4,
+        "AC": 0.4,
+        "HX": 0.4
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "几乎每句都能听出点别的意思",
+          "effects": {
+            "EE": 0.5,
+            "AC": 0.4
+          }
+        },
+        {
+          "id": "B",
+          "label": "看人，熟的人说什么我都能接歪",
+          "effects": {
+            "EE": 0.3,
+            "AC": 0.3
+          }
+        },
+        {
+          "id": "C",
+          "label": "基本不会，我都是照字面理解",
+          "effects": {
+            "EE": -0.5,
+            "AC": -0.3
+          }
+        },
+        {
+          "id": "D",
+          "label": "听出来了，但一般不点破",
+          "effects": {
+            "EE": -0.3,
+            "AC": 0.3
           }
         }
       ]

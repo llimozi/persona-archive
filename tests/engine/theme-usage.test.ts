@@ -23,7 +23,18 @@ function readArr<T>(rel: string, key: string): T[] {
 
 const questions = readArr<EngineQuestion>('data/questions.json', 'questions');
 const personas = readArr<EnginePersona>('data/personas.json', 'personas');
-const answers: EngineAnswer[] = questions.map((q) => ({ questionId: q.id, optionId: q.options[0].id }));
+/**
+ * 固定作答：取每题**第二个**选项。
+ *
+ * 为什么不是第一个：全选第一个选项时，作答向量在 EE 方向上的分布过于均匀，
+ * 两组 EE 权重（0.18 vs 0.40）算出的 mainPercent 恰好同时取整到同一个值，
+ * 断言会误报成"权重没生效"。换一个区分度更高的作答即可稳定区分——
+ * 这改的是取样，不是判据。
+ */
+const answers: EngineAnswer[] = questions.map((q) => ({
+  questionId: q.id,
+  optionId: (q.options[1] ?? q.options[0]).id,
+}));
 
 /** 接口原值（与 data/questions.json 的 theme.weights 一致） */
 const WEIGHTS_API: EngineTheme = {
