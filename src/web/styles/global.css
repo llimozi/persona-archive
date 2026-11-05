@@ -96,7 +96,12 @@ body {
   overflow-x: hidden;
 }
 
-/* 全站纸纹：极轻的颗粒叠加，避免纯色屏幕感 */
+/* 全站底图：档案纸（纸渐变 / 纤维 / 网格卡 / 装订孔 / 骑缝线 / 已归档印章 / 暗角 / 颗粒）
+ *
+ * 两层写法是有意的：纸纹影像层是独立元素（.paper-bg），影像资源挂了它只剩
+ * background-color，而 body::before 的 CSS 条纹仍然在 —— 不会退化成纯色屏。
+ * 不参与运行时动画，也不进 Canvas，所以不会污染海报导出。
+ */
 body::before {
   content: '';
   position: fixed;
@@ -108,6 +113,109 @@ body::before {
     repeating-linear-gradient(0deg, rgba(120, 100, 70, 0.045) 0 1px, transparent 1px 3px),
     repeating-linear-gradient(90deg, rgba(120, 100, 70, 0.035) 0 1px, transparent 1px 4px);
   mix-blend-mode: multiply;
+}
+
+/* 档案纸影像层：固定铺满，透明度压到只作为"纸的质地"，不抢正文。
+ *
+ * 两层遮罩一起用：
+ *   1. mask-image 横向渐变 —— 正文所在的中间列把底图压到很低，
+ *      两侧留出完整的网格卡、装订孔和印章。底图是背景，不该跟标题抢，
+ *      但也不能整张压平，否则"档案纸"的层次就没了。
+ *   2. 竖向渐变 —— 顶部馆藏条附近保持深，往下逐渐交给正文。
+ * 底图在窄屏按宽度铺满，宽屏锁 520px 居中，避免整套竖屏网格被拉到 3 倍。
+ */
+.paper-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--paper-2);
+  background-image: url('/assets/bg/archive-bg.svg');
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: min(100%, 520px) auto;
+  opacity: 0.96;
+  /* 影像加载不到时不留白块：底色 + body::before 的 CSS 条纹就是兜底纸 */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 16%,
+    rgba(0, 0, 0, 0.18) 34%,
+    rgba(0, 0, 0, 0.18) 66%,
+    #000 84%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 16%,
+    rgba(0, 0, 0, 0.18) 34%,
+    rgba(0, 0, 0, 0.18) 66%,
+    #000 84%,
+    #000 100%
+  );
+}
+
+/* 答题页是全站信息最密的一屏：进度卡槽、题干、四个选项、页脚挤在同一个视口里，
+ * 网格卡的横线和编号会刚好穿过卡槽那一行，看起来像渲染错位。
+ * 所以这一屏只保留纸的质感，把网格结构几乎全部压掉。
+ */
+.page--quiz .paper-bg {
+  opacity: 0.5;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    rgba(0, 0, 0, 0.55) 16%,
+    rgba(0, 0, 0, 0.18) 34%,
+    rgba(0, 0, 0, 0.18) 88%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    rgba(0, 0, 0, 0.55) 16%,
+    rgba(0, 0, 0, 0.18) 34%,
+    rgba(0, 0, 0, 0.18) 88%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+}
+
+/* 宽屏：正文只有中间一列，底图两侧露出来的那截网格编号会被裁成半截字，
+ * 与其露出半截编号，不如整体压淡，只留纸张质感和印章的暗影。
+ */
+@media (min-width: 720px) {
+  .paper-bg {
+    opacity: 0.55;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+/* 窄屏没有"两侧"，正文整体压在底图上，于是按上下做遮罩：
+ * 顶部留给网格卡，中段（正文）压淡，底部把印章放出来。
+ */
+@media (max-width: 719px) {
+  .paper-bg {
+    opacity: 0.9;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 20%,
+      rgba(0, 0, 0, 0.3) 40%,
+      rgba(0, 0, 0, 0.3) 68%,
+      rgba(0, 0, 0, 0.45) 82%,
+      rgba(0, 0, 0, 0.12) 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 20%,
+      rgba(0, 0, 0, 0.3) 40%,
+      rgba(0, 0, 0, 0.3) 68%,
+      rgba(0, 0, 0, 0.45) 82%,
+      rgba(0, 0, 0, 0.12) 100%
+    );
+  }
 }
 
 #root {

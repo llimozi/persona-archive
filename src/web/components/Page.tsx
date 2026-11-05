@@ -13,13 +13,15 @@ interface Props {
  * 三屏共用骨架。
  *
  * 视觉语言：顶部是一条**深墨色馆藏条**（反白字 + 等宽编号），
- * 页身是档案纸 —— 底下叠了纸噪点与暗角两层固定背景，卡片因此"浮"在纸上。
+ * 页身是档案纸 —— 最底层是馆藏纸底图（网格卡 / 装订孔 / 骑缝线 / 已归档印章），
+ * 其上叠了噪点与暗角两层固定背景，卡片因此"浮"在纸上。
  * 底部按需挂一行极小的免责声明。
  */
 export function Page({ children, action, className, disclaimer = false }: Props) {
   return (
     <div className={`page ${className ?? ''}`}>
-      {/* 纸的两层：噪点 + 暗角，固定定位不参与滚动重排 */}
+      {/* 纸底图 + 噪点 + 暗角：都是固定定位，不参与滚动重排 */}
+      <div className="paper-bg" aria-hidden="true" />
       <div className="paper-noise" aria-hidden="true" />
       <div className="paper-vignette" aria-hidden="true" />
 

@@ -47,6 +47,7 @@ export function QuizPage({ questions, index, answers, onPick, onPrev, onNext, on
 
   return (
     <Page
+      className="page--quiz"
       action={
         <span className="pager mono" data-testid="quiz-progress-text">
           {num} / {total}
