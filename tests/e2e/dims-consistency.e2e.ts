@@ -125,5 +125,11 @@ test('结果页六维数值必须等于引擎 user.x*100', async ({ page }) => {
   if (mainName) {
     expect(bodyText, `结果页未显示引擎主匹配「${mainName}」`).toContain(mainName);
   }
-  expect(expected.mainPercent?.value, '引擎应给出主匹配百分比（用于后续启用百分比断言）').toBe(74);
+  // 引擎必须给出主匹配百分比（结构有效即可）。
+  // 原先这里写死 toBe(74)，本质是把"某次数据下的具体取值"当成断言——
+  // 人物数值一调整就会假红，而它真正想守的是"结果结构里有这个字段"。
+  const pct = expected.mainPercent?.value;
+  expect(typeof pct, '引擎应给出主匹配百分比（数值型）').toBe('number');
+  expect(pct!, '主匹配百分比应在 0–100 之间').toBeGreaterThanOrEqual(0);
+  expect(pct!, '主匹配百分比应在 0–100 之间').toBeLessThanOrEqual(100);
 });

@@ -534,7 +534,9 @@ function pickSurprise(
     return { persona: primary, note: '意外组合：与主匹配不同分类、无 peer 关系、超过设计下限 0.55（06 §6.5）' };
   }
 
-  const fallback = ranking.find((p) => p.rarity === 'limited' || p.rarity === 'hidden');
+  // 兜底必须排除主匹配本人：扫的是全表，若主匹配本身就是 limited/hidden，
+  // 不排除会返回「意外组合 == 主匹配」，与 06 §6.5「意外」的定义直接矛盾。
+  const fallback = ranking.find((p) => p.id !== main.id && (p.rarity === 'limited' || p.rarity === 'hidden'));
   if (fallback) {
     return {
       persona: fallback,

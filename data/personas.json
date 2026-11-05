@@ -16,12 +16,12 @@
         "常驻梗"
       ],
       "dims": {
-        "EE": 78,
-        "ST": 62,
-        "AC": 66,
-        "HX": 90,
+        "EE": 75,
+        "ST": 60,
+        "AC": 81,
+        "HX": 94,
         "RB": 34,
-        "SR": 44
+        "SR": 66
       },
       "desc": "国产同名子供向 3D 动画主角，设定为来自异星的小恐龙。被无孔不入的宣发和 AI 批量二创推到人人可见，又因过度曝光引发成人圈层的集体逆反，官方越禁止越被玩。适合做「你是被什么激怒的」这条轴。",
       "cardType": "image",
@@ -38,7 +38,7 @@
       },
       "usageNote": "商业 IP 与注册商标：不得使用官方形象或可识别复刻造型，只取「被过度曝光的儿童动画形象」这一概念；文案不得做嘲笑低龄粉丝的导向。",
       "rarity": "common",
-      "rarityBasis": "04 标注「本体 H3 长期经典，生命周期常驻」",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-nailong-001.png",
       "imageKind": "official"
     },
@@ -55,12 +55,12 @@
         "常驻梗"
       ],
       "dims": {
-        "EE": 92,
-        "ST": 84,
-        "AC": 74,
-        "HX": 82,
-        "RB": 42,
-        "SR": 30
+        "EE": 89,
+        "ST": 90,
+        "AC": 88,
+        "HX": 94,
+        "RB": 45,
+        "SR": 53
       },
       "desc": "抖音《火影忍者》手游主播，「阿玛忒拉斯」等口头禅的制造者。最出圈的是一整套「嘴硬—被打脸」的反差：放完狠话立刻秒怂，观众看的正是这个翻车速度。",
       "cardType": "text",
@@ -77,7 +77,7 @@
       },
       "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损；产品内一律写「火影手游主播 coke老师」，不裸写「Coke老师」。",
       "rarity": "common",
-      "rarityBasis": "04 标注「H3 长期经典 + 持续活跃，口头禅已进大众语汇」",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-coke-003.png",
       "imageKind": "placeholder"
     },
@@ -94,12 +94,12 @@
         "主动放弃"
       ],
       "dims": {
-        "EE": 28,
-        "ST": 30,
-        "AC": 24,
-        "HX": 66,
-        "RB": 36,
-        "SR": 74
+        "EE": 22,
+        "ST": 16,
+        "AC": 45,
+        "HX": 94,
+        "RB": 37,
+        "SR": 93
       },
       "desc": "一张海外网友抓拍的负鼠照片：被困窗边、无路可退时双爪背在身后、双脚直立、呆望远方。人类长者式的派头配上弱小本体，成了「表面从容、内里崩溃」最精准的符号。",
       "cardType": "image",
@@ -116,7 +116,7 @@
       },
       "usageNote": "原图为拍摄者作品，不得直接使用，需原创重绘且构图明显改动；不得把「摆烂」写成对用户的价值判断；不得引用严肃心理学数据为匹配度背书。",
       "rarity": "common",
-      "rarityBasis": "04 标注「跨全平台，C 类主观观察已由 ≥4 独立信源证实」",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/ani-opossum-004.png",
       "imageKind": "official"
     },
@@ -133,12 +133,12 @@
         "不完美"
       ],
       "dims": {
-        "EE": 52,
-        "ST": 44,
-        "AC": 40,
-        "HX": 48,
-        "RB": 68,
-        "SR": 50
+        "EE": 47,
+        "ST": 35,
+        "AC": 58,
+        "HX": 69,
+        "RB": 81,
+        "SR": 71
       },
       "desc": "一只本该微笑的马形毛绒玩偶，生产线上嘴角被缝反，成了写满委屈的哭脸。网友集体给它贴标签——周一马、加班马、甲方马——把一件商品变成了「我们是一类人」的暗号。",
       "cardType": "image",
@@ -155,7 +155,7 @@
       },
       "usageNote": "该哭脸形象已申请外观专利，绝不可复刻玩偶造型，只取「缝反的笑脸 / 被缺陷共情」这一概念做原创设计。",
       "rarity": "limited",
-      "rarityBasis": "04 标注「生命周期：周期（生肖）+ 限时（梗）」，以「限时」为主标 limited",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/ani-cryinghorse-005.png",
       "imageKind": "official"
     },
@@ -172,12 +172,12 @@
         "外冷内热"
       ],
       "dims": {
-        "EE": 22,
-        "ST": 38,
-        "AC": 46,
-        "HX": 72,
-        "RB": 62,
-        "SR": 56
+        "EE": 16,
+        "ST": 27,
+        "AC": 64,
+        "HX": 94,
+        "RB": 73,
+        "SR": 76
       },
       "desc": "AI 漫剧女主，自陈「我是个装货」，为维持忧郁少女人设全程维持冷淡模样。被鬼追时也要靠路灯摆出忧郁姿势，把体面看得比生存还重，最后却接上了纯爱/救赎的内核。",
       "cardType": "text",
@@ -194,7 +194,7 @@
       },
       "usageNote": "AI 生成角色，版权链尚不成熟，商用需授权或做概念层原创改写；女性向角色，文案避免「装」「矫情」等贬义导向。",
       "rarity": "limited",
-      "rarityBasis": "04 标注「生命周期：限时（约 2026-03 前后）」",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-sorrowlady-006.png",
       "imageKind": "placeholder"
     },
@@ -211,12 +211,12 @@
         "厚道"
       ],
       "dims": {
-        "EE": 40,
-        "ST": 56,
-        "AC": 58,
-        "HX": 30,
-        "RB": 72,
-        "SR": 60
+        "EE": 35,
+        "ST": 51,
+        "AC": 74,
+        "HX": 42,
+        "RB": 87,
+        "SR": 80
       },
       "desc": "餐饮题材 AI 漫剧里反复出现的「良心小老板」原型：包子铺、盒饭摊、猪脚饭的摊主，死守「规矩不能坏、不偷工减料」。台词短到可以被无限复用，反而成了一个时代的通用句式。",
       "cardType": "text",
@@ -231,7 +231,7 @@
       },
       "usageNote": "不指向任何真实个人，无肖像权问题；具体台词与 BGM 属具体作品不可原样复制，但「不烧心」为通用词组可用；不得暗示真实餐饮品牌偷工减料。",
       "rarity": "rare",
-      "rarityBasis": "04 标注「H1→H2 当周仍在流通、限时」，但模板机制具常驻潜力",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-bushaoxin-007.png",
       "imageKind": "placeholder"
     },
@@ -248,12 +248,12 @@
         "AI 二创"
       ],
       "dims": {
-        "EE": 80,
-        "ST": 70,
-        "AC": 52,
-        "HX": 88,
-        "RB": 30,
-        "SR": 32
+        "EE": 77,
+        "ST": 71,
+        "AC": 69,
+        "HX": 94,
+        "RB": 28,
+        "SR": 55
       },
       "desc": "2026 年 10 月刷屏的 AI 演唱会二创模板，统一标题范式「世界巡演」：把台上的人换成谁都能成立，靠的是「把权威从原舞台拉走、塞进更荒诞的舞台」和一个共同接梗的集体记忆。",
       "cardType": "text",
@@ -270,7 +270,7 @@
       },
       "usageNote": "04 中版权/肖像风险最高的一张：绝对不可使用任何 AI 真人视频或图像，只能取「把人物放上演唱会舞台」这一概念并用原创虚拟形象；「消耗中国一半算力」是夸张比喻，不得写成事实。",
       "rarity": "limited",
-      "rarityBasis": "04 标注「生命周期：限时（该模板）；但「AI 二创真人」这一机制属常驻」",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-musicai-009.png",
       "imageKind": "placeholder"
     },
@@ -287,12 +287,12 @@
         "不装懂"
       ],
       "dims": {
-        "EE": 34,
-        "ST": 58,
-        "AC": 76,
-        "HX": 26,
-        "RB": 64,
-        "SR": 22
+        "EE": 43,
+        "ST": 56,
+        "AC": 80,
+        "HX": 57,
+        "RB": 67,
+        "SR": 59
       },
       "desc": "B 站生活常识科普 UP 主，把「怎么租房」「怎么办电话卡」这类基础生存问题当正题讲，恰好卡在应届生最需要的节点上。回归基础、不装懂的坦白，是这个账号最核心的吸引力。",
       "cardType": "image",
@@ -307,7 +307,7 @@
       },
       "usageNote": "真实个人：不可复刻其形象与标题句式，不得借用《青年大学习》栏目名；涉租房合同、社保等准法律信息，产品只可问「哪件最晚学会」，不得给任何办事指引。",
       "rarity": "hidden",
-      "rarityBasis": "04 标注「生命周期：限时（账号热度）+ 周期（毕业季回潮）」，按「周期回潮」标 hidden",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-gulumao-021.png",
       "imageKind": "official"
     },
@@ -324,12 +324,12 @@
         "常驻梗"
       ],
       "dims": {
-        "EE": 70,
-        "ST": 64,
-        "AC": 62,
-        "HX": 62,
-        "RB": 26,
-        "SR": 78
+        "EE": 66,
+        "ST": 62,
+        "AC": 77,
+        "HX": 90,
+        "RB": 23,
+        "SR": 94
       },
       "desc": "《奥特曼》系列反派，光之国历史上首位堕入黑暗的奥特战士。设定上是压迫感十足的黑暗帝王，到了抽象文化里却永远是二当家、是垫子——被解构之后反而比原来更强。",
       "cardType": "image",
@@ -346,7 +346,7 @@
       },
       "usageNote": "圆谷/新创华 IP：不得使用官方形象、剧照、Logo；「开盒」「人肉」类二创涉违法绝不可写进文案；不得关联涉真实逝者的「牢大」梗。",
       "rarity": "common",
-      "rarityBasis": "04 标注「H3 长期经典、生命周期常驻」",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/an-belial-001.png",
       "imageKind": "official"
     },
@@ -363,12 +363,12 @@
         "常驻梗"
       ],
       "dims": {
-        "EE": 56,
-        "ST": 46,
-        "AC": 40,
-        "HX": 24,
-        "RB": 80,
-        "SR": 34
+        "EE": 51,
+        "ST": 38,
+        "AC": 58,
+        "HX": 33,
+        "RB": 94,
+        "SR": 56
       },
       "desc": "《迪迦奥特曼》主角，平成三杰之首。在泛路人眼里「奥特曼就等于迪迦」，一句「那一年，我也变成了光」撑起了一整代人的童年信念。",
       "cardType": "image",
@@ -385,7 +385,7 @@
       },
       "usageNote": "版权同前；🚫 严禁把「迪迦最火」写成事实——与「赛罗在中国最火」的口径直接冲突，文案只能写「有争议」或回避排名；粉圈骂战内容不得引用。",
       "rarity": "common",
-      "rarityBasis": "04 标注「H3 长期经典、生命周期常驻」",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/an-diga-002.png",
       "imageKind": "official"
     },
@@ -402,12 +402,12 @@
         "常驻梗"
       ],
       "dims": {
-        "EE": 68,
-        "ST": 72,
-        "AC": 66,
-        "HX": 44,
+        "EE": 64,
+        "ST": 73,
+        "AC": 81,
+        "HX": 63,
         "RB": 34,
-        "SR": 52
+        "SR": 73
       },
       "desc": "新生代「门面型」奥特曼，设定是赛文之子、定位狂傲少年，因总在结局击败贝利亚而被称「赛少」。人气有官方持续力捧的成分，也因此背上了「门面位」的负担。",
       "cardType": "image",
@@ -424,7 +424,7 @@
       },
       "usageNote": "版权同前；🚫 严禁把「赛罗在中国最火」或「迪迦断层第一」任一方写成事实；对具体粉丝群体的负面刻画不得复述进文案。",
       "rarity": "common",
-      "rarityBasis": "04 标注「H3 长期经典、生命周期常驻」",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/an-sairo-003.png",
       "imageKind": "official"
     },
@@ -441,12 +441,12 @@
         "被辜负"
       ],
       "dims": {
-        "EE": 84,
-        "ST": 40,
-        "AC": 88,
-        "HX": 86,
-        "RB": 58,
-        "SR": 66
+        "EE": 81,
+        "ST": 29,
+        "AC": 94,
+        "HX": 94,
+        "RB": 68,
+        "SR": 85
       },
       "desc": "AI 系列短片里的角色：侠客在大雪中给白狐留下一只酱板鸭，上门的却不是报恩的白狐，而是化成人形、满腔怒火前来索命的酱板鸭。用最严肃的复古视听，讲最荒诞的「我把恩情要回来」。",
       "cardType": "text",
@@ -463,13 +463,13 @@
       },
       "usageNote": "涉真实商家与主创：不得点名、不得用其店铺产品或官方视频画面；「食物成精上门寻仇」这一概念不受保护，可做原创设计但不得复刻鸭形象；「50 亿」为媒体自述不得引用为事实。",
       "rarity": "rare",
-      "rarityBasis": "04 标注「H2（2026-02 起）+ 具常驻潜力、限时」",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/sd-jiangbanya-012.png",
       "imageKind": "placeholder"
     },
     {
       "id": "mem-shoulai-008",
-      "name": "「寿来」借寿整活",
+      "name": "「寿来」借寿整活人 / 寿数回战",
       "category": "mem",
       "tags": [
         "整活",
@@ -479,12 +479,12 @@
         "赛博祈愿"
       ],
       "dims": {
-        "EE": 72,
-        "ST": 78,
-        "AC": 66,
-        "HX": 58,
-        "RB": 76,
-        "SR": 88
+        "EE": 59,
+        "ST": 80,
+        "AC": 80,
+        "HX": 84,
+        "RB": 94,
+        "SR": 94
       },
       "desc": "由「随机挑一名路人借寿」的整蛊短视频演化出的评论区接力玩法：一方喊「寿来~」，另一方必须回「寿回」反制，进而发展出一整套术式攻防。真正的乐趣不在视频，而在于把一件完全无意义的事，硬是玩成可攻可守的语法。取的是「愿为无聊事投入多少」这一抽象层，不涉及原视频的借寿概念与任何真实长者形象。",
       "cardType": "text",
@@ -503,11 +503,11 @@
       },
       "usageNote": "只取「祈愿类荒诞句式」的抽象层（钱来/薪来/假来），不得出现「借寿」概念、封建迷信表述、真实老人形象或《咒术回战》术语。",
       "rarity": "limited",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（limited）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "mem-jiupaige-014",
-      "name": "「这种场面我还是在控制」",
+      "name": "「做完你的做你的」鸡排主理人李俊永",
       "category": "mem",
       "tags": [
         "被催进度",
@@ -517,12 +517,12 @@
         "口头禅"
       ],
       "dims": {
-        "EE": 66,
-        "ST": 72,
-        "AC": 84,
-        "HX": 46,
-        "RB": 32,
-        "SR": 62
+        "EE": 62,
+        "ST": 73,
+        "AC": 94,
+        "HX": 66,
+        "RB": 31,
+        "SR": 82
       },
       "desc": "客流高峰时安抚催单顾客的一句话：「做完你的，做你的……这种场面我还是在控制」。把忙到失控包装成我在掌控，恰好击中多任务并行、被追着要结果时的自我安慰。取的是句式层——越是手忙脚乱，越要说一句稳得住。",
       "cardType": "text",
@@ -539,13 +539,13 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "真实个人，只可用句式，不可出现其姓名、肖像或具体店铺指向，避免被读作对个体经营的评判。",
+      "usageNote": "可使用其姓名与该句式；不涉或其经营做负面评价，不作贬损性描述。",
       "rarity": "common",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "mem-zhuzhiwen-015",
-      "name": "「你就是 XX」",
+      "name": "朱之文（大衣哥）与「你就是朱之文」句式",
       "category": "mem",
       "tags": [
         "万能否定",
@@ -555,12 +555,12 @@
         "句式梗"
       ],
       "dims": {
-        "EE": 54,
-        "ST": 80,
-        "AC": 48,
-        "HX": 42,
-        "RB": 44,
-        "SR": 70
+        "EE": 49,
+        "ST": 84,
+        "AC": 65,
+        "HX": 60,
+        "RB": 48,
+        "SR": 89
       },
       "desc": "面对反复刷屏、不愿相信的说法，回一句「你就是 XX」——你说是就是，反正离谱。原本出自直播中博主对刷名粉丝的回应，因语气被剪成切片而传开。它的妙处在于既否定了对方，又不带火气，把荒诞认证做成了一句通用句式。",
       "cardType": "text",
@@ -577,13 +577,13 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "梗含对个体出身的嘲弄成分，文案禁用任何贬损指向；只取「你就是 XX」这一通用句式，不涉具体人名。",
+      "usageNote": "可使用其姓名与该句式；文案禁用任何贬损性或阶层调侃指向。",
       "rarity": "common",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "mem-gaonai-016",
-      "name": "保质期永久的不存在商品",
+      "name": "「野生狗奶」吴川才子招茂才",
       "category": "mem",
       "tags": [
         "荒诞设定",
@@ -593,12 +593,12 @@
         "胡说八道"
       ],
       "dims": {
-        "EE": 62,
-        "ST": 76,
-        "AC": 40,
-        "HX": 84,
-        "RB": 68,
-        "SR": 46
+        "EE": 49,
+        "ST": 83,
+        "AC": 49,
+        "HX": 94,
+        "RB": 86,
+        "SR": 64
       },
       "desc": "自制整蛊道具上，保质期一栏赫然写着「永久」。一个本不存在的东西，被赋予了对时间的承诺，于是网友开始用最庄严的修辞讨论它——人类畏惧时间，时间畏惧它。取的是「给荒诞物配上庄严修辞」这一层，用一本正经的胡说八道制造反差。",
       "cardType": "text",
@@ -615,13 +615,13 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "真实博主，不用姓名与肖像；原梗的具体商品表述易被读作低俗，只取「保质期永久的不存在商品」这一抽象层。",
+      "usageNote": "可使用其姓名与道具梗；文案不作低俗化或贬损性描述。",
       "rarity": "rare",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（rare）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "mem-tianjia-017",
-      "name": "误闯天家",
+      "name": "蔡有福 / 「误闯天家」",
       "category": "mem",
       "tags": [
         "肢体失调",
@@ -631,12 +631,12 @@
         "笨拙真实"
       ],
       "dims": {
-        "EE": 84,
+        "EE": 81,
         "ST": 68,
-        "AC": 74,
-        "HX": 38,
-        "RB": 82,
-        "SR": 90
+        "AC": 88,
+        "HX": 54,
+        "RB": 94,
+        "SR": 94
       },
       "desc": "一句原本写尽阶层困局与命运无力的悲情戏腔，被一套四肢不协调的手势动作彻底消解，变成无需负担的肢体狂欢。协调性为零但自信满格，用最笨拙的动作把最沉重的话跳成最轻的快乐——这恰好是反优绩主义情绪最直白的出口。",
       "cardType": "text",
@@ -653,13 +653,13 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "涉多位真实在世艺人，一律不得使用姓名、肖像与视频切片；原曲受版权保护不可内置。只取「把一句沉重的话跳成无意义的快乐」这一机制层。",
+      "usageNote": "可使用相关艺人与舞者姓名；不引用受版权保护的音频，不作贬损性描述。",
       "rarity": "common",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "mem-papijiang-019",
-      "name": "「你的品位配不上我」",
+      "name": "papi酱《生气了》「OMG 你吓到我了」",
       "category": "mem",
       "tags": [
         "审美优越感",
@@ -669,12 +669,12 @@
         "直白吐槽"
       ],
       "dims": {
-        "EE": 88,
-        "ST": 86,
-        "AC": 52,
-        "HX": 44,
-        "RB": 58,
-        "SR": 64
+        "EE": 74,
+        "ST": 76,
+        "AC": 67,
+        "HX": 67,
+        "RB": 61,
+        "SR": 80
       },
       "desc": "一段复古唱腔配上「你的品位配不上我啊」「OMG 你吓到我了」的直白吐槽，被从原语境里剥离后，成了可以随意填充情绪的万能背景音——审美不合、朋友塌房、被人为难，一句就全部承接。把不满包装成娇嗔，是它最好用的地方。",
       "cardType": "text",
@@ -691,13 +691,13 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "音乐作品受版权保护，产品内不得内置该音频，只能引用文字句式；真实创作者，不用其肖像；避免写成对用户品味的贬损。",
+      "usageNote": "可使用创作者姓名与歌词句式；产品内不内置受版权保护的音频。",
       "rarity": "limited",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（limited）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "mem-lanlao-020",
-      "name": "万能燃系 BGM 收尾",
+      "name": "揽佬 / 「中国人能飞」",
       "category": "mem",
       "tags": [
         "土味直白",
@@ -707,12 +707,12 @@
         "视频收尾"
       ],
       "dims": {
-        "EE": 90,
-        "ST": 88,
-        "AC": 62,
-        "HX": 30,
-        "RB": 40,
-        "SR": 74
+        "EE": 72,
+        "ST": 76,
+        "AC": 74,
+        "HX": 60,
+        "RB": 50,
+        "SR": 82
       },
       "desc": "一段粗粝口音配洋气电音的魔性副歌，被官方媒体拿去做航天与战机的背景乐之后彻底放飞，从此成了「一切视频结尾都能接上」的燃点模板。唱的人自己唱到一半绷不住笑了——把「燃」做得很廉价，反而是它最真诚的地方。",
       "cardType": "text",
@@ -729,13 +729,13 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "原曲含第三方采样，不得内置音频；原歌词涉民族与国籍表述，本产品不得引用歌词本身。只取「用魔性 BGM 收尾一切视频」这一现象层。",
+      "usageNote": "可使用其姓名；原曲含第三方采样不内置音频，原歌词涉民族表述本产品不引用。",
       "rarity": "limited",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（limited）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "mem-podcast-022",
-      "name": "愿意把话听完的人",
+      "name": "视频播客：一次正常的对谈为什么会火",
       "category": "mem",
       "tags": [
         "慢内容",
@@ -745,12 +745,12 @@
         "反感流水线"
       ],
       "dims": {
-        "EE": 38,
-        "ST": 62,
-        "AC": 34,
-        "HX": 88,
-        "RB": 46,
-        "SR": 58
+        "EE": 32,
+        "ST": 60,
+        "AC": 53,
+        "HX": 94,
+        "RB": 51,
+        "SR": 78
       },
       "desc": "当所有内容都在催你快给结论时，还有一类节目允许一个人「没有那么快」——停顿、回忆、改口，甚至说着说着说不下去。这种不完美在高度包装的媒介里反而成了可信的信号。它的核心是：愿不愿意听完一段没有结论的对话。",
       "cardType": "text",
@@ -767,13 +767,13 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "涉大量真实人物，一律不用姓名、肖像、节目画面与音频；不引用具体播放数字；不得娱乐化引用任何健康与私人创伤相关表述。",
+      "usageNote": "可提及节目与嘉宾姓名；不得娱乐化引用任何健康与私人创伤相关表述。",
       "rarity": "hidden",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（hidden）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "an-xiongda-004",
-      "name": "回头一眼的沉默审判",
+      "name": "熊大（回眸）",
       "category": "an",
       "tags": [
         "看破不说破",
@@ -783,12 +783,12 @@
         "似笑非笑"
       ],
       "dims": {
-        "EE": 40,
-        "ST": 36,
-        "AC": 28,
-        "HX": 74,
-        "RB": 52,
-        "SR": 30
+        "EE": 35,
+        "ST": 24,
+        "AC": 48,
+        "HX": 94,
+        "RB": 59,
+        "SR": 53
       },
       "desc": "一个慢悠悠的回眸，眼神里却满是故事——似笑非笑，带着看透一切又略带嘲讽的复杂情绪。它不发一言却完成了全部评价，用来回应一切离谱发言再合适不过。核心不是说了什么，而是「我看明白了，但我不想多说」。",
       "cardType": "text",
@@ -807,11 +807,11 @@
       },
       "usageNote": "原作为第三方 IP，不得使用官方画面与造型；「回眸」的表情语义与「对话式梗图」结构为通用形式，可安全使用原创形象表达。",
       "rarity": "common",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "sd-fendelin-006",
-      "name": "不敢签长期合同的人",
+      "name": "周晟安 / 白清枚（《盛夏芬德拉》）",
       "category": "sd",
       "tags": [
         "亲密恐惧",
@@ -821,12 +821,12 @@
         "细水长流"
       ],
       "dims": {
-        "EE": 56,
-        "ST": 48,
-        "AC": 42,
-        "HX": 86,
-        "RB": 38,
-        "SR": 52
+        "EE": 51,
+        "ST": 40,
+        "AC": 60,
+        "HX": 94,
+        "RB": 40,
+        "SR": 73
       },
       "desc": "爱是真的，但一想到要把关系写进长期合同就想退。因成长里见过的悲剧而先验地恐惧婚姻，把退缩当成自我保护；需要被成就，而不是被占有。典型的表现是：分开之后，才终于学会把话说出口。",
       "cardType": "text",
@@ -843,13 +843,13 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "真实演员与剧集版权，肖像、画面、剧本、角色设定均不可用；原剧音乐受版权保护不可内置。只取「先婚后爱但双方都怕受伤」这一关系原型做原创人格卡。",
+      "usageNote": "可使用剧名与角色名；不内置受版权保护的音乐。",
       "rarity": "limited",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（limited）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "sd-guaiguai-007",
-      "name": "用乖巧当武器",
+      "name": "鹿鸣于 / 段休冥（《好一个乖乖女》）",
       "category": "sd",
       "tags": [
         "温顺外壳",
@@ -859,12 +859,12 @@
         "攻击性内藏"
       ],
       "dims": {
-        "EE": 44,
-        "ST": 34,
-        "AC": 88,
-        "HX": 92,
-        "RB": 74,
-        "SR": 40
+        "EE": 39,
+        "ST": 21,
+        "AC": 94,
+        "HX": 94,
+        "RB": 90,
+        "SR": 62
       },
       "desc": "看起来是寄人篱下的温顺乖乖女，实则在被磋磨多年后步步为营、暗中筹谋。她把乖巧穿在身上当武器，把温柔当战术，坚信自救优先于被拯救——真正的攻击性，全藏在最没攻击性的那层壳里。",
       "cardType": "text",
@@ -881,13 +881,13 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "真实演员与剧集版权，肖像与画面均不可用。只取「用乖巧做武器、自救优先」这一人格原型。",
+      "usageNote": "可使用剧名与角色名；不作贬损性描述。",
       "rarity": "rare",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（rare）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "sd-aipop-009",
-      "name": "为不存在的完美上头",
+      "name": "韩道勋 / 权时宪 / 李宰现（AI 偶像剧《漂亮的恶意》）",
       "category": "sd",
       "tags": [
         "理想化投射",
@@ -897,12 +897,12 @@
         "爽感成瘾"
       ],
       "dims": {
-        "EE": 82,
-        "ST": 60,
-        "AC": 46,
-        "HX": 36,
-        "RB": 30,
-        "SR": 68
+        "EE": 79,
+        "ST": 57,
+        "AC": 64,
+        "HX": 51,
+        "RB": 28,
+        "SR": 87
       },
       "desc": "明知道那些完美人设不存在、明知道每一句台词都是套路，依然会被颜值一击即中，心甘情愿地继续看下去。把理想爱情具象化到极致，把套路当舒适区——不是被骗，是主动选择上头。",
       "cardType": "text",
@@ -919,13 +919,13 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "创作者与角色均为真实或第三方设定，不使用姓名、肖像与画面。只取「你会为不存在的完美人设上头吗」这一心理原型。",
+      "usageNote": "可使用剧集与角色名；不作贬损性描述。",
       "rarity": "limited",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（limited）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "sd-nvxiangshi-010",
-      "name": "为苍生破例的人",
+      "name": "龙问心 / 萧彻 / 卫凛（《女相师》）",
       "category": "sd",
       "tags": [
         "神性与人性",
@@ -935,12 +935,12 @@
         "为谁破例"
       ],
       "dims": {
-        "EE": 64,
-        "ST": 58,
-        "AC": 92,
-        "HX": 80,
-        "RB": 66,
-        "SR": 44
+        "EE": 60,
+        "ST": 54,
+        "AC": 94,
+        "HX": 94,
+        "RB": 79,
+        "SR": 66
       },
       "desc": "六十年前为挽天倾献祭自我，六十年后重返人间踏上逆行之路。把规矩和底线看得比输赢更重，看似无情，实则比谁都在意——神性与人性的拉扯，最终落在一个问题上：你会为谁破例。",
       "cardType": "text",
@@ -957,13 +957,13 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "剧集与角色设定属制片方版权，不使用画面与造型。只取「为苍生逆天而为、把底线看得比输赢重」这一人格原型。",
+      "usageNote": "可使用剧名与角色名；不作贬损性描述。",
       "rarity": "rare",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（rare）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "es-donk-001",
-      "name": "顺风不松的人",
+      "name": "donk（Danil Kryshkovets / Team Spirit，CS2）",
       "category": "es",
       "tags": [
         "统治力",
@@ -973,12 +973,12 @@
         "不装全能"
       ],
       "dims": {
-        "EE": 46,
-        "ST": 40,
+        "EE": 41,
+        "ST": 29,
         "AC": 94,
-        "HX": 62,
+        "HX": 90,
         "RB": 34,
-        "SR": 36
+        "SR": 58
       },
       "desc": "极端稳定的统治力，越到淘汰赛越强。难的不是达到某个高度，而是在已经赢下一切之后依然不松手。火力项满分，某些细项却只有及格——他不装全能，只把自己那一块做到极致。",
       "cardType": "text",
@@ -995,13 +995,13 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "真实公众人物，不使用姓名、肖像与比赛画面。只取「你在顺风时会不会松」这一行为倾向。",
+      "usageNote": "可使用其姓名与战队；客观描述竞技表现，不作人身攻击。",
       "rarity": "common",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "es-jee-002",
-      "name": "冷门赛道上的独苗",
+      "name": "Jee（季冬凯 / TYLOO，CS2）",
       "category": "es",
       "tags": [
         "主场压力",
@@ -1011,12 +1011,12 @@
         "韧性"
       ],
       "dims": {
-        "EE": 68,
-        "ST": 44,
-        "AC": 82,
-        "HX": 70,
-        "RB": 48,
-        "SR": 38
+        "EE": 64,
+        "ST": 35,
+        "AC": 94,
+        "HX": 94,
+        "RB": 54,
+        "SR": 60
       },
       "desc": "在一个几乎没人看的赛道上，把自己练到最好。背着主场所有人的期待，也经历过病愈归来重新站回位置。最难的从来不是技术，而是明知道没人看，还愿意每天再来一次。",
       "cardType": "text",
@@ -1033,13 +1033,13 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "真实公众人物，不使用姓名、肖像与比赛画面。只取「你会为冷门赛道拼命吗」这一行为倾向。",
+      "usageNote": "可使用其姓名与战队；客观描述竞技表现，不作人身攻击。",
       "rarity": "common",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "es-369-003",
-      "name": "被叫回去救火的人",
+      "name": "369（TES / 英雄联盟）",
       "category": "es",
       "tags": [
         "临危受命",
@@ -1049,12 +1049,12 @@
         "需要资源"
       ],
       "dims": {
-        "EE": 74,
-        "ST": 46,
-        "AC": 90,
-        "HX": 68,
-        "RB": 56,
-        "SR": 42
+        "EE": 70,
+        "ST": 38,
+        "AC": 94,
+        "HX": 94,
+        "RB": 65,
+        "SR": 64
       },
       "desc": "本来是打算退一步的人，又被叫回来顶住局面。既然可能是最后一次，那就干脆放开打——输赢当场定，敬意不过夜。他不是不需要支持的那种人，需要队友把资源喂到位才能发挥到最好，但这不妨碍他在最关键的时候站住。",
       "cardType": "text",
@@ -1071,13 +1071,13 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "真实公众人物，不使用姓名、肖像与比赛画面。只取「你会不会被叫去做一件你本想放弃的事」这一处境原型。",
+      "usageNote": "可使用其姓名与战队；客观描述竞技表现，不作人身攻击。",
       "rarity": "rare",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（rare）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "es-faker-004",
-      "name": "长期不下线的人",
+      "name": "Faker（T1 / 英雄联盟）",
       "category": "es",
       "tags": [
         "常青",
@@ -1087,12 +1087,12 @@
         "弱项也不弱"
       ],
       "dims": {
-        "EE": 42,
-        "ST": 38,
-        "AC": 86,
-        "HX": 90,
-        "RB": 28,
-        "SR": 48
+        "EE": 37,
+        "ST": 27,
+        "AC": 94,
+        "HX": 94,
+        "RB": 26,
+        "SR": 69
       },
       "desc": "竞技状态长期不下线，英雄池深到几乎没有短板可言——连公认最弱的那一项，放在同行里也仍然靠前。靠的不是某一次爆发，而是十几年如一日把每件事重复做好。天赋和积累，在他身上分不太清。",
       "cardType": "text",
@@ -1109,13 +1109,13 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "真实公众人物，不使用姓名、肖像与比赛画面。只取「天赋型 vs 积累型」这一倾向。",
+      "usageNote": "可使用其姓名与战队；客观描述竞技表现，不作人身攻击。",
       "rarity": "common",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     },
     {
       "id": "es-chovy-005",
-      "name": "稳定到近乎无趣的人",
+      "name": "Chovy（GEN / 英雄联盟）",
       "category": "es",
       "tags": [
         "复利型",
@@ -1125,12 +1125,12 @@
         "长青"
       ],
       "dims": {
-        "EE": 36,
-        "ST": 32,
-        "AC": 78,
-        "HX": 88,
-        "RB": 26,
-        "SR": 40
+        "EE": 30,
+        "ST": 19,
+        "AC": 91,
+        "HX": 94,
+        "RB": 23,
+        "SR": 62
       },
       "desc": "稳定得近乎无趣，但几乎从不崩。被讨论的永远是他的上限还能多高，而不是下限会不会掉——因为下限本身就已经高到没什么可说的。换一支队伍，他照样能往前走，这是一条靠复利而不是靠爆发的曲线。",
       "cardType": "text",
@@ -1147,9 +1147,1787 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "真实公众人物，不使用姓名、肖像与比赛画面。只取「爆发型 vs 复利型」这一倾向。",
+      "usageNote": "可使用其姓名与战队；客观描述竞技表现，不作人身攻击。",
       "rarity": "common",
-      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-pangmao-002",
+      "name": "胖猫",
+      "category": "mem",
+      "tags": [
+        "传播现象",
+        "集体记忆",
+        "情绪共同体",
+        "克制",
+        "标本"
+      ],
+      "dims": {
+        "EE": 58,
+        "ST": 10,
+        "AC": 50,
+        "HX": 94,
+        "RB": 28,
+        "SR": 85
+      },
+      "desc": "一个只存在于公共记忆里的事件标本。它被反复提起，却几乎没有人拿它开玩笑——大家心照不宣地绕开情绪，只保留事实。最能体现的是「有些事你的第一反应是不说话」。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-pangmao-002.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-pangmao-002",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "作为传播现象登记，禁止娱乐化、禁止调侃当事人、不引用未经证实的细节。",
+      "rarity": "rare",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-damaige-010",
+      "name": "Michael大麦哥",
+      "category": "mem",
+      "tags": [
+        "自述",
+        "不建议匹配",
+        "边界感",
+        "反套路"
+      ],
+      "dims": {
+        "EE": 53,
+        "ST": 62,
+        "AC": 55,
+        "HX": 94,
+        "RB": 51,
+        "SR": 73
+      },
+      "desc": "一个自己先说「别把我做成可匹配卡」的人。这种主动退出反倒成了最鲜明的标签——别人抢着被记住，他抢着被划掉。罕见，且边界感极强。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-damaige-010.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-damaige-010",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "尊重本人意愿，不作调侃性人格评价，仅作现象登记。",
+      "rarity": "hidden",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-sunxiaochuan-011",
+      "name": "孙笑川 / 带带大师兄",
+      "category": "mem",
+      "tags": [
+        "抽象",
+        "直播间",
+        "背锅",
+        "梗的发源地"
+      ],
+      "dims": {
+        "EE": 82,
+        "ST": 88,
+        "AC": 48,
+        "HX": 94,
+        "RB": 94,
+        "SR": 94
+      },
+      "desc": "抽象文化的源头之一，也是一口万能的锅。别处出事，弹幕就往他身上扣；他自己则始终在被调侃和被消费之间来回。核心是那种「背锅背出经验值」的稳定输出。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-sunxiaochuan-011.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-sunxiaochuan-011",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "仅作网络文化现象描述；不煽动对具体个人的攻击，不引用争议事件细节。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-lifly-012",
+      "name": "「我叫李飞，没有脊椎」",
+      "category": "mem",
+      "tags": [
+        "自我解构",
+        "摆烂",
+        "口播",
+        "抽象"
+      ],
+      "dims": {
+        "EE": 70,
+        "ST": 84,
+        "AC": 45,
+        "HX": 75,
+        "RB": 94,
+        "SR": 69
+      },
+      "desc": "把「我站不起来」做成自我介绍的人。放弃得很彻底，也因此彻底不受威胁——你说什么他都瘫着，最后反而是你被气到。摆烂达到一定纯度就成了铠甲。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-lifly-012.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-lifly-012",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "仅取行为风格描述，不作贬损性评价。",
+      "rarity": "limited",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-jixinghang-013",
+      "name": "季洪行 & 八级哥",
+      "category": "mem",
+      "tags": [
+        "素材源",
+        "二创",
+        "模板",
+        "配音"
+      ],
+      "dims": {
+        "EE": 62,
+        "ST": 78,
+        "AC": 67,
+        "HX": 94,
+        "RB": 73,
+        "SR": 62
+      },
+      "desc": "两个本来没打算出圈的人，因为别人拿他们的素材做二创，被迫变成了全网认知里的固定形象。他们提供的是原料，被记住的却不是他们本人。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-jixinghang-013.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-jixinghang-013",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "本人形象与二创形象须区分描述，不混淆、不作贬损。",
+      "rarity": "hidden",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-zhengtai-018",
+      "name": "正太扭腰（张奕然）",
+      "category": "mem",
+      "tags": [
+        "舞蹈",
+        "出圈",
+        "争议",
+        "短视频"
+      ],
+      "dims": {
+        "EE": 65,
+        "ST": 63,
+        "AC": 77,
+        "HX": 64,
+        "RB": 75,
+        "SR": 83
+      },
+      "desc": "一个动作把一个人推上热搜，随后讨论的重点迅速偏离了动作本身。热度来得快，争议也来得快，属于那种「人还没反应过来，梗已经跑完一整圈」的类型。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-zhengtai-018.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-zhengtai-018",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "仅作现象描述，不涉争议细节，不作人身攻击。",
+      "rarity": "hidden",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "es-kpl-008",
+      "name": "KPL 十年名梗池",
+      "category": "es",
+      "tags": [
+        "电竞",
+        "名场面",
+        "群体记忆",
+        "让三追四",
+        "十年"
+      ],
+      "dims": {
+        "EE": 68,
+        "ST": 60,
+        "AC": 82,
+        "HX": 80,
+        "RB": 55,
+        "SR": 83
+      },
+      "desc": "十年攒下来的一整柜名场面：绝境翻盘、让三追四、解说破音、赛后采访金句。它不是一个具体的人，而是一代人打游戏时共同的背景音。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/es-kpl-008.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-kpl-008",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "使用赛事与选手公开信息，不编造战报，不涉赌。",
+      "rarity": "limited",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "scr-malfoy-005",
+      "name": "德拉科·马尔福 / 「马尔芙」",
+      "category": "scr",
+      "tags": [
+        "二创",
+        "性转",
+        "争议角色",
+        "同人"
+      ],
+      "dims": {
+        "EE": 54,
+        "ST": 85,
+        "AC": 59,
+        "HX": 94,
+        "RB": 89,
+        "SR": 57
+      },
+      "desc": "一个被同人二创彻底改写的角色：原作里的对立面，在二创里变成了另一种存在。角色没变，看的人变了——这是同人文化最擅长也最有争议的那件事。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/scr-malfoy-005.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#scr-malfoy-005",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "同人二创与原作须区分描述，不涉未成年相关表述。",
+      "rarity": "rare",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "sd-enemy-008",
+      "name": "陈桥头 / 陈巷口（「梨园双星」）",
+      "category": "sd",
+      "tags": [
+        "短剧",
+        "戏班",
+        "双男主",
+        "题材敏感"
+      ],
+      "dims": {
+        "EE": 63,
+        "ST": 51,
+        "AC": 94,
+        "HX": 94,
+        "RB": 63,
+        "SR": 68
+      },
+      "desc": "戏台上的两个人，一个唱念做打，一个把枪口对准别处。题材本身让它的讨论度远高于剧情热度——很多人是先知道有争议，才去看的剧。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/sd-enemy-008.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#sd-enemy-008",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "涉历史题材，仅作剧集角色描述，不涉具体历史评价。",
+      "rarity": "hidden",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "gm-ahha-011",
+      "name": "阿哈 / 明河",
+      "category": "gm",
+      "tags": [
+        "游戏",
+        "虚拟角色",
+        "玩梗",
+        "抽卡"
+      ],
+      "dims": {
+        "EE": 71,
+        "ST": 78,
+        "AC": 52,
+        "HX": 94,
+        "RB": 78,
+        "SR": 52
+      },
+      "desc": "一个把「乐子」当本职工作，一个把「摆烂」当生存策略。共同点是：玩家抽到的不是角色，是一整套现成的情绪代餐。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/gm-ahha-011.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#gm-ahha-011",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "游戏角色，仅作设定描述，不涉及抽卡诱导与付费内容。",
+      "rarity": "limited",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "es-ig-006",
+      "name": "TheShy / Rookie / Wei / JiaQi / Meiko（iG）",
+      "category": "es",
+      "tags": [
+        "电竞",
+        "战队",
+        "合并卡",
+        "五个人"
+      ],
+      "dims": {
+        "EE": 64,
+        "ST": 54,
+        "AC": 94,
+        "HX": 90,
+        "RB": 54,
+        "SR": 84
+      },
+      "desc": "五个人凑成一张卡，因为单独拆开谁都不完整。有人靠操作，有人靠指挥，有人靠一个眼神。真正的看点是：他们分开都不算最强，凑在一起就能赢。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/es-ig-006.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-ig-006",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "合并卡；使用公开赛事信息，不编造赛果。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "es-bin-007",
+      "name": "「卧槽，冰！」（Bin / 山泥若）",
+      "category": "es",
+      "tags": [
+        "电竞",
+        "名场面",
+        "解说",
+        "口癖"
+      ],
+      "dims": {
+        "EE": 91,
+        "ST": 94,
+        "AC": 67,
+        "HX": 52,
+        "RB": 78,
+        "SR": 94
+      },
+      "desc": "一句解说破音，被剪成一万条二创。它证明了一件事：在电竞语境里，最有传播力的往往不是操作，而是那一秒钟失控的语气。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/es-bin-007.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-bin-007",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "使用公开赛事与解说信息；山泥若涉赌禁赛，不涉赌、不美化。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "intp-trump-001",
+      "name": "唐纳德·特朗普（AI 梗图载体）",
+      "category": "intp",
+      "tags": [
+        "梗图",
+        "二创",
+        "政治人物",
+        "公开形象"
+      ],
+      "dims": {
+        "EE": 89,
+        "ST": 94,
+        "AC": 81,
+        "HX": 72,
+        "RB": 94,
+        "SR": 94
+      },
+      "desc": "在梗图宇宙里，他早就不只是一个人，而是一种「把话说得特别大」的表现手法。AI 二创把他做成各种形态，本尊什么样反而不重要了。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/intp-trump-001.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#intp-trump-001",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "仅作公开文化形象与 AI 梗图现象描述；不涉政治立场、不作政治评价、不涉现实争议事件。",
+      "rarity": "limited",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "intp-musk-002",
+      "name": "埃隆·马斯克",
+      "category": "intp",
+      "tags": [
+        "公众人物",
+        "梗图",
+        "反差",
+        "社交媒体"
+      ],
+      "dims": {
+        "EE": 75,
+        "ST": 94,
+        "AC": 91,
+        "HX": 94,
+        "RB": 94,
+        "SR": 94
+      },
+      "desc": "上一秒谈火星，下一秒在评论区发一个自制表情包。公众形象里最鲜明的不是他的事业，而是那种「明明很忙却偏偏要下场对线」的反差。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/intp-musk-002.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#intp-musk-002",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "仅作公开形象与网络现象描述；不涉企业经营评价，不涉政治立场。",
+      "rarity": "limited",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "intp-jensen-003",
+      "name": "黄仁勋（「夹克勋」）",
+      "category": "intp",
+      "tags": [
+        "公众人物",
+        "夹克",
+        "算力",
+        "饭局"
+      ],
+      "dims": {
+        "EE": 58,
+        "ST": 65,
+        "AC": 94,
+        "HX": 84,
+        "RB": 42,
+        "SR": 89
+      },
+      "desc": "一件皮夹克穿了十几年，成了比发布会更有辨识度的东西。他在梗图里的形象高度统一：夹克、微笑、还有一句听起来永远在推销算力的话。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/intp-jensen-003.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#intp-jensen-003",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "仅作公开形象与网络玩梗描述；不涉公司经营与商业评价。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "oth-burntpeanut-004",
+      "name": "TheBurntPeanut（Twitch）",
+      "category": "oth",
+      "tags": [
+        "海外主播",
+        "反差",
+        "抽象",
+        "外语区"
+      ],
+      "dims": {
+        "EE": 74,
+        "ST": 90,
+        "AC": 63,
+        "HX": 90,
+        "RB": 94,
+        "SR": 76
+      },
+      "desc": "外网主播在本土化二创里的样子：原声被剪走，配上一套完全不对的中文字幕，反而比原片好笑。属于「漂洋过海一趟，回来认不出了」的典型。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/oth-burntpeanut-004.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#oth-burntpeanut-004",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "海外主播，仅作网络传播现象描述。",
+      "rarity": "hidden",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-zhinengti-023",
+      "name": "「你是个 AI」",
+      "category": "mem",
+      "tags": [
+        "身份反问",
+        "被识破",
+        "人机",
+        "嘴硬"
+      ],
+      "dims": {
+        "EE": 60,
+        "ST": 94,
+        "AC": 50,
+        "HX": 77,
+        "RB": 74,
+        "SR": 64
+      },
+      "desc": "和人聊了半天，对方一句「你是不是 AI」，瞬间破防。它的通用价值在于：任何一段对话被戳穿时，这句话都能当收尾。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-zhinengti-023.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-kapibala-024",
+      "name": "卡皮巴拉（水豚）",
+      "category": "mem",
+      "tags": [
+        "松弛",
+        "情绪稳定",
+        "动物",
+        "佛系"
+      ],
+      "dims": {
+        "EE": 11,
+        "ST": 8,
+        "AC": 38,
+        "HX": 94,
+        "RB": 17,
+        "SR": 80
+      },
+      "desc": "烫不烫、挤不挤、旁边有没有鳄鱼，它都这个表情。当代人追求的「情绪稳定」如果有实物，大概就长这样。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-kapibala-024.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-malou-025",
+      "name": "吗喽",
+      "category": "mem",
+      "tags": [
+        "自嘲",
+        "打工人",
+        "猴子",
+        "认命"
+      ],
+      "dims": {
+        "EE": 50,
+        "ST": 24,
+        "AC": 40,
+        "HX": 74,
+        "RB": 68,
+        "SR": 58
+      },
+      "desc": "从「打工人」进化来的自我称呼：我不惨，我就是只猴。把认命做到轻快，是它最厉害的地方。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-malou-025.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-shushu-026",
+      "name": "鼠鼠",
+      "category": "mem",
+      "tags": [
+        "自谦",
+        "社恐",
+        "低调",
+        "认怂"
+      ],
+      "dims": {
+        "EE": 50,
+        "ST": 41,
+        "AC": 56,
+        "HX": 81,
+        "RB": 46,
+        "SR": 61
+      },
+      "desc": "管自己叫鼠，把所有期待值先降到地面以下。这样一来，任何一点小确幸都是赚的。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-shushu-026.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-bushi-027",
+      "name": "不是哥们",
+      "category": "mem",
+      "tags": [
+        "反驳",
+        "急眼",
+        "口头禅",
+        "对线"
+      ],
+      "dims": {
+        "EE": 88,
+        "ST": 94,
+        "AC": 76,
+        "HX": 27,
+        "RB": 89,
+        "SR": 76
+      },
+      "desc": "三个字，一句完整的不满。它不需要理由，也不需要听完对方说完——先「不是哥们」再思考，是这套话术的精髓。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-bushi-027.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-dabuliu-028",
+      "name": "「我不溜」",
+      "category": "mem",
+      "tags": [
+        "坚持",
+        "嘴硬",
+        "不服",
+        "硬撑"
+      ],
+      "dims": {
+        "EE": 70,
+        "ST": 54,
+        "AC": 94,
+        "HX": 42,
+        "RB": 79,
+        "SR": 58
+      },
+      "desc": "被打了一百次，爬起来第一百零一次，边爬边说我还能打。意志力和判断力经常不成正比，这就是最典型的样子。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-dabuliu-028.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "limited",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-zaigao-029",
+      "name": "「在搞了」",
+      "category": "mem",
+      "tags": [
+        "拖延",
+        "回复模板",
+        "打工人",
+        "进度焦虑"
+      ],
+      "dims": {
+        "EE": 37,
+        "ST": 40,
+        "AC": 53,
+        "HX": 90,
+        "RB": 28,
+        "SR": 66
+      },
+      "desc": "工作群里最万能的两个字。它既没答应什么，也没拒绝什么，唯一的功能是让对方暂时闭嘴，而你赢得了一个下午。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-zaigao-029.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-juejuezi-030",
+      "name": "「绝绝子」",
+      "category": "mem",
+      "tags": [
+        "夸赞",
+        "语缀",
+        "网络口语",
+        "夸张"
+      ],
+      "dims": {
+        "EE": 68,
+        "ST": 76,
+        "AC": 67,
+        "HX": 57,
+        "RB": 48,
+        "SR": 82
+      },
+      "desc": "任何东西后面加三个字就完成了夸奖。方便，也确实省事——省到后来大家都忘了原来想夸什么。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-juejuezi-030.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "limited",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-yyds-031",
+      "name": "永远的神",
+      "category": "mem",
+      "tags": [
+        "缩写",
+        "崇拜",
+        "网络口语",
+        "夸张"
+      ],
+      "dims": {
+        "EE": 81,
+        "ST": 84,
+        "AC": 60,
+        "HX": 42,
+        "RB": 26,
+        "SR": 89
+      },
+      "desc": "四个字母解决一切赞美。用久了会有一种错觉：好像只要打上这四个字，就真的承认了对方的地位。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-yyds-031.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-nizizi-032",
+      "name": "「你自己想想吧」",
+      "category": "mem",
+      "tags": [
+        "阴阳",
+        "话术",
+        "回避",
+        "不说透"
+      ],
+      "dims": {
+        "EE": 49,
+        "ST": 32,
+        "AC": 43,
+        "HX": 94,
+        "RB": 54,
+        "SR": 55
+      },
+      "desc": "一句把责任完整推回去的万能句。它不说观点、不做评价，但能让对方在自己脑子里演完一整集。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-nizizi-032.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "rare",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-handong-033",
+      "name": "「汗流浃背了吧」",
+      "category": "mem",
+      "tags": [
+        "紧张",
+        "被说中",
+        "调侃",
+        "口癖"
+      ],
+      "dims": {
+        "EE": 75,
+        "ST": 81,
+        "AC": 51,
+        "HX": 60,
+        "RB": 63,
+        "SR": 76
+      },
+      "desc": "看到别人开始紧张，就说一句。它像是旁观者的温柔嘲讽：我不是要你难堪，我只是想让你知道我看出来了。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-handong-033.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-yinyang-035",
+      "name": "阴阳怪气大师",
+      "category": "mem",
+      "tags": [
+        "嘴替",
+        "反讽",
+        "不带脏字",
+        "攻击性"
+      ],
+      "dims": {
+        "EE": 58,
+        "ST": 94,
+        "AC": 62,
+        "HX": 94,
+        "RB": 94,
+        "SR": 60
+      },
+      "desc": "从不骂人，但每句话都精准落在对方的薄弱处。攻击性被包装成礼貌，等到对方反应过来，话已经说完了。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-yinyang-035.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "rare",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-tuogao-036",
+      "name": "「拖稿型创作者」",
+      "category": "mem",
+      "tags": [
+        "拖延",
+        "灵感",
+        "自嘲",
+        "创作者"
+      ],
+      "dims": {
+        "EE": 53,
+        "ST": 60,
+        "AC": 39,
+        "HX": 94,
+        "RB": 59,
+        "SR": 53
+      },
+      "desc": "稿子永远在「快好了」和「还没开始」之间。最神奇的是，拖到最后一晚做出来的东西，常常也不差——这让拖延变得更加理直气壮。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-tuogao-036.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "limited",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-changbei-037",
+      "name": "「常被误会的人」",
+      "category": "mem",
+      "tags": [
+        "被误读",
+        "解释不清",
+        "委屈",
+        "克制"
+      ],
+      "dims": {
+        "EE": 58,
+        "ST": 46,
+        "AC": 62,
+        "HX": 84,
+        "RB": 54,
+        "SR": 63
+      },
+      "desc": "想说的永远说不完整，说完整的也没人信。最后习惯了不解释——反正解释也是一种误会的素材。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-changbei-037.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "hidden",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "an-konglong-005",
+      "name": "霸王龙（短手）",
+      "category": "an",
+      "tags": [
+        "动物",
+        "反差",
+        "自嘲",
+        "够不着"
+      ],
+      "dims": {
+        "EE": 67,
+        "ST": 43,
+        "AC": 94,
+        "HX": 52,
+        "RB": 78,
+        "SR": 46
+      },
+      "desc": "体型全场最大，手却最短。想抱抱抱不到，想吃吃不着——一个把「无能为力」写在基因里的角色。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/an-konglong-005.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "an-tuzi-006",
+      "name": "兔子（急了也咬人）",
+      "category": "an",
+      "tags": [
+        "温和",
+        "底线",
+        "反差",
+        "暴起"
+      ],
+      "dims": {
+        "EE": 47,
+        "ST": 29,
+        "AC": 82,
+        "HX": 81,
+        "RB": 70,
+        "SR": 67
+      },
+      "desc": "平时最好说话，被逼到墙角也会咬人。它证明了一件事：温和不是没脾气，只是没到那个点。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/an-tuzi-006.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "an-maotouying-007",
+      "name": "猫头鹰（熬夜冠军）",
+      "category": "an",
+      "tags": [
+        "夜行",
+        "清醒",
+        "旁观",
+        "深夜"
+      ],
+      "dims": {
+        "EE": 28,
+        "ST": 60,
+        "AC": 57,
+        "HX": 94,
+        "RB": 48,
+        "SR": 46
+      },
+      "desc": "别人都睡了，它清醒得像个审核员。深夜的思考总是格外深刻，第二天早上又全部作废。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/an-maotouying-007.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "limited",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "an-xiaogou-008",
+      "name": "「被夸奖就摇尾巴」",
+      "category": "an",
+      "tags": [
+        "正反馈",
+        "单纯",
+        "直球",
+        "讨好"
+      ],
+      "dims": {
+        "EE": 85,
+        "ST": 87,
+        "AC": 70,
+        "HX": 33,
+        "RB": 23,
+        "SR": 94
+      },
+      "desc": "给一点回应就能开心一整天。这种性格在人际里既吃亏又被偏爱——因为真的太容易被看透了。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/an-xiaogou-008.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "an-mao-009",
+      "name": "「猫的拒绝」",
+      "category": "an",
+      "tags": [
+        "边界感",
+        "高冷",
+        "拒绝",
+        "独立"
+      ],
+      "dims": {
+        "EE": 24,
+        "ST": 13,
+        "AC": 43,
+        "HX": 94,
+        "RB": 90,
+        "SR": 42
+      },
+      "desc": "叫名字会回一下，摸一下就翻脸。它的社交策略是：保持可接近，但绝不放弃随时离开的权利。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/an-mao-009.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "sd-aiyao-011",
+      "name": "AI 版的「完美女二」",
+      "category": "sd",
+      "tags": [
+        "AI 漫剧",
+        "女二",
+        "完美",
+        "工具人"
+      ],
+      "dims": {
+        "EE": 56,
+        "ST": 62,
+        "AC": 86,
+        "HX": 72,
+        "RB": 31,
+        "SR": 75
+      },
+      "desc": "出场配置拉满：家世好、脾气好、长得也挑不出毛病。唯一的问题是她的存在感全靠衬托别人——观众记得她很好，但想不起她说过什么。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/sd-aiyao-011.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "limited",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "sd-aiyao-012",
+      "name": "AI 版的「霸道总裁」",
+      "category": "sd",
+      "tags": [
+        "AI 漫剧",
+        "霸总",
+        "套路",
+        "土味"
+      ],
+      "dims": {
+        "EE": 75,
+        "ST": 79,
+        "AC": 94,
+        "HX": 51,
+        "RB": 51,
+        "SR": 82
+      },
+      "desc": "永远西装、永远冷脸、永远在有滤镜的落地窗前打电话。剧情需要他强势时他就强势，需要他温柔时他就转型——本质是一套拨杆。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/sd-aiyao-012.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "sd-aiyao-013",
+      "name": "AI 版的「重生复仇大女主」",
+      "category": "sd",
+      "tags": [
+        "AI 漫剧",
+        "重生",
+        "复仇",
+        "爽感"
+      ],
+      "dims": {
+        "EE": 68,
+        "ST": 54,
+        "AC": 94,
+        "HX": 94,
+        "RB": 94,
+        "SR": 64
+      },
+      "desc": "上一世受过的委屈，这一世一样不落地还回去。她的魅力不在强，而在于终于有人把这个局掀了——观众的爽点其实是自己的。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/sd-aiyao-013.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "sd-aiyao-014",
+      "name": "AI 版的「高冷师尊」",
+      "category": "sd",
+      "tags": [
+        "AI 漫剧",
+        "师尊",
+        "克制",
+        "距离感"
+      ],
+      "dims": {
+        "EE": 30,
+        "ST": 16,
+        "AC": 74,
+        "HX": 94,
+        "RB": 34,
+        "SR": 49
+      },
+      "desc": "话少、面无波澜、永远站在山门口看云。表面无情，实际上每一次出手都算好了——克制本身就是角色最大的卖点。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/sd-aiyao-014.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "limited",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "sd-aiyao-015",
+      "name": "AI 版的「话本旁白」",
+      "category": "sd",
+      "tags": [
+        "AI 漫剧",
+        "旁白",
+        "旁观",
+        "解说"
+      ],
+      "dims": {
+        "EE": 39,
+        "ST": 94,
+        "AC": 45,
+        "HX": 94,
+        "RB": 42,
+        "SR": 51
+      },
+      "desc": "什么都不参与，但什么都要评论一句。它明明是叙述工具，却常常是整部剧里最清醒的那一个。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/sd-aiyao-015.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "hidden",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "es-qingxun-009",
+      "name": "「青训队少年」",
+      "category": "es",
+      "tags": [
+        "电竞",
+        "青训",
+        "天赋",
+        "倔强"
+      ],
+      "dims": {
+        "EE": 62,
+        "ST": 43,
+        "AC": 94,
+        "HX": 69,
+        "RB": 76,
+        "SR": 56
+      },
+      "desc": "十八岁进队，手速顶尖，沟通为零。所有人都说有天赋，所有人也都在等他学会怎么和队友说话。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/es-qingxun-009.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "limited",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "es-jiaolian-010",
+      "name": "「场边教练」",
+      "category": "es",
+      "tags": [
+        "电竞",
+        "教练",
+        "稳",
+        "兜底"
+      ],
+      "dims": {
+        "EE": 35,
+        "ST": 54,
+        "AC": 81,
+        "HX": 94,
+        "RB": 23,
+        "SR": 93
+      },
+      "desc": "赢了自己不上镜，输了自己先挨骂。他的工作是让五个年轻人在最关键的时候不再慌——稳定就是他唯一的技术。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/es-jiaolian-010.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "limited",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "es-fen-011",
+      "name": "「数据帝」",
+      "category": "es",
+      "tags": [
+        "电竞",
+        "数据",
+        "分析",
+        "客观"
+      ],
+      "dims": {
+        "EE": 39,
+        "ST": 54,
+        "AC": 67,
+        "HX": 86,
+        "RB": 49,
+        "SR": 59
+      },
+      "desc": "不看剧情看数据，不谈感受谈偏差。所有争论到他这里都会变成一张表——这让很多人不舒服，但往往只有他一个人是对的。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/es-fen-011.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "hidden",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "intp-nuwa-004",
+      "name": "「造 AI 的人」",
+      "category": "intp",
+      "tags": [
+        "科技",
+        "公众人物",
+        "反差",
+        "推新"
+      ],
+      "dims": {
+        "EE": 55,
+        "ST": 70,
+        "AC": 94,
+        "HX": 94,
+        "RB": 62,
+        "SR": 81
+      },
+      "desc": "发布会上一口气讲了两个小时，中间只喝了一口水。他最出圈的不是产品，而是那种「我知道你们听不懂但我还要讲完」的执着。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/intp-nuwa-004.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "hidden",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "intp-kaifa-005",
+      "name": "「AI 开发布会的主讲人」",
+      "category": "intp",
+      "tags": [
+        "科技",
+        "演讲",
+        "心态",
+        "增长"
+      ],
+      "dims": {
+        "EE": 53,
+        "ST": 87,
+        "AC": 88,
+        "HX": 75,
+        "RB": 48,
+        "SR": 87
+      },
+      "desc": "把一件技术性极强的事讲得像脱口秀。你未必听懂了他讲了什么，但你会觉得自己错过了一个时代。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/intp-kaifa-005.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "hidden",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-pingshenzhe-038",
+      "name": "「评论区判官」",
+      "category": "mem",
+      "tags": [
+        "点评",
+        "围观",
+        "快意",
+        "口舌"
+      ],
+      "dims": {
+        "EE": 60,
+        "ST": 84,
+        "AC": 55,
+        "HX": 94,
+        "RB": 65,
+        "SR": 94
+      },
+      "desc": "什么都要评一句，什么也都要站个队。评论区就是他的主场，一句话就能定人的高低——第二天又全部忘记。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-pingshenzhe-038.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "mem-yun-039",
+      "name": "「云玩家」",
+      "category": "mem",
+      "tags": [
+        "围观",
+        "点评",
+        "不入场",
+        "懂王"
+      ],
+      "dims": {
+        "EE": 47,
+        "ST": 79,
+        "AC": 39,
+        "HX": 87,
+        "RB": 54,
+        "SR": 66
+      },
+      "desc": "一局没玩过，但可以讲两小时攻略。属于那种用观察代替参与，并且观察得真的挺好的类型。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-yun-039.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "common",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
+    },
+    {
+      "id": "oth-shaonian-005",
+      "name": "「早期互联网的网友」",
+      "category": "oth",
+      "tags": [
+        "怀旧",
+        "古早",
+        "温和",
+        "慢"
+      ],
+      "dims": {
+        "EE": 35,
+        "ST": 35,
+        "AC": 50,
+        "HX": 94,
+        "RB": 17,
+        "SR": 69
+      },
+      "desc": "在论坛里认真回复、会用完整句子、不急着站队的那种人。放在今天的评论区，看起来像从另一个时代走过来的。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/oth-shaonian-005.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#自建补卡",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "自建补卡，仅作网络文化现象与性格原型描述；不作人身攻击，不涉造谣内容。",
+      "rarity": "hidden",
+      "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）"
     }
   ]
 }

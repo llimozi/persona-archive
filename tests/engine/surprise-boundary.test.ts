@@ -106,6 +106,21 @@ describe('意外组合层 · 池门槛开关', () => {
     expect(out.surprise).toBeNull();
   });
 
+  it('兜底分支不得返回主匹配本人（主匹配即 limited/hidden 时）', () => {
+    // 构造：主匹配 anchor 本身是 hidden、六维与用户完全一致（必然排第一），
+    // 填充卡也全在同一个分类（A 分支要求"不同分类"，必然无命中）→ 只能走 B 兜底。
+    // 若兜底扫描全表时不排除 main，就会返回 surprise === main，与「意外」定义矛盾。
+    const anchor = persona('p-anchor', 'cat-main', 'hidden', 1);
+    const fillers: EnginePersona[] = [];
+    for (let i = 0; i < 39; i += 1) {
+      fillers.push(persona(`p-same-${String(i).padStart(2, '0')}`, 'cat-main', 'hidden', 0));
+    }
+    const out = match(input({ personas: [anchor, ...fillers] }));
+    expect(out.pool.surpriseEnabled).toBe(true);
+    expect(out.surprise).not.toBeNull();
+    expect(out.surprise!.persona.id, '意外组合不得等于主匹配本人').not.toBe(out.main!.persona.id);
+  });
+
   it('池 40 人（门槛边界，含等号）→ surpriseEnabled=true，层被启用', () => {
     const out = match(input({ personas: bigPool(40, []) }));
     expect(out.pool.size).toBe(40);
