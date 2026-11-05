@@ -24,8 +24,8 @@
         "SR": 44
       },
       "desc": "国产同名子供向 3D 动画主角，设定为来自异星的小恐龙。被无孔不入的宣发和 AI 批量二创推到人人可见，又因过度曝光引发成人圈层的集体逆反，官方越禁止越被玩。适合做「你是被什么激怒的」这条轴。",
-      "cardType": "text",
-      "placeholder": true,
+      "cardType": "image",
+      "placeholder": false,
       "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-nailong-001",
       "evidence": "OBSERVED",
       "compliance": {
@@ -40,7 +40,7 @@
       "rarity": "common",
       "rarityBasis": "04 标注「本体 H3 长期经典，生命周期常驻」",
       "imageUrl": "/assets/personas/mem-nailong-001.png",
-      "imageKind": "placeholder"
+      "imageKind": "official"
     },
     {
       "id": "mem-coke-003",
@@ -102,8 +102,8 @@
         "SR": 74
       },
       "desc": "一张海外网友抓拍的负鼠照片：被困窗边、无路可退时双爪背在身后、双脚直立、呆望远方。人类长者式的派头配上弱小本体，成了「表面从容、内里崩溃」最精准的符号。",
-      "cardType": "text",
-      "placeholder": true,
+      "cardType": "image",
+      "placeholder": false,
       "source": "docs/product-discovery/04-热梗与人物资料卡.md#ani-opossum-004",
       "evidence": "OBSERVED",
       "compliance": {
@@ -118,7 +118,7 @@
       "rarity": "common",
       "rarityBasis": "04 标注「跨全平台，C 类主观观察已由 ≥4 独立信源证实」",
       "imageUrl": "/assets/personas/ani-opossum-004.png",
-      "imageKind": "placeholder"
+      "imageKind": "official"
     },
     {
       "id": "ani-cryinghorse-005",
@@ -141,8 +141,8 @@
         "SR": 50
       },
       "desc": "一只本该微笑的马形毛绒玩偶，生产线上嘴角被缝反，成了写满委屈的哭脸。网友集体给它贴标签——周一马、加班马、甲方马——把一件商品变成了「我们是一类人」的暗号。",
-      "cardType": "text",
-      "placeholder": true,
+      "cardType": "image",
+      "placeholder": false,
       "source": "docs/product-discovery/04-热梗与人物资料卡.md#ani-cryinghorse-005",
       "evidence": "OBSERVED",
       "compliance": {
@@ -157,7 +157,7 @@
       "rarity": "limited",
       "rarityBasis": "04 标注「生命周期：周期（生肖）+ 限时（梗）」，以「限时」为主标 limited",
       "imageUrl": "/assets/personas/ani-cryinghorse-005.png",
-      "imageKind": "placeholder"
+      "imageKind": "official"
     },
     {
       "id": "mem-sorrowlady-006",
@@ -295,8 +295,8 @@
         "SR": 22
       },
       "desc": "B 站生活常识科普 UP 主，把「怎么租房」「怎么办电话卡」这类基础生存问题当正题讲，恰好卡在应届生最需要的节点上。回归基础、不装懂的坦白，是这个账号最核心的吸引力。",
-      "cardType": "text",
-      "placeholder": true,
+      "cardType": "image",
+      "placeholder": false,
       "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-gulumao-021",
       "evidence": "OBSERVED",
       "compliance": {
@@ -309,7 +309,7 @@
       "rarity": "hidden",
       "rarityBasis": "04 标注「生命周期：限时（账号热度）+ 周期（毕业季回潮）」，按「周期回潮」标 hidden",
       "imageUrl": "/assets/personas/mem-gulumao-021.png",
-      "imageKind": "placeholder"
+      "imageKind": "official"
     },
     {
       "id": "an-belial-001",
@@ -332,8 +332,8 @@
         "SR": 78
       },
       "desc": "《奥特曼》系列反派，光之国历史上首位堕入黑暗的奥特战士。设定上是压迫感十足的黑暗帝王，到了抽象文化里却永远是二当家、是垫子——被解构之后反而比原来更强。",
-      "cardType": "text",
-      "placeholder": true,
+      "cardType": "image",
+      "placeholder": false,
       "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-belial-001",
       "evidence": "OBSERVED",
       "compliance": {
@@ -348,7 +348,7 @@
       "rarity": "common",
       "rarityBasis": "04 标注「H3 长期经典、生命周期常驻」",
       "imageUrl": "/assets/personas/an-belial-001.png",
-      "imageKind": "placeholder"
+      "imageKind": "official"
     },
     {
       "id": "an-diga-002",
@@ -371,8 +371,8 @@
         "SR": 34
       },
       "desc": "《迪迦奥特曼》主角，平成三杰之首。在泛路人眼里「奥特曼就等于迪迦」，一句「那一年，我也变成了光」撑起了一整代人的童年信念。",
-      "cardType": "text",
-      "placeholder": true,
+      "cardType": "image",
+      "placeholder": false,
       "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-diga-002",
       "evidence": "OBSERVED",
       "compliance": {
@@ -387,7 +387,7 @@
       "rarity": "common",
       "rarityBasis": "04 标注「H3 长期经典、生命周期常驻」",
       "imageUrl": "/assets/personas/an-diga-002.png",
-      "imageKind": "placeholder"
+      "imageKind": "official"
     },
     {
       "id": "an-sairo-003",
@@ -410,8 +410,8 @@
         "SR": 52
       },
       "desc": "新生代「门面型」奥特曼，设定是赛文之子、定位狂傲少年，因总在结局击败贝利亚而被称「赛少」。人气有官方持续力捧的成分，也因此背上了「门面位」的负担。",
-      "cardType": "text",
-      "placeholder": true,
+      "cardType": "image",
+      "placeholder": false,
       "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-sairo-003",
       "evidence": "OBSERVED",
       "compliance": {
@@ -426,7 +426,7 @@
       "rarity": "common",
       "rarityBasis": "04 标注「H3 长期经典、生命周期常驻」",
       "imageUrl": "/assets/personas/an-sairo-003.png",
-      "imageKind": "placeholder"
+      "imageKind": "official"
     },
     {
       "id": "sd-jiangbanya-012",

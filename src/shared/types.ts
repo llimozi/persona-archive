@@ -49,7 +49,7 @@ export function isDimsInRange(d: Partial<Record<DimKey, unknown>>): boolean {
 export type EvidenceLevel = 'VERIFIED' | 'OBSERVED' | 'INFERRED' | 'UNKNOWN' | 'BLOCKED';
 
 /** 素材卡形态：首版一律 text，不引第三方图片 */
-export type CardType = 'text' | 'image';
+export type CardType = 'text' | 'image' | 'placeholder';
 
 /**
  * 人物稀有度。四档均出自第一阶段 06：

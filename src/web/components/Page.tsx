@@ -22,7 +22,7 @@ export function Page({ kicker, children, action, className }: Props) {
         </header>
         {children}
         <footer className="footnote">
-          {kicker ?? '人物为纯文字占位卡，未使用任何第三方肖像素材。'}
+          {kicker ?? '人物配图来自公开网络资料，仅供娱乐展示；未取得配图人物或形象的商业授权。'}
         </footer>
       </div>
     </div>

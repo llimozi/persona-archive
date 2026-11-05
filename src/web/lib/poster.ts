@@ -420,7 +420,7 @@ export function paintPoster(ctx: CanvasRenderingContext2D, data: PosterData): vo
   const footY = H - pad - 26;
   ctx.fillStyle = C.ink3;
   ctx.font = `11px ${FONT_SANS}`;
-  ctx.fillText('仅供娱乐，不构成任何专业意见或判断。人物为纯文字占位卡。', pad, footY);
+  ctx.fillText('仅供娱乐，不构成任何专业意见或判断。', pad, footY);
   if (data.shareUrl) {
     ctx.fillStyle = C.accent;
     ctx.font = `10px ${FONT_MONO}`;

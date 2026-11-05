@@ -124,7 +124,7 @@ function checkPersonas(doc) {
       }
     }
 
-    if (p.cardType && !['text', 'placeholder'].includes(p.cardType)) {
+    if (p.cardType && !['text', 'placeholder', 'image'].includes(p.cardType)) {
       fail(where, `cardType 非法：${p.cardType}`);    }
     if (p.rarity !== undefined && !RARITY.includes(p.rarity)) {
       fail(where, `rarity 非法：${p.rarity}`);

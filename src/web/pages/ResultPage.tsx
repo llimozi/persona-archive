@@ -83,7 +83,7 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
             <h1 className="result__name">{top.name}</h1>
             <p className="muted" style={{ color: 'rgba(26,26,28,0.55)' }}>
               {top.category}
-              {top.placeholder !== false ? ' · 纯文字占位卡' : ''}
+              {top.placeholder === true ? ' · 占位头像' : ''}
             </p>
             {top.tags?.length > 0 && (
               <div className="result__tags">
