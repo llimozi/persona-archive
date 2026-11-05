@@ -15,7 +15,7 @@ export interface ResultPersona {
   name: string;
   category: string;
   tags: string[];
-  /** 引擎给出的娱乐匹配度百分比 = round(M' × 100)；**排序与选择完全由引擎决定** */
+  /** 娱乐匹配指数 0–100（取自排序分 adjusted）；**排序与选择完全由引擎决定，不是百分比** */
   percent: number;
   /** 以下字段仅用于展示，按 id 从原始档案回填，不参与排序 */
   desc?: string;
@@ -101,7 +101,7 @@ export function ResultPage({ top, others, dims, nine, hiddenUnlocked = [], onRes
   const [portraitEl, setPortraitEl] = useState<HTMLDivElement | null>(null);
   const [descOpen, setDescOpen] = useState(false);
 
-  // 匹配度滚动计数
+  // 匹配指数滚动计数
   useEffect(() => {
     if (top == null) return;
     if (reduced) {
@@ -160,7 +160,7 @@ export function ResultPage({ top, others, dims, nine, hiddenUnlocked = [], onRes
               <span className="record__cat">{categoryLabel(top.category)}</span>
             </div>
 
-            {/* 首屏焦点：大相框 + 超大匹配度 */}
+            {/* 首屏焦点：大相框 + 超大匹配指数 */}
             <div className="record__main">
               <ArchivePortrait persona={top} size="lg" rootRef={setPortraitEl} />
 
@@ -172,11 +172,10 @@ export function ResultPage({ top, others, dims, nine, hiddenUnlocked = [], onRes
                   >
                     {shownPercent}
                   </span>
-                  <span className="record__score-unit">%</span>
                 </div>
                 <span className="record__score-cap">
-                  娱乐匹配度
-                  <em>非心理测量，仅供娱乐</em>
+                  娱乐匹配指数
+                  <em>同批作答内用于排序比较，非百分比、非心理测量</em>
                 </span>
               </div>
             </div>
@@ -321,7 +320,7 @@ export function ResultPage({ top, others, dims, nine, hiddenUnlocked = [], onRes
                         {n.sub && <p className="slip__sub">{tidySubtitle(n.sub)}</p>}
                         <span className="slip__cat">{categoryLabel(p.category)}</span>
                       </div>
-                      <span className="slip__pct mono">{p.percent}%</span>
+                      <span className="slip__pct mono">指数 {p.percent}</span>
                     </div>
                   );
                 })}

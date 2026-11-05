@@ -119,17 +119,24 @@ describe('archiveNo（卷宗号）', () => {
   });
 });
 
-describe('formatPosterPercent（与引擎 formatPercent 同口径）', () => {
-  it('正常值取整加 %', () => {
-    expect(formatPosterPercent(74)).toBe('74%');
-    expect(formatPosterPercent(86.6)).toBe('87%');
+describe('formatPosterPercent（匹配指数，不带百分号）', () => {
+  // 2026-11-05 语义整改：这个数取自排序分 adjusted，
+  // 不是百分比也不是概率，海报上不得出现 `%`。
+  it('正常值取整，不带 %', () => {
+    expect(formatPosterPercent(74)).toBe('74');
+    expect(formatPosterPercent(86.6)).toBe('87');
   });
-  it('<10 显示 <10%', () => {
-    expect(formatPosterPercent(9)).toBe('<10%');
+  it('不得出现百分号', () => {
+    for (const v of [0, 9, 74, 100]) {
+      expect(formatPosterPercent(v)).not.toContain('%');
+    }
+  });
+  it('<10 显示 <10', () => {
+    expect(formatPosterPercent(9)).toBe('<10');
   });
   it('越界夹到 0–100', () => {
-    expect(formatPosterPercent(140)).toBe('100%');
-    expect(formatPosterPercent(-5)).toBe('<10%');
+    expect(formatPosterPercent(140)).toBe('100');
+    expect(formatPosterPercent(-5)).toBe('<10');
   });
   it('null 显示占位符，不显示假数字', () => {
     expect(formatPosterPercent(null)).toBe('—');

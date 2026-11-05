@@ -4,7 +4,7 @@
  * 版式（一个焦点，其余让路）：
  *   1. 顶部墨条：站点名 + 馆藏编号（暗金细线收边）
  *   2. 巨大头像（视觉重心）+ 已鉴定印章
- *   3. 超大匹配度数字
+ *   3. 超大匹配指数数字（不带百分号）
  *   4. 大名字 + 副标题
  *   5. 最多 3 个标签
  *   6. 紧凑六维雷达图 + 一句简介
@@ -103,11 +103,18 @@ export function archiveNo(personaId: string): string {
   return displayArchiveNo(personaId);
 }
 
-/** 匹配度展示串：与引擎同口径（<10% 显示 `<10%`，无小数） */
+/**
+ * 匹配指数展示串。
+ *
+ * 2026-11-05 语义整改：这个数取自排序分 adjusted，
+ * **不是百分比、不是相似度概率**，海报上不得再带 `%`。
+ * 保留旧导出名 formatPosterPercent 供既有调用与测试引用，
+ * 但输出改为不含百分号的指数值。
+ */
 export function formatPosterPercent(percent: number | null): string {
   if (percent === null || !Number.isFinite(percent)) return '—';
   const v = Math.max(0, Math.min(100, Math.round(percent)));
-  return v < 10 ? '<10%' : `${v}%`;
+  return v < 10 ? '<10' : String(v);
 }
 
 export function defaultDeps(over?: Partial<PosterDeps>): PosterDeps {
@@ -391,7 +398,7 @@ export function paintPoster(ctx: CanvasRenderingContext2D, data: PosterData): vo
 
   y = ay + AV + 16;
 
-  // 超大匹配度
+  // 超大匹配指数
   const pct = formatPosterPercent(data.percent);
   ctx.textAlign = 'center';
   ctx.fillStyle = C.seal;
@@ -399,7 +406,7 @@ export function paintPoster(ctx: CanvasRenderingContext2D, data: PosterData): vo
   ctx.fillText(pct, W / 2, y + 46);
   ctx.fillStyle = C.ink2;
   ctx.font = `600 10.5px ${FONT_SANS}`;
-  ctx.fillText('娱乐匹配度 · 非心理测量', W / 2, y + 62);
+  ctx.fillText('娱乐匹配指数 · 非百分比、非心理测量', W / 2, y + 62);
   ctx.textAlign = 'left';
 
   y += 74;

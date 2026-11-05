@@ -90,7 +90,7 @@ export interface RankedPersona {
   name: string;
   category: string;
   tags: string[];
-  /** 对外展示的匹配度 0–100，取自排序分（见 toRanked 注释）。页面叫「娱乐匹配度」，不是概率 */
+  /** 对外展示的娱乐匹配指数 0–100，取自排序分（见 toRanked 注释）。不是百分比、不是概率 */
   percent: number;
   /** 相对百分位 0–100，展示时必须标注「相对」 */
   percentile: number;
