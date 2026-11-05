@@ -24,6 +24,14 @@ import type {
 const DIM_KEYS = ['EE', 'ST', 'AC', 'HX', 'RB', 'SR'] as const;
 const root = resolve(__dirname, '../..');
 
+/**
+ * 真实数据的人物总数。
+ * 2026-11-05：12 → 30（按 04 §2.2 可匹配池准数补齐 18 张缺口卡）。
+ * 与 `data/validate-data.mjs` 的 EXPECTED.personas 保持一致；两处都是有意的固定值，
+ * 不是"读到几算几"——数量变化必须同时改这两处，才能起到"数据被改过"的显式信号作用。
+ */
+const EXPECTED_PERSONAS = 30;
+
 // ───────────────────────────── A. 表达式求值 ─────────────────────────────
 
 describe('引擎 · 表达式求值', () => {
@@ -181,7 +189,7 @@ describe('引擎 · 匹配主函数', () => {
  * 而其余所有用例依然会绿（因为没有任何断言比较池大小）。
  */
 describe('引擎 · 进池判据防回归', () => {
-  it('真实数据 12 人全部入池，出池 0 人', async (ctx) => {
+  it('真实数据全部入池，出池 0 人', async (ctx) => {
     const fn = await loadMatchFn();
     if (!fn) {
       ctx.skip(notReady);
@@ -201,10 +209,10 @@ describe('引擎 · 进池判据防回归', () => {
     const out = fn({ questions, answers: fixedAnswers(questions), personas, theme });
 
     const excluded = out.warnings.filter((w) => w.code === 'persona_out_of_match_pool');
-    expect(personas.length, '真实数据应恰为 12 人').toBe(12);
+    expect(personas.length, `真实数据应恰为 ${EXPECTED_PERSONAS} 人`).toBe(EXPECTED_PERSONAS);
     expect(excluded.length, `出池人数应为 0，实际 ${excluded.length}：${excluded.map((w) => w.message).join('; ')}`).toBe(0);
-    expect(out.pool.size, '池大小应等于人物总数 12（restricted=true 不得把人挡在池外）').toBe(12);
-    expect(out.ranking.length, 'ranking 条数应等于 12').toBe(12);
+    expect(out.pool.size, `池大小应等于人物总数 ${EXPECTED_PERSONAS}（restricted=true 不得把人挡在池外）`).toBe(EXPECTED_PERSONAS);
+    expect(out.ranking.length, `ranking 条数应等于 ${EXPECTED_PERSONAS}`).toBe(EXPECTED_PERSONAS);
   });
 });
 
@@ -246,7 +254,7 @@ describe('引擎 · 逐档 σ 取值', () => {
       Object.keys(counts).filter((k) => !['common', 'rare', 'limited', 'hidden'].includes(k)),
       `出现未定义稀有度：${JSON.stringify(counts)}`,
     ).toEqual([]);
-    expect(personas.length, '人物总数应为 12').toBe(12);
+    expect(personas.length, `人物总数应为 ${EXPECTED_PERSONAS}`).toBe(EXPECTED_PERSONAS);
   });
 
   it('σ 只从 rarity 兜底取值时，无人填 sigma 也不得抛异常', async (ctx) => {

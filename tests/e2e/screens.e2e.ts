@@ -10,6 +10,12 @@ import { test, expect, type Page } from '@playwright/test';
  * ⚠️ 视口模拟 ≠ 微信内置浏览器实测。真机部分在报告中记 NOT RUN。
  */
 
+/**
+ * 真实数据的人物总数，2026-11-05 由 12 变更为 30（按 04 §2.2 可匹配池准数补齐）。
+ * 与 `data/validate-data.mjs` 的 EXPECTED.personas、`tests/engine/match.test.ts` 的同名常量三处同步。
+ */
+const EXPECTED_PERSONAS = 30;
+
 async function noHorizontalOverflow(page: Page) {
   const { scrollW, clientW } = await page.evaluate(() => ({
     scrollW: document.documentElement.scrollWidth,
@@ -166,19 +172,19 @@ test('分享结果链接 ?r=<token>：他人打开直达结果页且数值一致
 });
 
 /**
- * 人物配图（12 人一图一一对应）。
+ * 人物配图（当前 30 人，一图一一对应）。
  *
  * 判据三层：
  *   1. 数据层：每人都必须有 imageUrl，且路径必须以**自己的 id** 结尾（防张冠李戴）；
  *   2. 资源层：每张图真实可取（HTTP 200 且 content-type 为 image/*），不允许 404 空占位；
  *   3. 页面层：打开结果页后，配图 `<img>` 自然宽度 > 0（真渲染，不是只挂了个 src）。
  */
-test('人物配图：12 人一一对应且真实可加载', async ({ page, request }) => {
+test(`人物配图：${EXPECTED_PERSONAS} 人一一对应且真实可加载`, async ({ page, request }) => {
   const res = await request.get('/api/personas');
   expect(res.ok(), `/api/personas 请求失败：${res.status()}`).toBeTruthy();
   const body = (await res.json()) as { items: Array<{ id: string; name: string; imageUrl?: string }> };
   const personas = body.items;
-  expect(personas.length, '人物数量应为 12').toBe(12);
+  expect(personas.length, `人物数量应为 ${EXPECTED_PERSONAS}`).toBe(EXPECTED_PERSONAS);
 
   for (const p of personas) {
     expect(p.imageUrl, `${p.name}(${p.id}) 缺少 imageUrl —— 不允许留空白`).toBeTruthy();

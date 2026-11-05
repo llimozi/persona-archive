@@ -466,6 +466,690 @@
       "rarityBasis": "04 标注「H2（2026-02 起）+ 具常驻潜力、限时」",
       "imageUrl": "/assets/personas/sd-jiangbanya-012.png",
       "imageKind": "placeholder"
+    },
+    {
+      "id": "mem-shoulai-008",
+      "name": "「寿来」借寿整活",
+      "category": "mem",
+      "tags": [
+        "整活",
+        "评论区接力",
+        "仪式感",
+        "无效社交",
+        "赛博祈愿"
+      ],
+      "dims": {
+        "EE": 72,
+        "ST": 78,
+        "AC": 66,
+        "HX": 58,
+        "RB": 76,
+        "SR": 88
+      },
+      "desc": "由「随机挑一名路人借寿」的整蛊短视频演化出的评论区接力玩法：一方喊「寿来~」，另一方必须回「寿回」反制，进而发展出一整套术式攻防。真正的乐趣不在视频，而在于把一件完全无意义的事，硬是玩成可攻可守的语法。取的是「愿为无聊事投入多少」这一抽象层，不涉及原视频的借寿概念与任何真实长者形象。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-shoulai-008.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-shoulai-008",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "只取「祈愿类荒诞句式」的抽象层（钱来/薪来/假来），不得出现「借寿」概念、封建迷信表述、真实老人形象或《咒术回战》术语。",
+      "rarity": "limited",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（limited）"
+    },
+    {
+      "id": "mem-jiupaige-014",
+      "name": "「这种场面我还是在控制」",
+      "category": "mem",
+      "tags": [
+        "被催进度",
+        "多线程",
+        "场面话",
+        "自嘲",
+        "口头禅"
+      ],
+      "dims": {
+        "EE": 66,
+        "ST": 72,
+        "AC": 84,
+        "HX": 46,
+        "RB": 32,
+        "SR": 62
+      },
+      "desc": "客流高峰时安抚催单顾客的一句话：「做完你的，做你的……这种场面我还是在控制」。把忙到失控包装成我在掌控，恰好击中多任务并行、被追着要结果时的自我安慰。取的是句式层——越是手忙脚乱，越要说一句稳得住。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-jiupaige-014.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-jiupaige-014",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "真实个人，只可用句式，不可出现其姓名、肖像或具体店铺指向，避免被读作对个体经营的评判。",
+      "rarity": "common",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
+    },
+    {
+      "id": "mem-zhuzhiwen-015",
+      "name": "「你就是 XX」",
+      "category": "mem",
+      "tags": [
+        "万能否定",
+        "荒诞认证",
+        "被点名",
+        "无奈顺受",
+        "句式梗"
+      ],
+      "dims": {
+        "EE": 54,
+        "ST": 80,
+        "AC": 48,
+        "HX": 42,
+        "RB": 44,
+        "SR": 70
+      },
+      "desc": "面对反复刷屏、不愿相信的说法，回一句「你就是 XX」——你说是就是，反正离谱。原本出自直播中博主对刷名粉丝的回应，因语气被剪成切片而传开。它的妙处在于既否定了对方，又不带火气，把荒诞认证做成了一句通用句式。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-zhuzhiwen-015.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-zhuzhiwen-015",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "梗含对个体出身的嘲弄成分，文案禁用任何贬损指向；只取「你就是 XX」这一通用句式，不涉具体人名。",
+      "rarity": "common",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
+    },
+    {
+      "id": "mem-gaonai-016",
+      "name": "保质期永久的不存在商品",
+      "category": "mem",
+      "tags": [
+        "荒诞设定",
+        "庄严修辞",
+        "反差",
+        "哲学向二创",
+        "胡说八道"
+      ],
+      "dims": {
+        "EE": 62,
+        "ST": 76,
+        "AC": 40,
+        "HX": 84,
+        "RB": 68,
+        "SR": 46
+      },
+      "desc": "自制整蛊道具上，保质期一栏赫然写着「永久」。一个本不存在的东西，被赋予了对时间的承诺，于是网友开始用最庄严的修辞讨论它——人类畏惧时间，时间畏惧它。取的是「给荒诞物配上庄严修辞」这一层，用一本正经的胡说八道制造反差。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-gaonai-016.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-gaonai-016",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "真实博主，不用姓名与肖像；原梗的具体商品表述易被读作低俗，只取「保质期永久的不存在商品」这一抽象层。",
+      "rarity": "rare",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（rare）"
+    },
+    {
+      "id": "mem-tianjia-017",
+      "name": "误闯天家",
+      "category": "mem",
+      "tags": [
+        "肢体失调",
+        "自信满格",
+        "反优绩主义",
+        "卡点",
+        "笨拙真实"
+      ],
+      "dims": {
+        "EE": 84,
+        "ST": 68,
+        "AC": 74,
+        "HX": 38,
+        "RB": 82,
+        "SR": 90
+      },
+      "desc": "一句原本写尽阶层困局与命运无力的悲情戏腔，被一套四肢不协调的手势动作彻底消解，变成无需负担的肢体狂欢。协调性为零但自信满格，用最笨拙的动作把最沉重的话跳成最轻的快乐——这恰好是反优绩主义情绪最直白的出口。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-tianjia-017.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-tianjia-017",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "涉多位真实在世艺人，一律不得使用姓名、肖像与视频切片；原曲受版权保护不可内置。只取「把一句沉重的话跳成无意义的快乐」这一机制层。",
+      "rarity": "common",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
+    },
+    {
+      "id": "mem-papijiang-019",
+      "name": "「你的品位配不上我」",
+      "category": "mem",
+      "tags": [
+        "审美优越感",
+        "娇嗔",
+        "万能配字",
+        "空符号",
+        "直白吐槽"
+      ],
+      "dims": {
+        "EE": 88,
+        "ST": 86,
+        "AC": 52,
+        "HX": 44,
+        "RB": 58,
+        "SR": 64
+      },
+      "desc": "一段复古唱腔配上「你的品位配不上我啊」「OMG 你吓到我了」的直白吐槽，被从原语境里剥离后，成了可以随意填充情绪的万能背景音——审美不合、朋友塌房、被人为难，一句就全部承接。把不满包装成娇嗔，是它最好用的地方。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-papijiang-019.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-papijiang-019",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "音乐作品受版权保护，产品内不得内置该音频，只能引用文字句式；真实创作者，不用其肖像；避免写成对用户品味的贬损。",
+      "rarity": "limited",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（limited）"
+    },
+    {
+      "id": "mem-lanlao-020",
+      "name": "万能燃系 BGM 收尾",
+      "category": "mem",
+      "tags": [
+        "土味直白",
+        "热血上头",
+        "自嘲夸张",
+        "廉价燃点",
+        "视频收尾"
+      ],
+      "dims": {
+        "EE": 90,
+        "ST": 88,
+        "AC": 62,
+        "HX": 30,
+        "RB": 40,
+        "SR": 74
+      },
+      "desc": "一段粗粝口音配洋气电音的魔性副歌，被官方媒体拿去做航天与战机的背景乐之后彻底放飞，从此成了「一切视频结尾都能接上」的燃点模板。唱的人自己唱到一半绷不住笑了——把「燃」做得很廉价，反而是它最真诚的地方。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-lanlao-020.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-lanlao-020",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "原曲含第三方采样，不得内置音频；原歌词涉民族与国籍表述，本产品不得引用歌词本身。只取「用魔性 BGM 收尾一切视频」这一现象层。",
+      "rarity": "limited",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（limited）"
+    },
+    {
+      "id": "mem-podcast-022",
+      "name": "愿意把话听完的人",
+      "category": "mem",
+      "tags": [
+        "慢内容",
+        "停顿与改口",
+        "不完美",
+        "长对话",
+        "反感流水线"
+      ],
+      "dims": {
+        "EE": 38,
+        "ST": 62,
+        "AC": 34,
+        "HX": 88,
+        "RB": 46,
+        "SR": 58
+      },
+      "desc": "当所有内容都在催你快给结论时，还有一类节目允许一个人「没有那么快」——停顿、回忆、改口，甚至说着说着说不下去。这种不完美在高度包装的媒介里反而成了可信的信号。它的核心是：愿不愿意听完一段没有结论的对话。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/mem-podcast-022.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-podcast-022",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "涉大量真实人物，一律不用姓名、肖像、节目画面与音频；不引用具体播放数字；不得娱乐化引用任何健康与私人创伤相关表述。",
+      "rarity": "hidden",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（hidden）"
+    },
+    {
+      "id": "an-xiongda-004",
+      "name": "回头一眼的沉默审判",
+      "category": "an",
+      "tags": [
+        "看破不说破",
+        "沉默judging",
+        "对话式梗图",
+        "无语",
+        "似笑非笑"
+      ],
+      "dims": {
+        "EE": 40,
+        "ST": 36,
+        "AC": 28,
+        "HX": 74,
+        "RB": 52,
+        "SR": 30
+      },
+      "desc": "一个慢悠悠的回眸，眼神里却满是故事——似笑非笑，带着看透一切又略带嘲讽的复杂情绪。它不发一言却完成了全部评价，用来回应一切离谱发言再合适不过。核心不是说了什么，而是「我看明白了，但我不想多说」。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/an-xiongda-004.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-xiongda-004",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "原作为第三方 IP，不得使用官方画面与造型；「回眸」的表情语义与「对话式梗图」结构为通用形式，可安全使用原创形象表达。",
+      "rarity": "common",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
+    },
+    {
+      "id": "sd-fendelin-006",
+      "name": "不敢签长期合同的人",
+      "category": "sd",
+      "tags": [
+        "亲密恐惧",
+        "温柔克制",
+        "自我保护",
+        "先婚后爱",
+        "细水长流"
+      ],
+      "dims": {
+        "EE": 56,
+        "ST": 48,
+        "AC": 42,
+        "HX": 86,
+        "RB": 38,
+        "SR": 52
+      },
+      "desc": "爱是真的，但一想到要把关系写进长期合同就想退。因成长里见过的悲剧而先验地恐惧婚姻，把退缩当成自我保护；需要被成就，而不是被占有。典型的表现是：分开之后，才终于学会把话说出口。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/sd-fendelin-006.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#sd-fendelin-006",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "真实演员与剧集版权，肖像、画面、剧本、角色设定均不可用；原剧音乐受版权保护不可内置。只取「先婚后爱但双方都怕受伤」这一关系原型做原创人格卡。",
+      "rarity": "limited",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（limited）"
+    },
+    {
+      "id": "sd-guaiguai-007",
+      "name": "用乖巧当武器",
+      "category": "sd",
+      "tags": [
+        "温顺外壳",
+        "暗中筹谋",
+        "自救优先",
+        "温柔是战术",
+        "攻击性内藏"
+      ],
+      "dims": {
+        "EE": 44,
+        "ST": 34,
+        "AC": 88,
+        "HX": 92,
+        "RB": 74,
+        "SR": 40
+      },
+      "desc": "看起来是寄人篱下的温顺乖乖女，实则在被磋磨多年后步步为营、暗中筹谋。她把乖巧穿在身上当武器，把温柔当战术，坚信自救优先于被拯救——真正的攻击性，全藏在最没攻击性的那层壳里。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/sd-guaiguai-007.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#sd-guaiguai-007",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "真实演员与剧集版权，肖像与画面均不可用。只取「用乖巧做武器、自救优先」这一人格原型。",
+      "rarity": "rare",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（rare）"
+    },
+    {
+      "id": "sd-aipop-009",
+      "name": "为不存在的完美上头",
+      "category": "sd",
+      "tags": [
+        "理想化投射",
+        "颜值暴击",
+        "明知是套路",
+        "甘愿上头",
+        "爽感成瘾"
+      ],
+      "dims": {
+        "EE": 82,
+        "ST": 60,
+        "AC": 46,
+        "HX": 36,
+        "RB": 30,
+        "SR": 68
+      },
+      "desc": "明知道那些完美人设不存在、明知道每一句台词都是套路，依然会被颜值一击即中，心甘情愿地继续看下去。把理想爱情具象化到极致，把套路当舒适区——不是被骗，是主动选择上头。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/sd-aipop-009.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#sd-aipop-009",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "创作者与角色均为真实或第三方设定，不使用姓名、肖像与画面。只取「你会为不存在的完美人设上头吗」这一心理原型。",
+      "rarity": "limited",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（limited）"
+    },
+    {
+      "id": "sd-nvxiangshi-010",
+      "name": "为苍生破例的人",
+      "category": "sd",
+      "tags": [
+        "神性与人性",
+        "献祭自我",
+        "守底线",
+        "逆行",
+        "为谁破例"
+      ],
+      "dims": {
+        "EE": 64,
+        "ST": 58,
+        "AC": 92,
+        "HX": 80,
+        "RB": 66,
+        "SR": 44
+      },
+      "desc": "六十年前为挽天倾献祭自我，六十年后重返人间踏上逆行之路。把规矩和底线看得比输赢更重，看似无情，实则比谁都在意——神性与人性的拉扯，最终落在一个问题上：你会为谁破例。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/sd-nvxiangshi-010.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#sd-nvxiangshi-010",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "剧集与角色设定属制片方版权，不使用画面与造型。只取「为苍生逆天而为、把底线看得比输赢重」这一人格原型。",
+      "rarity": "rare",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（rare）"
+    },
+    {
+      "id": "es-donk-001",
+      "name": "顺风不松的人",
+      "category": "es",
+      "tags": [
+        "统治力",
+        "越到关键越强",
+        "保持而非达到",
+        "火力核心",
+        "不装全能"
+      ],
+      "dims": {
+        "EE": 46,
+        "ST": 40,
+        "AC": 94,
+        "HX": 62,
+        "RB": 34,
+        "SR": 36
+      },
+      "desc": "极端稳定的统治力，越到淘汰赛越强。难的不是达到某个高度，而是在已经赢下一切之后依然不松手。火力项满分，某些细项却只有及格——他不装全能，只把自己那一块做到极致。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/es-donk-001.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-donk-001",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "真实公众人物，不使用姓名、肖像与比赛画面。只取「你在顺风时会不会松」这一行为倾向。",
+      "rarity": "common",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
+    },
+    {
+      "id": "es-jee-002",
+      "name": "冷门赛道上的独苗",
+      "category": "es",
+      "tags": [
+        "主场压力",
+        "冷门坚持",
+        "病愈归来",
+        "被寄予厚望",
+        "韧性"
+      ],
+      "dims": {
+        "EE": 68,
+        "ST": 44,
+        "AC": 82,
+        "HX": 70,
+        "RB": 48,
+        "SR": 38
+      },
+      "desc": "在一个几乎没人看的赛道上，把自己练到最好。背着主场所有人的期待，也经历过病愈归来重新站回位置。最难的从来不是技术，而是明知道没人看，还愿意每天再来一次。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/es-jee-002.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-jee-002",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "真实公众人物，不使用姓名、肖像与比赛画面。只取「你会为冷门赛道拼命吗」这一行为倾向。",
+      "rarity": "common",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
+    },
+    {
+      "id": "es-369-003",
+      "name": "被叫回去救火的人",
+      "category": "es",
+      "tags": [
+        "临危受命",
+        "最后一次",
+        "放开打",
+        "当场定输赢",
+        "需要资源"
+      ],
+      "dims": {
+        "EE": 74,
+        "ST": 46,
+        "AC": 90,
+        "HX": 68,
+        "RB": 56,
+        "SR": 42
+      },
+      "desc": "本来是打算退一步的人，又被叫回来顶住局面。既然可能是最后一次，那就干脆放开打——输赢当场定，敬意不过夜。他不是不需要支持的那种人，需要队友把资源喂到位才能发挥到最好，但这不妨碍他在最关键的时候站住。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/es-369-003.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-369-003",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "真实公众人物，不使用姓名、肖像与比赛画面。只取「你会不会被叫去做一件你本想放弃的事」这一处境原型。",
+      "rarity": "rare",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（rare）"
+    },
+    {
+      "id": "es-faker-004",
+      "name": "长期不下线的人",
+      "category": "es",
+      "tags": [
+        "常青",
+        "英雄池极深",
+        "下限极高",
+        "积累型",
+        "弱项也不弱"
+      ],
+      "dims": {
+        "EE": 42,
+        "ST": 38,
+        "AC": 86,
+        "HX": 90,
+        "RB": 28,
+        "SR": 48
+      },
+      "desc": "竞技状态长期不下线，英雄池深到几乎没有短板可言——连公认最弱的那一项，放在同行里也仍然靠前。靠的不是某一次爆发，而是十几年如一日把每件事重复做好。天赋和积累，在他身上分不太清。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/es-faker-004.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-faker-004",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "真实公众人物，不使用姓名、肖像与比赛画面。只取「天赋型 vs 积累型」这一倾向。",
+      "rarity": "common",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
+    },
+    {
+      "id": "es-chovy-005",
+      "name": "稳定到近乎无趣的人",
+      "category": "es",
+      "tags": [
+        "复利型",
+        "下限极高",
+        "从不崩",
+        "换队伍也晋级",
+        "长青"
+      ],
+      "dims": {
+        "EE": 36,
+        "ST": 32,
+        "AC": 78,
+        "HX": 88,
+        "RB": 26,
+        "SR": 40
+      },
+      "desc": "稳定得近乎无趣，但几乎从不崩。被讨论的永远是他的上限还能多高，而不是下限会不会掉——因为下限本身就已经高到没什么可说的。换一支队伍，他照样能往前走，这是一条靠复利而不是靠爆发的曲线。",
+      "cardType": "text",
+      "placeholder": true,
+      "imageUrl": "/assets/personas/es-chovy-005.png",
+      "imageKind": "placeholder",
+      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-chovy-005",
+      "evidence": "OBSERVED",
+      "compliance": {
+        "restricted": true,
+        "restrictedReason": [
+          "thirdPartyIP"
+        ],
+        "matchPool": true,
+        "resultCardEnabled": true
+      },
+      "usageNote": "真实公众人物，不使用姓名、肖像与比赛画面。只取「爆发型 vs 复利型」这一倾向。",
+      "rarity": "common",
+      "rarityBasis": "04 §2.2 可匹配池计入；本卡 rarity 由主控按内容特征判定（common）"
     }
   ]
 }
