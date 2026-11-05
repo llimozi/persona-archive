@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { countUp } from '../lib/motion';
+import { loadGsap } from '../lib/fx';
 import type { Dims } from '../../shared/types';
 import { DIM_KEYS } from '../../shared/types';
 import { DIM_LABEL } from '../lib/dims';
@@ -35,11 +36,33 @@ export function RitualOverlay({ candidates, finalName, dims, reduced, onDone }: 
   const timers = useRef<number[]>([]);
   const cancels = useRef<Array<() => void>>([]);
 
+  const rootRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     if (reduced) {
       onDone();
       return;
     }
+
+    // GSAP 按需加载：成功就用时间线精修抽屉与六维的弹性；
+    // 失败（离线/被拦截）完全不影响流程——CSS 动画已经能跑完整效果。
+    let disposed = false;
+    void loadGsap().then((gsap) => {
+      if (disposed || !gsap || !rootRef.current) return;
+      const el = rootRef.current;
+      const drawers = el.querySelectorAll('.ritual__drawer');
+      const dims = el.querySelectorAll('.ritual__dim-value');
+      gsap.fromTo(
+        drawers,
+        { x: 0 },
+        { x: 14, duration: 0.42, ease: 'back.out(2)', stagger: 0.13, yoyo: true, repeat: 1 },
+      );
+      gsap.fromTo(
+        dims,
+        { scale: 0.82, opacity: 0.5 },
+        { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(2.4)', stagger: 0.05, delay: 1.2 },
+      );
+    });
 
     const after = (ms: number, fn: () => void) => {
       timers.current.push(window.setTimeout(fn, ms));
@@ -76,6 +99,7 @@ export function RitualOverlay({ candidates, finalName, dims, reduced, onDone }: 
     after(2460, onDone);
 
     return () => {
+      disposed = true;
       for (const t of timers.current) {
         window.clearTimeout(t);
         window.clearInterval(t);
@@ -89,7 +113,7 @@ export function RitualOverlay({ candidates, finalName, dims, reduced, onDone }: 
   if (reduced) return null;
 
   return (
-    <div className="ritual" role="status" aria-live="polite" data-testid="ritual-overlay">
+    <div className="ritual" role="status" aria-live="polite" data-testid="ritual-overlay" ref={rootRef}>
       <p className="ritual__label">{phase === 'final' ? '比对完成' : '比对中'}</p>
 
       <div className="ritual__cabinet" aria-hidden="true">

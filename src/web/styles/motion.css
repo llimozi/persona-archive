@@ -1380,3 +1380,26 @@
     font-size: 19px;
   }
 }
+
+/* ───────────── 自托管中文字体（子集化，仅含用到的 1479 字） ─────────────
+ * 来源：Google Fonts 的 Noto Serif SC / Noto Sans SC（SIL Open Font License）
+ * 构建：tools/build-font-subset.py —— 只下载覆盖目标字符的分片，合并后裁剪
+ * 兜底：font-display: swap，字体未就绪时先用系统字体，不阻塞渲染
+ */
+@font-face {
+  font-family: 'ArchiveSerif';
+  src: url('/assets/fonts/serif-subset.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-206F, U+3000-303F, U+4E00-9FFF, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: 'ArchiveSans';
+  src: url('/assets/fonts/sans-subset.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-206F, U+3000-303F, U+4E00-9FFF, U+FF00-FFEF;
+}

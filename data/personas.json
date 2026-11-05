@@ -791,10 +791,10 @@
         "SR": 44
       },
       "desc": "一个慢悠悠的回眸，眼神里却满是故事——似笑非笑，带着看透一切又略带嘲讽的复杂情绪。它不发一言却完成了全部评价，用来回应一切离谱发言再合适不过。核心不是说了什么，而是「我看明白了，但我不想多说」。",
-      "cardType": "text",
-      "placeholder": true,
+      "cardType": "image",
+      "placeholder": false,
       "imageUrl": "/assets/personas/an-xiongda-004.png",
-      "imageKind": "placeholder",
+      "imageKind": "official",
       "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-xiongda-004",
       "evidence": "OBSERVED",
       "compliance": {
@@ -1431,10 +1431,10 @@
         "SR": 50
       },
       "desc": "一个被同人二创彻底改写的角色：原作里的对立面，在二创里变成了另一种存在。角色没变，看的人变了——这是同人文化最擅长也最有争议的那件事。",
-      "cardType": "text",
-      "placeholder": true,
+      "cardType": "image",
+      "placeholder": false,
       "imageUrl": "/assets/personas/scr-malfoy-005.png",
-      "imageKind": "placeholder",
+      "imageKind": "official",
       "source": "docs/product-discovery/04-热梗与人物资料卡.md#scr-malfoy-005",
       "evidence": "OBSERVED",
       "compliance": {

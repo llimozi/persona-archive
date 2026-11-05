@@ -62,11 +62,11 @@
   --safe-b: env(safe-area-inset-bottom, 0px);
   --safe-t: env(safe-area-inset-top, 0px);
 
-  --font: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
+  --font: 'ArchiveSans', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
     'Microsoft YaHei', 'Source Han Sans SC', sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
-  /* 标题用衬线，档案/印刷物的味道 */
-  --font-serif: 'Songti SC', 'SimSun', 'Source Han Serif SC', Georgia, serif;
+  /* 标题用衬线（自托管子集），档案 / 印刷物的味道 */
+  --font-serif: 'ArchiveSerif', 'Songti SC', 'SimSun', 'Source Han Serif SC', Georgia, serif;
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 

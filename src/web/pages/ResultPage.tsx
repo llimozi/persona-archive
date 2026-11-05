@@ -6,6 +6,8 @@ import { DIM_KEYS } from '../../shared/types';
 import type { Dims } from '../../shared/types';
 import { archiveNo, categoryLabel, categoryTone, splitName, tidySubtitle } from '../lib/display';
 import { attachTilt, countUp, prefersReducedMotion, pulse } from '../lib/motion';
+import { celebrate } from '../lib/fx';
+import { ChevronDownIcon, ImageIcon, ShareIcon } from '../components/Icons';
 
 /** 结果页展示所需的最小人物字段 */
 export interface ResultPersona {
@@ -131,6 +133,7 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
     setEggTaps(next);
     if (next >= 5) {
       pulse(stampEl, 'is-easter-egg', 920);
+      void celebrate(reduced);
       setEggTaps(0);
     }
   };
@@ -201,7 +204,7 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
                   onClick={() => setDescOpen((v) => !v)}
                 >
                   {descOpen ? '收起' : '展开简介'}
-                  <span aria-hidden="true">{descOpen ? '︿' : '﹀'}</span>
+                  <ChevronDownIcon size={14} style={{ transform: descOpen ? 'rotate(180deg)' : 'none' }} />
                 </button>
               </div>
             )}
@@ -313,9 +316,11 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
       {top && (
         <div className="cta cta--split">
           <button type="button" className="btn btn--ghost" onClick={() => setPosterOpen(true)}>
+            <ImageIcon size={17} />
             生成档案海报
           </button>
           <button type="button" className="btn btn--primary" onClick={onShare}>
+            <ShareIcon size={17} />
             分享这份档案
           </button>
         </div>
