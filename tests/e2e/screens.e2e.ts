@@ -164,3 +164,41 @@ test('分享结果链接 ?r=<token>：他人打开直达结果页且数值一致
   }
   await guest.close();
 });
+
+/**
+ * 人物配图（12 人一图一一对应）。
+ *
+ * 判据三层：
+ *   1. 数据层：每人都必须有 imageUrl，且路径必须以**自己的 id** 结尾（防张冠李戴）；
+ *   2. 资源层：每张图真实可取（HTTP 200 且 content-type 为 image/*），不允许 404 空占位；
+ *   3. 页面层：打开结果页后，配图 `<img>` 自然宽度 > 0（真渲染，不是只挂了个 src）。
+ */
+test('人物配图：12 人一一对应且真实可加载', async ({ page, request }) => {
+  const res = await request.get('/api/personas');
+  expect(res.ok(), `/api/personas 请求失败：${res.status()}`).toBeTruthy();
+  const body = (await res.json()) as { items: Array<{ id: string; name: string; imageUrl?: string }> };
+  const personas = body.items;
+  expect(personas.length, '人物数量应为 12').toBe(12);
+
+  for (const p of personas) {
+    expect(p.imageUrl, `${p.name}(${p.id}) 缺少 imageUrl —— 不允许留空白`).toBeTruthy();
+    expect(p.imageUrl!, `${p.name}(${p.id}) 配图错配：${p.imageUrl}`).toBe(`/assets/personas/${p.id}.png`);
+
+    const img = await request.get(p.imageUrl!);
+    expect(img.status(), `${p.name} 配图 HTTP ${img.status()}`).toBe(200);
+    expect(img.headers()['content-type'] ?? '', `${p.name} 配图不是图片`).toContain('image/');
+  }
+
+  // 页面层：进入结果页，确认配图真实解码成功
+  await page.goto('/');
+  await page.getByRole('button', { name: /开始/ }).click();
+  for (let i = 0; i < 10; i += 1) {
+    await page.locator('button.option').first().click();
+    const next = page.locator('.quiz__foot button').filter({ hasText: /下一题|看结果/ });
+    await next.first().click();
+  }
+  const avatar = page.getByTestId('result-avatar-img');
+  await expect(avatar).toBeVisible({ timeout: 10_000 });
+  const natural = await avatar.evaluate((el) => (el as HTMLImageElement).naturalWidth);
+  expect(natural, '结果页配图未真实解码（naturalWidth=0）').toBeGreaterThan(0);
+});

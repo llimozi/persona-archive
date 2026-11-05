@@ -333,6 +333,37 @@
   color: rgba(26, 26, 28, 0.55);
 }
 
+/* 人物配图：固定方形，加载失败退回首字块，两种情况尺寸一致避免布局跳动 */
+.result__avatar {
+  width: 96px;
+  height: 96px;
+  margin: var(--sp-3) 0 var(--sp-2);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  background: var(--paper-ink);
+  flex: none;
+}
+
+.result__avatar-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.result__avatar-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--paper);
+  background: var(--paper-ink);
+}
+
 .result__name {
   font-size: 28px;
   line-height: 1.25;

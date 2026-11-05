@@ -66,6 +66,10 @@ export interface PosterData {
   /** 引擎 user.x × 100 的展示值（与结果页同样的取整） */
   dims: Dims;
   desc?: string;
+  /** 人物配图 URL（静态路径）；缺省或加载失败时海报不画图，其余版式不变 */
+  imageUrl?: string;
+  /** 已预加载完成的配图；由调用方通过 loadPosterImage 取得后再传入 */
+  image?: CanvasImageSource | null;
   /** 分享链接兜底文案（海报底部展示，便于截图后仍能找到链接） */
   shareUrl?: string;
 }
@@ -153,6 +157,27 @@ export function formatPosterPercent(percent: number | null): string {
   if (percent === null || !Number.isFinite(percent)) return '—';
   const v = Math.max(0, Math.min(100, Math.round(percent)));
   return v < 10 ? '<10%' : `${v}%`;
+}
+
+/**
+ * 预加载人物配图，供同步绘制使用。
+ *
+ * **任何失败都返回 null，绝不抛错**：海报的主体是结果信息，缺一张图不该让整张海报生成失败。
+ * 调用方把返回值塞进 `PosterData.image`，绘制层据此决定是否画图。
+ */
+export function loadPosterImage(url: string | undefined): Promise<CanvasImageSource | null> {
+  if (!url || typeof Image === 'undefined') return Promise.resolve(null);
+  return new Promise((resolve) => {
+    try {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => resolve(img.naturalWidth > 0 ? img : null);
+      img.onerror = () => resolve(null);
+      img.src = url;
+    } catch {
+      resolve(null);
+    }
+  });
 }
 
 /** 单行截断绘制（超出加省略号），返回实际绘制宽度 */
@@ -269,17 +294,40 @@ export function paintPoster(ctx: CanvasRenderingContext2D, data: PosterData): vo
   ctx.font = `600 11px ${FONT_SANS}`;
   ctx.fillText('匹配结果', pad + 20, cardY + 30);
 
+  // 人物配图（可选）：画在图位左侧的方形槽位；无图时不占用文字宽度，版式与原先一致
+  const AVATAR = 84;
+  const hasImage = Boolean(data.image);
+  const textX = hasImage ? pad + 20 + AVATAR + 16 : pad + 20;
+  const textW = hasImage ? innerW - 40 - AVATAR - 16 : innerW - 40;
+  if (hasImage && data.image) {
+    ctx.save();
+    ctx.beginPath();
+    roundRect(ctx, pad + 20, cardY + 48, AVATAR, AVATAR, 14);
+    ctx.clip();
+    try {
+      ctx.drawImage(data.image, pad + 20, cardY + 48, AVATAR, AVATAR);
+    } catch {
+      /* 单张图绘制失败不影响整张海报 */
+    }
+    ctx.restore();
+    ctx.strokeStyle = 'rgba(26,26,28,0.12)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    roundRect(ctx, pad + 20, cardY + 48, AVATAR, AVATAR, 14);
+    ctx.stroke();
+  }
+
   // 人物名（大字，允许缩小一次而不是截断）
   ctx.fillStyle = C.paperInk;
   const name = data.personaName || '未能匹配';
   let nameSize = 34;
   const nameFont = (s: number) => `800 ${s}px ${FONT_SANS}`;
   ctx.font = nameFont(nameSize);
-  while (nameSize > 22 && ctx.measureText(name).width > innerW - 40) {
+  while (nameSize > 22 && ctx.measureText(name).width > textW) {
     nameSize -= 2;
     ctx.font = nameFont(nameSize);
   }
-  drawClipped(ctx, name, pad + 20, cardY + 78, innerW - 40, nameFont(nameSize));
+  drawClipped(ctx, name, textX, cardY + 78, textW, nameFont(nameSize));
 
   // 分类
   ctx.fillStyle = 'rgba(26,26,28,0.55)';
@@ -287,9 +335,9 @@ export function paintPoster(ctx: CanvasRenderingContext2D, data: PosterData): vo
   drawClipped(
     ctx,
     (data.category || '—').toUpperCase(),
-    pad + 20,
+    textX,
     cardY + 102,
-    innerW - 40,
+    textW,
     `13px ${FONT_SANS}`,
   );
 

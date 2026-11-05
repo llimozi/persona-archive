@@ -16,6 +16,8 @@ export interface ResultPersona {
   /** 以下两个字段仅用于展示，按 id 从原始档案回填，不参与排序 */
   desc?: string;
   placeholder?: boolean;
+  /** 人物配图（静态路径，构建期打进 dist/web）；缺省时由页面渲染兜底占位 */
+  imageUrl?: string;
 }
 
 interface Props {
@@ -32,6 +34,37 @@ interface Props {
   shareUrl: string;
 }
 
+/**
+ * 人物配图：`<img>` 加载失败时退回首字字符块，**不留空白**。
+ * 失败态由本地 state 记录，不触发任何网络重试。
+ */
+function PersonaAvatar({ persona }: { persona: ResultPersona }) {
+  const [failed, setFailed] = useState(false);
+  const showImg = Boolean(persona.imageUrl) && !failed;
+
+  return (
+    <div className="result__avatar" data-testid="result-avatar">
+      {showImg ? (
+        <img
+          className="result__avatar-img"
+          src={persona.imageUrl}
+          alt={`${persona.name} 头像`}
+          width={512}
+          height={512}
+          loading="eager"
+          decoding="async"
+          data-testid="result-avatar-img"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        <div className="result__avatar-fallback" aria-hidden="true" data-testid="result-avatar-fallback">
+          {persona.name.slice(0, 1)}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, shareUrl }: Props) {
   const [posterOpen, setPosterOpen] = useState(false);
   return (
@@ -46,6 +79,7 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
         <>
           <section className="result__hero">
             <p className="kicker">匹配结果</p>
+            <PersonaAvatar persona={top} />
             <h1 className="result__name">{top.name}</h1>
             <p className="muted" style={{ color: 'rgba(26,26,28,0.55)' }}>
               {top.category}
@@ -118,7 +152,7 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
           open={posterOpen}
           onClose={() => setPosterOpen(false)}
           shareUrl={shareUrl}
-          data={{ personaId: top.id, personaName: top.name, category: top.category, tags: top.tags, percent: top.percent, dims, desc: top.desc }}
+          data={{ personaId: top.id, personaName: top.name, category: top.category, tags: top.tags, percent: top.percent, dims, desc: top.desc, imageUrl: top.imageUrl }}
         />
       )}
 

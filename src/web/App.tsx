@@ -21,7 +21,7 @@ import './styles/app.css';
  * 新增回填字段必须先加进这里——把"只补展示"从注释承诺变成编译期约束，
  * 防止以后有人往这里加排序相关字段而悄悄影响结果。
  */
-type DisplayOnlyFill = Pick<ResultPersona, 'desc' | 'placeholder'>;
+type DisplayOnlyFill = Pick<ResultPersona, 'desc' | 'placeholder' | 'imageUrl'>;
 
 type Screen = 'home' | 'quiz' | 'result';
 type LoadState<T> =
@@ -226,6 +226,7 @@ export function App() {
     const fill: DisplayOnlyFill = {
       desc: raw?.desc,
       placeholder: raw?.placeholder,
+      imageUrl: raw?.imageUrl,
     };
     return {
       id: p.id,

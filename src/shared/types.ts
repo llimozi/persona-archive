@@ -110,6 +110,14 @@ export interface Persona {
   cardType?: CardType;
   /** 占位素材标记，MVP 一律为 true，不引第三方图片 */
   placeholder?: boolean;
+  /**
+   * 人物配图静态路径（如 `/assets/personas/<id>.png`）。
+   * 文件放在 `public/assets/personas/`，构建期原样复制进 `dist/web`。
+   * 仅用于展示；缺省时页面与海报都退回首字占位，不留空白。
+   */
+  imageUrl?: string;
+  /** 配图性质：placeholder = 生成式占位头像，非第三方素材 */
+  imageKind?: 'placeholder' | 'official';
   /** 事实溯源：资料卡文件 + 锚点 */
   source?: string;
   /** 该条事实的证据等级 */

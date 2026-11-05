@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { renderPoster, POSTER_LAYOUT } from '../lib/poster';
+import { renderPoster, POSTER_LAYOUT, loadPosterImage } from '../lib/poster';
 import type { PosterData, PosterResult } from '../lib/poster';
 
 type State =
@@ -46,7 +46,9 @@ export function PosterSheet({ data, shareUrl, open, onClose, onReady }: Props) {
     if (!open || !data) return;
     let alive = true;
     setState({ status: 'loading' });
-    renderPoster(data)
+    // 先加载配图再绘制：图片失败返回 null，绘制层按无图处理，不阻断海报生成
+    loadPosterImage(data.imageUrl)
+      .then((image) => renderPoster({ ...data, image }))
       .then((res) => {
         if (!alive) {
           if (res.ok) {

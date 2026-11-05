@@ -38,7 +38,9 @@
       },
       "usageNote": "商业 IP 与注册商标：不得使用官方形象或可识别复刻造型，只取「被过度曝光的儿童动画形象」这一概念；文案不得做嘲笑低龄粉丝的导向。",
       "rarity": "common",
-      "rarityBasis": "04 标注「本体 H3 长期经典，生命周期常驻」"
+      "rarityBasis": "04 标注「本体 H3 长期经典，生命周期常驻」",
+      "imageUrl": "/assets/personas/mem-nailong-001.png",
+      "imageKind": "placeholder"
     },
     {
       "id": "mem-coke-003",
@@ -75,7 +77,9 @@
       },
       "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损；产品内一律写「火影手游主播 coke老师」，不裸写「Coke老师」。",
       "rarity": "common",
-      "rarityBasis": "04 标注「H3 长期经典 + 持续活跃，口头禅已进大众语汇」"
+      "rarityBasis": "04 标注「H3 长期经典 + 持续活跃，口头禅已进大众语汇」",
+      "imageUrl": "/assets/personas/mem-coke-003.png",
+      "imageKind": "placeholder"
     },
     {
       "id": "ani-opossum-004",
@@ -112,7 +116,9 @@
       },
       "usageNote": "原图为拍摄者作品，不得直接使用，需原创重绘且构图明显改动；不得把「摆烂」写成对用户的价值判断；不得引用严肃心理学数据为匹配度背书。",
       "rarity": "common",
-      "rarityBasis": "04 标注「跨全平台，C 类主观观察已由 ≥4 独立信源证实」"
+      "rarityBasis": "04 标注「跨全平台，C 类主观观察已由 ≥4 独立信源证实」",
+      "imageUrl": "/assets/personas/ani-opossum-004.png",
+      "imageKind": "placeholder"
     },
     {
       "id": "ani-cryinghorse-005",
@@ -149,7 +155,9 @@
       },
       "usageNote": "该哭脸形象已申请外观专利，绝不可复刻玩偶造型，只取「缝反的笑脸 / 被缺陷共情」这一概念做原创设计。",
       "rarity": "limited",
-      "rarityBasis": "04 标注「生命周期：周期（生肖）+ 限时（梗）」，以「限时」为主标 limited"
+      "rarityBasis": "04 标注「生命周期：周期（生肖）+ 限时（梗）」，以「限时」为主标 limited",
+      "imageUrl": "/assets/personas/ani-cryinghorse-005.png",
+      "imageKind": "placeholder"
     },
     {
       "id": "mem-sorrowlady-006",
@@ -186,7 +194,9 @@
       },
       "usageNote": "AI 生成角色，版权链尚不成熟，商用需授权或做概念层原创改写；女性向角色，文案避免「装」「矫情」等贬义导向。",
       "rarity": "limited",
-      "rarityBasis": "04 标注「生命周期：限时（约 2026-03 前后）」"
+      "rarityBasis": "04 标注「生命周期：限时（约 2026-03 前后）」",
+      "imageUrl": "/assets/personas/mem-sorrowlady-006.png",
+      "imageKind": "placeholder"
     },
     {
       "id": "mem-bushaoxin-007",
@@ -221,7 +231,9 @@
       },
       "usageNote": "不指向任何真实个人，无肖像权问题；具体台词与 BGM 属具体作品不可原样复制，但「不烧心」为通用词组可用；不得暗示真实餐饮品牌偷工减料。",
       "rarity": "rare",
-      "rarityBasis": "04 标注「H1→H2 当周仍在流通、限时」，但模板机制具常驻潜力"
+      "rarityBasis": "04 标注「H1→H2 当周仍在流通、限时」，但模板机制具常驻潜力",
+      "imageUrl": "/assets/personas/mem-bushaoxin-007.png",
+      "imageKind": "placeholder"
     },
     {
       "id": "mem-musicai-009",
@@ -258,7 +270,9 @@
       },
       "usageNote": "04 中版权/肖像风险最高的一张：绝对不可使用任何 AI 真人视频或图像，只能取「把人物放上演唱会舞台」这一概念并用原创虚拟形象；「消耗中国一半算力」是夸张比喻，不得写成事实。",
       "rarity": "limited",
-      "rarityBasis": "04 标注「生命周期：限时（该模板）；但「AI 二创真人」这一机制属常驻」"
+      "rarityBasis": "04 标注「生命周期：限时（该模板）；但「AI 二创真人」这一机制属常驻」",
+      "imageUrl": "/assets/personas/mem-musicai-009.png",
+      "imageKind": "placeholder"
     },
     {
       "id": "mem-gulumao-021",
@@ -293,7 +307,9 @@
       },
       "usageNote": "真实个人：不可复刻其形象与标题句式，不得借用《青年大学习》栏目名；涉租房合同、社保等准法律信息，产品只可问「哪件最晚学会」，不得给任何办事指引。",
       "rarity": "hidden",
-      "rarityBasis": "04 标注「生命周期：限时（账号热度）+ 周期（毕业季回潮）」，按「周期回潮」标 hidden"
+      "rarityBasis": "04 标注「生命周期：限时（账号热度）+ 周期（毕业季回潮）」，按「周期回潮」标 hidden",
+      "imageUrl": "/assets/personas/mem-gulumao-021.png",
+      "imageKind": "placeholder"
     },
     {
       "id": "an-belial-001",
@@ -330,7 +346,9 @@
       },
       "usageNote": "圆谷/新创华 IP：不得使用官方形象、剧照、Logo；「开盒」「人肉」类二创涉违法绝不可写进文案；不得关联涉真实逝者的「牢大」梗。",
       "rarity": "common",
-      "rarityBasis": "04 标注「H3 长期经典、生命周期常驻」"
+      "rarityBasis": "04 标注「H3 长期经典、生命周期常驻」",
+      "imageUrl": "/assets/personas/an-belial-001.png",
+      "imageKind": "placeholder"
     },
     {
       "id": "an-diga-002",
@@ -367,7 +385,9 @@
       },
       "usageNote": "版权同前；🚫 严禁把「迪迦最火」写成事实——与「赛罗在中国最火」的口径直接冲突，文案只能写「有争议」或回避排名；粉圈骂战内容不得引用。",
       "rarity": "common",
-      "rarityBasis": "04 标注「H3 长期经典、生命周期常驻」"
+      "rarityBasis": "04 标注「H3 长期经典、生命周期常驻」",
+      "imageUrl": "/assets/personas/an-diga-002.png",
+      "imageKind": "placeholder"
     },
     {
       "id": "an-sairo-003",
@@ -404,7 +424,9 @@
       },
       "usageNote": "版权同前；🚫 严禁把「赛罗在中国最火」或「迪迦断层第一」任一方写成事实；对具体粉丝群体的负面刻画不得复述进文案。",
       "rarity": "common",
-      "rarityBasis": "04 标注「H3 长期经典、生命周期常驻」"
+      "rarityBasis": "04 标注「H3 长期经典、生命周期常驻」",
+      "imageUrl": "/assets/personas/an-sairo-003.png",
+      "imageKind": "placeholder"
     },
     {
       "id": "sd-jiangbanya-012",
@@ -441,7 +463,9 @@
       },
       "usageNote": "涉真实商家与主创：不得点名、不得用其店铺产品或官方视频画面；「食物成精上门寻仇」这一概念不受保护，可做原创设计但不得复刻鸭形象；「50 亿」为媒体自述不得引用为事实。",
       "rarity": "rare",
-      "rarityBasis": "04 标注「H2（2026-02 起）+ 具常驻潜力、限时」"
+      "rarityBasis": "04 标注「H2（2026-02 起）+ 具常驻潜力、限时」",
+      "imageUrl": "/assets/personas/sd-jiangbanya-012.png",
+      "imageKind": "placeholder"
     }
   ]
 }

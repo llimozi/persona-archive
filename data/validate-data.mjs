@@ -20,7 +20,7 @@
  *   把人引向改引擎、改路径的错误方向。
  */
 
-import { readFileSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -109,9 +109,23 @@ function checkPersonas(doc) {
 
     checkDims(where, p.dims);
 
-    if (p.cardType && !['text', 'placeholder'].includes(p.cardType)) {
-      fail(where, `cardType 非法：${p.cardType}`);
+    // 配图：必须存在（不留空白）、必须是本人文件（防张冠李戴）、路径必须在 public 下且文件真实存在
+    if (!p.imageUrl) {
+      fail(where, '缺少 imageUrl（每位人物都必须有配图，不允许留空白）');
+    } else {
+      const expected = `/assets/personas/${p.id}.png`;
+      if (p.imageUrl !== expected) {
+        fail(where, `imageUrl 与人物不匹配：期望 ${expected}，实际 ${p.imageUrl}（防错配）`);
+      }
+      const abs = join(PROJECT_ROOT, 'public', p.imageUrl.replace(/^\//, ''));
+      if (!existsSync(abs)) fail(where, `配图文件不存在：${abs}`);
+      if (p.imageKind !== 'placeholder' && p.imageKind !== 'official') {
+        fail(where, `imageKind 非法：${p.imageKind}（允许 placeholder/official）`);
+      }
     }
+
+    if (p.cardType && !['text', 'placeholder'].includes(p.cardType)) {
+      fail(where, `cardType 非法：${p.cardType}`);    }
     if (p.rarity !== undefined && !RARITY.includes(p.rarity)) {
       fail(where, `rarity 非法：${p.rarity}`);
     }
