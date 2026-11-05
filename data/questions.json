@@ -111,10 +111,10 @@
       "dimensionId": "FC",
       "reverse": false,
       "optionScore": {
-        "A": 4,
-        "B": 1.5,
-        "C": 4.5,
-        "D": 3
+        "A": 4.33,
+        "B": 1.0,
+        "C": 5,
+        "D": 3.0
       },
       "questionWeight": 1
     },
@@ -207,8 +207,8 @@
       "dimensionId": "KD",
       "reverse": false,
       "optionScore": {
-        "A": 4.5,
-        "B": 2
+        "A": 5,
+        "B": 1.0
       },
       "questionWeight": 1
     },
@@ -263,10 +263,10 @@
       "dimensionId": "MS",
       "reverse": false,
       "optionScore": {
-        "A": 2,
-        "B": 3,
-        "C": 4,
-        "D": 3.5
+        "A": 1.0,
+        "B": 3.0,
+        "C": 5,
+        "D": 4.0
       },
       "questionWeight": 1
     },
@@ -315,10 +315,10 @@
       "dimensionId": "KD",
       "reverse": true,
       "optionScore": {
-        "A": 3,
-        "B": 4.5,
-        "C": 4,
-        "D": 1
+        "A": 3.29,
+        "B": 5,
+        "C": 4.43,
+        "D": 1.0
       },
       "questionWeight": 1
     },
@@ -372,10 +372,10 @@
       "dimensionId": "FC",
       "reverse": false,
       "optionScore": {
-        "A": 4,
-        "B": 3,
-        "C": 1,
-        "D": 2.5
+        "A": 5,
+        "B": 3.67,
+        "C": 1.0,
+        "D": 3.0
       },
       "questionWeight": 1
     },
@@ -468,8 +468,8 @@
       "dimensionId": "KD",
       "reverse": false,
       "optionScore": {
-        "A": 3.5,
-        "B": 4.5
+        "A": 1.0,
+        "B": 5
       },
       "questionWeight": 1
     },
@@ -523,10 +523,10 @@
       "dimensionId": "KD",
       "reverse": false,
       "optionScore": {
-        "A": 4.5,
-        "B": 4,
-        "C": 3,
-        "D": 1
+        "A": 5,
+        "B": 4.43,
+        "C": 3.29,
+        "D": 1.0
       },
       "questionWeight": 1
     },
@@ -580,10 +580,10 @@
       "dimensionId": "ZQ",
       "reverse": false,
       "optionScore": {
-        "A": 4,
-        "B": 2,
-        "C": 3,
-        "D": 1
+        "A": 5,
+        "B": 2.33,
+        "C": 3.67,
+        "D": 1.0
       },
       "questionWeight": 1
     },
@@ -637,10 +637,10 @@
       "dimensionId": "FC",
       "reverse": false,
       "optionScore": {
-        "A": 2,
-        "B": 3.5,
-        "C": 4,
-        "D": 1
+        "A": 2.33,
+        "B": 4.33,
+        "C": 5,
+        "D": 1.0
       },
       "questionWeight": 1
     },
@@ -694,10 +694,10 @@
       "dimensionId": "ZQ",
       "reverse": false,
       "optionScore": {
-        "A": 4.5,
-        "B": 1.5,
-        "C": 2.5,
-        "D": 3.5
+        "A": 5,
+        "B": 1.0,
+        "C": 2.33,
+        "D": 3.67
       },
       "questionWeight": 1
     },
@@ -731,10 +731,10 @@
         }
       ],
       "dimensionId": "MS",
-      "reverse": true,
+      "reverse": false,
       "optionScore": {
-        "A": 1,
-        "B": 4.5
+        "A": 1.0,
+        "B": 5
       },
       "questionWeight": 1
     },
@@ -788,10 +788,10 @@
       "dimensionId": "SB",
       "reverse": false,
       "optionScore": {
-        "A": 4.5,
-        "B": 2.5,
-        "C": 1,
-        "D": 3
+        "A": 5,
+        "B": 2.71,
+        "C": 1.0,
+        "D": 3.29
       },
       "questionWeight": 1
     },
@@ -902,10 +902,10 @@
       "dimensionId": "KD",
       "reverse": false,
       "optionScore": {
-        "A": 4.5,
-        "B": 4.5,
-        "C": 3,
-        "D": 1.5
+        "A": 5,
+        "B": 5,
+        "C": 3.0,
+        "D": 1.0
       },
       "questionWeight": 1
     },
@@ -959,10 +959,10 @@
       "dimensionId": "MS",
       "reverse": false,
       "optionScore": {
-        "A": 3.5,
-        "B": 1.5,
-        "C": 2.5,
-        "D": 2
+        "A": 5,
+        "B": 1.0,
+        "C": 3.0,
+        "D": 2.0
       },
       "questionWeight": 1
     },
@@ -1073,10 +1073,10 @@
       "dimensionId": "CX",
       "reverse": false,
       "optionScore": {
-        "A": 4,
-        "B": 3,
-        "C": 2,
-        "D": 3.5
+        "A": 5,
+        "B": 3.0,
+        "C": 1.0,
+        "D": 4.0
       },
       "questionWeight": 1
     },
@@ -1130,10 +1130,10 @@
       "dimensionId": "JH",
       "reverse": false,
       "optionScore": {
-        "A": 2.5,
-        "B": 1.5,
-        "C": 3,
-        "D": 4.5
+        "A": 2.33,
+        "B": 1.0,
+        "C": 3.0,
+        "D": 5
       },
       "questionWeight": 1
     },
@@ -1226,8 +1226,8 @@
       "dimensionId": "MS",
       "reverse": false,
       "optionScore": {
-        "A": 1.5,
-        "B": 4.5
+        "A": 1.0,
+        "B": 5
       },
       "questionWeight": 1
     },
@@ -1282,10 +1282,10 @@
       "dimensionId": "ZQ",
       "reverse": false,
       "optionScore": {
-        "A": 3.5,
-        "B": 4,
-        "C": 1,
-        "D": 4.5
+        "A": 3.86,
+        "B": 4.43,
+        "C": 1.0,
+        "D": 5
       },
       "questionWeight": 1
     },
@@ -1339,10 +1339,10 @@
       "dimensionId": "AB",
       "reverse": false,
       "optionScore": {
-        "A": 3.5,
-        "B": 2,
-        "C": 1.5,
-        "D": 4.5
+        "A": 3.67,
+        "B": 1.67,
+        "C": 1.0,
+        "D": 5
       },
       "questionWeight": 1
     },
@@ -1353,10 +1353,10 @@
       "dimensionId": "WS",
       "reverse": false,
       "optionScore": {
-        "A": 4.5,
-        "B": 3,
-        "C": 1,
-        "D": 2
+        "A": 5,
+        "B": 3.29,
+        "C": 1.0,
+        "D": 2.14
       },
       "questionWeight": 1,
       "dims": {
@@ -1459,10 +1459,10 @@
       "dimensionId": "WS",
       "reverse": false,
       "optionScore": {
-        "A": 4.5,
-        "B": 3,
-        "C": 2,
-        "D": 1
+        "A": 5,
+        "B": 3.29,
+        "C": 2.14,
+        "D": 1.0
       },
       "questionWeight": 1,
       "dims": {

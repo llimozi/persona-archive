@@ -362,13 +362,14 @@
     },
     {
       "id": "mem-damaige-010",
-      "name": "Michael大麦哥",
+      "name": "灭霸的爸爸·灭建国",
       "category": "mem",
       "tags": [
-        "自述",
-        "不建议匹配",
-        "边界感",
-        "反套路"
+        "AI 二创",
+        "漫威梗",
+        "反差",
+        "取名字梗",
+        "校园二创"
       ],
       "dims": {
         "EE": 70,
@@ -378,7 +379,7 @@
         "RB": 52,
         "SR": 66
       },
-      "desc": "铁人三项运动员及成长类内容创作者，分享运动、成长和自我提升。",
+      "desc": "来自近期流行的 AI 漫威校园二创梗。网友将灭霸的爸爸戏称为「灭建国」，把强大的漫威反派与极具生活气息的中文父亲名字结合，形成强烈反差。代表记忆点：「灭建国是谁？」「灭霸的爸爸叫灭建国。」注意：这是网络二创设定，不是漫威官方角色设定。",
       "cardType": "text",
       "placeholder": true,
       "imageUrl": "/assets/personas/mem-damaige-010.png",
@@ -388,15 +389,15 @@
       "compliance": {
         "restricted": true,
         "restrictedReason": [
-          "realPersonControversy"
+          "thirdPartyIP"
         ],
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "真实在职个人：不盗用肖像，不推断心理与私生活，文案不得写成对真人外貌的贬损。",
+      "usageNote": "网络二创设定，非漫威官方角色；不得把该名字表述为官方设定。",
       "rarity": "hidden",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "大麦哥、Michael",
+      "alias": "灭建国、灭霸他爸",
       "nineDims": {
         "MS": 86,
         "FC": 86,
@@ -462,13 +463,12 @@
     },
     {
       "id": "mem-jixinghang-013",
-      "name": "季洪行 & 八级哥",
+      "name": "死马火箭浣熊",
       "category": "mem",
       "tags": [
-        "素材源",
-        "二创",
-        "模板",
-        "配音"
+        "抽象迷因",
+        "自定义角色",
+        "待补充设定"
       ],
       "dims": {
         "EE": 94,
@@ -478,7 +478,7 @@
         "RB": 70,
         "SR": 58
       },
-      "desc": "与大笑奶龙素材传播相关的组合条目，标志性记忆点是魔性笑声。",
+      "desc": "用户提供的自定义抽象名称。当前阶段不编造原型、历史背景或人物身份，后续可根据用户提供的图片、视频和素材完善角色设定。",
       "cardType": "text",
       "placeholder": true,
       "imageUrl": "/assets/personas/mem-jixinghang-013.png",
@@ -486,17 +486,15 @@
       "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-jixinghang-013",
       "evidence": "OBSERVED",
       "compliance": {
-        "restricted": true,
-        "restrictedReason": [
-          "thirdPartyIP"
-        ],
+        "restricted": false,
+        "restrictedReason": [],
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "—",
+      "usageNote": "仅保留用户提供的名称；未确认原型前不得补写背景故事或身份。",
       "rarity": "hidden",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "八级哥、大笑奶龙素材组",
+      "alias": "死马火箭浣熊",
       "nineDims": {
         "MS": 83,
         "FC": 83,
@@ -560,13 +558,14 @@
     },
     {
       "id": "mem-malou-025",
-      "name": "吗喽",
+      "name": "内阁",
       "category": "mem",
       "tags": [
-        "自嘲",
-        "打工人",
-        "猴子",
-        "认命"
+        "抽象迷因",
+        "故作高深",
+        "权威感",
+        "一本正经",
+        "架空设定"
       ],
       "dims": {
         "EE": 38,
@@ -576,7 +575,7 @@
         "RB": 62,
         "SR": 36
       },
-      "desc": "网络自嘲形象，代表疲惫、卑微、被生活支配的打工人。",
+      "desc": "架空抽象迷因角色。主打一副一本正经、故作高深、莫名其妙充满权威感的形象：动辄引经据典、开口就是「此事需从长计议」、在一群人的闲聊里突然发表一段极其正式的权威意见，然后在下一个话题里迅速失语。笑点来自「神秘组织」「高深学问」与「突然发表权威意见」的错位，而不是任何真实组织或群体。",
       "cardType": "text",
       "placeholder": true,
       "imageUrl": "/assets/personas/mem-malou-025.png",
@@ -589,10 +588,10 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "—",
+      "usageNote": "架空设定。不得将该角色设计为侮辱任何种族、民族或群体的形象；不得使用种族刻板印象、歧视性暗语或相关贬损描述。「内阁大学士」只作文字梗称呼，不对应任何现实政治职务或群体。",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "打工吗喽",
+      "alias": "内阁、内阁大学士",
       "nineDims": {
         "MS": 2,
         "FC": 2,
@@ -656,13 +655,14 @@
     },
     {
       "id": "mem-bushi-027",
-      "name": "不是哥们",
+      "name": "马志辉",
       "category": "mem",
       "tags": [
-        "反驳",
-        "急眼",
-        "口头禅",
-        "对线"
+        "闷骚",
+        "大学生",
+        "内心戏",
+        "隐藏角色",
+        "抽象人设"
       ],
       "dims": {
         "EE": 74,
@@ -672,7 +672,7 @@
         "RB": 62,
         "SR": 40
       },
-      "desc": "网络流行语拟人化形象，表达震惊、无语、质疑和难以理解。",
+      "desc": "用户自定义的闷骚大学生梗角色。表面是那种在群里永远只回「收到」「好的」「+1」的人，内心戏却能拍八十集连续剧：路上看见熟人先在心里演练三遍打招呼的措辞，换了新头像等了三小时没人发现，只好自己先点个赞。闷骚指数与猥琐浓度双双拉满，是那种「嘴上什么都没说、脑子里已经演完一整季」的抽象人物。",
       "cardType": "text",
       "placeholder": true,
       "imageUrl": "/assets/personas/mem-bushi-027.png",
@@ -682,13 +682,13 @@
       "compliance": {
         "restricted": false,
         "restrictedReason": [],
-        "matchPool": true,
+        "matchPool": false,
         "resultCardEnabled": true
       },
-      "usageNote": "—",
+      "usageNote": "项目内部虚构梗角色。不得把未经证实的现实人物的性经历、自慰习惯或其他私人性行为写成事实，不得对外展示现实个人隐私。",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
-      "alias": "不是哥们儿",
+      "alias": "马志辉、路管管",
       "nineDims": {
         "MS": 20,
         "FC": 20,
@@ -700,7 +700,11 @@
         "AB": 58,
         "KD": 20
       },
-      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py"
+      "nineDimsBasis": "由六维经题目 effects 拟合 + 语义定向修正得到倾向分，再按池内百分位铺到 0–100，见 tools/persona-nine.py",
+      "unlock": {
+        "MS": 100,
+        "WS": 100
+      }
     },
     {
       "id": "an-belial-001",
@@ -1876,12 +1880,15 @@
     },
     {
       "id": "ani-spongebob-052",
-      "name": "海绵宝宝",
-      "alias": "SpongeBob",
+      "name": "扎啤",
+      "alias": "扎啤",
       "category": "ani",
       "tags": [
-        "网络人物",
-        "档案卡"
+        "抽象原型",
+        "离谱操作",
+        "脑回路",
+        "荒诞场面",
+        "无语"
       ],
       "dims": {
         "EE": 92,
@@ -1891,20 +1898,18 @@
         "RB": 46,
         "SR": 86
       },
-      "desc": "黄色海绵，乐观、热情、精力旺盛，经常制造喜剧场面。",
+      "desc": "一种抽象人格原型，形容那些行为离谱、脑回路不在线、干出让人无语的事情的人：走在路上能把自己绊一个趔趄，说完一句话能自己听出三种意思，正经场合说正经话，正经话说得像在说胡话。重点不在现实中的任何人，而在这类「离谱操作」本身。",
       "cardType": "text",
       "placeholder": true,
       "source": "docs/product-discovery/04-热梗与人物资料卡.md#ani-spongebob-052",
       "evidence": "OBSERVED",
       "compliance": {
-        "restricted": true,
-        "restrictedReason": [
-          "thirdPartyIP"
-        ],
+        "restricted": false,
+        "restrictedReason": [],
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "—",
+      "usageNote": "抽象人格原型，不绑定现实中任何特定人物；只写行为与场面，不指向具体个人。",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/ani-spongebob-052.png",
@@ -2110,12 +2115,15 @@
     },
     {
       "id": "mem-bombardiro-057",
-      "name": "Bombardiro Crocodilo",
-      "alias": "Bombardiro、鳄鱼轰炸机",
+      "name": "爱女群体",
+      "alias": "爱女群体、极端爱女派",
       "category": "mem",
       "tags": [
-        "网络人物",
-        "档案卡"
+        "网络现象",
+        "双标",
+        "话术",
+        "抽象讽刺",
+        "情绪化"
       ],
       "dims": {
         "EE": 62,
@@ -2125,7 +2133,7 @@
         "RB": 72,
         "SR": 38
       },
-      "desc": "意大利脑腐迷因角色，鳄鱼与轰炸机的荒诞融合体。",
+      "desc": "对极端化网络话术现象进行讽刺的抽象角色：把「爱女」当成免检通行证，用情绪化扣帽子代替讨论，同一套标准只在自己这边生效，一言不合就清点立场、拒绝交流。讽刺的对象是**具体的极端观点、双标和逻辑矛盾**，不是女性这个群体，也不是正常的性别议题讨论。",
       "cardType": "text",
       "placeholder": true,
       "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-bombardiro-057",
@@ -2136,7 +2144,7 @@
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "—",
+      "usageNote": "不得将女性整体当作嘲讽对象；不得把正常女权观点或女性群体一概归为该角色；不得将智力障碍或残障身份作为侮辱笑点。讽刺对象必须是具体的极端观点、双标与逻辑矛盾。",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/mem-bombardiro-057.png",
@@ -2350,12 +2358,15 @@
     },
     {
       "id": "an-huitailang-061",
-      "name": "灰太狼",
-      "alias": "灰太狼大王",
+      "name": "纯种嘉豪",
+      "alias": "嘉豪、纯种嘉豪、嘉豪本豪",
       "category": "an",
       "tags": [
-        "网络人物",
-        "档案卡"
+        "嘉豪",
+        "装逼",
+        "凹造型",
+        "用力过猛",
+        "自我感觉良好"
       ],
       "dims": {
         "EE": 72,
@@ -2365,20 +2376,18 @@
         "RB": 58,
         "SR": 50
       },
-      "desc": "《喜羊羊与灰太狼》角色，常年抓羊失败，「我一定会回来的」是经典台词。",
+      "desc": "代表那些喜欢装逼却不自知、沉浸在自己的帅气人设和世界观里、对自己的表现极其满意的人：走路带风、进门先找反光面、自拍一百张选出最不满意的那张发出去，用力过猛却完全不觉得尴尬，对旁人的反应一概不太敏感。核心梗：「别人还没觉得你帅，你已经把自己帅完了。」",
       "cardType": "text",
       "placeholder": true,
       "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-huitailang-061",
       "evidence": "OBSERVED",
       "compliance": {
-        "restricted": true,
-        "restrictedReason": [
-          "thirdPartyIP"
-        ],
+        "restricted": false,
+        "restrictedReason": [],
         "matchPool": true,
         "resultCardEnabled": true
       },
-      "usageNote": "—",
+      "usageNote": "不依据真人外貌来评价嘉豪浓度，只看行为、表达和自我认知。",
       "rarity": "common",
       "rarityBasis": "主控按热度与辨识度分档（非 04 原卡判定）",
       "imageUrl": "/assets/personas/an-huitailang-061.png",

@@ -26,6 +26,8 @@ export interface ResultPersona {
 interface Props {
   top: ResultPersona | null;
   others: ResultPersona[];
+  /** 满足解锁条件的隐藏角色（不参与匹配排序，单独渲染） */
+  hiddenUnlocked?: ResultPersona[];
   dims: Dims;
   /** 九维坐标结果（页面与雷达图共用这一份，保证分数一致） */
   nine: NineResult;
@@ -87,7 +89,7 @@ function ArchivePortrait({
   );
 }
 
-export function ResultPage({ top, others, dims, nine, onRestart, onShare, shareHint, shareUrl }: Props) {
+export function ResultPage({ top, others, dims, nine, hiddenUnlocked = [], onRestart, onShare, shareHint, shareUrl }: Props) {
   const [posterOpen, setPosterOpen] = useState(false);
   const name = top ? splitName(top.name) : { main: '', sub: '' };
 
@@ -280,6 +282,26 @@ export function ResultPage({ top, others, dims, nine, onRestart, onShare, shareH
               ))}
             </div>
           </section>
+
+          {/* ── 隐藏角色：仅在九维真分精确满足解锁条件时出现 ── */}
+          {hiddenUnlocked.map((p) => (
+            <section className="section section--hidden" key={p.id} data-testid="hidden-unlocked">
+              <div className="section__head">
+                <h2 className="section__title">隐藏档案已解锁</h2>
+                <span className="section__hint mono section__hint--tight">SEALED</span>
+              </div>
+              <div className="hidden-card">
+                <div className="hidden-card__head">
+                  <span className="hidden-card__stamp" aria-hidden="true">启封</span>
+                  <span className="hidden-card__name">{p.name}</span>
+                </div>
+                <p className="hidden-card__cond mono">
+                  闷骚指数 100 · 猥琐浓度 100 — 双满分命中
+                </p>
+                {p.desc && <p className="hidden-card__desc">{p.desc}</p>}
+              </div>
+            </section>
+          ))}
 
           {/* ── 还有几分像：小档案条 ── */}
           {others.length > 0 && (

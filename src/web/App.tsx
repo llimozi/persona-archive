@@ -4,6 +4,7 @@ import { QuizPage } from './pages/QuizPage';
 import { ResultPage } from './pages/ResultPage';
 import { Page } from './components/Page';
 import { computeNine } from './lib/nine';
+import { checkUnlock } from '../shared/unlock';
 import { RitualOverlay } from './components/RitualOverlay';
 import {
   fetchPersonas,
@@ -206,6 +207,15 @@ export function App() {
   const dims = result ? toDisplayDims(result.user.x) : EMPTY_DIMS;
   // 九维坐标：独立于角色匹配的评分体系，用户自己的九个 0–100 分
   const nine = computeNine(qs, answers);
+
+  // 隐藏角色：单独判定解锁资格，**不参与匹配排序**。
+  // 数据侧该角色 matchPool=false，因此本就不会进 ranking；
+  // 这里只在九维真分满足 unlock 条件时才把它作为额外结果展示出来。
+  const hiddenUnlocked = ps.filter((p) => {
+    const rule = (p as { unlock?: Record<string, number> }).unlock;
+    if (!rule) return false;
+    return checkUnlock({ id: p.id, name: p.name, unlock: rule as never }, nine.dims).unlocked;
+  });
   const mainId = result?.main?.persona.id;
   const mainName = result?.main?.persona.name ?? '未匹配';
 
@@ -294,12 +304,26 @@ export function App() {
     .map((p) => toCard(p?.persona))
     .filter((p): p is ResultPersona => p !== null);
 
+  // 解锁的隐藏角色造一张卡：percent 用 100 表示「完全命中解锁条件」，
+  // 并带上标记让结果页单独渲染，混进「还有几分像」列表会误导。
+  const hiddenCards: ResultPersona[] = hiddenUnlocked.map((p) => ({
+    id: p.id,
+    name: p.name,
+    category: p.category,
+    tags: p.tags,
+    percent: 100,
+    desc: p.desc,
+    placeholder: (p as { placeholder?: boolean }).placeholder,
+    imageUrl: (p as { imageUrl?: string }).imageUrl,
+  }));
+
   return (
     <ResultPage
       top={top}
       others={others}
       dims={dims}
       nine={nine}
+      hiddenUnlocked={hiddenCards}
       onRestart={restart}
       onShare={share}
       shareUrl={Object.keys(answers).length ? buildShareUrl(answers) : location.href}

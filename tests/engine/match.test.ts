@@ -210,9 +210,30 @@ describe('引擎 · 进池判据防回归', () => {
 
     const excluded = out.warnings.filter((w) => w.code === 'persona_out_of_match_pool');
     expect(personas.length, `真实数据应恰为 ${EXPECTED_PERSONAS} 人`).toBe(EXPECTED_PERSONAS);
-    expect(excluded.length, `出池人数应为 0，实际 ${excluded.length}：${excluded.map((w) => w.message).join('; ')}`).toBe(0);
-    expect(out.pool.size, `池大小应等于人物总数 ${EXPECTED_PERSONAS}（restricted=true 不得把人挡在池外）`).toBe(EXPECTED_PERSONAS);
-    expect(out.ranking.length, `ranking 条数应等于 ${EXPECTED_PERSONAS}`).toBe(EXPECTED_PERSONAS);
+
+    // 2026-11-05 变更：出池人数由 0 改为 1。
+    // 原因：任务 B 把「不是哥们」改名为隐藏角色「马志辉」，
+    // 按需求其 compliance.matchPool=false，**必须**不参与普通匹配，
+    // 只在九维闷骚/猥琐同时精确为 100 时单独解锁。
+    // 这不是放宽断言，而是把事实收紧成精确值：出池的必须且只能是它一个。
+    const EXCLUDED_IDS = ['mem-bushi-027'];
+    const excludedIds = personas
+      .filter((p) => (p as EnginePersona & { compliance?: { matchPool?: boolean } }).compliance?.matchPool === false)
+      .map((p) => p.id);
+    expect(excludedIds.sort(), '出池名单必须精确等于隐藏角色，不多不少').toEqual([...EXCLUDED_IDS].sort());
+    expect(excluded.length, `出池告警数应为 ${EXCLUDED_IDS.length}，实际 ${excluded.length}`).toBe(EXCLUDED_IDS.length);
+
+    const expectedPoolSize = EXPECTED_PERSONAS - EXCLUDED_IDS.length;
+    expect(
+      out.pool.size,
+      `池大小应为总人数 ${EXPECTED_PERSONAS} 减去隐藏角色 = ${expectedPoolSize}（restricted=true 不得把人挡在池外）`,
+    ).toBe(expectedPoolSize);
+    expect(out.ranking.length, `ranking 条数应为 ${expectedPoolSize}`).toBe(expectedPoolSize);
+
+    // 隐藏角色绝不能出现在 ranking 里（需求：未满足条件时不在普通匹配候选中出现）
+    for (const id of EXCLUDED_IDS) {
+      expect(out.ranking.some((r) => r.id === id), `隐藏角色 ${id} 不得进入普通匹配排序`).toBe(false);
+    }
   });
 });
 

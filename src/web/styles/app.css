@@ -890,6 +890,11 @@
   color: var(--ink);
 }
 
+.section__hint--tight {
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
 .section__hint {
   font-size: 10px;
   color: var(--ink-3);
@@ -1145,6 +1150,59 @@
   .dims--nine .dim__name {
     font-size: 10px;
   }
+}
+
+/* ───────────── 隐藏角色（解锁后才出现） ───────────── */
+
+.hidden-card {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid var(--seal);
+  border-left: 4px solid var(--seal);
+  border-radius: var(--r-sm);
+  padding: 14px 14px 13px;
+  box-shadow: 0 2px 0 rgba(120, 100, 70, 0.18);
+}
+
+.hidden-card__head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 6px;
+}
+
+/* 启封章：斜角小印，和结果页主印章同一套语言 */
+.hidden-card__stamp {
+  flex: none;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--paper);
+  background: var(--seal);
+  padding: 2px 7px;
+  transform: rotate(-4deg);
+  border-radius: 1px;
+}
+
+.hidden-card__name {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+}
+
+.hidden-card__cond {
+  margin: 0 0 8px;
+  font-size: 10px;
+  color: var(--seal);
+  letter-spacing: 0.06em;
+}
+
+.hidden-card__desc {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.72;
+  color: var(--ink-2);
 }
 
 /* ───────────── 还有几分像：小档案条 ───────────── */
