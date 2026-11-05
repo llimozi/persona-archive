@@ -872,3 +872,511 @@
 .cabinet {
   box-shadow: 0 2px 0 #15130f, 0 12px 28px rgba(30, 26, 20, 0.3);
 }
+
+/* ============================================================
+ * 第四轮：结构性版面（首屏焦点 / 层次对比）
+ * ============================================================ */
+
+/* ───────────── 首页：错落档案卡主视觉 ───────────── */
+
+.stack {
+  position: relative;
+  height: 240px;
+  margin-bottom: 4px;
+  transform-style: preserve-3d;
+  transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 220ms var(--ease-out);
+}
+
+/* 三张卡错落叠放：像被拨开的一叠 */
+.stack__card {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: var(--paper);
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  padding: 10px 12px 12px;
+  box-shadow:
+    0 1px 0 rgba(120, 100, 70, 0.18),
+    0 14px 28px -10px rgba(70, 55, 32, 0.42);
+}
+
+.stack__card--0 {
+  top: 0;
+  left: 14px;
+  right: 14px;
+  transform: rotate(-1.8deg);
+  opacity: 0.62;
+}
+
+.stack__card--1 {
+  top: 44px;
+  left: 7px;
+  right: 7px;
+  transform: rotate(1.1deg);
+  opacity: 0.82;
+}
+
+.stack__card--2 {
+  top: 88px;
+  transform: rotate(-0.3deg);
+  box-shadow:
+    0 2px 0 rgba(120, 100, 70, 0.2),
+    0 22px 44px -12px rgba(70, 55, 32, 0.55);
+}
+
+.stack__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 7px;
+  border-bottom: 1px dashed var(--line-strong);
+  margin-bottom: 9px;
+}
+
+.stack__no {
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+}
+
+.stack__cat {
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  color: var(--seal);
+  border: 1px solid var(--seal-line);
+  border-radius: 2px;
+  padding: 0 6px;
+}
+
+.stack__body {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.stack__photo {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--seal);
+  background: var(--paper-2);
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 3px var(--paper);
+}
+
+.stack__id {
+  min-width: 0;
+}
+
+.stack__name {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stack__seal {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  color: var(--seal);
+  border: 1.5px solid var(--seal-line);
+  border-radius: 2px;
+  padding: 1px 7px;
+  transform: rotate(-2deg);
+}
+
+.stack__seal.is-pending {
+  color: var(--gold);
+  border-color: var(--gold-line);
+}
+
+/* ───────────── 首页：横排馆藏数据 ───────────── */
+
+.ledger {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  background: var(--paper);
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 1px 0 rgba(120, 100, 70, 0.14);
+}
+
+.ledger__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: 9px 4px 10px;
+  border-left: 1px solid var(--line);
+  position: relative;
+}
+
+.ledger__item:first-child {
+  border-left: 0;
+  border-top: 2px solid var(--seal);
+}
+
+.ledger__value {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.ledger__label {
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--ink-2);
+}
+
+/* ───────────── 结果页：首屏焦点重排 ───────────── */
+
+.record {
+  /* 与背景拉开明暗：卡片更亮，背景更沉 */
+  background: #f8f1e2;
+  border: 1px solid #c2b191;
+  box-shadow:
+    0 2px 0 rgba(120, 100, 70, 0.2),
+    0 26px 48px -18px rgba(60, 46, 26, 0.5);
+}
+
+/* 大相框：首屏视觉重心 */
+.record__main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding-left: 14px;
+  padding-top: 6px;
+}
+
+.record .portrait--lg {
+  width: 152px;
+}
+
+.record .portrait__frame {
+  padding: 6px;
+  box-shadow:
+    inset 0 0 0 5px var(--paper),
+    0 10px 26px -10px rgba(60, 46, 26, 0.55);
+}
+
+.record .portrait__glyph {
+  font-size: 62px;
+}
+
+/* 超大匹配度：字号明显大于页面上任何其它元素 */
+.record__score-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.record__score {
+  display: flex;
+  align-items: baseline;
+  gap: 1px;
+  margin-top: 0;
+}
+
+.record__score-num {
+  font-size: 74px;
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  color: var(--seal);
+}
+
+.record__score-unit {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--seal);
+  margin-left: 1px;
+}
+
+.record__score-cap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 0;
+  margin-top: 2px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+/* 大名字：独占整行、居中、字重最大 */
+.record__name {
+  font-size: 32px;
+  line-height: 1.22;
+  text-align: center;
+  margin-top: 14px;
+  padding: 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.record__sub {
+  text-align: center;
+  margin-top: 6px;
+  padding: 0 10px;
+}
+
+.record__tags {
+  justify-content: center;
+  padding-left: 14px;
+  padding-right: 8px;
+  margin-top: 12px;
+}
+
+/* 简介收起 */
+.record__desc-wrap {
+  position: relative;
+  padding-left: 14px;
+  padding-right: 14px;
+  margin-top: 12px;
+}
+
+.record__desc {
+  padding-left: 0;
+  padding-right: 0;
+  margin-top: 0;
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--ink-2);
+  /* 收起时只露三行 */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.record__desc-wrap.is-open .record__desc {
+  display: block;
+  overflow: visible;
+}
+
+.record__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+  padding: 0 2px;
+  /* 热区 ≥44px：文字仍小巧，点击区域必须够大 */
+  min-height: 44px;
+  min-width: 44px;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  color: var(--seal);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--seal-line);
+}
+
+/* 印章改到首屏边角，不压正文 */
+.record .stamp {
+  right: 10px;
+  top: 54px;
+  bottom: auto;
+  width: 62px;
+  height: 62px;
+}
+
+/* ───────────── 六维：次要层级 ───────────── */
+
+.section--dims {
+  /* 比首屏卡片更弱：下沉到背景层 */
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 12px 14px 14px;
+  box-shadow: inset 0 1px 3px rgba(120, 100, 70, 0.16);
+}
+
+.section--dims .section__head {
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 5px;
+}
+
+.section--dims .section__title {
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+.dims {
+  gap: 11px;
+}
+
+.dim {
+  display: block;
+}
+
+.dim__row {
+  display: grid;
+  grid-template-columns: 60px 1fr 32px;
+  align-items: center;
+  gap: 9px;
+}
+
+.dim__name {
+  font-size: 11.5px;
+  color: var(--ink-2);
+}
+
+.dim__value {
+  font-size: 12.5px;
+  color: var(--ink-2);
+}
+
+/* 高分区用朱红，低分区用暗金，一眼分出强弱 */
+.dim.is-high .dim__fill {
+  background: var(--seal);
+}
+.dim.is-low .dim__fill {
+  background: var(--gold);
+}
+.dim.is-low .dim__value {
+  color: var(--gold);
+}
+.dim.is-high .dim__value {
+  color: var(--seal);
+}
+
+.dim__meaning {
+  margin: 3px 0 0 69px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  letter-spacing: 0.01em;
+}
+
+.dim__track {
+  height: 9px;
+}
+
+/* ───────────── 窄屏覆盖 ───────────── */
+
+@media (max-width: 380px) {
+  .stack {
+    height: 190px;
+  }
+
+  .stack__photo {
+    width: 46px;
+    height: 46px;
+    font-size: 20px;
+  }
+
+  .stack__name {
+    font-size: 17px;
+  }
+
+  .record .portrait--lg {
+    width: 124px;
+  }
+
+  .record .portrait__glyph {
+    font-size: 50px;
+  }
+
+  .record__score-num {
+    font-size: 60px;
+  }
+
+  .record__score-unit {
+    font-size: 20px;
+  }
+
+  .record__name {
+    font-size: 26px;
+  }
+
+  .dim__row {
+    grid-template-columns: 54px 1fr 30px;
+    gap: 8px;
+  }
+
+  .dim__meaning {
+    margin-left: 62px;
+  }
+
+  .record .stamp {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+
+/* ───────────── 首页：收紧纵向节奏，确保 844 内可见按钮 ───────────── */
+
+.home-tight .page__body {
+  gap: 14px;
+  padding-top: 14px;
+}
+
+.home-tight .page__body::before {
+  margin-bottom: 6px;
+}
+
+.home-tight .stack {
+  height: 214px;
+}
+
+.home-tight .hero {
+  gap: 8px;
+}
+
+.home-tight .title-xl {
+  font-size: 30px;
+  line-height: 1.22;
+}
+
+.home-tight .ledger__item {
+  padding: 7px 4px 8px;
+}
+
+.home-tight .ledger__value {
+  font-size: 21px;
+}
+
+.home-tight .cta {
+  margin-top: 4px;
+  padding-top: 0;
+  gap: 6px;
+}
+
+.home-tight .hero__note {
+  font-size: 11px;
+  text-align: center;
+}
+
+/* 窄屏进一步压 */
+@media (max-width: 380px) {
+  .home-tight .stack {
+    height: 198px;
+  }
+  .home-tight .title-xl {
+    font-size: 26px;
+  }
+  .home-tight .ledger__value {
+    font-size: 19px;
+  }
+}

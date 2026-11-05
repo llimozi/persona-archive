@@ -94,18 +94,30 @@ def draw_avatar(persona):
 
     draw_pattern(d, style, patt, SIZE)
 
-    # 内框：档案照片的细边
-    d.rectangle([18, 18, SIZE - 18, SIZE - 18], outline=tuple(max(0, v - 40) for v in bg), width=3)
+    # 内框：双线装裱（外粗内细），像真档案照的卡纸
+    d.rectangle([14, 14, SIZE - 14, SIZE - 14], outline=tuple(max(0, v - 46) for v in bg), width=5)
+    d.rectangle([26, 26, SIZE - 26, SIZE - 26], outline=tuple(max(0, v - 26) for v in bg), width=1)
+
+    # 四角装裱角：L 形短线
+    L, TH = 34, 2
+    edge = tuple(max(0, v - 60) for v in bg)
+    for ox, oy, dx, dy in ((30, 30, 1, 1), (SIZE - 30, 30, -1, 1), (30, SIZE - 30, 1, -1), (SIZE - 30, SIZE - 30, -1, -1)):
+        d.line([(ox, oy), (ox + L * dx, oy)], fill=edge, width=TH)
+        d.line([(ox, oy), (ox, oy + L * dy)], fill=edge, width=TH)
 
     # 底部标注栏底色（在纹样之上再铺一次，保证编号清晰可读）
     d.rectangle([20, SIZE - 92, SIZE - 20, SIZE - 20], fill=tuple(max(0, v - 10) for v in bg))
     d.line([(20, SIZE - 92), (SIZE - 20, SIZE - 92)], fill=tuple(max(0, v - 40) for v in bg), width=2)
 
     ch = first_char(persona["name"])
-    f = font(FONT_BOLD, 250)
+    f = font(FONT_BOLD, 232)
     bbox = d.textbbox((0, 0), ch, font=f)
     tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
-    d.text(((SIZE - tw) / 2 - bbox[0], (SIZE - th) / 2 - bbox[1] - 14), ch, font=f, fill=ink)
+    tx = (SIZE - tw) / 2 - bbox[0]
+    ty = (SIZE - th) / 2 - bbox[1] - 18
+    # 轻微投影，让大字从纸纹里浮起来
+    d.text((tx + 2, ty + 3), ch, font=f, fill=tuple(min(255, v + 26) for v in bg))
+    d.text((tx, ty), ch, font=f, fill=ink)
 
     # 底部：编号 + 分类拉丁缩写，像档案照的标注栏（先画栏，再画纹样，避免被纹样割穿）
     fm = font(FONT_MONO, 30)

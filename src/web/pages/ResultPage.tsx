@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Page } from '../components/Page';
 import { PosterSheet } from '../components/PosterSheet';
-import { DIM_LABEL } from '../lib/dims';
+import { DIM_LABEL, dimMeaning } from '../lib/dims';
 import { DIM_KEYS } from '../../shared/types';
 import type { Dims } from '../../shared/types';
 import { archiveNo, categoryLabel, categoryTone, splitName, tidySubtitle } from '../lib/display';
@@ -93,6 +93,7 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
   const [eggTaps, setEggTaps] = useState(0);
   const [stampEl, setStampEl] = useState<HTMLSpanElement | null>(null);
   const [portraitEl, setPortraitEl] = useState<HTMLDivElement | null>(null);
+  const [descOpen, setDescOpen] = useState(false);
 
   // 匹配度滚动计数
   useEffect(() => {
@@ -152,13 +153,11 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
               <span className="record__cat">{categoryLabel(top.category)}</span>
             </div>
 
+            {/* 首屏焦点：大相框 + 超大匹配度 */}
             <div className="record__main">
               <ArchivePortrait persona={top} size="lg" rootRef={setPortraitEl} />
 
-              <div className="record__id">
-                <h1 className="record__name">{name.main}</h1>
-                {name.sub && <p className="record__sub">{tidySubtitle(name.sub)}</p>}
-
+              <div className="record__score-block">
                 <div className="record__score">
                   <span
                     className={`record__score-num mono${isGold ? ' is-gold' : ''}`}
@@ -167,19 +166,23 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
                     {shownPercent}
                   </span>
                   <span className="record__score-unit">%</span>
-                  <span className="record__score-cap">
-                    娱乐匹配度
-                    <em>非心理测量，仅供娱乐</em>
-                  </span>
                 </div>
+                <span className="record__score-cap">
+                  娱乐匹配度
+                  <em>非心理测量，仅供娱乐</em>
+                </span>
               </div>
-
-              {/* 印章位置由样式固定在卡片右下角 */}
             </div>
+
+            {/* 大名字：独占一整行，按长度自动缩号 */}
+            <h1 className="record__name" data-testid="result-name">
+              {name.main}
+            </h1>
+            {name.sub && <p className="record__sub">{tidySubtitle(name.sub)}</p>}
 
             {top.tags?.length > 0 && (
               <div className="record__tags">
-                {top.tags.map((t, i) => (
+                {top.tags.slice(0, 3).map((t, i) => (
                   <span className="tag" key={t} style={{ ['--i' as string]: String(i) }}>
                     {t}
                   </span>
@@ -187,7 +190,21 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
               </div>
             )}
 
-            <p className="record__desc">{top.desc}</p>
+            {/* 简介默认收起：只露一句，点开看全文 */}
+            {top.desc && (
+              <div className={`record__desc-wrap${descOpen ? ' is-open' : ''}`}>
+                <p className="record__desc">{top.desc}</p>
+                <button
+                  type="button"
+                  className="record__more"
+                  aria-expanded={descOpen}
+                  onClick={() => setDescOpen((v) => !v)}
+                >
+                  {descOpen ? '收起' : '展开简介'}
+                  <span aria-hidden="true">{descOpen ? '︿' : '﹀'}</span>
+                </button>
+              </div>
+            )}
 
             {/* 印章：落在卡片右下角留白处；点击可触发彩蛋 */}
             <span
@@ -205,8 +222,8 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
             </span>
           </section>
 
-          {/* ── 六维：带填充的条形 + 刻度 ── */}
-          <section className="section">
+          {/* ── 六维：次要层级，紧凑条形 + 一句话含义 ── */}
+          <section className="section section--dims">
             <div className="section__head">
               <h2 className="section__title">六维坐标</h2>
               <span className="section__hint mono">0 — 100</span>
@@ -214,14 +231,21 @@ export function ResultPage({ top, others, dims, onRestart, onShare, shareHint, s
             <div className="dims">
               {DIM_KEYS.map((k) => {
                 const v = dims[k];
+                const high = v >= 60;
                 return (
-                  <div className="dim" key={k} data-testid={`dim-${k}`}>
-                    <span className="dim__name">{DIM_LABEL[k] ?? k}</span>
-                    <span className="dim__track" role="img" aria-label={`${DIM_LABEL[k] ?? k} ${v}`}>
-                      <span className="dim__fill" style={{ ['--fill' as string]: String(Math.max(2, v) / 100) }} />
-                      <span className="dim__tick dim__tick--50" aria-hidden="true" />
-                    </span>
-                    <span className="dim__value mono">{v}</span>
+                  <div className={`dim${high ? ' is-high' : ' is-low'}`} key={k} data-testid={`dim-${k}`}>
+                    <div className="dim__row">
+                      <span className="dim__name">{DIM_LABEL[k] ?? k}</span>
+                      <span className="dim__track" role="img" aria-label={`${DIM_LABEL[k] ?? k} ${v}`}>
+                        <span
+                          className="dim__fill"
+                          style={{ ['--fill' as string]: String(Math.max(2, v) / 100) }}
+                        />
+                        <span className="dim__tick dim__tick--50" aria-hidden="true" />
+                      </span>
+                      <span className="dim__value mono">{v}</span>
+                    </div>
+                    <p className="dim__meaning">{dimMeaning(k, v)}</p>
                   </div>
                 );
               })}

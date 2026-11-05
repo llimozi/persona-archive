@@ -36,6 +36,8 @@ function fakeCtx(): CanvasRenderingContext2D {
     scale: vi.fn(),
     arc: noop,
     clip: noop,
+    translate: noop,
+    rotate: noop,
     drawImage: noop,
     strokeRect: noop,
     globalAlpha: 1,

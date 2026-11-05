@@ -9,43 +9,51 @@ interface Props {
   disabled: boolean;
 }
 
-/** 六维中文名（馆藏数据里列出来，让「06 维度」有实感） */
-const DIMS = ['情绪浓度', '表达风格', '行动力', '复杂性', '反叛度', '社交半径'];
+/**
+ * 首页主视觉：**错落露出的档案卡**。
+ *
+ * 不是骨架屏——每张都是真档案：有馆藏编号、姓名、印章、分类，
+ * 像被手指拨开的一叠卡；同时承担"这产品是什么"的信息职责。
+ */
+const CARD_FACES = [
+  { no: '0003', name: 'coke老师', cat: '网络热梗', seal: '已归档', pending: false },
+  { no: '0012', name: '酱板鸭', cat: '短剧角色', seal: '已归档', pending: false },
+  { no: '0047', name: 'Faker', cat: '电竞选手', seal: '待鉴定', pending: true },
+];
 
 export function HomePage({ personaCount, questionCount, onStart, disabled }: Props) {
   const pad = (n: number | null) => (n === null ? '—' : String(n).padStart(2, '0'));
-  const [cabinetEl, setCabinetEl] = useState<HTMLElement | null>(null);
+  const [stackEl, setStackEl] = useState<HTMLElement | null>(null);
   const reduced = prefersReducedMotion();
 
-  // 档案柜随设备倾斜轻微视差（不支持陀螺仪的设备静默跳过）
   useEffect(() => {
-    if (!cabinetEl) return;
-    return attachTilt(cabinetEl, 7);
-  }, [cabinetEl]);
+    if (!stackEl) return;
+    return attachTilt(stackEl, 6);
+  }, [stackEl]);
 
-  const stagger = (i: number) => (reduced ? undefined : ({ ['--i' as string]: String(i) }));
+  const stagger = (i: number) => (reduced ? undefined : { ['--i' as string]: String(i) });
 
   return (
-    <Page disclaimer>
-      {/* ── 视觉主角：档案柜抽屉 ── */}
-      <section className="cabinet stagger" style={stagger(0)} ref={setCabinetEl} aria-hidden="true">
-        <div className="cabinet__head">
-          <span className="mono">馆藏 · 第 01 柜</span>
-          <span className="mono">1987—2026</span>
-        </div>
-        <div className="cabinet__drawers">
-          {[0, 1, 2].map((i) => (
-            <div className={`drawer drawer--${i}`} key={i}>
-              <span className="drawer__label mono">A—{String(i + 1).padStart(2, '0')}</span>
-              <span className="drawer__handle" />
-              <span className="drawer__tabs">
-                {Array.from({ length: 6 }).map((_, k) => (
-                  <span className="drawer__tab" key={k} />
-                ))}
-              </span>
+    <Page disclaimer className="home-tight">
+      {/* ── 主视觉：三张错落露出的档案卡 ── */}
+      <section className="stack stagger" style={stagger(0)} ref={setStackEl} aria-hidden="true">
+        {CARD_FACES.map((c, i) => (
+          <article className={`stack__card stack__card--${i}`} key={c.no}>
+            <header className="stack__top">
+              <span className="mono stack__no">ARCH·{c.no}</span>
+              <span className="stack__cat">{c.cat}</span>
+            </header>
+            <div className="stack__body">
+              <div className="stack__photo">
+                <span>{c.name.slice(0, 1)}</span>
+              </div>
+              <div className="stack__id">
+                <p className="stack__name">{c.name}</p>
+                <span className={`stack__seal${c.pending ? ' is-pending' : ''}`}>{c.seal}</span>
+              </div>
             </div>
-          ))}
-        </div>
+          </article>
+        ))}
       </section>
 
       <section className="hero stagger" style={stagger(1)}>
@@ -58,42 +66,23 @@ export function HomePage({ personaCount, questionCount, onStart, disabled }: Pro
           <br />
           <em>哪一号人物</em>？
         </h1>
-        <p className="body">
-          翻几页馆藏，比对六维人格坐标，
-          <br />
-          为你立一张属于自己的档案卡。
-        </p>
       </section>
 
-      {/* ── 馆藏数据：像卡片目录一样排 ── */}
+      {/* ── 馆藏数据：一行横排，占位极小 ── */}
       <section className="ledger stagger" aria-label="馆藏数据" style={stagger(2)}>
         <div className="ledger__item">
-          <span className="ledger__label">馆藏档案</span>
           <span className="ledger__value mono">{pad(personaCount)}</span>
-          <span className="ledger__unit">号</span>
+          <span className="ledger__label">馆藏档案</span>
         </div>
         <div className="ledger__item">
-          <span className="ledger__label">鉴定题</span>
           <span className="ledger__value mono">{pad(questionCount)}</span>
-          <span className="ledger__unit">题</span>
+          <span className="ledger__label">鉴定题</span>
         </div>
-        <div className="ledger__item ledger__item--wide">
-          <span className="ledger__label">计量维度</span>
+        <div className="ledger__item">
           <span className="ledger__value mono">06</span>
-          <span className="ledger__unit">维</span>
-          <div className="ledger__dims">
-            {DIMS.map((d) => (
-              <span className="ledger__dim" key={d}>
-                {d}
-              </span>
-            ))}
-          </div>
+          <span className="ledger__label">计量维度</span>
         </div>
       </section>
-
-      <p className="hero__note">
-        <span className="mono">约 02 分钟</span> ｜ 无需登记，作答只留在本机
-      </p>
 
       <div className="cta stagger" style={stagger(3)}>
         <button
@@ -107,6 +96,9 @@ export function HomePage({ personaCount, questionCount, onStart, disabled }: Pro
             →
           </span>
         </button>
+        <p className="hero__note">
+          <span className="mono">约 02 分钟</span> ｜ 无需登记，作答只留在本机
+        </p>
       </div>
     </Page>
   );

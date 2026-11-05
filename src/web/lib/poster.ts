@@ -1,14 +1,16 @@
 /**
- * 结果海报：**结果页那张档案卡的竖版（9:16）**。
+ * 结果海报：**9:16 竖版引流卡**，不是结果页缩小版。
  *
- * 设计原则（2026-11-05 视觉重做）：
- *  1. 版式自上而下按「信息块」推进，每块先测高再落笔，**名字与简介都完整显示**——
- *     名字按其最长一行自动缩号，简介按可用高度自动缩号并换行，不截断成省略号；
- *  2. 匹配度独占一行，绝不压在头像上；
- *  3. 与结果页共用同一套语义：馆藏编号 / 分类中文名 / 印章 / 六维条 / 站点名；
- *  4. 导出保持 ≥2x 清晰度（由调用方的 pickScale 保证）。
+ * 版式（一个焦点，其余让路）：
+ *   1. 顶部墨条：站点名 + 馆藏编号（暗金细线收边）
+ *   2. 巨大头像（视觉重心）+ 已鉴定印章
+ *   3. 超大匹配度数字
+ *   4. 大名字 + 副标题
+ *   5. 最多 3 个标签
+ *   6. 紧凑六维雷达图 + 一句简介
+ *   7. 底部引流区：钩子文案 + 站点名 + 链接
  *
- * 纯前端、零依赖；绘制函数单独导出，便于单测与 Playwright 取证。
+ * 纯 canvas 绘制、零依赖；导出 ≥2x 由 pickScale 保证。
  */
 import type { Dims } from '../../shared/types';
 import { categoryLabel, archiveNo as displayArchiveNo, splitName, tidySubtitle } from './display';
@@ -177,32 +179,85 @@ function isTaintedError(e: unknown): boolean {
   return name === 'SecurityError' || /taint/i.test(msg) || /SecurityError/i.test(String(e));
 }
 
-/** 在给定字号下把文本折进 maxLines 行；放不下就缩号（最低 minSize） */
-function fitBlock(
-  ctx: CanvasRenderingContext2D,
-  text: string,
-  maxW: number,
-  maxLines: number,
-  fontOf: (size: number) => string,
-  startSize: number,
-  minSize: number,
-): { size: number; lines: string[]; lineH: number } {
-  let size = startSize;
-  for (;;) {
-    ctx.font = fontOf(size);
-    const lines = wrapLines(ctx, text, maxW);
-    if (lines.length <= maxLines || size <= minSize) {
-      return { size, lines, lineH: Math.round(size * 1.6) };
+
+/* ─────────────── 辅助 ─────────────── */
+
+const DIM_LIST: Array<[keyof Dims, string]> = [
+  ['EE', '情绪'],
+  ['ST', '表达'],
+  ['AC', '行动'],
+  ['HX', '复杂'],
+  ['RB', '反叛'],
+  ['SR', '社交'],
+];
+
+/** 紧凑雷达图：六边形网格 + 朱红填充多边形 */
+function drawRadar(ctx: CanvasRenderingContext2D, cx: number, cy: number, radius: number, dims: Dims): void {
+  const n = DIM_LIST.length;
+  const angleOf = (i: number) => (Math.PI * 2 * i) / n - Math.PI / 2;
+
+  ctx.strokeStyle = C.edge;
+  ctx.lineWidth = 1;
+  for (const ratio of [1 / 3, 2 / 3, 1]) {
+    ctx.beginPath();
+    for (let i = 0; i < n; i += 1) {
+      const a = angleOf(i);
+      const x = cx + Math.cos(a) * radius * ratio;
+      const y = cy + Math.sin(a) * radius * ratio;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
     }
-    size -= 1;
+    ctx.closePath();
+    ctx.stroke();
   }
+
+  for (let i = 0; i < n; i += 1) {
+    const a = angleOf(i);
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + Math.cos(a) * radius, cy + Math.sin(a) * radius);
+    ctx.stroke();
+  }
+
+  ctx.beginPath();
+  for (let i = 0; i < n; i += 1) {
+    const v = Math.max(0, Math.min(100, dims[DIM_LIST[i][0]])) / 100;
+    const a = angleOf(i);
+    const x = cx + Math.cos(a) * radius * v;
+    const y = cy + Math.sin(a) * radius * v;
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(178,58,46,0.20)';
+  ctx.fill();
+  ctx.strokeStyle = C.seal;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  ctx.fillStyle = C.seal;
+  for (let i = 0; i < n; i += 1) {
+    const v = Math.max(0, Math.min(100, dims[DIM_LIST[i][0]])) / 100;
+    const a = angleOf(i);
+    ctx.beginPath();
+    ctx.arc(cx + Math.cos(a) * radius * v, cy + Math.sin(a) * radius * v, 2.6, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.font = `10px ${FONT_SANS}`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  for (let i = 0; i < n; i += 1) {
+    const a = angleOf(i);
+    ctx.fillStyle = C.ink3;
+    ctx.fillText(DIM_LIST[i][1], cx + Math.cos(a) * (radius + 13), cy + Math.sin(a) * (radius + 11));
+  }
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'alphabetic';
 }
 
 /* ─────────────── 主绘制 ─────────────── */
 
-/**
- * 在已缩放的 ctx 上绘制海报（逻辑坐标 = CSS px）。
- */
 export function paintPoster(ctx: CanvasRenderingContext2D, data: PosterData): void {
   const { width: W, height: H, pad } = POSTER_LAYOUT;
   const innerW = W - pad * 2;
@@ -212,7 +267,7 @@ export function paintPoster(ctx: CanvasRenderingContext2D, data: PosterData): vo
   ctx.textBaseline = 'alphabetic';
   ctx.textAlign = 'left';
 
-  // ── 底：档案纸 + 纸纹（横向纤维 + 纵向细线，模拟真实纸张） ──
+  // 底：档案纸 + 纤维
   ctx.fillStyle = C.paper;
   ctx.fillRect(0, 0, W, H);
   ctx.save();
@@ -234,284 +289,227 @@ export function paintPoster(ctx: CanvasRenderingContext2D, data: PosterData): vo
   }
   ctx.restore();
 
-  // 边缘暗角：让中心浮起来
-  const vig = ctx.createRadialGradient(W / 2, H * 0.42, W * 0.3, W / 2, H * 0.42, W * 0.95);
+  const vig = ctx.createRadialGradient(W / 2, H * 0.44, W * 0.32, W / 2, H * 0.44, W);
   vig.addColorStop(0, 'rgba(0,0,0,0)');
-  vig.addColorStop(1, 'rgba(90,72,44,0.10)');
+  vig.addColorStop(1, 'rgba(90,72,44,0.12)');
   ctx.fillStyle = vig;
   ctx.fillRect(0, 0, W, H);
 
-  let y = 0;
-
-  // ── 顶部墨条：馆藏条 ──
-  const HEAD_H = 40;
+  // 顶部墨条
+  const HEAD_H = 38;
   ctx.fillStyle = C.inkPanel;
   ctx.fillRect(0, 0, W, HEAD_H);
   ctx.fillStyle = C.seal;
-  ctx.fillRect(pad, 11, 18, 18);
+  ctx.fillRect(pad, 10, 18, 18);
   ctx.fillStyle = C.inkPanelInk;
   ctx.font = `700 11px ${FONT_SANS}`;
   ctx.textAlign = 'center';
-  ctx.fillText('档', pad + 9, 24);
+  ctx.fillText('档', pad + 9, 23);
   ctx.textAlign = 'left';
-  ctx.fillStyle = C.inkPanelInk;
   ctx.font = `700 13px ${FONT_SERIF}`;
   ctx.fillText('互联网人物档案馆', pad + 26, 24);
   ctx.textAlign = 'right';
   ctx.fillStyle = 'rgba(237,228,210,0.62)';
-  ctx.font = `11px ${FONT_MONO}`;
+  ctx.font = `10.5px ${FONT_MONO}`;
   ctx.fillText(archiveNo(data.personaId), W - pad, 24);
   ctx.textAlign = 'left';
-
-  // 墨条下沿的暗金细线（与页面一致）
   ctx.fillStyle = C.gold;
   ctx.fillRect(0, HEAD_H, W, 1.5);
 
-  y = HEAD_H + 18;
-
-  // ── 信息行：分类 ──
+  // 分类
+  let y = HEAD_H + 16;
   ctx.fillStyle = C.seal;
-  ctx.font = `700 11px ${FONT_SANS}`;
-  ctx.fillText(cat, pad, y + 10);
+  ctx.font = `700 10.5px ${FONT_SANS}`;
+  ctx.fillText(cat, pad, y + 9);
+  const catW = ctx.measureText(cat).width;
   ctx.strokeStyle = 'rgba(178,58,46,0.32)';
   ctx.lineWidth = 1;
-  const catW = ctx.measureText(cat).width;
-  ctx.strokeRect(pad - 4, y - 2, catW + 8, 17);
-  y += 24;
+  ctx.strokeRect(pad - 4, y - 2, catW + 8, 16);
 
-  // ── 头像 + 名字 ──
-  const AV = 88;
-  const gapX = 14;
-  const textW = innerW - AV - gapX;
+  // 巨大头像
+  const AV = 150;
+  const ax = (W - AV) / 2;
+  const ay = y + 20;
 
-  // 相框
   ctx.fillStyle = C.paper2;
-  ctx.fillRect(pad, y, AV, AV);
+  roundRect(ctx, ax - 5, ay + 5, AV + 10, AV + 10, 3);
+  ctx.fill();
+
+  ctx.fillStyle = C.paper;
+  roundRect(ctx, ax - 4, ay - 4, AV + 8, AV + 8, 3);
+  ctx.fill();
   ctx.strokeStyle = C.edge;
-  ctx.strokeRect(pad + 0.5, y + 0.5, AV - 1, AV - 1);
-  ctx.strokeStyle = C.paper;
-  ctx.lineWidth = 3;
-  ctx.strokeRect(pad + 4, y + 4, AV - 8, AV - 8);
-  ctx.lineWidth = 1;
+  ctx.strokeRect(ax - 3.5, ay - 3.5, AV + 7, AV + 7);
 
   if (data.image) {
     ctx.save();
-    roundRect(ctx, pad + 5, y + 5, AV - 10, AV - 10, 1);
+    roundRect(ctx, ax, ay, AV, AV, 1);
     ctx.clip();
     try {
-      ctx.drawImage(data.image, pad + 5, y + 5, AV - 10, AV - 10);
+      ctx.drawImage(data.image, ax, ay, AV, AV);
     } catch {
       /* 单图失败不影响整张海报 */
     }
     ctx.restore();
   } else {
-    // 无图：首字占位，与页面同一套语言
     ctx.fillStyle = C.paper3;
-    ctx.fillRect(pad + 5, y + 5, AV - 10, AV - 10);
+    ctx.fillRect(ax, ay, AV, AV);
     ctx.fillStyle = C.seal;
-    ctx.font = `800 40px ${FONT_SERIF}`;
+    ctx.font = `800 76px ${FONT_SERIF}`;
     ctx.textAlign = 'center';
-    ctx.fillText(name.main.slice(0, 1), pad + AV / 2, y + AV / 2 + 14);
+    ctx.textBaseline = 'middle';
+    ctx.fillText(name.main.slice(0, 1), ax + AV / 2, ay + AV / 2);
     ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
   }
 
-  // 名字：按最长行自动缩号，保证完整显示
-  const nameStart = 26;
-  const nameMin = 15;
-  let nameSize = nameStart;
+  // 印章压角
+  const stampR = 26;
+  ctx.save();
+  ctx.globalAlpha = 0.42;
+  ctx.translate(ax + AV - 6, ay + AV - 6);
+  ctx.rotate(-0.16);
+  ctx.strokeStyle = C.seal;
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.arc(0, 0, stampR, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.fillStyle = C.seal;
+  ctx.font = `800 13px ${FONT_SERIF}`;
+  ctx.textAlign = 'center';
+  ctx.fillText('已鉴定', 0, -1);
+  ctx.font = `800 11px ${FONT_SERIF}`;
+  ctx.fillText('存档', 0, 15);
+  ctx.restore();
+  ctx.textAlign = 'left';
+
+  y = ay + AV + 16;
+
+  // 超大匹配度
+  const pct = formatPosterPercent(data.percent);
+  ctx.textAlign = 'center';
+  ctx.fillStyle = C.seal;
+  ctx.font = `700 54px ${FONT_MONO}`;
+  ctx.fillText(pct, W / 2, y + 46);
+  ctx.fillStyle = C.ink2;
+  ctx.font = `600 10.5px ${FONT_SANS}`;
+  ctx.fillText('娱乐匹配度 · 非心理测量', W / 2, y + 62);
+  ctx.textAlign = 'left';
+
+  y += 74;
+
+  // 大名字
+  let nameSize = 30;
   let nameLines: string[] = [];
   for (;;) {
     ctx.font = `800 ${nameSize}px ${FONT_SERIF}`;
-    nameLines = wrapLines(ctx, name.main, textW);
-    if (nameLines.length <= 2 || nameSize <= nameMin) break;
+    nameLines = wrapLines(ctx, name.main, innerW - 8);
+    if (nameLines.length <= 2 || nameSize <= 16) break;
     nameSize -= 1;
   }
-  const nameLineH = Math.round(nameSize * 1.34);
-
+  ctx.textAlign = 'center';
   ctx.fillStyle = C.ink;
   ctx.font = `800 ${nameSize}px ${FONT_SERIF}`;
-  let ny = y + nameSize + 2;
+  let ny = y + nameSize;
   for (const line of nameLines) {
-    ctx.fillText(line, pad + AV + gapX, ny);
-    ny += nameLineH;
+    ctx.fillText(line, W / 2, ny);
+    ny += Math.round(nameSize * 1.26);
   }
 
-  // 副标题（括号内的著录行）
   if (name.sub) {
-    const sub = fitBlock(
-      ctx,
-      tidySubtitle(name.sub),
-      textW,
-      2,
-      (s) => `${s}px ${FONT_SANS}`,
-      11,
-      9,
-    );
     ctx.fillStyle = C.ink3;
-    ctx.font = `${sub.size}px ${FONT_SANS}`;
-    let sy = ny + 4;
-    for (const line of sub.lines) {
-      ctx.fillText(line, pad + AV + gapX, sy);
-      sy += sub.lineH;
-    }
-    ny = sy;
+    ctx.font = `10.5px ${FONT_SANS}`;
+    const subLines = wrapLines(ctx, tidySubtitle(name.sub), innerW - 24).slice(0, 1);
+    ctx.fillText(subLines[0] ?? '', W / 2, ny + 2);
+    ny += 14;
   }
-
-  y = Math.max(y + AV, ny) + 14;
-
-  // ── 匹配度：独占一行，不与头像重叠 ──
-  ctx.fillStyle = C.sealSoft;
-  ctx.fillRect(pad, y - 4, innerW, 54);
-  ctx.strokeStyle = 'rgba(178,58,46,0.28)';
-  ctx.strokeRect(pad + 0.5, y - 3.5, innerW - 1, 53);
-
-  const pct = formatPosterPercent(data.percent);
-  ctx.fillStyle = C.seal;
-  ctx.font = `700 34px ${FONT_MONO}`;
-  const pctW = ctx.measureText(pct).width;
-  ctx.fillText(pct, pad + 14, y + 34);
-
-  ctx.fillStyle = C.ink2;
-  ctx.font = `700 12px ${FONT_SANS}`;
-  ctx.fillText('娱乐匹配度', pad + 14 + pctW + 12, y + 20);
-  ctx.fillStyle = C.ink3;
-  ctx.font = `10px ${FONT_SANS}`;
-  ctx.fillText('非心理测量，仅供娱乐', pad + 14 + pctW + 12, y + 36);
-
-  // 右侧印章
-  const sealR = 22;
-  const cx = W - pad - sealR - 4;
-  const cy = y + 24;
-  ctx.save();
-  ctx.globalAlpha = 0.45;
-  ctx.strokeStyle = C.seal;
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.arc(cx, cy, sealR, 0, Math.PI * 2);
-  ctx.stroke();
-  ctx.fillStyle = C.seal;
-  ctx.font = `800 11px ${FONT_SERIF}`;
-  ctx.textAlign = 'center';
-  ctx.fillText('已鉴定', cx, cy - 1);
-  ctx.fillText('存档', cx, cy + 13);
   ctx.textAlign = 'left';
-  ctx.restore();
 
-  y += 54 + 16;
+  y = ny + 8;
 
-  // ── 标签 ──
+  // 标签（最多 3 个）
   if (data.tags?.length) {
-    let tx = pad;
-    const tagY = y;
-    ctx.font = `11px ${FONT_SANS}`;
-    for (const t of data.tags.slice(0, 6)) {
-      const w = ctx.measureText(t).width + 16;
-      if (tx + w > W - pad) break;
+    ctx.font = `10.5px ${FONT_SANS}`;
+    const picked = data.tags.slice(0, 3);
+    const widths = picked.map((t) => ctx.measureText(t).width + 18);
+    const totalW = widths.reduce((a, b) => a + b, 0) + (picked.length - 1) * 6;
+    let tx = (W - totalW) / 2;
+    for (let i = 0; i < picked.length; i += 1) {
+      const w = widths[i];
       ctx.fillStyle = C.paper2;
-      roundRect(ctx, tx, tagY, w, 20, 10);
+      roundRect(ctx, tx, y, w, 19, 9.5);
       ctx.fill();
       ctx.strokeStyle = C.edge;
+      ctx.lineWidth = 1;
       ctx.stroke();
       ctx.fillStyle = C.ink2;
-      ctx.fillText(t, tx + 8, tagY + 14);
+      ctx.fillText(picked[i], tx + 9, y + 13);
       tx += w + 6;
     }
-    y += 20 + 16;
+    y += 19 + 14;
   }
 
-  // ── 六维：带填充的条形 ──
-  const DIMS: Array<[keyof Dims, string]> = [
-    ['EE', '情绪浓度'],
-    ['ST', '表达风格'],
-    ['AC', '行动力'],
-    ['HX', '复杂性'],
-    ['RB', '反叛度'],
-    ['SR', '社交半径'],
-  ];
+  // 雷达图 + 一句简介
+  const radarR = 44;
+  const radarCx = pad + radarR + 18;
+  const radarCy = y + radarR + 2;
+  drawRadar(ctx, radarCx, radarCy, radarR, data.dims);
 
-  ctx.fillStyle = C.ink;
-  ctx.font = `800 13px ${FONT_SERIF}`;
-  ctx.fillText('六维坐标', pad, y + 12);
-  ctx.textAlign = 'right';
-  ctx.fillStyle = C.ink3;
-  ctx.font = `10px ${FONT_MONO}`;
-  ctx.fillText('0 — 100', W - pad, y + 12);
-  ctx.textAlign = 'left';
-  ctx.strokeStyle = C.ink;
-  ctx.lineWidth = 2;
-  ctx.beginPath();
-  ctx.moveTo(pad, y + 18);
-  ctx.lineTo(W - pad, y + 18);
-  ctx.stroke();
-  ctx.lineWidth = 1;
-  y += 30;
-
-  const labelW = 56;
-  const valW = 28;
-  const barW = innerW - labelW - valW - 16;
-  for (const [key, label] of DIMS) {
-    const v = Math.max(0, Math.min(100, data.dims[key]));
+  const textX = radarCx + radarR + 24;
+  const textW = W - pad - textX;
+  if (data.desc && textW > 60) {
     ctx.fillStyle = C.ink2;
     ctx.font = `11px ${FONT_SANS}`;
-    ctx.fillText(label, pad, y + 11);
-
-    const bx = pad + labelW;
-    ctx.fillStyle = C.paper3;
-    ctx.fillRect(bx, y + 2, barW, 11);
-    ctx.fillStyle = C.seal;
-    ctx.fillRect(bx, y + 2, Math.max(2, (barW * v) / 100), 11);
-    ctx.strokeStyle = C.edge;
-    ctx.strokeRect(bx + 0.5, y + 2.5, barW - 1, 10);
-
-    ctx.textAlign = 'right';
-    ctx.fillStyle = C.ink;
-    ctx.font = `700 11px ${FONT_MONO}`;
-    ctx.fillText(String(v), W - pad, y + 12);
-    ctx.textAlign = 'left';
-    y += 24;
-  }
-
-  y += 8;
-
-  // ── 简介：按剩余高度自动缩号，保证完整显示（不截断） ──
-  const FOOT_H = 54;
-  const descTop = y;
-  const descAvail = H - FOOT_H - descTop - 10;
-  if (data.desc && descAvail > 24) {
-    const maxLines = Math.max(2, Math.floor(descAvail / 15));
-    const block = fitBlock(
-      ctx,
-      data.desc,
-      innerW,
-      maxLines,
-      (s) => `${s}px ${FONT_SANS}`,
-      12,
-      8,
-    );
-    ctx.fillStyle = C.ink2;
-    ctx.font = `${block.size}px ${FONT_SANS}`;
-    let dy = descTop + block.size + 2;
-    for (const line of block.lines) {
-      if (dy > H - FOOT_H - 6) break;
-      ctx.fillText(line, pad, dy);
-      dy += block.lineH;
+    const lines = wrapLines(ctx, data.desc, textW);
+    const maxLines = 4;
+    let ty = radarCy - radarR + 14;
+    for (const line of lines.slice(0, maxLines)) {
+      ctx.fillText(line, textX, ty);
+      ty += 15;
+    }
+    if (lines.length > maxLines) {
+      ctx.fillStyle = C.ink3;
+      ctx.fillText('……', textX, ty);
     }
   }
 
-  // ── 底部：站点名 + 免责 ──
+  // 底部引流区
+  const FOOT_H = 96;
+  const footTop = H - FOOT_H;
   ctx.fillStyle = C.inkPanel;
-  ctx.fillRect(0, H - FOOT_H, W, FOOT_H);
+  ctx.fillRect(0, footTop, W, FOOT_H);
+  ctx.fillStyle = C.gold;
+  ctx.fillRect(0, footTop, W, 1.5);
+
   ctx.fillStyle = C.inkPanelInk;
-  ctx.font = `700 11px ${FONT_SERIF}`;
-  ctx.fillText('互联网人物档案馆', pad, H - FOOT_H + 22);
-  ctx.fillStyle = 'rgba(237,228,210,0.55)';
-  ctx.font = `9px ${FONT_SANS}`;
-  ctx.fillText('仅供娱乐，不构成任何专业判断', pad, H - FOOT_H + 38);
-  ctx.textAlign = 'right';
-  ctx.fillStyle = 'rgba(237,228,210,0.42)';
-  ctx.font = `9px ${FONT_MONO}`;
-  ctx.fillText('ARCHIVE', W - pad, H - FOOT_H + 22);
-  ctx.textAlign = 'left';
+  ctx.font = `800 17px ${FONT_SERIF}`;
+  ctx.fillText('你像哪一号人物？', pad, footTop + 30);
+  ctx.fillStyle = 'rgba(237,228,210,0.72)';
+  ctx.font = `11px ${FONT_SANS}`;
+  ctx.fillText('来档案馆测测，25 题出你的专属档案', pad, footTop + 50);
+
+  ctx.fillStyle = C.inkPanelInk;
+  ctx.font = `700 11px ${FONT_SANS}`;
+  ctx.fillText('互联网人物档案馆', pad, footTop + 76);
+
+  // 引流区只放站点主地址（不带 token），保证可读、不被截断
+  let link = '';
+  try {
+    if (data.shareUrl) {
+      const u = new URL(data.shareUrl);
+      link = `${u.host}${u.pathname}`.replace(/\/$/, '');
+    }
+  } catch {
+    link = (data.shareUrl ?? '').replace(/^https?:\/\//, '').split('?')[0] ?? '';
+  }
+  const shown = link.length > 26 ? `${link.slice(0, 26)}…` : link;
+  if (shown) {
+    ctx.textAlign = 'right';
+    ctx.fillStyle = C.gold;
+    ctx.font = `10px ${FONT_MONO}`;
+    ctx.fillText(shown, W - pad, footTop + 76);
+    ctx.textAlign = 'left';
+  }
 }
 
 /* ─────────────── 导出 ─────────────── */
