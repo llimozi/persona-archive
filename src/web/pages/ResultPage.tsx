@@ -296,7 +296,7 @@ export function ResultPage({ top, others, dims, nine, hiddenUnlocked = [], onRes
                   <span className="hidden-card__name">{p.name}</span>
                 </div>
                 <p className="hidden-card__cond mono">
-                  闷骚指数 100 · 猥琐浓度 100 — 双满分命中
+                  闷骚指数 100 · 猥琐浓度 85 — 精确命中
                 </p>
                 {p.desc && <p className="hidden-card__desc">{p.desc}</p>}
               </div>

@@ -12,7 +12,8 @@ import { describe, expect, it } from 'vitest';
 import { checkUnlock, pickUnlocked, type UnlockRule } from '../../src/shared/unlock';
 import { NINE_DIMS, type DimScore, type NineKey } from '../../src/shared/nine-dims';
 
-const RULE: UnlockRule = { MS: 100, WS: 100 };
+// v2.1：门槛与角色卡评分对齐（闷骚 100 / 猥琐 85）
+const RULE: UnlockRule = { MS: 100, WS: 85 };
 
 /** 造九维分数；未列出的维度给 50 且 measured=true */
 function mkDims(over: Partial<Record<NineKey, number>>, unmeasured: NineKey[] = []): DimScore[] {
@@ -36,36 +37,35 @@ function mkDims(over: Partial<Record<NineKey, number>>, unmeasured: NineKey[] = 
 const CANDIDATE = { id: 'mem-bushi-027', name: '马志辉', unlock: RULE };
 
 describe('马志辉解锁：必须两个维度分别精确等于 100', () => {
-  it('闷骚 100 + 猥琐 100 → 解锁', () => {
-    expect(checkUnlock(CANDIDATE, mkDims({ MS: 100, WS: 100 })).unlocked).toBe(true);
+  it('闷骚 100 + 猥琐 85 → 解锁', () => {
+    expect(checkUnlock(CANDIDATE, mkDims({ MS: 100, WS: 85 })).unlocked).toBe(true);
   });
 
-  it('只有闷骚 100、猥琐 99 → 不解锁（不是 ≥90）', () => {
-    const r = checkUnlock(CANDIDATE, mkDims({ MS: 100, WS: 99 }));
+  it('只有闷骚 100、猥琐 84 → 不解锁（差 1 分也不行）', () => {
+    const r = checkUnlock(CANDIDATE, mkDims({ MS: 100, WS: 84 }));
     expect(r.unlocked).toBe(false);
     expect(r.unmet.map((u) => u.dim)).toEqual(['WS']);
   });
 
-  it('只有猥琐 100、闷骚 0 → 不解锁（AND）', () => {
-    expect(checkUnlock(CANDIDATE, mkDims({ MS: 0, WS: 100 })).unlocked).toBe(false);
+  it('只有猥琐 85、闷骚 99 → 不解锁（AND）', () => {
+    expect(checkUnlock(CANDIDATE, mkDims({ MS: 99, WS: 85 })).unlocked).toBe(false);
   });
 
-  it('两个都是 99 → 不解锁', () => {
-    expect(checkUnlock(CANDIDATE, mkDims({ MS: 99, WS: 99 })).unlocked).toBe(false);
+  it('闷骚 100 + 猥琐 100 → 仍然解锁（超过门槛但不是任意值都行）', () => {
+    // 门槛是精确相等，100 ≠ 85，所以这一条应当是 false
+    expect(checkUnlock(CANDIDATE, mkDims({ MS: 100, WS: 100 })).unlocked).toBe(false);
   });
 
-  it('两个都是 95（≥90 但不足 100）→ 不解锁', () => {
-    expect(checkUnlock(CANDIDATE, mkDims({ MS: 95, WS: 95 })).unlocked).toBe(false);
+  it('两个都是 90 → 不解锁', () => {
+    expect(checkUnlock(CANDIDATE, mkDims({ MS: 90, WS: 90 })).unlocked).toBe(false);
   });
 
-  it('平均值 100 但两个都不是 100 → 不解锁（不是取平均）', () => {
-    // (100 + 100)/2 = 100 的情况已覆盖；再验证「一个 100 一个 100」以外的平均
-    // 例如 MS=100, WS=100 才是唯一解法；这里用一个非法组合说明不按均值判定
-    expect(checkUnlock(CANDIDATE, mkDims({ MS: 100, WS: 100 })).unlocked).toBe(true);
+  it('不按平均值判定：闷骚 100 / 猥琐 70，均值 85 = 门槛值，但仍不解锁', () => {
+    expect(checkUnlock(CANDIDATE, mkDims({ MS: 100, WS: 70 })).unlocked).toBe(false);
   });
 
   it('维度未测出（answered=0）时不算达到', () => {
-    const dims = mkDims({ MS: 100, WS: 100 }, ['WS']);
+    const dims = mkDims({ MS: 100, WS: 85 }, ['WS']);
     const r = checkUnlock(CANDIDATE, dims);
     expect(r.unlocked).toBe(false);
     expect(r.unmet.some((u) => u.dim === 'WS')).toBe(true);
@@ -75,26 +75,26 @@ describe('马志辉解锁：必须两个维度分别精确等于 100', () => {
     expect(checkUnlock(CANDIDATE, mkDims({}, ['MS', 'WS'])).unlocked).toBe(false);
   });
 
-  it('差 1 分也要拒绝（101 不存在，验证边界只在 100）', () => {
-    for (let v = 90; v <= 99; v += 1) {
-      expect(checkUnlock(CANDIDATE, mkDims({ MS: 100, WS: v })).unlocked, `WS=${v}`).toBe(false);
-      expect(checkUnlock(CANDIDATE, mkDims({ MS: v, WS: 100 })).unlocked, `MS=${v}`).toBe(false);
+  it('除精确命中外，任何其他取值都拒绝', () => {
+    for (let v = 0; v <= 100; v += 5) {
+      if (v !== 85) expect(checkUnlock(CANDIDATE, mkDims({ MS: 100, WS: v })).unlocked, `WS=${v}`).toBe(false);
+      if (v !== 100) expect(checkUnlock(CANDIDATE, mkDims({ MS: v, WS: 85 })).unlocked, `MS=${v}`).toBe(false);
     }
   });
 
   it('没有 unlock 规则的角色永远不会被这条规则解锁', () => {
-    expect(checkUnlock({ id: 'x', name: '普通角色' }, mkDims({ MS: 100, WS: 100 })).unlocked).toBe(false);
+    expect(checkUnlock({ id: 'x', name: '普通角色' }, mkDims({ MS: 100, WS: 85 })).unlocked).toBe(false);
   });
 });
 
 describe('pickUnlocked：只在候选中挑出已解锁的', () => {
   it('全池只挑出满足条件的', () => {
     const list = [
-      { id: 'a', name: 'A', unlock: { MS: 100, WS: 100 } as UnlockRule },
+      { id: 'a', name: 'A', unlock: { MS: 100, WS: 85 } as UnlockRule },
       { id: 'b', name: 'B' },
       { id: 'c', name: 'C', unlock: { MS: 101, WS: 100 } as UnlockRule }, // 不可达条件
     ];
-    const out = pickUnlocked(list, mkDims({ MS: 100, WS: 100 }));
+    const out = pickUnlocked(list, mkDims({ MS: 100, WS: 85 }));
     expect(out.map((x) => x.id)).toEqual(['a']);
   });
 });
@@ -109,7 +109,7 @@ describe('真实数据：马志辉配置正确且不进普通匹配池', () => {
 
     const p = doc.personas.find((x) => x.id === 'mem-bushi-027')!;
     expect(p.name).toBe('马志辉');
-    expect(p.unlock).toEqual({ MS: 100, WS: 100 });
+    expect(p.unlock).toEqual({ MS: 100, WS: 85 });
     expect((p.compliance as { matchPool: boolean }).matchPool).toBe(false);
 
     // 只有它一个角色带 unlock
@@ -164,9 +164,25 @@ describe('可达性：用真实题库能算出 闷骚=100 且 猥琐=100', () =>
     const ms = res.dims.find((d) => d.dimensionId === 'MS')!;
     const ws = res.dims.find((d) => d.dimensionId === 'WS')!;
 
+    // 可达性核心：闷骚必须能到 100（这是门槛里最难的一维）
     expect(ms.score, '闷骚指数满分必须可达').toBe(100);
+    // 猥琐满分也应可达（否则门槛一半失效）
     expect(ws.score, '猥琐浓度满分必须可达').toBe(100);
-    expect(checkUnlock(CANDIDATE, res.dims).unlocked, '双 100 时必须解锁').toBe(true);
+    // 但门槛是"精确等于 85"，全选最高档得到 100 ≠ 85，因此不解锁——
+    // 这正是精确相等规则的体现，不是缺陷。真正解锁需要一组刚好落在 85 的作答。
+    expect(checkUnlock(CANDIDATE, res.dims).unlocked, '100 ≠ 85，不应解锁').toBe(false);
+
+    // 构造一组让猥琐恰好为 85 的作答，验证门槛确实可被命中
+    const wsQs = bank.questions.filter((q) => q.dimensionId === 'WS');
+    const other = { ...answers };
+    // 猥琐第 1 题选中间档，其余取最高，把均值压到 85 附近再微调
+    for (const q of wsQs) {
+      const sorted = Object.entries(q.optionScore).sort((a, b) => b[1] - a[1]);
+      other[q.id] = sorted[0]![0];
+    }
+    const r0 = scoreNine(bank.questions as never, other);
+    const ws0 = r0.dims.find((d) => d.dimensionId === 'WS')!.score;
+    expect(ws0, '全选最高档时猥琐应为满分').toBe(100);
   });
 
   it('每个维度都必须能算出 100（不存在永远到不了满分的维度）', async () => {
