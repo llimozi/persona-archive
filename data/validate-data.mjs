@@ -102,9 +102,15 @@ function checkPersonas(doc) {
     if (!p.category) fail(where, '缺少 category');
     if (!Array.isArray(p.tags) || p.tags.length === 0) fail(where, 'tags 为空或不是数组');
     if (typeof p.desc !== 'string' || !p.desc.trim()) fail(where, 'desc 为空');
-    if (!p.source) fail(where, '缺少 source（必须指向 04 资料卡条目）');
-    else if (!/^docs\/product-discovery\/04-[^#]+#/.test(p.source)) {
-      warn(where, `source 未指向 04 资料卡：${p.source}`);
+    if (!p.source) fail(where, '缺少 source（必须指向证据台账条目）');
+    else if (!/^docs\/(product-discovery\/04-[^#]+|PERSONA-EVIDENCE\.md)#/.test(p.source)) {
+      warn(where, `source 未指向已知证据来源：${p.source}`);
+    } else {
+      // 引用的目标文件必须真实存在，否则就是悬空引用（2026-11-05 审计发现过 91 条全部悬空）
+      const target = p.source.split('#')[0];
+      if (!existsSync(join(PROJECT_ROOT, target))) {
+        fail(where, `source 指向的文件不存在（悬空引用）：${target}`);
+      }
     }
 
     checkDims(where, p.dims);

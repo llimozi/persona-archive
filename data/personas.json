@@ -1,7 +1,7 @@
 {
   "version": 2,
   "generatedAt": "2026-11-05",
-  "note": "v2：按用户 2026-11-05 定稿名单重建为 91 人（严格按名单，不在名单上的旧条目已下线）。名称、别称、简介取自用户名单原文；dims 为六维设计打分（0-100），非实测值。沿用旧条目的剧情判定沿用原 id 与 compliance。 | v2.1：九维分数改为用户提供的 91 人人工评分矩阵，取代此前的推导值；新增 confidence / profile_type / scoring_notes / updated_at 字段。",
+  "note": "v2：按用户 2026-11-05 定稿名单重建为 91 人（严格按名单，不在名单上的旧条目已下线）。名称、别称、简介取自用户名单原文；dims 为六维设计打分（0-100），非实测值。沿用旧条目的剧情判定沿用原 id 与 compliance。 | v2.1：九维分数改为用户提供的 91 人人工评分矩阵，取代此前的推导值；新增 confidence / profile_type / scoring_notes / updated_at 字段。 | 2026-11-05：source 原先指向 docs/product-discovery/04-热梗与人物资料卡.md，该文件不在仓库且 git 历史中从未存在（引用悬空），已改指向 docs/PERSONA-EVIDENCE.md 的对应条目。",
   "personas": [
     {
       "id": "mem-nailong-001",
@@ -26,7 +26,7 @@
       "desc": "黄色圆滚滚的小恐龙，贪吃、贪玩、憨憨的，表情包和动作很有喜感。",
       "cardType": "image",
       "placeholder": false,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-nailong-001",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-nailong-001",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -93,7 +93,7 @@
       "desc": "网络创作者，以夸张表情、魔性动作、游戏直播和反差整活出圈。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-coke-003",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-coke-003",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -160,7 +160,7 @@
       "desc": "「不烧心」相关短视频形象，主打良心经营、不偷工减料。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-bushaoxin-007",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-bushaoxin-007",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -228,7 +228,7 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/mem-jiupaige-014.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-jiupaige-014",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-jiupaige-014",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -295,7 +295,7 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/mem-zhuzhiwen-015.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-zhuzhiwen-015",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-zhuzhiwen-015",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -362,7 +362,7 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/mem-lanlao-020.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-lanlao-020",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-lanlao-020",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -429,7 +429,7 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/mem-pangmao-002.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-pangmao-002",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-pangmao-002",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -496,8 +496,8 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/mem-damaige-010.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-damaige-010",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-damaige-010",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -562,7 +562,7 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/mem-sunxiaochuan-011.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-sunxiaochuan-011",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-sunxiaochuan-011",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -627,8 +627,8 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/mem-jixinghang-013.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-jixinghang-013",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-jixinghang-013",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": false,
         "restrictedReason": [],
@@ -691,7 +691,7 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/mem-kapibala-024.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-kapibala-024",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-kapibala-024",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": false,
@@ -756,7 +756,7 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/mem-malou-025.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-malou-025",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-malou-025",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": false,
@@ -820,7 +820,7 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/mem-shushu-026.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-shushu-026",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-shushu-026",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": false,
@@ -885,8 +885,8 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/mem-bushi-027.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-bushi-027",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-bushi-027",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": false,
         "restrictedReason": [],
@@ -953,8 +953,8 @@
       "desc": "《奥特曼》系列反派，曾是光之国战士，后来成为黑暗势力代表。",
       "cardType": "image",
       "placeholder": false,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-belial-001",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#an-belial-001",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -1020,7 +1020,7 @@
       "desc": "《迪迦奥特曼》主角，拥有多种形态，是经典童年英雄形象。",
       "cardType": "image",
       "placeholder": false,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-diga-002",
+      "source": "docs/PERSONA-EVIDENCE.md#an-diga-002",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -1087,7 +1087,7 @@
       "desc": "奥特曼系列人气角色，自信张扬、好胜，战斗力强。",
       "cardType": "image",
       "placeholder": false,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-sairo-003",
+      "source": "docs/PERSONA-EVIDENCE.md#an-sairo-003",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -1155,7 +1155,7 @@
       "placeholder": false,
       "imageUrl": "/assets/personas/an-xiongda-004.png",
       "imageKind": "official",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-xiongda-004",
+      "source": "docs/PERSONA-EVIDENCE.md#an-xiongda-004",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -1221,8 +1221,8 @@
       "desc": "AI 短剧及网络二创角色，常见设定是被抛弃后回来复仇。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#sd-jiangbanya-012",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#sd-jiangbanya-012",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": false,
         "restrictedReason": [],
@@ -1287,8 +1287,8 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/es-donk-001.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-donk-001",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#es-donk-001",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -1350,7 +1350,7 @@
       "desc": "AI 助手形象，来自字节跳动，适合以 AI、聊天搭子和一本正经回答等网络印象塑造角色。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-doubao-040",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-doubao-040",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -1414,8 +1414,8 @@
       "desc": "游戏主播，以《王者荣耀》相关直播和视频内容为主要识别点。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-kuangmo-041",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-kuangmo-041",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -1482,8 +1482,8 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/es-faker-004.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-faker-004",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#es-faker-004",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -1548,8 +1548,8 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/intp-trump-001.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#intp-trump-001",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#intp-trump-001",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -1614,8 +1614,8 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/intp-musk-002.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#intp-musk-002",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#intp-musk-002",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -1680,8 +1680,8 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/intp-jensen-003.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#intp-jensen-003",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#intp-jensen-003",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -1746,8 +1746,8 @@
       "desc": "因委屈哭脸造型走红的马形毛绒玩偶，常被用来表达疲惫和委屈。",
       "cardType": "image",
       "placeholder": false,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#ani-cryinghorse-005",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#ani-cryinghorse-005",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": false,
         "restrictedReason": [],
@@ -1811,8 +1811,8 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/oth-burntpeanut-004.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#oth-burntpeanut-004",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#oth-burntpeanut-004",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -1874,8 +1874,8 @@
       "desc": "美国网络主播，以极度亢奋、夸张反应和高能直播风格闻名。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-jiaukang-042",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-jiaukang-042",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -1938,8 +1938,8 @@
       "desc": "游戏圈梗人物，关联《英雄联盟》剑魔视频切片和「回答我」式表达。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-xiaomingjianmo-043",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-xiaomingjianmo-043",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": false,
         "restrictedReason": [],
@@ -2000,7 +2000,7 @@
       "desc": "演员，因《小兵张嘎》走红，后来也因直播及网络事件形成梗。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-gazi-044",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-gazi-044",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -2064,8 +2064,8 @@
       "desc": "喜剧演员，擅长喜剧表演和即兴反应，贡献大量影视综艺名场面。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-shenteng-045",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-shenteng-045",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -2128,8 +2128,8 @@
       "desc": "《胜利女神：妮姬》桃乐丝相关的粉丝二创迷因形象。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#ani-doro-046",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#ani-doro-046",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -2192,8 +2192,8 @@
       "desc": "AI 企鹅化迷因形象，特点是摇摇晃晃和「咕咕嘎嘎」的魔性音效。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#ani-gugu-047",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#ani-gugu-047",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": false,
         "restrictedReason": [],
@@ -2254,8 +2254,8 @@
       "desc": "B站虚拟主播，以粉色形象、直播互动和粉丝文化出圈。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-tafei-048",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-tafei-048",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -2318,7 +2318,7 @@
       "desc": "吃播人物，以大量吃米饭为记忆点，常被塑造成米饭至上的形象。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-mifan-049",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-mifan-049",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": false,
@@ -2380,8 +2380,8 @@
       "desc": "黄色蛙形抽象迷因，外形圆润，常搭配魔性大笑音效。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#ani-naiwa-050",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#ani-naiwa-050",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": false,
         "restrictedReason": [],
@@ -2442,7 +2442,7 @@
       "desc": "美团袋鼠形象的抽象二创版本，肥嘟嘟的外形和相关网络话术形成记忆点。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#ani-meituan-051",
+      "source": "docs/PERSONA-EVIDENCE.md#ani-meituan-051",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -2509,8 +2509,8 @@
       "desc": "一种抽象人格原型，形容那些行为离谱、脑回路不在线、干出让人无语的事情的人：走在路上能把自己绊一个趔趄，说完一句话能自己听出三种意思，正经场合说正经话，正经话说得像在说胡话。重点不在现实中的任何人，而在这类「离谱操作」本身。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#ani-spongebob-052",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#ani-spongebob-052",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": false,
         "restrictedReason": [],
@@ -2571,8 +2571,8 @@
       "desc": "黄色抽象迷因体系中的角色，常与奶蛙、美团袋鼠等形象并列。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#ani-niulai-053",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#ani-niulai-053",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": false,
         "restrictedReason": [],
@@ -2633,8 +2633,8 @@
       "desc": "网络创作者，以冬泳、励志短视频和「奥利给」口号走红。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-dongyong-054",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-dongyong-054",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -2697,8 +2697,8 @@
       "desc": "意大利脑腐迷因角色，穿运动鞋的鲨鱼，搭配魔性意大利语音频传播。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-tralalero-055",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-tralalero-055",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": false,
         "restrictedReason": [],
@@ -2759,8 +2759,8 @@
       "desc": "意大利脑腐迷因角色，木棍拟人形象，名字来自重复敲击声。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-tungtung-056",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-tungtung-056",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": false,
         "restrictedReason": [],
@@ -2824,7 +2824,7 @@
       "desc": "对极端化网络话术现象进行讽刺的抽象角色：把「爱女」当成免检通行证，用情绪化扣帽子代替讨论，同一套标准只在自己这边生效，一言不合就清点立场、拒绝交流。讽刺的对象是**具体的极端观点、双标和逻辑矛盾**，不是女性这个群体，也不是正常的性别议题讨论。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-bombardiro-057",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-bombardiro-057",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": false,
@@ -2889,7 +2889,7 @@
       "placeholder": true,
       "imageUrl": "/assets/personas/es-ig-006.png",
       "imageKind": "placeholder",
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-ig-006",
+      "source": "docs/PERSONA-EVIDENCE.md#es-ig-006",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -2952,7 +2952,7 @@
       "desc": "中国《英雄联盟》职业选手简自豪，以 ADC 操作、对线压制力和比赛高光闻名。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-uzi-058",
+      "source": "docs/PERSONA-EVIDENCE.md#es-uzi-058",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -3016,8 +3016,8 @@
       "desc": "中国《无畏契约》职业选手郑永康，以激进的决斗位风格和舞台表现力出圈。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-kangkang-059",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#es-kangkang-059",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -3080,7 +3080,7 @@
       "desc": "《熊出没》中的伐木工，与熊大熊二斗智斗勇，后来成为兼具喜剧和温情的角色。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-guangtouqiang-060",
+      "source": "docs/PERSONA-EVIDENCE.md#an-guangtouqiang-060",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -3147,8 +3147,8 @@
       "desc": "代表那些喜欢装逼却不自知、沉浸在自己的帅气人设和世界观里、对自己的表现极其满意的人：走路带风、进门先找反光面、自拍一百张选出最不满意的那张发出去，用力过猛却完全不觉得尴尬，对旁人的反应一概不太敏感。核心梗：「别人还没觉得你帅，你已经把自己帅完了。」",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-huitailang-061",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#an-huitailang-061",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": false,
         "restrictedReason": [],
@@ -3209,7 +3209,7 @@
       "desc": "《喜羊羊与灰太狼》角色，贪吃、爱睡觉、怕麻烦，人生目标是吃饱睡好。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-lanyangyang-062",
+      "source": "docs/PERSONA-EVIDENCE.md#an-lanyangyang-062",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -3273,8 +3273,8 @@
       "desc": "《海绵宝宝》中的粉色海星，单纯、迟钝、脑回路清奇。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-paida-063",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#an-paida-063",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -3337,7 +3337,7 @@
       "desc": "《海绵宝宝》角色，厌世、傲娇、热爱艺术，常代表无语和疲惫。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-zhangyuge-064",
+      "source": "docs/PERSONA-EVIDENCE.md#an-zhangyuge-064",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -3401,8 +3401,8 @@
       "desc": "《星际宝贝》中的外星实验体，调皮、破坏力强，但重视家庭。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#an-stitch-065",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#an-stitch-065",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -3465,8 +3465,8 @@
       "desc": "葡萄牙足球运动员，以自律、身体素质、进球能力和胜负欲著称。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-ronaldo-066",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#es-ronaldo-066",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -3529,8 +3529,8 @@
       "desc": "阿根廷足球运动员，以盘带、组织、创造机会和进球能力闻名。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-messi-067",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#es-messi-067",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -3593,8 +3593,8 @@
       "desc": "美国篮球运动员，以全面能力、身体天赋和长期竞技表现著称。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-lebron-068",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#es-lebron-068",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -3657,8 +3657,8 @@
       "desc": "NBA 传奇球星，公牛王朝核心，以统治力和竞争精神闻名。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-jordan-069",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#es-jordan-069",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -3721,8 +3721,8 @@
       "desc": "NBA 传奇球星，以「曼巴精神」、自律和关键时刻表现成为篮球文化标志。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-kobe-070",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#es-kobe-070",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -3785,8 +3785,8 @@
       "desc": "短视频及直播电商创作者，以兄弟整活、夸张表演和家庭喜剧内容走红。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-xiaoyangge-071",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-xiaoyangge-071",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -3849,8 +3849,8 @@
       "desc": "抖音游戏主播及短视频创作者，以直播互动、游戏内容和个人整活风格出圈。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-chenze-072",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-chenze-072",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -3913,8 +3913,8 @@
       "desc": "直播电商主播，以强势直播风格、带货和直播间话题受到关注。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-xinba-073",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-xinba-073",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -3977,8 +3977,8 @@
       "desc": "直播电商主播，以美妆、口红试色和「OMG，买它！」等话术走红。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-lijiaqi-074",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-lijiaqi-074",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -4041,8 +4041,8 @@
       "desc": "演员和综艺嘉宾，因活跃性格、夸张反应和表情包受到关注。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-jianailiang-075",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-jianailiang-075",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -4105,8 +4105,8 @@
       "desc": "歌手、艺人，因篮球视频片段和网络二创成为高传播度梗人物。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-caixukun-076",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-caixukun-076",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -4169,7 +4169,7 @@
       "desc": "旅行类视频创作者，以跨国旅行、长途探索和个人经历分享为主。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-lanzhanfei-077",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-lanzhanfei-077",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -4233,7 +4233,7 @@
       "desc": "科技类视频创作者，擅长用实验和生活化场景讲解科技产品。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-hetongxue-078",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-hetongxue-078",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -4297,7 +4297,7 @@
       "desc": "影视飓风核心成员，以摄影、视频制作、影视设备和高质量影像内容出圈。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-tim-079",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-tim-079",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -4361,8 +4361,8 @@
       "desc": "小米创始人，因发布会演讲、「Are you OK」等名场面成为科技圈梗人物。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-leijun-080",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-leijun-080",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -4425,8 +4425,8 @@
       "desc": "华为高管，常因发布会表达、产品宣传和技术观点形成网络话题。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#intp-yuchengdong-081",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#intp-yuchengdong-081",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -4489,8 +4489,8 @@
       "desc": "华语流行音乐代表人物，歌手、词曲创作者和制作人，拥有大量经典作品。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-zhoujielun-082",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-zhoujielun-082",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -4553,8 +4553,8 @@
       "desc": "网络鉴宝主播，以直播鉴宝和娱乐化讲解走红。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-tingquan-083",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-tingquan-083",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -4617,7 +4617,7 @@
       "desc": "宠物类短视频创作者，以狗狗护理、宠物洗护和宠物互动内容为主。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-panhong-084",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-panhong-084",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -4681,7 +4681,7 @@
       "desc": "吃播及美食创作者，以大份量进食和食物测评出圈。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-liangzi-085",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-liangzi-085",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -4745,8 +4745,8 @@
       "desc": "网络短视频人物，以魔性说唱、独特口音和「一给我里 giaogiao」等名场面走红。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-giao-086",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-giao-086",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -4809,8 +4809,8 @@
       "desc": "因外貌与马云相似而走红的网络人物，「小马云」是其标志性称呼。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-fanxiaoqin-087",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-fanxiaoqin-087",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -4873,7 +4873,7 @@
       "desc": "游戏主播，以直播互动和个人风格为主要识别点。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-shaoyu-088",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-shaoyu-088",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -4937,7 +4937,7 @@
       "desc": "东北风格短视频创作者，以农村生活、家庭日常和豪爽表达走红。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-yujie-089",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-yujie-089",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -5001,8 +5001,8 @@
       "desc": "教育领域讲师及内容创作者，以考研、专业选择和就业方向的直白讲解出圈。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-zhangxuefeng-090",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-zhangxuefeng-090",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -5065,7 +5065,7 @@
       "desc": "华语歌手、词曲创作者，以 R&B 风格和《爱很简单》《普通朋友》等作品闻名。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-taozhe-091",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-taozhe-091",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -5129,8 +5129,8 @@
       "desc": "法国足球运动员，以速度、爆发力和进球能力闻名。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-mbappe-092",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#es-mbappe-092",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -5193,7 +5193,7 @@
       "desc": "中国乒乓球运动员，左手打法，以进攻能力和比赛表现受到关注。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-wangchuqin-093",
+      "source": "docs/PERSONA-EVIDENCE.md#es-wangchuqin-093",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -5257,7 +5257,7 @@
       "desc": "《三角洲行动》工程干员，本名大卫·费莱尔，擅长巡飞弹远程打击、速凝掩体和区域控制，攻守兼备。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#gm-wululu-094",
+      "source": "docs/PERSONA-EVIDENCE.md#gm-wululu-094",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -5321,7 +5321,7 @@
       "desc": "波黑 CS 职业选手 Nikola Kovač，以顶级步枪能力和沙鹰名场面著称。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#es-niko-095",
+      "source": "docs/PERSONA-EVIDENCE.md#es-niko-095",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -5385,8 +5385,8 @@
       "desc": "DeepSeek 社区二创角色，源于蓝色鲸鱼标识的趣味拟人化，常被塑造成蓝发、鲸尾形象。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-deepseek-096",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-deepseek-096",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -5449,7 +5449,7 @@
       "desc": "网络歌手及短视频创作者，因翻唱《热爱105℃的你》和相关模仿视频走红。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-tianzaitian-097",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-tianzaitian-097",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -5513,7 +5513,7 @@
       "desc": "韩国女团 aespa 成员，以舞台表现、外貌辨识度和个人风格受到关注。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-liuzhimin-098",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-liuzhimin-098",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -5577,7 +5577,7 @@
       "desc": "BLACKPINK 成员及个人歌手，以辨识度很高的嗓音和个人音乐作品出圈。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-piaocaiying-099",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-piaocaiying-099",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -5641,7 +5641,7 @@
       "desc": "日本政治人物，因政治立场、演讲和公开活动受到关注。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#intp-takaichi-100",
+      "source": "docs/PERSONA-EVIDENCE.md#intp-takaichi-100",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -5705,7 +5705,7 @@
       "desc": "按用户确认的网络创作者 KittyxKum 记录，保留原名称和对应身份。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-feihongxiaomao-101",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-feihongxiaomao-101",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
@@ -5769,8 +5769,8 @@
       "desc": "网络内容创作者，以「玩偶姐姐」艺名和标志性口罩形象为人熟知。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-wanoujiejie-102",
-      "evidence": "OBSERVED",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-wanoujiejie-102",
+      "evidence": "UNKNOWN",
       "compliance": {
         "restricted": true,
         "restrictedReason": [
@@ -5833,7 +5833,7 @@
       "desc": "网络内容创作者，主要涉及短视频、穿搭、舞蹈、写真和日常影像。",
       "cardType": "text",
       "placeholder": true,
-      "source": "docs/product-discovery/04-热梗与人物资料卡.md#mem-naimi-103",
+      "source": "docs/PERSONA-EVIDENCE.md#mem-naimi-103",
       "evidence": "OBSERVED",
       "compliance": {
         "restricted": true,
