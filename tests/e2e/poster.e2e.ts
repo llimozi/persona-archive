@@ -54,12 +54,12 @@ async function answerAll(page: Page): Promise<void> {
     }
     await page.waitForTimeout(150);
   }
-  await expect(page.locator('.result__name')).toBeVisible({ timeout: 10_000 });
+  await expect(page.locator('.record__name')).toBeVisible({ timeout: 10_000 });
 }
 
 /** 从结果页读出展示值 */
 async function readResultPage(page: Page): Promise<{ name: string; dims: Record<string, number> }> {
-  const name = (await page.locator('.result__name').innerText()).trim();
+  const name = (await page.locator('.record__name').innerText()).trim();
   const dims: Record<string, number> = {};
   const rows = await page.locator('.dim').all();
   for (const row of rows) {
@@ -75,7 +75,7 @@ test.describe('海报 PNG 导出', () => {
     mkdirSync(ART_DIR, { recursive: true });
     await answerAll(page);
 
-    await page.getByRole('button', { name: '生成海报' }).click();
+    await page.getByRole('button', { name: '生成档案海报' }).click();
     const img = page.getByTestId('poster-img');
     await expect(img).toBeVisible({ timeout: 15_000 });
 
@@ -138,7 +138,7 @@ test.describe('海报 PNG 导出', () => {
       }
       await page.waitForTimeout(120);
     }
-    await expect(page.locator('.result__name')).toBeVisible({ timeout: 10_000 });
+    await expect(page.locator('.record__name')).toBeVisible({ timeout: 10_000 });
 
     const expected = match({
       questions,
@@ -157,7 +157,7 @@ test.describe('海报 PNG 导出', () => {
       engineDims[k] = Math.round(expected.user.x[k] * 100);
     }
 
-    await page.getByRole('button', { name: '生成海报' }).click();
+    await page.getByRole('button', { name: '生成档案海报' }).click();
     const img = page.getByTestId('poster-img');
     await expect(img).toBeVisible({ timeout: 15_000 });
     const src = (await img.getAttribute('src'))!;
@@ -201,26 +201,28 @@ test.describe('海报 PNG 导出', () => {
         if (r > 230 && g > 225 && b > 215) paperPx++;
         else if (r < 90 && g < 90 && b < 90) darkPx++;
       }
-      // 蓝色点缀 #1b37ff（匹配度限定词）与金色 #d8a13a（六维条）
+      // 视觉重做后强调色统一为印章朱红 #b23a2e（匹配度 / 六维条 / 印章）
       let accentPx = 0;
-      let goldPx = 0;
+      let barPx = 0;
       for (let i = 0; i < d.length; i += 4) {
         const r = d[i]!;
         const g = d[i + 1]!;
         const b = d[i + 2]!;
-        if (b > 180 && r < 90 && g < 110) accentPx++;
-        if (r > 190 && g > 130 && g < 190 && b < 110) goldPx++;
+        // 朱红：红明显高于绿蓝
+        if (r > 140 && r < 220 && g < 110 && b < 110) accentPx++;
+        // 六维条填充区（同样属朱红系，单独计数用于确认"有填充"）
+        if (r > 150 && g < 100 && b < 100) barPx++;
       }
-      return { w: im.naturalWidth, h: im.naturalHeight, paperPx, darkPx, accentPx, goldPx };
+      return { w: im.naturalWidth, h: im.naturalHeight, paperPx, darkPx, accentPx, barPx };
     }, src);
 
     expect(ink.paperPx, '应有米白卡片底').toBeGreaterThan(1000);
     expect(ink.darkPx, '卡片上必须有深色文字墨迹（人物名/数字）').toBeGreaterThan(300);
-    expect(ink.accentPx, '应有蓝色「非心理测量」标记').toBeGreaterThan(0);
-    expect(ink.goldPx, '应有金色六维条').toBeGreaterThan(200);
+    expect(ink.accentPx, '应有朱红强调色（匹配度/印章）').toBeGreaterThan(200);
+    expect(ink.barPx, '六维条必须有实心填充（不是空轨道）').toBeGreaterThan(2000);
 
     // ③ 结果页 DOM 与引擎一致（海报数据源就是结果页 DOM）
-    const pageName = (await page.locator('.result__name').innerText()).trim();
+    const pageName = (await page.locator('.record__name').innerText()).trim();
     expect(pageName, '结果页主人物 = 引擎主匹配').toBe(engineName);
     const rows = await page.locator('.dim').all();
     const cn: Record<string, string> = { EE: '情绪浓度', ST: '表达风格', AC: '行动力', HX: '复杂性', RB: '反叛度', SR: '社交半径' };
@@ -253,7 +255,7 @@ test.describe('海报 PNG 导出', () => {
       });
     });
     await answerAll(page);
-    await page.getByRole('button', { name: '生成海报' }).click();
+    await page.getByRole('button', { name: '生成档案海报' }).click();
 
     const fb = page.getByTestId('poster-fallback');
     await expect(fb).toBeVisible({ timeout: 15_000 });
@@ -263,7 +265,7 @@ test.describe('海报 PNG 导出', () => {
     await expect(page.getByTestId('poster-share-url')).toHaveText(/\?r=/);
     // 结果页结果仍在（不白屏）
     await page.getByRole('button', { name: '关闭' }).click();
-    await expect(page.locator('.result__name')).toBeVisible();
+    await expect(page.locator('.record__name')).toBeVisible();
   });
 
   test('C2 toBlob 返回 null → 回退 toDataURL 仍出图', async ({ page }) => {
@@ -276,11 +278,13 @@ test.describe('海报 PNG 导出', () => {
       };
     });
     await answerAll(page);
-    await page.getByRole('button', { name: '生成海报' }).click();
+    await page.getByRole('button', { name: '生成档案海报' }).click();
     await expect(page.getByTestId('poster-img')).toBeVisible({ timeout: 15_000 });
   });
 
   test('C3 toBlob 与 toDataURL 双失败 → 降级提示，不白屏', async ({ page }) => {
+    // 注意：这里模拟的是**普通导出失败**（如内存不足），不是跨域污染。
+    // 跨域污染走 C5（SecurityError → CANVAS_TAINTED），两者必须是不同分支。
     await page.addInitScript(() => {
       HTMLCanvasElement.prototype.toBlob = function (cb: BlobCallback) {
         void this;
@@ -288,17 +292,17 @@ test.describe('海报 PNG 导出', () => {
       };
       HTMLCanvasElement.prototype.toDataURL = function () {
         void this;
-        throw new DOMException('The canvas has been tainted', 'SecurityError');
+        throw new Error('Encoding failed: out of memory');
       };
     });
     await answerAll(page);
-    await page.getByRole('button', { name: '生成海报' }).click();
+    await page.getByRole('button', { name: '生成档案海报' }).click();
 
     const fb = page.getByTestId('poster-fallback');
     await expect(fb).toBeVisible({ timeout: 15_000 });
     await expect(fb).toHaveAttribute('data-reason', 'EXPORT_FAILED');
     await page.getByRole('button', { name: '关闭' }).click();
-    await expect(page.locator('.result__name')).toBeVisible();
+    await expect(page.locator('.record__name')).toBeVisible();
   });
 
   test('C4 图片加载失败 → 页面不受影响（当前无图片素材，验证兜底不被引入）', async ({ page }) => {
@@ -317,22 +321,27 @@ test.describe('海报 PNG 导出', () => {
       });
     });
     await answerAll(page);
-    await expect(page.locator('.result__name')).toBeVisible();
+    await expect(page.locator('.record__name')).toBeVisible();
     // 文字结果不依赖图片：六维仍渲染
     expect(await page.locator('.dim').count()).toBe(6);
   });
 
   test('C5 画布污染（导出 SecurityError）→ 走降级', async ({ page }) => {
+    // 真实浏览器里，被污染的画布是在**导出时**才抛 SecurityError（toBlob / toDataURL）。
+    // 所以这里拦截 toBlob，而不是 getImageData。
+    // 真实污染下两条导出路径都会抛 SecurityError：toBlob 与 toDataURL 必须同时拦住，
+    // 只拦 toBlob 会走到 toDataURL 回退并「成功」，反而不符合真实场景。
     await page.addInitScript(() => {
-      const orig = CanvasRenderingContext2D.prototype.getImageData;
-      CanvasRenderingContext2D.prototype.getImageData = function (...args: Parameters<typeof orig>) {
-        void this;
-        void args;
+      HTMLCanvasElement.prototype.toBlob = function (cb: BlobCallback) {
+        void cb;
+        throw new DOMException('The canvas has been tainted', 'SecurityError');
+      };
+      HTMLCanvasElement.prototype.toDataURL = function () {
         throw new DOMException('The canvas has been tainted', 'SecurityError');
       };
     });
     await answerAll(page);
-    await page.getByRole('button', { name: '生成海报' }).click();
+    await page.getByRole('button', { name: '生成档案海报' }).click();
     const fb = page.getByTestId('poster-fallback');
     await expect(fb).toBeVisible({ timeout: 15_000 });
     await expect(fb).toHaveAttribute('data-reason', 'CANVAS_TAINTED');

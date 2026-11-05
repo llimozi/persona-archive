@@ -3,7 +3,6 @@ import {
   renderPoster,
   pickScale,
   formatPosterPercent,
-  isCanvasTainted,
   archiveNo,
   POSTER_LAYOUT,
 } from '../../src/web/lib/poster';
@@ -34,6 +33,12 @@ function fakeCtx(): CanvasRenderingContext2D {
   return {
     canvas: { width: 750, height: 1240 },
     setTransform: vi.fn(),
+    scale: vi.fn(),
+    arc: noop,
+    clip: noop,
+    drawImage: noop,
+    strokeRect: noop,
+    globalAlpha: 1,
     fillRect: noop,
     beginPath: noop,
     moveTo: noop,
@@ -72,9 +77,10 @@ function baseDeps(over: Partial<PosterDeps> = {}): Partial<PosterDeps> {
     createCanvas: () => fakeCanvas(),
     toBlob: async () => blob,
     toDataURL: () => 'data:image/png;base64,AAAA',
-    dataUrlToBlob: async () => blob,
     createObjectURL: () => 'blob:fake-url',
-    supportsDownload: true,
+    revokeObjectURL: () => undefined,
+    isCanvasTainted: () => false,
+    downloadable: true,
     ...over,
   };
 }
@@ -98,13 +104,13 @@ describe('pickScale（DPR 适配）', () => {
 
 describe('archiveNo（卷宗号）', () => {
   it('取 id 末段数字补零', () => {
-    expect(archiveNo('mem-coke-003')).toBe('NO.0003');
-    expect(archiveNo('an-diga-002')).toBe('NO.0002');
-    expect(archiveNo('mem-gulumao-021')).toBe('NO.0021');
+    expect(archiveNo('mem-coke-003')).toBe('ARCH·0003');
+    expect(archiveNo('an-diga-002')).toBe('ARCH·0002');
+    expect(archiveNo('mem-gulumao-021')).toBe('ARCH·0021');
   });
   it('无数字时给占位，不显示别人的名字', () => {
-    expect(archiveNo('x')).toBe('NO.----');
-    expect(archiveNo('')).toBe('NO.----');
+    expect(archiveNo('x')).toBe('ARCH····');
+    expect(archiveNo('')).toBe('ARCH····');
   });
 });
 
@@ -166,13 +172,14 @@ describe('renderPoster · 异常路径', () => {
   });
 
   it('toBlob 返回 null → 回退 toDataURL 成功', async () => {
-    const dataUrlToBlob = vi.fn(async () => new Blob([new Uint8Array(10)]));
+    const toDataURL = vi.fn(() => 'data:image/png;base64,AAAA');
     const res = await renderPoster(
       DATA,
-      baseDeps({ toBlob: async () => null, dataUrlToBlob }),
+      baseDeps({ toBlob: async () => null, toDataURL }),
     );
     expect(res.ok).toBe(true);
-    expect(dataUrlToBlob).toHaveBeenCalledTimes(1);
+    // 回退路径确实被走到：toDataURL 被调用一次
+    expect(toDataURL).toHaveBeenCalledTimes(1);
   });
 
   it('toBlob 抛异常 → 回退 toDataURL 成功', async () => {
@@ -230,12 +237,30 @@ describe('renderPoster · 异常路径', () => {
     expect(res.reason).toBe('CANVAS_UNSUPPORTED');
   });
 
-  it('画布被跨域污染（getImageData 抛错）→ CANVAS_TAINTED', async () => {
-    const ctx = fakeCtx();
-    (ctx as unknown as { getImageData: () => never }).getImageData = () => {
-      throw new Error('SecurityError: Tainted canvases may not be exported.');
-    };
-    const res = await renderPoster(DATA, baseDeps({ createCanvas: () => fakeCanvas(ctx) }));
+  it('画布被跨域污染（toBlob 抛 SecurityError）→ CANVAS_TAINTED', async () => {
+    const res = await renderPoster(
+      DATA,
+      baseDeps({
+        toBlob: async () => {
+          throw new Error('SecurityError: Tainted canvases may not be exported.');
+        },
+      }),
+    );
+    expect(res.ok).toBe(false);
+    if (res.ok) return;
+    expect(res.reason).toBe('CANVAS_TAINTED');
+  });
+
+  it('注入的 isCanvasTainted 判定为污染 → CANVAS_TAINTED', async () => {
+    const res = await renderPoster(
+      DATA,
+      baseDeps({
+        toBlob: async () => {
+          throw new Error('boom');
+        },
+        isCanvasTainted: () => true,
+      }),
+    );
     expect(res.ok).toBe(false);
     if (res.ok) return;
     expect(res.reason).toBe('CANVAS_TAINTED');
@@ -272,16 +297,27 @@ describe('renderPoster · 异常路径', () => {
   });
 });
 
-describe('isCanvasTainted', () => {
-  it('可读像素 → false', () => {
-    expect(isCanvasTainted(fakeCtx())).toBe(false);
-  });
-  it('读像素抛错 → true', () => {
+describe('画布污染兜底', () => {
+  it('绘制抛 tainted 错误 → CANVAS_TAINTED', async () => {
     const ctx = fakeCtx();
-    (ctx as unknown as { getImageData: () => never }).getImageData = () => {
-      throw new Error('SecurityError');
+    (ctx as unknown as { fillText: () => never }).fillText = () => {
+      throw new Error('The canvas has been tainted by cross-origin data');
     };
-    expect(isCanvasTainted(ctx)).toBe(true);
+    const res = await renderPoster(DATA, baseDeps({ createCanvas: () => fakeCanvas(ctx) }));
+    expect(res.ok).toBe(false);
+    if (res.ok) return;
+    expect(res.reason).toBe('CANVAS_TAINTED');
+  });
+
+  it('绘制抛其他错误 → EXPORT_FAILED，不把异常抛给 UI', async () => {
+    const ctx = fakeCtx();
+    (ctx as unknown as { fillText: () => never }).fillText = () => {
+      throw new Error('boom');
+    };
+    const res = await renderPoster(DATA, baseDeps({ createCanvas: () => fakeCanvas(ctx) }));
+    expect(res.ok).toBe(false);
+    if (res.ok) return;
+    expect(res.reason).toBe('EXPORT_FAILED');
   });
 });
 

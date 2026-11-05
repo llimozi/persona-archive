@@ -1,76 +1,119 @@
-"""生成 12 张人物占位头像（统一设计语言，每人一张，不留空白）。
+"""生成 78 张人物「档案照片」占位图（按分类区分配色/纹样/大字/编号）。
+
+设计目标：**不要一眼看出是占位**。
+  - 每个分类一套颜色与纹样（点阵 / 斜纹 / 圆环 / 网格）；
+  - 画面里放名字首字 + 馆藏编号，像一张贴了标签的档案照；
+  - 真图替换后仍是同一个方框，不会破坏版式。
 
 用法：python tools/gen-persona-avatars.py
-输出：src/web/assets/personas/<id>.png
+输出：public/assets/personas/<id>.png（512×512）
 """
 from PIL import Image, ImageDraw, ImageFont
-import json, os, sys
+import json, os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, "src", "web", "assets", "personas")
+OUT = os.path.join(ROOT, "public", "assets", "personas")
 os.makedirs(OUT, exist_ok=True)
 
 SIZE = 512
 
-# 分类配色：与站点设计 token 同色系（深底 + 暖金点缀）
+# 分类 → (底纸色, 纹样色, 大字色, 纹样样式)
 PALETTE = {
-    "mem": ((38, 34, 30), (212, 175, 122)),
-    "ani": ((30, 36, 34), (150, 196, 168)),
-    "an":  ((32, 32, 42), (140, 160, 220)),
-    "sd":  ((38, 30, 32), (214, 140, 140)),
+    "mem":  ((236, 226, 205), (176, 58, 46),  (58, 46, 34),  "dot"),
+    "ani":  ((226, 232, 218), (86, 122, 74),  (40, 54, 38),  "stripe"),
+    "an":   ((222, 226, 236), (74, 86, 128),  (32, 40, 58),  "ring"),
+    "sd":   ((238, 222, 220), (150, 74, 68),  (58, 34, 32),  "grid"),
+    "es":   ((226, 228, 222), (66, 84, 78),   (34, 42, 40),  "chevron"),
+    "intp": ((232, 228, 214), (120, 104, 62), (46, 40, 26),  "dot"),
+    "scr":  ((230, 222, 232), (104, 76, 118), (42, 34, 50),  "ring"),
+    "gm":   ((222, 230, 232), (62, 96, 106),  (30, 44, 48),  "grid"),
+    "oth":  ((230, 228, 222), (96, 92, 84),   (42, 40, 36),  "stripe"),
 }
 
-FONT_CANDIDATES = [
-    r"C:\Windows\Fonts\msyhbd.ttc",
-    r"C:\Windows\Fonts\msyh.ttc",
-    r"C:\Windows\Fonts\simhei.ttf",
-    r"C:\Windows\Fonts\simsun.ttc",
-]
+FONT_BOLD = [r"C:\Windows\Fonts\msyhbd.ttc", r"C:\Windows\Fonts\msyh.ttc", r"C:\Windows\Fonts\simhei.ttf"]
+FONT_MONO = [r"C:\Windows\Fonts\consola.ttf", r"C:\Windows\Fonts\cour.ttf", r"C:\Windows\Fonts\simsun.ttc"]
 
 
-def load_font(px):
-    for f in FONT_CANDIDATES:
-        if os.path.exists(f):
+def font(paths, px):
+    for p in paths:
+        if os.path.exists(p):
             try:
-                return ImageFont.truetype(f, px)
+                return ImageFont.truetype(p, px)
             except Exception:
                 continue
     return ImageFont.load_default()
 
 
 def first_char(name):
-    """取名字首个有意义字符：跳过引号/括号/空格。"""
     for ch in name:
-        if ch in "「」『』《》（）() \u3000·":
+        if ch in "「」『』《》（）() 　·":
             continue
         return ch
     return name[:1]
 
 
+def archive_no(pid):
+    import re
+    m = re.search(r"(\d+)\s*$", pid)
+    return f"{m.group(1).zfill(4)}" if m else "----"
+
+
+def draw_pattern(d, style, color, size):
+    """轻量纹样：够有辨识度，又不抢大字。"""
+    c = tuple(color)
+    faint = (c[0], c[1], c[2])
+    if style == "dot":
+        for y in range(24, size - 24, 34):
+            for x in range(24, size - 24, 34):
+                d.ellipse([x, y, x + 5, y + 5], fill=faint)
+    elif style == "stripe":
+        for i in range(-size, size * 2, 30):
+            d.line([(i, 0), (i - size, size)], fill=faint, width=2)
+    elif style == "ring":
+        for r in range(70, 300, 46):
+            d.ellipse([size / 2 - r, size / 2 - r, size / 2 + r, size / 2 + r], outline=faint, width=2)
+    elif style == "grid":
+        for i in range(40, size, 56):
+            d.line([(i, 0), (i, size)], fill=faint, width=1)
+            d.line([(0, i), (size, i)], fill=faint, width=1)
+    elif style == "chevron":
+        for y in range(0, size + 60, 54):
+            d.line([(0, y), (size / 2, y + 40), (size, y)], fill=faint, width=2)
+
+
 def draw_avatar(persona):
-    bg, accent = PALETTE.get(persona["category"], ((34, 34, 38), (200, 200, 200)))
+    cat = persona["category"]
+    bg, patt, ink, style = PALETTE.get(cat, PALETTE["oth"])
     img = Image.new("RGB", (SIZE, SIZE), bg)
     d = ImageDraw.Draw(img)
 
-    # 极简纹理：斜向细线，避免纯色显得像加载失败
-    for i in range(-SIZE, SIZE * 2, 26):
-        d.line([(i, 0), (i - SIZE, SIZE)], fill=tuple(min(255, c + 7) for c in bg), width=1)
+    # 纸质底：极浅的横向纤维
+    for y in range(0, SIZE, 3):
+        d.line([(0, y), (SIZE, y)], fill=tuple(max(0, v - 3) for v in bg), width=1)
 
-    # 外圈细描边
-    d.rounded_rectangle([10, 10, SIZE - 10, SIZE - 10], radius=54, outline=accent, width=3)
+    draw_pattern(d, style, patt, SIZE)
+
+    # 内框：档案照片的细边
+    d.rectangle([18, 18, SIZE - 18, SIZE - 18], outline=tuple(max(0, v - 40) for v in bg), width=3)
+
+    # 底部标注栏底色（在纹样之上再铺一次，保证编号清晰可读）
+    d.rectangle([20, SIZE - 92, SIZE - 20, SIZE - 20], fill=tuple(max(0, v - 10) for v in bg))
+    d.line([(20, SIZE - 92), (SIZE - 20, SIZE - 92)], fill=tuple(max(0, v - 40) for v in bg), width=2)
 
     ch = first_char(persona["name"])
-    font = load_font(232)
-    bbox = d.textbbox((0, 0), ch, font=font)
+    f = font(FONT_BOLD, 250)
+    bbox = d.textbbox((0, 0), ch, font=f)
     tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
-    d.text(((SIZE - tw) / 2 - bbox[0], (SIZE - th) / 2 - bbox[1] - 18), ch, font=font, fill=accent)
+    d.text(((SIZE - tw) / 2 - bbox[0], (SIZE - th) / 2 - bbox[1] - 14), ch, font=f, fill=ink)
 
-    # 底部小字：分类缩写，帮助辨认
-    small = load_font(44)
-    cat = persona["category"].upper()
-    cb = d.textbbox((0, 0), cat, font=small)
-    d.text(((SIZE - (cb[2] - cb[0])) / 2 - cb[0], SIZE - 96), cat, font=small,
-           fill=tuple(min(255, c + 60) for c in bg))
+    # 底部：编号 + 分类拉丁缩写，像档案照的标注栏（先画栏，再画纹样，避免被纹样割穿）
+    fm = font(FONT_MONO, 30)
+    no = f"NO.{archive_no(persona['id'])}"
+    d.text((40, SIZE - 78), no, font=fm, fill=patt)
+    fm2 = font(FONT_MONO, 26)
+    tag = cat.upper()
+    tb = d.textbbox((0, 0), tag, font=fm2)
+    d.text((SIZE - 40 - (tb[2] - tb[0]), SIZE - 74), tag, font=fm2, fill=tuple(int(v * 0.75) for v in ink))
 
     path = os.path.join(OUT, f"{persona['id']}.png")
     img.save(path, "PNG", optimize=True)
@@ -78,12 +121,10 @@ def draw_avatar(persona):
 
 
 def main():
-    data = json.load(open(os.path.join(ROOT, "data", "personas.json"), encoding="utf-8"))
-    personas = data["personas"]
+    personas = json.load(open(os.path.join(ROOT, "data", "personas.json"), encoding="utf-8"))["personas"]
     for p in personas:
-        path = draw_avatar(p)
-        print(f"OK {p['id']:<22} {os.path.relpath(path, ROOT)}")
-    print(f"\n共 {len(personas)} 张 → {os.path.relpath(OUT, ROOT)}")
+        draw_avatar(p)
+    print(f"共 {len(personas)} 张 → {os.path.relpath(OUT, ROOT)}")
 
 
 if __name__ == "__main__":

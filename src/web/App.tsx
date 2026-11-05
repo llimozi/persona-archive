@@ -252,8 +252,8 @@ export function App() {
       shareUrl={Object.keys(answers).length ? buildShareUrl(answers) : location.href}
       shareHint={
         !result
-          ? '结果未能计算，请检查数据是否加载完整。'
-          : '分享为纯文字链接；可整屏截图做海报。链接是用当前档案库重放这份作答，档案更新后结果可能变化。'
+          ? '结果未能生成，请稍后重试。'
+          : '分享出去的链接会重新比对一次档案库，档案更新后结果可能略有不同。'
       }
     />
   );

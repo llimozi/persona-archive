@@ -208,11 +208,12 @@ test(`人物配图：${EXPECTED_PERSONAS} 人一一对应且真实可加载`, as
     const opt = page.locator('button.option').first();
     if ((await opt.count()) === 0) break;
     await opt.click();
-    const next = page.locator('.quiz__foot button').filter({ hasText: /下一题|看结果/ });
+    const next = page.locator('.quiz__foot button').filter({ hasText: /下一题|看结果|查看我的档案/ });
     if ((await next.count()) === 0) break;
     await next.first().click();
   }
-  const avatar = page.getByTestId('result-avatar-img');
+  // 主卡内的大头像（"还有几分像"的小像也是同名 testid，必须限定到 result-card）
+  const avatar = page.getByTestId('result-card').getByTestId('result-avatar-img');
   await expect(avatar).toBeVisible({ timeout: 10_000 });
   const natural = await avatar.evaluate((el) => (el as HTMLImageElement).naturalWidth);
   expect(natural, '结果页配图未真实解码（naturalWidth=0）').toBeGreaterThan(0);
