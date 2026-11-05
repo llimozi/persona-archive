@@ -41,7 +41,7 @@ async function answerAll(page: Page): Promise<void> {
   await page.goto('/');
   await page.waitForLoadState('networkidle');
   await page.getByRole('button', { name: /开始|测一测|开始测试|进入/ }).first().click();
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 60; i++) {
     const opt = page.locator('button.option').first();
     if ((await opt.count()) === 0) break;
     const hasNext = await page.locator('.quiz__foot button.btn--primary').count();
@@ -122,7 +122,7 @@ test.describe('海报 PNG 导出', () => {
     await page.waitForLoadState('networkidle');
     await page.getByRole('button', { name: /开始|测一测|开始测试|进入/ }).first().click();
     const picked: Array<{ questionId: string; optionId: string }> = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 60; i++) {
       const opt = page.locator('button.option').first();
       if ((await opt.count()) === 0) break;
       const title = (await page.locator('.question__title').innerText()).trim();

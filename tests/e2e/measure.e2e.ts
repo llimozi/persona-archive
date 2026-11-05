@@ -35,13 +35,20 @@ test('热区与溢出实测并取证', async ({ page }, testInfo) => {
   const nb = await nextBtn.boundingBox();
   rows.push(`[答题页] 下一题 ${nb?.width.toFixed(0)}x${nb?.height.toFixed(0)}`);
 
-  // 走完 10 题到结果页
-  for (let i = 0; i < 12; i++) {
+  // 走完所有题到结果页：先问题库真实题数，不写死循环次数
+  const total = await page.evaluate(async () => {
+    const r = await fetch('/api/questions');
+    const d = (await r.json()) as { items?: unknown[] };
+    return d.items?.length ?? 0;
+  });
+  for (let i = 0; i < (total || 30); i++) {
     const opt = page.locator('button.option').first();
     if ((await opt.count()) === 0) break;
     await opt.click();
-    await page.locator('.quiz__foot button.btn--primary').click();
-    await page.waitForTimeout(200);
+    const next = page.locator('.quiz__foot button.btn--primary');
+    if ((await next.count()) === 0) break;
+    await next.click();
+    await page.waitForTimeout(150);
   }
 
   const resDoc = await page.evaluate(() => ({

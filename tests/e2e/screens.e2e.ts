@@ -77,7 +77,7 @@ test('全流程：首页 → 答题 → 结果', async ({ page }) => {
 
   // 答题：每题选第一个选项 → 点「下一题」/「看结果」
   let advanced = 0;
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 60; i++) {
     const option = page.locator('button.option').first();
 
     // 页面进入错误态（如接口 502）立即失败，并带上页面自己的报错文案
@@ -124,7 +124,7 @@ test('分享结果链接 ?r=<token>：他人打开直达结果页且数值一致
   await page.waitForLoadState('networkidle');
 
   await page.getByRole('button', { name: /开始|测一测|开始测试|进入/ }).first().click();
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 60; i++) {
     const opt = page.locator('button.option').first();
     if ((await opt.count()) === 0) break;
     await opt.click();
@@ -198,9 +198,18 @@ test(`人物配图：${EXPECTED_PERSONAS} 人一一对应且真实可加载`, as
   // 页面层：进入结果页，确认配图真实解码成功
   await page.goto('/');
   await page.getByRole('button', { name: /开始/ }).click();
-  for (let i = 0; i < 10; i += 1) {
-    await page.locator('button.option').first().click();
+  // 按题库真实题数走完，不写死题数（题数变化时这里不该假红）
+  const totalQ = await page.evaluate(async () => {
+    const r = await fetch('/api/questions');
+    const d = (await r.json()) as { items?: unknown[] };
+    return d.items?.length ?? 0;
+  });
+  for (let i = 0; i < (totalQ || 30); i += 1) {
+    const opt = page.locator('button.option').first();
+    if ((await opt.count()) === 0) break;
+    await opt.click();
     const next = page.locator('.quiz__foot button').filter({ hasText: /下一题|看结果/ });
+    if ((await next.count()) === 0) break;
     await next.first().click();
   }
   const avatar = page.getByTestId('result-avatar-img');

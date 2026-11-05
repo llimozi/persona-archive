@@ -45,7 +45,7 @@ test('结果页六维数值必须等于引擎 user.x*100', async ({ page }) => {
 
   // 全选每题的【第一个】选项，与期望值计算口径保持一致
   const picked: EngineAnswer[] = [];
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 60; i++) {
     const opt = page.locator('button.option').first();
     if ((await opt.count()) === 0) break;
 
